@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.myth;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -36,7 +37,8 @@ public class TimeZoneInfo {
 	private int utcOffset;
 	
 	@JsonProperty( "CurrentDateTime" )
-	private Date currentDateTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime currentDateTime;
 	
 	public TimeZoneInfo() { }
 
@@ -71,14 +73,14 @@ public class TimeZoneInfo {
 	/**
 	 * @return the currentDateTime
 	 */
-	public Date getCurrentDateTime() {
+	public DateTime getCurrentDateTime() {
 		return currentDateTime;
 	}
 
 	/**
 	 * @param currentDateTime the currentDateTime to set
 	 */
-	public void setCurrentDateTime( Date currentDateTime ) {
+	public void setCurrentDateTime( DateTime currentDateTime ) {
 		this.currentDateTime = currentDateTime;
 	}
 

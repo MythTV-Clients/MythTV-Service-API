@@ -20,9 +20,9 @@
 package org.mythtv.services.api.content.impl;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.content.ArtworkInfo;
 import org.mythtv.services.api.content.ArtworkInfos;
@@ -100,11 +100,11 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	 * @see org.mythtv.services.api.content.ContentOperations#addRecordingLiveStream(int, java.util.Date, int, int, int, int, int, int)
 	 */
 	@Override
-	public LiveStreamInfo addRecordingLiveStream( int channelId, Date startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) {
+	public LiveStreamInfo addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format( startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		if( maxSegments > 0 ) {
 			parameters.add( "MaxSegments", "" + maxSegments );
@@ -348,11 +348,11 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	 * @see org.mythtv.services.api.content.ContentOperations#getPreviewImage(int, java.util.Date, int, int, int)
 	 */
 	@Override
-	public byte[] getPreviewImage( int channelId, Date startTime, int width, int height, int secondsIn ) {
+	public byte[] getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format( startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		if( width > 0 ) {
 			parameters.add( "Width", "" + width );
@@ -395,11 +395,11 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	 * @see org.mythtv.services.api.content.ContentOperations#getRecording(int, java.util.Date)
 	 */
 	@Override
-	public byte[] getRecording( int channelId, Date startTime ) {
+	public byte[] getRecording( int channelId, DateTime startTime ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format( startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
 		ResponseEntity<byte[]> responseEntity = restTemplate.exchange( buildUri( "GetRecording", parameters ), HttpMethod.GET, getRequestEntity(), byte[].class );
 		byte[] bytes = responseEntity.getBody();
@@ -442,11 +442,11 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	 * @see org.mythtv.services.api.content.ContentOperations#getRecordingArtworkList(int, java.util.Date)
 	 */
 	@Override
-	public List<ArtworkInfo> getRecordingArtworkList( int channelId, Date startTime ) {
+	public List<ArtworkInfo> getRecordingArtworkList( int channelId, DateTime startTime ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format( startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		ResponseEntity<ArtworkInfos> responseEntity = restTemplate.exchange( buildUri( "GetRecordingArtworkList", parameters ), HttpMethod.GET, getRequestEntity(), ArtworkInfos.class );
 		ArtworkInfos artworkInfos = responseEntity.getBody();

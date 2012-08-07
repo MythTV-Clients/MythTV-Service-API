@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.video;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 import org.mythtv.services.api.content.ArtworkInfoList;
 
 /**
@@ -64,10 +65,12 @@ public class VideoMetadataInfo {
 	private String homePage;
 
 	@JsonProperty( "ReleaseDate" )
-	private Date releaseDate;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime releaseDate;
 
 	@JsonProperty( "AddDate" )
-	private Date addDate;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime addDate;
 
 	@JsonProperty( "UserRating" )
 	private float userRating;
@@ -285,28 +288,28 @@ public class VideoMetadataInfo {
 	/**
 	 * @return the releaseDate
 	 */
-	public Date getReleaseDate() {
+	public DateTime getReleaseDate() {
 		return releaseDate;
 	}
 
 	/**
 	 * @param releaseDate the releaseDate to set
 	 */
-	public void setReleaseDate( Date releaseDate ) {
+	public void setReleaseDate( DateTime releaseDate ) {
 		this.releaseDate = releaseDate;
 	}
 
 	/**
 	 * @return the addDate
 	 */
-	public Date getAddDate() {
+	public DateTime getAddDate() {
 		return addDate;
 	}
 
 	/**
 	 * @param addDate the addDate to set
 	 */
-	public void setAddDate( Date addDate ) {
+	public void setAddDate( DateTime addDate ) {
 		this.addDate = addDate;
 	}
 

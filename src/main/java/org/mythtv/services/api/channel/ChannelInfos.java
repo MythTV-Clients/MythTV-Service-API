@@ -19,10 +19,12 @@
  */
 package org.mythtv.services.api.channel;
 
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -46,7 +48,8 @@ public class ChannelInfos {
 	private int totalAvailable;
 	
 	@JsonProperty( "AsOf" )
-	private Date asOf;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime asOf;
 	
 	@JsonProperty( "Version" )
 	private String version;
@@ -132,14 +135,14 @@ public class ChannelInfos {
 	/**
 	 * @return the asOf
 	 */
-	public Date getAsOf() {
+	public DateTime getAsOf() {
 		return asOf;
 	}
 
 	/**
 	 * @param asOf the asOf to set
 	 */
-	public void setAsOf( Date asOf ) {
+	public void setAsOf( DateTime asOf ) {
 		this.asOf = asOf;
 	}
 

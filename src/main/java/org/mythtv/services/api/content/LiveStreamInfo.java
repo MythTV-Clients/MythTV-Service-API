@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.content;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -63,10 +64,12 @@ public class LiveStreamInfo {
 	private int percentComplete;
 	
 	@JsonProperty( "Created" )
-	private Date created;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime created;
 	
 	@JsonProperty( "LastModified" )
-	private Date lastModified;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime lastModified;
 	
 	@JsonProperty( "RelativeURL" )
 	private String relativeUrl;
@@ -257,28 +260,28 @@ public class LiveStreamInfo {
 	/**
 	 * @return the created
 	 */
-	public Date getCreated() {
+	public DateTime getCreated() {
 		return created;
 	}
 
 	/**
 	 * @param created the created to set
 	 */
-	public void setCreated( Date created ) {
+	public void setCreated( DateTime created ) {
 		this.created = created;
 	}
 
 	/**
 	 * @return the lastModified
 	 */
-	public Date getLastModified() {
+	public DateTime getLastModified() {
 		return lastModified;
 	}
 
 	/**
 	 * @param lastModified the lastModified to set
 	 */
-	public void setLastModified( Date lastModified ) {
+	public void setLastModified( DateTime lastModified ) {
 		this.lastModified = lastModified;
 	}
 

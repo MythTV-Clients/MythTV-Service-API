@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.dvr;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.content.ArtworkInfos;
 
@@ -32,10 +33,12 @@ import org.mythtv.services.api.content.ArtworkInfos;
 public class Program {
 
 	@JsonProperty( "StartTime" )
-	private Date startTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime startTime;
 	
 	@JsonProperty( "EndTime" )
-	private Date endTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime endTime;
 	
 	@JsonProperty( "Title" )
 	private String title;
@@ -74,7 +77,8 @@ public class Program {
 	private String fileSize;
 	
 	@JsonProperty( "LastModified" )
-	private Date lastModified;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime lastModified;
 	
 	@JsonProperty( "ProgramFlags" )
 	private String programFlags;
@@ -86,7 +90,8 @@ public class Program {
 	private String filename;
 	
 	@JsonProperty( "Airdate" )
-	private Date airDate;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime airDate;
 	
 	@JsonProperty( "Description" )
 	private String description;
@@ -114,28 +119,28 @@ public class Program {
 	/**
 	 * @return the startTime
 	 */
-	public Date getStartTime() {
+	public DateTime getStartTime() {
 		return startTime;
 	}
 
 	/**
 	 * @param startTime the startTime to set
 	 */
-	public void setStartTime( Date startTime ) {
+	public void setStartTime( DateTime startTime ) {
 		this.startTime = startTime;
 	}
 
 	/**
 	 * @return the endTime
 	 */
-	public Date getEndTime() {
+	public DateTime getEndTime() {
 		return endTime;
 	}
 
 	/**
 	 * @param endTime the endTime to set
 	 */
-	public void setEndTime( Date endTime ) {
+	public void setEndTime( DateTime endTime ) {
 		this.endTime = endTime;
 	}
 
@@ -310,14 +315,14 @@ public class Program {
 	/**
 	 * @return the lastModified
 	 */
-	public Date getLastModified() {
+	public DateTime getLastModified() {
 		return lastModified;
 	}
 
 	/**
 	 * @param lastModified the lastModified to set
 	 */
-	public void setLastModified( Date lastModified ) {
+	public void setLastModified( DateTime lastModified ) {
 		this.lastModified = lastModified;
 	}
 
@@ -366,14 +371,14 @@ public class Program {
 	/**
 	 * @return the airDate
 	 */
-	public Date getAirDate() {
+	public DateTime getAirDate() {
 		return airDate;
 	}
 
 	/**
 	 * @param airDate the airDate to set
 	 */
-	public void setAirDate( Date airDate ) {
+	public void setAirDate( DateTime airDate ) {
 		this.airDate = airDate;
 	}
 

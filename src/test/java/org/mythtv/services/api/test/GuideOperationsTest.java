@@ -3,8 +3,8 @@
  */
 package org.mythtv.services.api.test;
 
-import java.util.Date;
-
+import org.joda.time.DateTime;
+import org.joda.time.Period;
 import org.junit.Before;
 import org.junit.Test;
 import org.mythtv.services.api.dvr.Program;
@@ -19,9 +19,8 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
 	private int iconsize = 512;
 	private int chanid = 2502;
-	private Date now;
-	private static long DAY_OFFSET = 24 * 3600 * 1000;
-	private Date tomorrow;
+	private DateTime now;
+	private DateTime tomorrow;
 	
 	private GuideOperations operations;
 	
@@ -31,8 +30,8 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		now = new Date();
-		tomorrow = new Date(now.getTime() + DAY_OFFSET);
+		now = new DateTime();
+		tomorrow = now.plus(  Period.days( 1 ) );
 		operations = api.guideOperations();
 	}
 
@@ -46,7 +45,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramDetails(int, java.util.Date)}.
+	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramDetails(int, org.joda.time.DateTime)}.
 	 */
 	@Test
 	public void testGetProgramDetails() {
@@ -55,7 +54,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(java.util.Date, java.util.Date, int, int, boolean)}.
+	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
 	 */
 	@Test
 	public void testGetProgramGuide() {
@@ -64,7 +63,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuideResponseEntity(java.util.Date, java.util.Date, int, int, boolean)}.
+	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuideResponseEntity(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
 	 * /
 	@Test
 	public void testGetProgramGuideResponseEntity() {

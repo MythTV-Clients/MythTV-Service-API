@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.myth;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -54,7 +55,8 @@ public class LogMessage {
 	private String function;
 	
 	@JsonProperty( "Time" )
-	private Date time;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime time;
 	
 	@JsonProperty( "Level" )
 	private String level;
@@ -179,14 +181,14 @@ public class LogMessage {
 	/**
 	 * @return the time
 	 */
-	public Date getTime() {
+	public DateTime getTime() {
 		return time;
 	}
 
 	/**
 	 * @param time the time to set
 	 */
-	public void setTime( Date time ) {
+	public void setTime( DateTime time ) {
 		this.time = time;
 	}
 

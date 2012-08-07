@@ -13,5 +13,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/joda-time-2.1.jar" sourcepath="docs/joda-time-2.1-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

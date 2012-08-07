@@ -20,10 +20,13 @@
 package org.mythtv.services.api;
 
 import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.logging.Logger;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.springframework.http.ContentCodingType;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,7 +43,7 @@ public abstract class AbstractOperations {
 	
 	private static final String TAG = AbstractOperations.class.getSimpleName();
 	
-	protected static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss" );
+	protected static final DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
 
 	private final String apiUrlBase;
 
@@ -110,6 +113,10 @@ public abstract class AbstractOperations {
 		return requestEntity;
 	}
 
+	protected String convertUtcAndFormat( DateTime dt ) {
+		return formatter.print( dt.withZone( DateTimeZone.UTC ) );
+	}
+	
 	private static final LinkedMultiValueMap<String, String> EMPTY_PARAMETERS = new LinkedMultiValueMap<String, String>();
 
 }

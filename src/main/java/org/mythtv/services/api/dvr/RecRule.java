@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.dvr;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -57,10 +58,12 @@ public class RecRule {
 	private String category;
 
 	@JsonProperty( "StartTime" )
-	private Date startTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime startTime;
 
 	@JsonProperty( "EndTime" )
-	private Date endTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime endTime;
 
 	@JsonProperty( "SeriesId" )
 	private String seriesId;
@@ -81,7 +84,8 @@ public class RecRule {
 	private int day;
 
 	@JsonProperty( "Time" )
-	private Date time;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime time;
 
 	@JsonProperty( "FindId" )
 	private int findId;
@@ -159,13 +163,16 @@ public class RecRule {
 	private int transcoder;
 
 	@JsonProperty( "NextRecording" )
-	private Date nextRecording;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime nextRecording;
 
 	@JsonProperty( "LastRecorded" )
-	private Date lastRecorded;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime lastRecorded;
 
 	@JsonProperty( "LastDeleted" )
-	private Date lastDeleted;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime lastDeleted;
 
 	@JsonProperty( "AverageDelay" )
 	private int averageDelay;
@@ -301,28 +308,28 @@ public class RecRule {
 	/**
 	 * @return the startTime
 	 */
-	public Date getStartTime() {
+	public DateTime getStartTime() {
 		return startTime;
 	}
 
 	/**
 	 * @param startTime the startTime to set
 	 */
-	public void setStartTime( Date startTime ) {
+	public void setStartTime( DateTime startTime ) {
 		this.startTime = startTime;
 	}
 
 	/**
 	 * @return the endTime
 	 */
-	public Date getEndTime() {
+	public DateTime getEndTime() {
 		return endTime;
 	}
 
 	/**
 	 * @param endTime the endTime to set
 	 */
-	public void setEndTime( Date endTime ) {
+	public void setEndTime( DateTime endTime ) {
 		this.endTime = endTime;
 	}
 
@@ -413,14 +420,14 @@ public class RecRule {
 	/**
 	 * @return the time
 	 */
-	public Date getTime() {
+	public DateTime getTime() {
 		return time;
 	}
 
 	/**
 	 * @param time the time to set
 	 */
-	public void setTime( Date time ) {
+	public void setTime( DateTime time ) {
 		this.time = time;
 	}
 
@@ -777,42 +784,42 @@ public class RecRule {
 	/**
 	 * @return the nextRecording
 	 */
-	public Date getNextRecording() {
+	public DateTime getNextRecording() {
 		return nextRecording;
 	}
 
 	/**
 	 * @param nextRecording the nextRecording to set
 	 */
-	public void setNextRecording( Date nextRecording ) {
+	public void setNextRecording( DateTime nextRecording ) {
 		this.nextRecording = nextRecording;
 	}
 
 	/**
 	 * @return the lastRecorded
 	 */
-	public Date getLastRecorded() {
+	public DateTime getLastRecorded() {
 		return lastRecorded;
 	}
 
 	/**
 	 * @param lastRecorded the lastRecorded to set
 	 */
-	public void setLastRecorded( Date lastRecorded ) {
+	public void setLastRecorded( DateTime lastRecorded ) {
 		this.lastRecorded = lastRecorded;
 	}
 
 	/**
 	 * @return the lastDeleted
 	 */
-	public Date getLastDeleted() {
+	public DateTime getLastDeleted() {
 		return lastDeleted;
 	}
 
 	/**
 	 * @param lastDeleted the lastDeleted to set
 	 */
-	public void setLastDeleted( Date lastDeleted ) {
+	public void setLastDeleted( DateTime lastDeleted ) {
 		this.lastDeleted = lastDeleted;
 	}
 

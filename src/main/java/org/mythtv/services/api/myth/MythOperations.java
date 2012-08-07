@@ -19,8 +19,9 @@
  */
 package org.mythtv.services.api.myth;
 
-import java.util.Date;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 /**
  * @author Daniel Frey
@@ -109,7 +110,7 @@ public interface MythOperations {
 	 * @param messageContains
 	 * @return
 	 */
-	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, Date from, Date to, String level, String messageContains );
+	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains );
 	
 	/**
 	 * - GET

@@ -19,9 +19,9 @@
  */
 package org.mythtv.services.api.dvr.impl;
 
-import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.Int;
 import org.mythtv.services.api.dvr.DvrOperations;
@@ -58,11 +58,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#addRecordingSchedule(int, java.util.Date, int, boolean, int, int, java.lang.String, int, java.lang.String, java.lang.String, int, int, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, int, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, int)
 	 */
 	@Override
-	public int addRecordingSchedule( int channelId, Date startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder ) {
+	public int addRecordingSchedule( int channelId, DateTime startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format(  startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		parameters.add( "ParentId", "" + parentId );
 		parameters.add( "Inactive", Boolean.toString( interactive ) );
 		parameters.add( "Season", "" + season );
@@ -262,11 +262,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecorded(int, java.util.Date)
 	 */
 	@Override
-	public Program getRecorded( int channelId, Date startTime ) {
+	public Program getRecorded( int channelId, DateTime startTime ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format( startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
 		ResponseEntity<Program> responseEntity = restTemplate.exchange( buildUri( "GetRecorded", parameters ), HttpMethod.GET, getRequestEntity(), Program.class );
 		Program program = responseEntity.getBody();
@@ -369,11 +369,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#removeRecorded(int, java.util.Date)
 	 */
 	@Override
-	public boolean removeRecorded( int channelId, Date startTime ) {
+	public boolean removeRecorded( int channelId, DateTime startTime ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
-		parameters.add( "StartTime", sdf.format( startTime ) );
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();

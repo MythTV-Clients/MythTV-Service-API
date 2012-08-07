@@ -19,8 +19,7 @@
  */
 package org.mythtv.services.api.guide.impl;
 
-import java.util.Date;
-
+import org.joda.time.DateTime;
 import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
@@ -69,13 +68,13 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramDetails(int, java.util.Date)
 	 */
 	@Override
-	public Program getProgramDetails( int channelId, Date startTime ) {
+	public Program getProgramDetails( int channelId, DateTime startTime ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 		
 		if( null != startTime ) {
-			parameters.add( "StartTime", sdf.format( startTime ) );
+			parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		}
 
 		ResponseEntity<Program> responseEntity = restTemplate.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(), Program.class );
@@ -88,7 +87,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramGuide(java.util.Date, java.util.Date, int, int, boolean)
 	 */
 	@Override
-	public ProgramGuideWrapper getProgramGuide( Date start, Date end, int startChannelId, int numberOfChannels, boolean details ) {
+	public ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) {
 
 		ResponseEntity<ProgramGuideWrapper> responseEntity = getProgramGuideResponseEntity( start, end, startChannelId, numberOfChannels, details );
 		ProgramGuideWrapper programGuide = responseEntity.getBody();
@@ -100,10 +99,10 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramGuideResponseEntity(java.util.Date, java.util.Date, int, int, boolean)
 	 */
 	@Override
-	public ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( Date start, Date end, int startChannelId, int numberOfChannels, boolean details ) {
+	public ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "StartTime", sdf.format( start ) );
-		parameters.add( "EndTime", sdf.format( end ) );
+		parameters.add( "StartTime", convertUtcAndFormat( start ) );
+		parameters.add( "EndTime", convertUtcAndFormat( end ) );
 		
 		if( startChannelId > 0 ) {
 			parameters.add( "StartChanId", "" + startChannelId );

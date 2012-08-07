@@ -19,9 +19,9 @@
  */
 package org.mythtv.services.api.myth.impl;
 
-import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.mythtv.services.api.myth.ConnectionInfo;
 import org.mythtv.services.api.myth.LogMessage;
 import org.mythtv.services.api.myth.MythOperations;
@@ -124,7 +124,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * @see org.mythtv.services.api.myth.MythOperations#getLogs(java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.util.Date, java.util.Date, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, Date from, Date to, String level, String messageContains ) {
+	public List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains ) {
 		// TODO Auto-generated method stub
 		return null;
 	}

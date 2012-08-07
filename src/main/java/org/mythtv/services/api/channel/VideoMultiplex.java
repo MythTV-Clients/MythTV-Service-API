@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.channel;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -96,7 +97,8 @@ public class VideoMultiplex {
 	private int serviceVersion;
 	
 	@JsonProperty( "UpdateTimeStamp" )
-	private Date updateTimestamp;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime updateTimestamp;
 	
 	@JsonProperty( "DefaultAuthority" )
 	private String defaultAuthority;
@@ -414,14 +416,14 @@ public class VideoMultiplex {
 	/**
 	 * @return the updateTimestamp
 	 */
-	public Date getUpdateTimestamp() {
+	public DateTime getUpdateTimestamp() {
 		return updateTimestamp;
 	}
 
 	/**
 	 * @param updateTimestamp the updateTimestamp to set
 	 */
-	public void setUpdateTimestamp( Date updateTimestamp ) {
+	public void setUpdateTimestamp( DateTime updateTimestamp ) {
 		this.updateTimestamp = updateTimestamp;
 	}
 

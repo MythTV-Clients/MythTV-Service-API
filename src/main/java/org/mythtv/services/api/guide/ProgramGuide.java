@@ -19,10 +19,12 @@
  */
 package org.mythtv.services.api.guide;
 
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 import org.mythtv.services.api.channel.ChannelInfo;
 
 /**
@@ -32,10 +34,12 @@ import org.mythtv.services.api.channel.ChannelInfo;
 public class ProgramGuide {
 
 	@JsonProperty( "StartTime" )
-	private Date startTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime startTime;
 	
 	@JsonProperty( "EndTime" )
-	private Date endTime;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime endTime;
 	
 	@JsonProperty( "StartChanId" )
 	private int startChannelId;
@@ -53,7 +57,8 @@ public class ProgramGuide {
 	private int count;
 	
 	@JsonProperty( "AsOf" )
-	private Date asOf;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime asOf;
 	
 	@JsonProperty( "Version" )
 	private String version;
@@ -69,28 +74,28 @@ public class ProgramGuide {
 	/**
 	 * @return the startTime
 	 */
-	public Date getStartTime() {
+	public DateTime getStartTime() {
 		return startTime;
 	}
 
 	/**
 	 * @param startTime the startTime to set
 	 */
-	public void setStartTime( Date startTime ) {
+	public void setStartTime( DateTime startTime ) {
 		this.startTime = startTime;
 	}
 
 	/**
 	 * @return the endTime
 	 */
-	public Date getEndTime() {
+	public DateTime getEndTime() {
 		return endTime;
 	}
 
 	/**
 	 * @param endTime the endTime to set
 	 */
-	public void setEndTime( Date endTime ) {
+	public void setEndTime( DateTime endTime ) {
 		this.endTime = endTime;
 	}
 
@@ -167,14 +172,14 @@ public class ProgramGuide {
 	/**
 	 * @return the asOf
 	 */
-	public Date getAsOf() {
+	public DateTime getAsOf() {
 		return asOf;
 	}
 
 	/**
 	 * @param asOf the asOf to set
 	 */
-	public void setAsOf( Date asOf ) {
+	public void setAsOf( DateTime asOf ) {
 		this.asOf = asOf;
 	}
 

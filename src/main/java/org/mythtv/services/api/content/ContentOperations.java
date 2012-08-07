@@ -19,8 +19,9 @@
  */
 package org.mythtv.services.api.content;
 
-import java.util.Date;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 public interface ContentOperations {
 
@@ -53,7 +54,7 @@ public interface ContentOperations {
 	 * @param sampleRate
 	 * @return
 	 */
-	LiveStreamInfo addRecordingLiveStream( int channelId, Date startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate );
+	LiveStreamInfo addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate );
 	
 	/**
 	 * - GET
@@ -166,7 +167,7 @@ public interface ContentOperations {
 	 * @param secondsIn
 	 * @return
 	 */
-	byte[] getPreviewImage( int channelId, Date startTime, int width, int height, int secondsIn );
+	byte[] getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn );
 	
 	/**
 	 * - GET
@@ -184,7 +185,7 @@ public interface ContentOperations {
 	 * @param startTime
 	 * @return
 	 */
-	byte[] getRecording( int channelId, Date startTime );
+	byte[] getRecording( int channelId, DateTime startTime );
 	
 	/**
 	 * - GET
@@ -205,7 +206,7 @@ public interface ContentOperations {
 	 * @param startTime
 	 * @return
 	 */
-	List<ArtworkInfo> getRecordingArtworkList( int channelId, Date startTime );
+	List<ArtworkInfo> getRecordingArtworkList( int channelId, DateTime startTime );
 	
 	/**
 	 * - GET

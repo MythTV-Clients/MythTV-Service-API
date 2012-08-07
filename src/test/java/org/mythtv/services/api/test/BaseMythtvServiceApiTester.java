@@ -9,7 +9,7 @@ public class BaseMythtvServiceApiTester {
 	
 	@Before
 	public void setUp() throws Exception {
-		MythServicesServiceProvider serv = new MythServicesServiceProvider("http://master:6544");
+		MythServicesServiceProvider serv = new MythServicesServiceProvider("http://192.168.10.200:6544");
 		api = serv.getApi();
 	}
 

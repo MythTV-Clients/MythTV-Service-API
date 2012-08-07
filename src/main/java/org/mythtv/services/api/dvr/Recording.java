@@ -19,9 +19,10 @@
  */
 package org.mythtv.services.api.dvr;
 
-import java.util.Date;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -36,10 +37,12 @@ public class Recording {
 	private int priority;
 	
 	@JsonProperty( "StartTs" )
-	private Date startTimestamp;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime startTimestamp;
 	
 	@JsonProperty( "EndTs" )
-	private Date endTimestamp;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime endTimestamp;
 	
 	@JsonProperty( "RecordId" )
 	private int recordid;
@@ -101,28 +104,28 @@ public class Recording {
 	/**
 	 * @return the startTimestamp
 	 */
-	public Date getStartTimestamp() {
+	public DateTime getStartTimestamp() {
 		return startTimestamp;
 	}
 
 	/**
 	 * @param startTimestamp the startTimestamp to set
 	 */
-	public void setStartTimestamp( Date startTimestamp ) {
+	public void setStartTimestamp( DateTime startTimestamp ) {
 		this.startTimestamp = startTimestamp;
 	}
 
 	/**
 	 * @return the endTimestamp
 	 */
-	public Date getEndTimestamp() {
+	public DateTime getEndTimestamp() {
 		return endTimestamp;
 	}
 
 	/**
 	 * @param endTimestamp the endTimestamp to set
 	 */
-	public void setEndTimestamp( Date endTimestamp ) {
+	public void setEndTimestamp( DateTime endTimestamp ) {
 		this.endTimestamp = endTimestamp;
 	}
 

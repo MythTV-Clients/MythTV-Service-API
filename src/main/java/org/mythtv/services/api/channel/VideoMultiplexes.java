@@ -19,10 +19,12 @@
  */
 package org.mythtv.services.api.channel;
 
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -46,7 +48,8 @@ public class VideoMultiplexes {
 	private int totalAvailable;
 	
 	@JsonProperty( "AsOf" )
-	private Date asOf;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime asOf;
 	
 	@JsonProperty( "Version" )
 	private String version;
@@ -58,6 +61,132 @@ public class VideoMultiplexes {
 	private List<VideoMultiplex> videoMultiplexes;
 
 	public VideoMultiplexes() { }
+
+	/**
+	 * @return the startIndex
+	 */
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	/**
+	 * @param startIndex the startIndex to set
+	 */
+	public void setStartIndex( int startIndex ) {
+		this.startIndex = startIndex;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount( int count ) {
+		this.count = count;
+	}
+
+	/**
+	 * @return the currentPage
+	 */
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	/**
+	 * @param currentPage the currentPage to set
+	 */
+	public void setCurrentPage( int currentPage ) {
+		this.currentPage = currentPage;
+	}
+
+	/**
+	 * @return the totalPages
+	 */
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	/**
+	 * @param totalPages the totalPages to set
+	 */
+	public void setTotalPages( int totalPages ) {
+		this.totalPages = totalPages;
+	}
+
+	/**
+	 * @return the totalAvailable
+	 */
+	public int getTotalAvailable() {
+		return totalAvailable;
+	}
+
+	/**
+	 * @param totalAvailable the totalAvailable to set
+	 */
+	public void setTotalAvailable( int totalAvailable ) {
+		this.totalAvailable = totalAvailable;
+	}
+
+	/**
+	 * @return the asOf
+	 */
+	public DateTime getAsOf() {
+		return asOf;
+	}
+
+	/**
+	 * @param asOf the asOf to set
+	 */
+	public void setAsOf( DateTime asOf ) {
+		this.asOf = asOf;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public String getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion( String version ) {
+		this.version = version;
+	}
+
+	/**
+	 * @return the protocolVersion
+	 */
+	public String getProtocolVersion() {
+		return protocolVersion;
+	}
+
+	/**
+	 * @param protocolVersion the protocolVersion to set
+	 */
+	public void setProtocolVersion( String protocolVersion ) {
+		this.protocolVersion = protocolVersion;
+	}
+
+	/**
+	 * @return the videoMultiplexes
+	 */
+	public List<VideoMultiplex> getVideoMultiplexes() {
+		return videoMultiplexes;
+	}
+
+	/**
+	 * @param videoMultiplexes the videoMultiplexes to set
+	 */
+	public void setVideoMultiplexes( List<VideoMultiplex> videoMultiplexes ) {
+		this.videoMultiplexes = videoMultiplexes;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

@@ -19,8 +19,7 @@
  */
 package org.mythtv.services.api.guide;
 
-import java.util.Date;
-
+import org.joda.time.DateTime;
 import org.mythtv.services.api.dvr.Program;
 import org.springframework.http.ResponseEntity;
 
@@ -47,7 +46,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	Program getProgramDetails( int channelId, Date startTime );
+	Program getProgramDetails( int channelId, DateTime startTime );
 	
 	/**
 	 * - GET
@@ -59,7 +58,7 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ProgramGuideWrapper getProgramGuide( Date start, Date end, int startChannelId, int numberOfChannels, boolean details );
+	ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details );
 	
 	/**
 	 * @param start
@@ -69,6 +68,6 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( Date start, Date end, int startChannelId, int numberOfChannels, boolean details );
+	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details );
 
 }

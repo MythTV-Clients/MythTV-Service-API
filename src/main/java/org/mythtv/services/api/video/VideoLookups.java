@@ -19,10 +19,12 @@
  */
 package org.mythtv.services.api.video;
 
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -34,7 +36,8 @@ public class VideoLookups {
 	private int count;
 	
 	@JsonProperty( "AsOf" )
-	private Date asOf;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime asOf;
 	
 	@JsonProperty( "Version" )
 	private String version;
@@ -64,14 +67,14 @@ public class VideoLookups {
 	/**
 	 * @return the asOf
 	 */
-	public Date getAsOf() {
+	public DateTime getAsOf() {
 		return asOf;
 	}
 
 	/**
 	 * @param asOf the asOf to set
 	 */
-	public void setAsOf( Date asOf ) {
+	public void setAsOf( DateTime asOf ) {
 		this.asOf = asOf;
 	}
 

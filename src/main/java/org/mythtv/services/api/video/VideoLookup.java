@@ -19,10 +19,12 @@
  */
 package org.mythtv.services.api.video;
 
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
  * @author Daniel Frey
@@ -64,7 +66,8 @@ public class VideoLookup {
 	private String homePage;
 
 	@JsonProperty( "ReleaseDate" )
-	private Date releaseDate;
+	@JsonSerialize( using = DateTimeSerializer.class )
+	private DateTime releaseDate;
 
 	@JsonProperty( "UserRating" )
 	private float userRating;
@@ -255,14 +258,14 @@ public class VideoLookup {
 	/**
 	 * @return the releaseDate
 	 */
-	public Date getReleaseDate() {
+	public DateTime getReleaseDate() {
 		return releaseDate;
 	}
 
 	/**
 	 * @param releaseDate the releaseDate to set
 	 */
-	public void setReleaseDate( Date releaseDate ) {
+	public void setReleaseDate( DateTime releaseDate ) {
 		this.releaseDate = releaseDate;
 	}
 

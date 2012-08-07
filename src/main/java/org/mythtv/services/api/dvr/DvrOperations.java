@@ -19,9 +19,9 @@
  */
 package org.mythtv.services.api.dvr;
 
-import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -67,7 +67,7 @@ public interface DvrOperations {
 	 * @param transcoder
 	 * @return
 	 */
-	int addRecordingSchedule( int channelId, Date startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder );
+	int addRecordingSchedule( int channelId, DateTime startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder );
 	
 	/**
 	 * - POST
@@ -147,7 +147,7 @@ public interface DvrOperations {
 	 * @param startTime
 	 * @return
 	 */
-	Program getRecorded( int channelId, Date startTime );
+	Program getRecorded( int channelId, DateTime startTime );
 	
 	/**
 	 * - GET
@@ -201,6 +201,6 @@ public interface DvrOperations {
 	 * @param startTime
 	 * @return
 	 */
-	boolean removeRecorded( int channelId, Date startTime );
+	boolean removeRecorded( int channelId, DateTime startTime );
 
 }
