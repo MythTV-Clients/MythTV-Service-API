@@ -116,7 +116,11 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "Details", Boolean.toString( details ) );
 		}
 
-		return restTemplate.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(), ProgramGuideWrapper.class );
+		try {
+			return restTemplate.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(), ProgramGuideWrapper.class );
+		} catch( Exception e ) {
+			return null;
+		}
 	}
 	
 }
