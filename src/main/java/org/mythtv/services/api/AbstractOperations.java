@@ -25,8 +25,8 @@ import java.util.logging.Logger;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
 import org.springframework.http.ContentCodingType;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -43,7 +43,7 @@ public abstract class AbstractOperations {
 	
 	private static final String TAG = AbstractOperations.class.getSimpleName();
 	
-	protected static final DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
+	protected static final DateTimeFormatter formatter = DateTimeFormat.forPattern( "yyyy-MM-dd'T'hh:mm:ss" );
 
 	private final String apiUrlBase;
 
