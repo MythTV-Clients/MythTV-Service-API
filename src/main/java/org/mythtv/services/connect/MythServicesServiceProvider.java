@@ -31,6 +31,8 @@ public class MythServicesServiceProvider {
 	private final String apiUrlBase;
 	
 	public MythServicesServiceProvider( String apiUrlBase ) {
+		if(!apiUrlBase.endsWith("/"))
+			apiUrlBase += "/";
 		this.apiUrlBase = apiUrlBase;
 	}
 
