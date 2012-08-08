@@ -14,6 +14,8 @@ import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
+import org.mythtv.services.api.guide.ProgramWrapper;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author sebastien
@@ -64,8 +66,9 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 		ChannelInfo chan = channels.get(0);
 		List<Program> programs = chan.getPrograms();
 		Assert.assertFalse("No programs retuned", programs.isEmpty());
-		Program p = operations.getProgramDetails(Integer.parseInt(chan.getChannelId()), programs.get(0).getStartTime());
-		Assert.assertNotNull("Program is null", p);
+		ProgramWrapper p = operations.getProgramDetails(Integer.parseInt(chan.getChannelId()), programs.get(0).getStartTime());
+		Assert.assertNotNull("ProgramWrapper is null", p);
+		Assert.assertNotNull("Program is null", p.getProgram());		
 	}
 
 	/**
@@ -73,18 +76,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetProgramGuide() {
-		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 5000, true);
+		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true);
 		guide.toString();
 	}
-
-	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuideResponseEntity(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
-	 * /
-	@Test
-	public void testGetProgramGuideResponseEntity() {
-		ResponseEntity<ProgramGuideWrapper> v =  operations.getProgramGuideResponseEntity(now, tomorrow, 0, 5000, true);
-		
-	}
-	*/
-
 }
