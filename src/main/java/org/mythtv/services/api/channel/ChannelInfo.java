@@ -28,7 +28,7 @@ import org.mythtv.services.api.dvr.Program;
  * @author Daniel Frey
  *
  */
-public class ChannelInfo {
+public class ChannelInfo implements Comparable<ChannelInfo> {
 
 	@JsonProperty( "ChanId" )
 	private String channelId;
@@ -489,6 +489,23 @@ public class ChannelInfo {
 	 */
 	public void setPrograms( List<Program> programs ) {
 		this.programs = programs;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo( ChannelInfo arg ) {
+		String sThisChannelNumber = channelNumber;
+		sThisChannelNumber = sThisChannelNumber.replace( "\\D+", "." );
+		
+		String sOtherChannelNumber = arg.getChannelNumber();
+		sOtherChannelNumber = sOtherChannelNumber.replace( "\\D+", "." );
+		
+		Double dThisChannelNumber = Double.parseDouble( sThisChannelNumber );
+		Double dOtherChannelNumber = Double.parseDouble( sOtherChannelNumber );
+		
+		return dThisChannelNumber.compareTo( dOtherChannelNumber );
 	}
 
 	/* (non-Javadoc)
