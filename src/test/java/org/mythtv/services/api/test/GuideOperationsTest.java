@@ -17,7 +17,7 @@ import org.mythtv.services.api.guide.ProgramGuideWrapper;
  */
 public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
-	private int iconsize = 512;
+	private int iconsize;
 	private int chanid = 2502;
 	private DateTime now;
 	private DateTime tomorrow;
@@ -33,6 +33,8 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 		now = new DateTime();
 		tomorrow = now.plus(  Period.days( 1 ) );
 		operations = api.guideOperations();
+		iconsize = Integer.parseInt(properties.getProperty("MythServicesServiceProvider.GuideOperationsTest.IconSize", "512"));
+		chanid = Integer.parseInt(properties.getProperty("MythServicesServiceProvider.GuideOperationsTest.ChannelId", "2502"));
 	}
 
 	/**
