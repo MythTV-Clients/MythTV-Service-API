@@ -30,7 +30,7 @@ import org.mythtv.services.api.channel.VideoSource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -38,11 +38,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ChannelTemplate extends AbstractChannelOperations implements ChannelOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public ChannelTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public ChannelTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -81,7 +81,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 
-		ResponseEntity<ChannelInfo> responseEntity = restTemplate.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfo.class );
+		ResponseEntity<ChannelInfo> responseEntity = restOperations.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfo.class );
 		ChannelInfo channelInfo = responseEntity.getBody();
 		
 		return channelInfo;
@@ -119,7 +119,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "Count", "" + count );
 		}
 
-		return restTemplate.exchange( buildUri( "GetChannelInfoList", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
+		return restOperations.exchange( buildUri( "GetChannelInfoList", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
 	}
 
 	/* (non-Javadoc)
@@ -139,7 +139,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity() {
-		return restTemplate.exchange( buildUri( "GetChannelInfoList" ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
+		return restOperations.exchange( buildUri( "GetChannelInfoList" ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
 	}
 
 	/* (non-Javadoc)

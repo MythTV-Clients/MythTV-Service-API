@@ -31,7 +31,7 @@ import org.mythtv.services.api.video.VideoOperations;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -39,11 +39,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class VideoTemplate extends AbstractVideoOperations implements VideoOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public VideoTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public VideoTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -56,7 +56,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		parameters.add( "FileName", filename );
 		parameters.add( "HostName", hostname );
 
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "AddVideo", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddVideo", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();
@@ -71,7 +71,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Path", path );
 
-		ResponseEntity<BlurayInfo> responseEntity = restTemplate.exchange( buildUri( "GetBluray", parameters ), HttpMethod.GET, getRequestEntity(), BlurayInfo.class );
+		ResponseEntity<BlurayInfo> responseEntity = restOperations.exchange( buildUri( "GetBluray", parameters ), HttpMethod.GET, getRequestEntity(), BlurayInfo.class );
 		BlurayInfo blurayInfo = responseEntity.getBody();
 
 		return blurayInfo;
@@ -86,7 +86,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 
-		ResponseEntity<VideoMetadataInfo> responseEntity = restTemplate.exchange( buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfo.class );
+		ResponseEntity<VideoMetadataInfo> responseEntity = restOperations.exchange( buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfo.class );
 		VideoMetadataInfo videoMetadataInfo = responseEntity.getBody();
 
 		return videoMetadataInfo;
@@ -101,7 +101,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "FileName", filename );
 
-		ResponseEntity<VideoMetadataInfo> responseEntity = restTemplate.exchange( buildUri( "GetVideoByFileName", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfo.class );
+		ResponseEntity<VideoMetadataInfo> responseEntity = restOperations.exchange( buildUri( "GetVideoByFileName", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfo.class );
 		VideoMetadataInfo videoMetadataInfo = responseEntity.getBody();
 
 		return videoMetadataInfo;
@@ -124,7 +124,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<VideoMetadataInfoList> responseEntity = restTemplate.exchange( buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfoList.class );
+		ResponseEntity<VideoMetadataInfoList> responseEntity = restOperations.exchange( buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfoList.class );
 		VideoMetadataInfoList videoMetadataInfoList = responseEntity.getBody();
 
 		return videoMetadataInfoList.getVideoMetadataInfos().getVideoMetadataInfos();
@@ -155,7 +155,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 			parameters.add( "Episode", "" + episode );
 		}
 
-		ResponseEntity<VideoLookupList> responseEntity = restTemplate.exchange( buildUri( "LookupVideo", parameters ), HttpMethod.GET, getRequestEntity(), VideoLookupList.class );
+		ResponseEntity<VideoLookupList> responseEntity = restOperations.exchange( buildUri( "LookupVideo", parameters ), HttpMethod.GET, getRequestEntity(), VideoLookupList.class );
 		VideoLookupList videoLookupList = responseEntity.getBody();
 
 		return videoLookupList.getVideoLookups().getVideoLookups();
@@ -170,7 +170,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "RemoveVideoFromDB", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveVideoFromDB", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();

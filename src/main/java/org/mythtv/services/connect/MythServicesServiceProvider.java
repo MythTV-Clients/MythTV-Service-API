@@ -42,7 +42,7 @@ public class MythServicesServiceProvider {
 	
 	// internal helpers
 	
-	private String getApiUrlBase() {
+	protected String getApiUrlBase() {
 		return apiUrlBase;
 	}
 

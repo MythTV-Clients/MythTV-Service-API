@@ -34,7 +34,7 @@ import org.mythtv.services.api.dvr.RecRuleList;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -42,16 +42,16 @@ import org.springframework.web.client.RestTemplate;
  */
 public class DvrTemplate extends AbstractDvrOperations implements DvrOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 	
 	/**
-	 * @param restTemplate
+	 * @param restOperations
 	 * @param apiUrlBase
 	 */
-	public DvrTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public DvrTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
 		
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -94,7 +94,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "AutoUserJob4", Boolean.toString( autoUserJob4 ) );
 		parameters.add( "Transcoder", "" + transcoder );
 
-		ResponseEntity<Int> responseEntity = restTemplate.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Int.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Int.class );
 		Int i = responseEntity.getBody();
 
 		return i.getInteger();
@@ -109,7 +109,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 		
 		return bool.getBool();
@@ -124,7 +124,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 		
 		return bool.getBool();
@@ -146,7 +146,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<ProgramList> responseEntity = restTemplate.exchange( buildUri( "GetConflictList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetConflictList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		
 		return programList.getPrograms().getPrograms();
@@ -158,7 +158,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	@Override
 	public List<Encoder> getEncoderList() {
 
-		ResponseEntity<EncoderList> responseEntity = restTemplate.exchange( buildUri( "GetConflictList" ), HttpMethod.GET, getRequestEntity(), EncoderList.class );
+		ResponseEntity<EncoderList> responseEntity = restOperations.exchange( buildUri( "GetConflictList" ), HttpMethod.GET, getRequestEntity(), EncoderList.class );
 		EncoderList encoderList = responseEntity.getBody();
 		
 		return encoderList.getEncoders().getEncoders();
@@ -180,7 +180,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<ProgramList> responseEntity = restTemplate.exchange( buildUri( "GetExpiringList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetExpiringList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		
 		return programList.getPrograms().getPrograms();
@@ -215,7 +215,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "StorageGroup", storageGroup );
 		}
 
-		ResponseEntity<ProgramList> responseEntity = restTemplate.exchange( buildUri( "GetFilteredRecordedList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetFilteredRecordedList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		
 		return programList.getPrograms().getPrograms();
@@ -230,7 +230,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordId );
 		
-		ResponseEntity<RecRule> responseEntity = restTemplate.exchange( buildUri( "GetRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), RecRule.class );
+		ResponseEntity<RecRule> responseEntity = restOperations.exchange( buildUri( "GetRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), RecRule.class );
 		RecRule recRule = responseEntity.getBody();
 		
 		return recRule;
@@ -252,7 +252,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<RecRuleList> responseEntity = restTemplate.exchange( buildUri( "GetRecordScheduleList", parameters ), HttpMethod.GET, getRequestEntity(), RecRuleList.class );
+		ResponseEntity<RecRuleList> responseEntity = restOperations.exchange( buildUri( "GetRecordScheduleList", parameters ), HttpMethod.GET, getRequestEntity(), RecRuleList.class );
 		RecRuleList recRuleList = responseEntity.getBody();
 		
 		return recRuleList.getRecRules().getRecRules();
@@ -268,7 +268,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "ChanId", "" + channelId );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<Program> responseEntity = restTemplate.exchange( buildUri( "GetRecorded", parameters ), HttpMethod.GET, getRequestEntity(), Program.class );
+		ResponseEntity<Program> responseEntity = restOperations.exchange( buildUri( "GetRecorded", parameters ), HttpMethod.GET, getRequestEntity(), Program.class );
 		Program program = responseEntity.getBody();
 		
 		return program;
@@ -280,7 +280,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	@Override
 	public List<Program> getRecordedList() {
 
-		ResponseEntity<ProgramList> responseEntity = restTemplate.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		
 		return programList.getPrograms().getPrograms();
@@ -291,7 +291,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 */
 	@Override
 	public ResponseEntity<ProgramList> getRecordedListResponseEntity() {
-		return restTemplate.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		return restOperations.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 	}
 
 	/* (non-Javadoc)
@@ -312,7 +312,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 
 		parameters.add( "Descending", Boolean.toString( descending ) );
 
-		ResponseEntity<ProgramList> responseEntity = restTemplate.exchange( buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		
 		return programList.getPrograms().getPrograms();
@@ -336,7 +336,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 
 		parameters.add( "ShowAll", Boolean.toString( showAll ) );
 
-		ResponseEntity<ProgramList> responseEntity = restTemplate.exchange( buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		
 		return programList.getPrograms().getPrograms();
@@ -347,7 +347,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 */
 	@Override
 	public ResponseEntity<ProgramList> getUpcomingListResponseEntity() {
-		return restTemplate.exchange( buildUri( "GetUpcomingList" ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
+		return restOperations.exchange( buildUri( "GetUpcomingList" ), HttpMethod.GET, getRequestEntity(), ProgramList.class );
 	}
 
 	/* (non-Javadoc)
@@ -359,7 +359,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 		
 		return bool.getBool();
@@ -375,7 +375,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "ChanId", "" + channelId );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 		
 		return bool.getBool();

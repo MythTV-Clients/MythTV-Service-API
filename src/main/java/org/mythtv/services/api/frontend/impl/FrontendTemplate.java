@@ -26,7 +26,7 @@ import org.mythtv.services.api.frontend.FrontendStatus;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -34,11 +34,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class FrontendTemplate extends AbstractFrontendOperations implements FrontendOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public FrontendTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public FrontendTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -47,7 +47,7 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 	@Override
 	public FrontendStatus getStatus( String frontedApiUrlBase ) {
 		
-		ResponseEntity<FrontendStatus> responseEntity = restTemplate.exchange( frontedApiUrlBase + "/Frontend/GetStatus", HttpMethod.GET, getRequestEntity(), FrontendStatus.class );
+		ResponseEntity<FrontendStatus> responseEntity = restOperations.exchange( frontedApiUrlBase + "/Frontend/GetStatus", HttpMethod.GET, getRequestEntity(), FrontendStatus.class );
 		FrontendStatus frontendStatus = responseEntity.getBody();
 
 		return frontendStatus;
@@ -62,7 +62,7 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Message", message );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( frontedApiUrlBase + "/Frontend/SendMessage", parameters), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase + "/Frontend/SendMessage", parameters), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();
@@ -82,7 +82,7 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();
@@ -94,7 +94,7 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 	@Override
 	public FrontendActionList getActionList( String frontedApiUrlBase ) {
 	
-		ResponseEntity<FrontendActionList> responseEntity = restTemplate.exchange( buildUri( frontedApiUrlBase + "/Frontend/GetActionList" ), HttpMethod.GET, getRequestEntity(), FrontendActionList.class );
+		ResponseEntity<FrontendActionList> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase + "/Frontend/GetActionList" ), HttpMethod.GET, getRequestEntity(), FrontendActionList.class );
 		FrontendActionList frontendActionList = responseEntity.getBody();
 		
 		return frontendActionList;

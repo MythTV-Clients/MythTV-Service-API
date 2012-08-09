@@ -20,14 +20,13 @@
 package org.mythtv.services.api.guide.impl;
 
 import org.joda.time.DateTime;
-import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
 import org.mythtv.services.api.guide.ProgramWrapper;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -35,11 +34,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class GuideTemplate extends AbstractGuideOperations implements GuideOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public GuideTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public GuideTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -59,7 +58,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "Height", "" + height );
 		}
 		
-		ResponseEntity<String> responseEntity = restTemplate.exchange( buildUri( "GetChannelIcon", parameters ), HttpMethod.GET, getRequestEntity(), String.class );
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetChannelIcon", parameters ), HttpMethod.GET, getRequestEntity(), String.class );
 		String icon = responseEntity.getBody();
 
 		return icon;
@@ -79,7 +78,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		}
 
-		return restTemplate.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(), ProgramWrapper.class );
+		return restOperations.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(), ProgramWrapper.class );
 	}
 
 	/* (non-Javadoc)
@@ -125,7 +124,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 		}
 
 		try {
-			return restTemplate.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(), ProgramGuideWrapper.class );
+			return restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(), ProgramGuideWrapper.class );
 		} catch( Exception e ) {
 			return null;
 		}
