@@ -3,13 +3,19 @@
  */
 package org.mythtv.services.api.test;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Period;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
+import org.mythtv.services.api.guide.ProgramWrapper;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author sebastien
@@ -51,8 +57,18 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetProgramDetails() {
-		Program p = operations.getProgramDetails(chanid, now);
-		p.toString();
+		// let's run getProgramGuide to get an actual program.
+		DateTime fourHours = now.plus(Period.hours(4));
+		ProgramGuideWrapper guideWrapper = operations.getProgramGuide(now, fourHours, 0, 10, false);
+		List<ChannelInfo> channels = guideWrapper.getProgramGuide().getChannels();
+		Assert.assertNotNull(channels);
+		Assert.assertFalse("No channels retuned", channels.isEmpty());
+		ChannelInfo chan = channels.get(0);
+		List<Program> programs = chan.getPrograms();
+		Assert.assertFalse("No programs retuned", programs.isEmpty());
+		ProgramWrapper p = operations.getProgramDetails(Integer.parseInt(chan.getChannelId()), programs.get(0).getStartTime());
+		Assert.assertNotNull("ProgramWrapper is null", p);
+		Assert.assertNotNull("Program is null", p.getProgram());		
 	}
 
 	/**
@@ -60,18 +76,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetProgramGuide() {
-		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 5000, true);
+		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true);
 		guide.toString();
 	}
-
-	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuideResponseEntity(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
-	 * /
-	@Test
-	public void testGetProgramGuideResponseEntity() {
-		ResponseEntity<ProgramGuideWrapper> v =  operations.getProgramGuideResponseEntity(now, tomorrow, 0, 5000, true);
-		
-	}
-	*/
-
 }

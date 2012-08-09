@@ -49,7 +49,7 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	CaptureCard getCaptureCard( int cardId );
+	CaptureCardWrapper getCaptureCard( int cardId );
 	
 	/**
 	 * - GET

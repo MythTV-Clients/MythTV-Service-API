@@ -23,6 +23,7 @@ import org.joda.time.DateTime;
 import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
+import org.mythtv.services.api.guide.ProgramWrapper;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -63,13 +64,14 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 
 		return icon;
 	}
-
+	
+	
 	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramDetails(int, java.util.Date)
+	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramResponseEntity(int, java.util.Date)
 	 */
 	@Override
-	public Program getProgramDetails( int channelId, DateTime startTime ) {
-
+	public ResponseEntity<ProgramWrapper> getProgramResponseEntity(
+			int channelId, DateTime startTime) {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 		
@@ -77,10 +79,16 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		}
 
-		ResponseEntity<Program> responseEntity = restTemplate.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(), Program.class );
-		Program program = responseEntity.getBody();
+		return restTemplate.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(), ProgramWrapper.class );
+	}
 
-		return program;
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramDetails(int, java.util.Date)
+	 */
+	@Override
+	public ProgramWrapper getProgramDetails( int channelId, DateTime startTime ) {		
+		ResponseEntity<ProgramWrapper> responseEntity = getProgramResponseEntity(channelId, startTime);
+		return responseEntity.getBody();
 	}
 
 	/* (non-Javadoc)

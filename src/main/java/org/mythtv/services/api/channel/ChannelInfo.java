@@ -24,12 +24,16 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.mythtv.services.api.dvr.Program;
 
+import android.util.Log;
+
 /**
  * @author Daniel Frey
  *
  */
 public class ChannelInfo implements Comparable<ChannelInfo> {
-
+	
+	private static final String TAG = "ChannelInfo";
+	
 	@JsonProperty( "ChanId" )
 	private String channelId;
 	
@@ -496,16 +500,23 @@ public class ChannelInfo implements Comparable<ChannelInfo> {
 	 */
 	@Override
 	public int compareTo( ChannelInfo arg ) {
-		String sThisChannelNumber = channelNumber;
-		sThisChannelNumber = sThisChannelNumber.replace( "\\D+", "." );
 		
-		String sOtherChannelNumber = arg.getChannelNumber();
-		sOtherChannelNumber = sOtherChannelNumber.replace( "\\D+", "." );
-		
-		Double dThisChannelNumber = Double.parseDouble( sThisChannelNumber );
-		Double dOtherChannelNumber = Double.parseDouble( sOtherChannelNumber );
-		
-		return dThisChannelNumber.compareTo( dOtherChannelNumber );
+		try {
+			String sThisChannelNumber = channelNumber;
+			sThisChannelNumber = sThisChannelNumber.replaceAll("\\D+", ".");
+
+			String sOtherChannelNumber = arg.getChannelNumber();
+			sOtherChannelNumber = sOtherChannelNumber.replaceAll("\\D+", ".");
+
+			Double dThisChannelNumber = Double.parseDouble(sThisChannelNumber);
+			Double dOtherChannelNumber = Double
+					.parseDouble(sOtherChannelNumber);
+
+			return dThisChannelNumber.compareTo(dOtherChannelNumber);
+		} catch (Exception e) {
+			Log.d(TAG, "Error comparing channels: " + e.getMessage());
+			return 0;
+		}
 	}
 
 	/* (non-Javadoc)

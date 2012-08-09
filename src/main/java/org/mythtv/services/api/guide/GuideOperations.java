@@ -20,7 +20,6 @@
 package org.mythtv.services.api.guide;
 
 import org.joda.time.DateTime;
-import org.mythtv.services.api.dvr.Program;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -46,8 +45,17 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	Program getProgramDetails( int channelId, DateTime startTime );
-	
+	ProgramWrapper getProgramDetails( int channelId, DateTime startTime );
+
+	/**
+	 * - GET
+	 * 
+	 * @param channelId
+	 * @param startTime
+	 * @return
+	 */
+	ResponseEntity<ProgramWrapper> getProgramResponseEntity( int channelId, DateTime startTime );
+
 	/**
 	 * - GET
 	 * 
