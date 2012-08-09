@@ -25,6 +25,7 @@ import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.Int;
 import org.mythtv.services.api.capture.CaptureCard;
 import org.mythtv.services.api.capture.CaptureCardList;
+import org.mythtv.services.api.capture.CaptureCardWrapper;
 import org.mythtv.services.api.capture.CaptureOperations;
 import org.mythtv.services.api.capture.CardInput;
 import org.springframework.http.HttpMethod;
@@ -71,11 +72,9 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCard(int)
 	 */
 	@Override
-	public CaptureCard getCaptureCard( int cardId ) {
-		ResponseEntity<CaptureCard> responseEntity = restTemplate.exchange( buildUri( "GetCaptureCard", "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(), CaptureCard.class );
-		CaptureCard captureCard = responseEntity.getBody();
-
-		return captureCard;
+	public CaptureCardWrapper getCaptureCard( int cardId ) {
+		ResponseEntity<CaptureCardWrapper> responseEntity = restTemplate.exchange( buildUri( "GetCaptureCard", "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(), CaptureCardWrapper.class );
+		return responseEntity.getBody();
 	}
 
 	/* (non-Javadoc)

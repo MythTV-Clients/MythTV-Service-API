@@ -171,7 +171,7 @@ public interface ChannelOperations {
 	 * @param channelId
 	 * @return
 	 */
-	boolean reomveDBChannel( int channelId );
+	boolean removeDBChannel( int channelId );
 	
 	/**
 	 * - POST
