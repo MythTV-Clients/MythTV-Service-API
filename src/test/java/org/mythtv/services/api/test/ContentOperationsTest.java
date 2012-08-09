@@ -1,0 +1,205 @@
+/**
+ * 
+ */
+package org.mythtv.services.api.test;
+
+import static org.junit.Assert.fail;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mythtv.services.api.content.ContentOperations;
+
+/**
+ * @author Sebastien Astie
+ *
+ */
+public class ContentOperationsTest extends BaseMythtvServiceApiTester {
+
+	private ContentOperations contentOperations;
+	
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
+	 */
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+		contentOperations = api.contentOperations();
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)}.
+	 */
+	@Test
+	public void testAddLiveStream() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addRecordingLiveStream(int, org.joda.time.DateTime, int, int, int, int, int, int)}.
+	 */
+	@Test
+	public void testAddRecordingLiveStream() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addVideoLiveStream(int, int, int, int, int, int, int)}.
+	 */
+	@Test
+	public void testAddVideoLiveStream() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#downloadFile(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testDownloadFile() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getAlbumArt(int, int, int)}.
+	 */
+	@Test
+	public void testGetAlbumArt() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFile(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testGetFile() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFileList(java.lang.String)}.
+	 */
+	@Test
+	public void testGetFileList() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFilteredLiveStreamList(java.lang.String)}.
+	 */
+	@Test
+	public void testGetFilteredLiveStreamList() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getHash(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testGetHash() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getImageFile(java.lang.String, java.lang.String, int, int)}.
+	 */
+	@Test
+	public void testGetImageFile() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getLiveStream(int)}.
+	 */
+	@Test
+	public void testGetLiveStream() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getLiveStreamList()}.
+	 */
+	@Test
+	public void testGetLiveStreamList() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getMusic(int)}.
+	 */
+	@Test
+	public void testGetMusic() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getPreviewImage(int, org.joda.time.DateTime, int, int, int)}.
+	 */
+	@Test
+	public void testGetPreviewImage() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getProgramArtworkList(java.lang.String, int)}.
+	 */
+	@Test
+	public void testGetProgramArtworkList() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecording(int, org.joda.time.DateTime)}.
+	 */
+	@Test
+	public void testGetRecording() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecordingArtwork(java.lang.String, java.lang.String, int, int, int)}.
+	 */
+	@Test
+	public void testGetRecordingArtwork() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecordingArtworkList(int, org.joda.time.DateTime)}.
+	 */
+	@Test
+	public void testGetRecordingArtworkList() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getVideo(int)}.
+	 */
+	@Test
+	public void testGetVideo() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getVideoArtwork(java.lang.String, int, int, int)}.
+	 */
+	@Test
+	public void testGetVideoArtwork() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#removeLiveStream(int)}.
+	 */
+	@Test
+	public void testRemoveLiveStream() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#stopLiveStream(int)}.
+	 */
+	@Test
+	public void testStopLiveStream() {
+		fail("Not yet implemented"); // TODO
+	}
+
+}

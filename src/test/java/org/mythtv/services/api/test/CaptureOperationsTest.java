@@ -3,8 +3,6 @@
  */
 package org.mythtv.services.api.test;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Assert;

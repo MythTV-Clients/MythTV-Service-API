@@ -15,7 +15,6 @@ import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
 import org.mythtv.services.api.guide.ProgramWrapper;
-import org.springframework.http.ResponseEntity;
 
 /**
  * @author sebastien
