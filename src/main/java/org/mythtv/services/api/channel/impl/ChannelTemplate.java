@@ -200,7 +200,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 * @see org.mythtv.services.api.channel.ChannelOperations#reomveDBChannel(int)
 	 */
 	@Override
-	public boolean reomveDBChannel( int channelId ) {
+	public boolean removeDBChannel( int channelId ) {
 		// TODO Auto-generated method stub
 		return false;
 	}

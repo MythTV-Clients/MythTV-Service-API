@@ -7,7 +7,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import org.mythtv.services.api.dvr.Program;
 
 /**
- * @author Daniel Frey
+ * @author Sebastien Astie
  *
  */
 public class ProgramWrapper {
