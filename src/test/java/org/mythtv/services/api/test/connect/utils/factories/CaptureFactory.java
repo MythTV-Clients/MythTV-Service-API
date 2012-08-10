@@ -17,28 +17,23 @@
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
-package org.mythtv.services.api.test.connect;
+package org.mythtv.services.api.test.connect.utils.factories;
 
-import org.mythtv.services.api.MythServices;
-import org.mythtv.services.connect.MythServicesServiceProvider;
+import java.net.URI;
+
+import org.mythtv.services.api.test.connect.utils.MythFakeHttpInputMessage;
 
 /**
- * This class will only be use for static data testing.
  * @author Sebastien Astie
  *
  */
-public class LocalMythServicesServiceProvider extends
-		MythServicesServiceProvider {
+public class CaptureFactory {
 
-	/**
-	 * @param apiUrlBase
-	 */
-	public LocalMythServicesServiceProvider() {
-		super("local://fakeuri/");
+	public static MythFakeHttpInputMessage create(URI url) {
+		if(url.getPath().contains("GetCaptureCardList")){
+			return new MythFakeHttpInputMessage("capture/GetCaptureCardList.json");
+		}
+		return null;
 	}
 
-	@Override
-	public MythServices getApi() {
-		return new LocalServiceTemplate( getApiUrlBase() );
-	}
 }

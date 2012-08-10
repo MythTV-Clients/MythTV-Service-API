@@ -19,26 +19,29 @@
  */
 package org.mythtv.services.api.test.connect;
 
-import org.mythtv.services.api.MythServices;
-import org.mythtv.services.connect.MythServicesServiceProvider;
+import org.mythtv.services.api.BaseMythServicesTemplate;
+import org.mythtv.services.api.test.connect.utils.FakeMythTvRestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
- * This class will only be use for static data testing.
  * @author Sebastien Astie
  *
  */
-public class LocalMythServicesServiceProvider extends
-		MythServicesServiceProvider {
+public class LocalServiceTemplate extends BaseMythServicesTemplate {
 
 	/**
 	 * @param apiUrlBase
 	 */
-	public LocalMythServicesServiceProvider() {
-		super("local://fakeuri/");
+	public LocalServiceTemplate(String apiUrlBase) {
+		super(apiUrlBase);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.BaseMythServicesTemplate#createRestOperations()
+	 */
 	@Override
-	public MythServices getApi() {
-		return new LocalServiceTemplate( getApiUrlBase() );
+	protected RestOperations createRestOperations() {
+		return new FakeMythTvRestTemplate();
 	}
+
 }
