@@ -130,6 +130,7 @@ public class MappingJacksonHttpMessageConverter extends AbstractHttpMessageConve
 				System.out.println(s);
 				s = reader.readLine();
 			}
+			reader.reset();
 			return this.objectMapper.readValue(inputMessage.getBody(), javaType);
 		}
 		catch (JsonProcessingException ex) {

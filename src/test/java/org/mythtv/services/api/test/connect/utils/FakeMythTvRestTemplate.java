@@ -51,6 +51,8 @@ import org.springframework.web.util.UriUtils;
  */
 public class FakeMythTvRestTemplate implements RestOperations {
 
+	private MythFakeHttpResponseFactory mythResponseFactory;
+	
 	private List<HttpMessageConverter<?>> messageConverters;
 	/**
 	 * 
@@ -58,6 +60,7 @@ public class FakeMythTvRestTemplate implements RestOperations {
 	public FakeMythTvRestTemplate() {
 		messageConverters = new ArrayList<HttpMessageConverter<?>>();
 		messageConverters.add(new MappingJacksonHttpMessageConverter());
+		mythResponseFactory = MythFakeHttpResponseFactory.getInstance();
 	}
 
 	
@@ -282,7 +285,7 @@ public class FakeMythTvRestTemplate implements RestOperations {
 		MythFakeHttpInputMessage response = null;
 		try {
 			
-			response = MythFakeHttpResponseFactory.createMessage(url);
+			response = mythResponseFactory.getResponseMessage(url);
 	
 			if (responseExtractor != null) {
 				return responseExtractor.extractData(response);

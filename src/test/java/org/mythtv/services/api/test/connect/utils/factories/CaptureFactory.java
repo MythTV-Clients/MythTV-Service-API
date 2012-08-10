@@ -27,13 +27,25 @@ import org.mythtv.services.api.test.connect.utils.MythFakeHttpInputMessage;
  * @author Sebastien Astie
  *
  */
-public class CaptureFactory {
+public class CaptureFactory extends ResponseFactory {
 
-	public static MythFakeHttpInputMessage create(URI url) {
+	
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.test.connect.utils.factories.ResponseFactory#create(java.net.URI)
+	 */
+	@Override
+	public MythFakeHttpInputMessage create(URI url) {
 		if(url.getPath().contains("GetCaptureCardList")){
 			return new MythFakeHttpInputMessage("capture/GetCaptureCardList.json");
 		}
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.test.connect.utils.factories.ResponseFactory#getUriPrefix()
+	 */
+	@Override
+	protected String getUriPrefix() {
+		return "/Capture/";
+	}
 }
