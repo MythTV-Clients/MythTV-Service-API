@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mythtv.services.api.test.connect.utils.factories.CaptureFactory;
+import org.mythtv.services.api.test.connect.utils.factories.GuideFactory;
 import org.mythtv.services.api.test.connect.utils.factories.ResponseFactory;
 
 public class MythFakeHttpResponseFactory {
@@ -52,5 +53,6 @@ public class MythFakeHttpResponseFactory {
 	private void init() {
 		factories = new ArrayList<ResponseFactory>();
 		factories.add(new CaptureFactory());
+		factories.add(new GuideFactory());
 	}
 }

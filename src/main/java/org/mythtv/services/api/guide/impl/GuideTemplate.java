@@ -126,8 +126,9 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 		try {
 			return restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(), ProgramGuideWrapper.class );
 		} catch( Exception e ) {
-			return null;
+			e.printStackTrace();
 		}
+		return null;
 	}
 	
 }

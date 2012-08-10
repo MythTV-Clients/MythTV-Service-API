@@ -36,6 +36,7 @@ public class BaseMythtvServiceApiTester {
 		properties = new Properties();
 		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
 		
+//		MythServicesServiceProvider serv = new MythServicesServiceProvider("http://master:6544/");
 		MythServicesServiceProvider serv = new LocalMythServicesServiceProvider();
 		api = serv.getApi();
 	}

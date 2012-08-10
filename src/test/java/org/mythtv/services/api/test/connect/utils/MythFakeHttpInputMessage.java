@@ -36,15 +36,26 @@ import org.springframework.http.client.ClientHttpResponse;
  */
 public class MythFakeHttpInputMessage implements ClientHttpResponse {
 	private FileInputStream stream;
-	private long size;
+	private HttpHeaders headers;
 	/**
 	 * 
 	 */
 	public MythFakeHttpInputMessage(String filePath) {
+		headers = new HttpHeaders();
+		File f = new File("src/test/resources/responses/" + filePath);
+		if(f.exists()){
+			headers.setContentLength(f.length());
+		}
+		filePath = filePath.toLowerCase().trim();
+		
+		
+		if(filePath.endsWith(".json"))
+			headers.setContentType(MediaType.APPLICATION_JSON);
+		else if(filePath.endsWith(".png"))
+			headers.setContentType(MediaType.IMAGE_PNG);
+			
 		try {
-			File f = new File("src/test/resources/responses/" + filePath);
-			if(f.exists())
-				size = f.length();
+			
 			stream = new FileInputStream(f);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -58,9 +69,6 @@ public class MythFakeHttpInputMessage implements ClientHttpResponse {
 	 */
 	@Override
 	public HttpHeaders getHeaders() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.setContentLength(size);
 		return headers;
 	}
 
@@ -97,9 +105,5 @@ public class MythFakeHttpInputMessage implements ClientHttpResponse {
 			e.printStackTrace();
 		}
 
-	}
-
-	public static MythFakeHttpInputMessage createMessage(String url){
-		return null;
 	}
 }

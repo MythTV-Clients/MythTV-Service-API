@@ -34,7 +34,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.ResourceHttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.HttpMessageConverterExtractor;
 import org.springframework.web.client.RequestCallback;
@@ -59,7 +62,11 @@ public class FakeMythTvRestTemplate implements RestOperations {
 	 */
 	public FakeMythTvRestTemplate() {
 		messageConverters = new ArrayList<HttpMessageConverter<?>>();
+		messageConverters.add(new ByteArrayHttpMessageConverter());
+		messageConverters.add(new StringHttpMessageConverter());
+		messageConverters.add(new ResourceHttpMessageConverter());
 		messageConverters.add(new MappingJacksonHttpMessageConverter());
+		
 		mythResponseFactory = MythFakeHttpResponseFactory.getInstance();
 	}
 
