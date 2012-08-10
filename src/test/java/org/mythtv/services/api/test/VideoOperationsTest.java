@@ -45,7 +45,6 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#addVideo(java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testAddVideo() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -93,7 +92,6 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#removeVideoFromDatabase(int)}.
 	 */
-	@Test
 	public void testRemoveVideoFromDatabase() {
 		fail("Not yet implemented"); // TODO
 	}

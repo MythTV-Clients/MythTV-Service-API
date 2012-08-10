@@ -45,9 +45,8 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.dvr.impl.DvrTemplate#addRecordingSchedule(int, org.joda.time.DateTime, int, boolean, int, int, java.lang.String, int, java.lang.String, java.lang.String, int, int, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, int, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, int)}.
 	 */
-	@Test
 	public void testAddRecordingSchedule() {
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //TODO
 	}
 
 	/**
@@ -165,9 +164,8 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.dvr.impl.DvrTemplate#removeRecordingSchedule(int)}.
 	 */
-	@Test
 	public void testRemoveRecordingSchedule() {
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //TODO
 	}
 
 	/**
@@ -175,7 +173,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testRemoveRecorded() {
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //TODO
 	}
 
 }

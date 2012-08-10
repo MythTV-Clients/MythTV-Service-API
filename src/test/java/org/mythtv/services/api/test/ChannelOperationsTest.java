@@ -42,17 +42,15 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testAddDBChannel() {
-		Assert.assertTrue("Not yet implemented", true); // TODO
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}.
 	 */
-	@Test
 	public void testAddVideoSource() {
-		Assert.assertTrue("Not yet implemented", true); // TODO
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -154,33 +152,29 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeDBChannel(int)}.
 	 */
-	@Test
 	public void testRemoveDBChannel() {
-		Assert.assertTrue("Not yet implemented", true); // TODO
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeVideoSource(int)}.
 	 */
-	@Test
 	public void testRemoveVideoSource() {
-		Assert.assertTrue("Not yet implemented", true); // TODO
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testUpdateDBChannel() {
-		Assert.assertTrue("Not yet implemented", true); // TODO
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}.
 	 */
-	@Test
 	public void testUpdateVideoSource() {
-		Assert.assertTrue("Not yet implemented", true); // TODO
+		fail("Not yet implemented"); // TODO
 	}
 
 }

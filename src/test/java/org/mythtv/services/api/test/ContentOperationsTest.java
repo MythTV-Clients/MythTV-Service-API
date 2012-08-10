@@ -45,7 +45,6 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)}.
 	 */
-	@Test
 	public void testAddLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -53,7 +52,6 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addRecordingLiveStream(int, org.joda.time.DateTime, int, int, int, int, int, int)}.
 	 */
-	@Test
 	public void testAddRecordingLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -61,7 +59,6 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addVideoLiveStream(int, int, int, int, int, int, int)}.
 	 */
-	@Test
 	public void testAddVideoLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -205,7 +202,6 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#removeLiveStream(int)}.
 	 */
-	@Test
 	public void testRemoveLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -213,7 +209,6 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#stopLiveStream(int)}.
 	 */
-	@Test
 	public void testStopLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}

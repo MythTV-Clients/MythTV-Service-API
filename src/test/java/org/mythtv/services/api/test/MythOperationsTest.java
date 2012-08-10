@@ -44,7 +44,6 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#addStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testAddStorageGroupDir() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -140,7 +139,6 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileDelete()}.
 	 */
-	@Test
 	public void testProfileDelete() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -148,7 +146,6 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileSubmit()}.
 	 */
-	@Test
 	public void testProfileSubmit() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -180,7 +177,6 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#putSetting(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testPutSetting() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -188,7 +184,6 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#removeStorageGroupDirectory(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testRemoveStorageGroupDirectory() {
 		fail("Not yet implemented"); // TODO
 	}
