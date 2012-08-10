@@ -21,7 +21,6 @@ package org.mythtv.services.api.test.connect.utils.factories;
 
 import java.net.URI;
 
-import org.junit.Assert;
 import org.mythtv.services.api.test.connect.utils.MythFakeHttpInputMessage;
 
 /**
@@ -43,8 +42,7 @@ public class GuideFactory extends ResponseFactory {
 		} else if (url.getPath().contains("/GetProgramDetails")) {
 			return new MythFakeHttpInputMessage("guide/GetProgramDetails.json");
 		}
-		Assert.fail(url.getPath() + " is not set up  for testing locally.");
-		return null;
+		return unknownOperation(url);
 	}
 
 	/* (non-Javadoc)
