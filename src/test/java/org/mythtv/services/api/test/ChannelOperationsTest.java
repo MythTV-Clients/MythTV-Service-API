@@ -21,9 +21,14 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.channel.ChannelOperations;
+import org.mythtv.services.api.channel.VideoSource;
+import org.mythtv.services.api.channel.VideoSourceWrapper;
 
 /**
  * @author sebastien
@@ -31,12 +36,15 @@ import org.junit.Test;
  */
 public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
+	private ChannelOperations operations;
+	
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
 	 */
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
+		operations = api.channelOperations();
 	}
 
 	/**
@@ -59,6 +67,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testFetchChannelsFromSource() {
 		fail("Not yet implemented"); // TODO
+		//operations.fetchChannelsFromSource(sourceId, cardId, waitForFinish);
 	}
 
 	/**
@@ -130,7 +139,11 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoSource() {
-		fail("Not yet implemented"); // TODO
+		List<VideoSource> list = operations.getVideoSourceList();
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
+		VideoSourceWrapper source = operations.getVideoSource(list.get(0).getId());
+		Assert.assertNotNull(source);
 	}
 
 	/**
@@ -138,7 +151,9 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoSourceList() {
-		fail("Not yet implemented"); // TODO
+		List<VideoSource> list = operations.getVideoSourceList();
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
 	}
 
 	/**

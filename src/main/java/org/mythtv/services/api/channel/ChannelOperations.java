@@ -148,7 +148,7 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	VideoSource getVideoSource( int sourceId );
+	VideoSourceWrapper getVideoSource( int sourceId );
 	
 	/**
 	 * - GET

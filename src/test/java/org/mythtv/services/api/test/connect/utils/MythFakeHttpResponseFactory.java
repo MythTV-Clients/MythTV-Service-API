@@ -23,7 +23,9 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.mythtv.services.api.test.connect.utils.factories.CaptureFactory;
+import org.mythtv.services.api.test.connect.utils.factories.ChannelFactory;
 import org.mythtv.services.api.test.connect.utils.factories.GuideFactory;
 import org.mythtv.services.api.test.connect.utils.factories.ResponseFactory;
 
@@ -47,6 +49,7 @@ public class MythFakeHttpResponseFactory {
 			if (factory.handlesUri(url))
 				return factory.create(url);
 		}
+		Assert.fail("No factory found for this uri: '" + url.getPath() +"'");
 		return null;
 	}
 
@@ -54,5 +57,6 @@ public class MythFakeHttpResponseFactory {
 		factories = new ArrayList<ResponseFactory>();
 		factories.add(new CaptureFactory());
 		factories.add(new GuideFactory());
+		factories.add(new ChannelFactory());
 	}
 }

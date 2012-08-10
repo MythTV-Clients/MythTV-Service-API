@@ -27,6 +27,8 @@ import org.mythtv.services.api.channel.ChannelOperations;
 import org.mythtv.services.api.channel.LineupList;
 import org.mythtv.services.api.channel.VideoMultiplex;
 import org.mythtv.services.api.channel.VideoSource;
+import org.mythtv.services.api.channel.VideoSourceList;
+import org.mythtv.services.api.channel.VideoSourceWrapper;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -173,9 +175,14 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoSource(int)
 	 */
 	@Override
-	public VideoSource getVideoSource( int sourceId ) {
-		// TODO Auto-generated method stub
-		return null;
+	public VideoSourceWrapper getVideoSource( int sourceId ) {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( sourceId > 0 ) {
+			parameters.add( "SourceID", "" + sourceId );
+		}
+		
+		ResponseEntity<VideoSourceWrapper> response = restOperations.exchange( buildUri( "GetVideoSource", parameters ), HttpMethod.GET, getRequestEntity(), VideoSourceWrapper.class );
+		return response.getBody();
 	}
 
 	/* (non-Javadoc)
@@ -183,8 +190,9 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public List<VideoSource> getVideoSourceList() {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<VideoSourceList> responseEntity = restOperations.exchange( buildUri( "GetVideoSourceList" ), HttpMethod.GET, getRequestEntity(), VideoSourceList.class );
+		VideoSourceList list = responseEntity.getBody();
+		return list.getVideoSources().getVideoSources();
 	}
 
 	/* (non-Javadoc)
