@@ -33,7 +33,7 @@ public class LocalMythServicesServiceProvider extends
 	/**
 	 * @param apiUrlBase
 	 */
-	public LocalMythServicesServiceProvider() {
+	public LocalMythServicesServiceProvider(String baseUrl) {
 		super("local://fakeuri/");
 	}
 

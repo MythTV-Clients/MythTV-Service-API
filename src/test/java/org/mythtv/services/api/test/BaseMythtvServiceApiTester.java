@@ -20,11 +20,11 @@
 package org.mythtv.services.api.test;
 
 import java.io.FileInputStream;
+import java.lang.reflect.Constructor;
 import java.util.Properties;
 
 import org.junit.Before;
 import org.mythtv.services.api.MythServices;
-import org.mythtv.services.api.test.connect.LocalMythServicesServiceProvider;
 import org.mythtv.services.connect.MythServicesServiceProvider;
 
 public class BaseMythtvServiceApiTester {
@@ -36,8 +36,19 @@ public class BaseMythtvServiceApiTester {
 		properties = new Properties();
 		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
 		
-//		MythServicesServiceProvider serv = new MythServicesServiceProvider("http://master:6544/");
-		MythServicesServiceProvider serv = new LocalMythServicesServiceProvider();
+		String providerClass = properties.getProperty("MythServicesServiceProvider.class");
+		String apiBase = properties.getProperty("MythServicesServiceProvider.ApiBaseUrl");
+		
+		if(providerClass == null)
+			throw new Exception("Property 'MythServicesServiceProvider.class' is missing in property file.");
+		if(apiBase == null)
+			throw new Exception("Property 'MythServicesServiceProvider.ApiBaseUrl' is missing in property file.");
+		
+		@SuppressWarnings("unchecked")
+		Class<? extends MythServicesServiceProvider> clazz = (Class<? extends MythServicesServiceProvider>) Class.forName(providerClass);
+		Constructor<? extends MythServicesServiceProvider> c = clazz.getConstructor(String.class);
+		MythServicesServiceProvider serv = c.newInstance(apiBase);
+		
 		api = serv.getApi();
 	}
 
