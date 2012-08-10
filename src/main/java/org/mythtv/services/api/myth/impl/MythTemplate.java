@@ -98,8 +98,11 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public String getHostName() {
-		// TODO Auto-generated method stub
-		return null;
+
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHostName" ), HttpMethod.GET, getRequestEntity(), String.class );
+		String hostname = responseEntity.getBody();
+		
+		return hostname;
 	}
 
 	/* (non-Javadoc)
