@@ -25,6 +25,7 @@ import java.util.Properties;
 import org.junit.Before;
 import org.mythtv.services.api.MythServices;
 import org.mythtv.services.api.test.connect.LocalMythServicesServiceProvider;
+import org.mythtv.services.connect.MythServicesServiceProvider;
 
 public class BaseMythtvServiceApiTester {
 	protected MythServices api;
@@ -35,7 +36,7 @@ public class BaseMythtvServiceApiTester {
 		properties = new Properties();
 		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
 		
-		LocalMythServicesServiceProvider serv = new LocalMythServicesServiceProvider();
+		MythServicesServiceProvider serv = new LocalMythServicesServiceProvider();
 		api = serv.getApi();
 	}
 

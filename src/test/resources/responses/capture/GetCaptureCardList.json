@@ -1,7 +1,6 @@
 {
   "CaptureCardList": {
-    "CaptureCards": {
-      "CaptureCard": [
+    "CaptureCards":  [
         {
           "CardId": "1",
           "VideoDevice": "1010A61B-0",
@@ -316,6 +315,5 @@
           "DVBEITScan": "true"
         }
       ]
-    }
   }
 }
