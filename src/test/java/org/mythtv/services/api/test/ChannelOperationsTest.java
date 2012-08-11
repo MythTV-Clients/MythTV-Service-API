@@ -26,6 +26,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.channel.ChannelInfo;
+import org.mythtv.services.api.channel.ChannelInfoWrapper;
 import org.mythtv.services.api.channel.ChannelOperations;
 import org.mythtv.services.api.channel.VideoSource;
 import org.mythtv.services.api.channel.VideoSourceWrapper;
@@ -66,8 +68,8 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testFetchChannelsFromSource() {
-		fail("Not yet implemented"); // TODO
-		//operations.fetchChannelsFromSource(sourceId, cardId, waitForFinish);
+		int val = operations.fetchChannelsFromSource(1, 2, true);
+		Assert.assertEquals(358, val);
 	}
 
 	/**
@@ -75,7 +77,8 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfo() {
-		fail("Not yet implemented"); // TODO
+		ChannelInfoWrapper info = operations.getChannelInfo(1021);
+		Assert.assertNotNull(info);
 	}
 
 	/**
@@ -83,7 +86,10 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoListIntIntInt() {
-		fail("Not yet implemented"); // TODO
+		List<ChannelInfo> list = operations.getChannelInfoList(1, 1, 10);
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
+		
 	}
 
 	/**
@@ -161,7 +167,12 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetXmltvIdList() {
-		fail("Not yet implemented"); // TODO
+		List<VideoSource> list = operations.getVideoSourceList();
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
+		List<String> ids = operations.getXmltvIdList(list.get(0).getId());
+		Assert.assertNotNull(ids);
+		Assert.assertFalse(ids.isEmpty());
 	}
 
 	/**

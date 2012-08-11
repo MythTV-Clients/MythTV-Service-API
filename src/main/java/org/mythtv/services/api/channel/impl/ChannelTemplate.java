@@ -19,10 +19,14 @@
  */
 package org.mythtv.services.api.channel.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.mythtv.services.api.Int;
+import org.mythtv.services.api.StringList;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.channel.ChannelInfoList;
+import org.mythtv.services.api.channel.ChannelInfoWrapper;
 import org.mythtv.services.api.channel.ChannelOperations;
 import org.mythtv.services.api.channel.LineupList;
 import org.mythtv.services.api.channel.VideoMultiplex;
@@ -70,23 +74,26 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public int fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish ) {
-		// TODO Auto-generated method stub
-		return 0;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.add( "SourceId", "" + sourceId );
+		parameters.add("CardId", "" + cardId );
+		parameters.add("WaitForFinish", Boolean.toString(waitForFinish) );
+
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "FetchChannelsFromSource", parameters ), HttpMethod.GET, getRequestEntity(), Int.class );
+		return responseEntity.getBody().getInteger().intValue();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getChannelInfo(int)
 	 */
 	@Override
-	public ChannelInfo getChannelInfo( int channelId ) {
+	public ChannelInfoWrapper getChannelInfo( int channelId ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 
-		ResponseEntity<ChannelInfo> responseEntity = restOperations.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfo.class );
-		ChannelInfo channelInfo = responseEntity.getBody();
-		
-		return channelInfo;
+		ResponseEntity<ChannelInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfoWrapper.class );
+		return responseEntity.getBody();
 	}
 
 	/* (non-Javadoc)
@@ -200,8 +207,12 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public List<String> getXmltvIdList( int sourceId ) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( sourceId > 0 ) {
+			parameters.add( "SourceID", "" + sourceId );
+		}
+		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( "GetXMLTVIdList", parameters ), HttpMethod.GET, getRequestEntity(), StringList.class );
+		return Arrays.asList( responseEntity.getBody().getStringList() );
 	}
 
 	/* (non-Javadoc)
@@ -239,5 +250,4 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
 }

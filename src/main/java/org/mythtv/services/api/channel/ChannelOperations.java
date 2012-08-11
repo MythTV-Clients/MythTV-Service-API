@@ -84,7 +84,7 @@ public interface ChannelOperations {
 	 * @param channelId
 	 * @return
 	 */
-	ChannelInfo getChannelInfo( int channelId );
+	ChannelInfoWrapper getChannelInfo( int channelId );
 	
 	/**
 	 * - GET

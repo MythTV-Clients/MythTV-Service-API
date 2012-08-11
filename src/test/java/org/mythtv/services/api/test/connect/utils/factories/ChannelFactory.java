@@ -37,6 +37,12 @@ public class ChannelFactory extends ResponseFactory {
 			return new MythFakeHttpInputMessage("channel/GetVideoSourceList.json");
 		} else if (url.getPath().contains("/GetVideoSource")){
 			return new MythFakeHttpInputMessage("channel/GetVideoSource.json");
+		} else if (url.getPath().contains("/GetXMLTVIdList")){
+			return new MythFakeHttpInputMessage("channel/GetXMLTVIdList.json");
+		} else if (url.getPath().contains("/FetchChannelsFromSource")){
+			return new MythFakeHttpInputMessage("channel/FetchChannelsFromSource.json");
+		} else if (url.getPath().contains("/GetChannelInfo")){
+			return new MythFakeHttpInputMessage("channel/GetChannelInfo.json");
 		}
 		return unknownOperation(url);
 	}
