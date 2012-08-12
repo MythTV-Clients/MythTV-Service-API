@@ -28,8 +28,11 @@ import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.channel.ChannelInfoList;
 import org.mythtv.services.api.channel.ChannelInfoWrapper;
 import org.mythtv.services.api.channel.ChannelOperations;
+import org.mythtv.services.api.channel.Lineup;
 import org.mythtv.services.api.channel.LineupList;
 import org.mythtv.services.api.channel.VideoMultiplex;
+import org.mythtv.services.api.channel.VideoMultiplexList;
+import org.mythtv.services.api.channel.VideoMultiplexWrapper;
 import org.mythtv.services.api.channel.VideoSource;
 import org.mythtv.services.api.channel.VideoSourceList;
 import org.mythtv.services.api.channel.VideoSourceWrapper;
@@ -155,18 +158,29 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<LineupList> getDDLineupList( String source, String userId, String password ) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Lineup> getDDLineupList( String source, String userId, String password ) {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if(source != null)
+			parameters.add("Source", source);
+		if(userId != null)
+			parameters.add("UserId", userId);
+		if(password != null)
+			parameters.add("Password", password);
+		ResponseEntity<LineupList> response = restOperations.exchange( buildUri( "GetDDLineupList", parameters ), HttpMethod.GET, getRequestEntity(), LineupList.class );
+		return response.getBody().getLineups().getLineups();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoMultiplex(int)
 	 */
 	@Override
-	public VideoMultiplex getVideoMultiplex( int multiplexId ) {
-		// TODO Auto-generated method stub
-		return null;
+	public VideoMultiplexWrapper getVideoMultiplex( int multiplexId ) {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( multiplexId > 0 ) {
+			parameters.add( "MplexID", "" + multiplexId );
+		}
+		ResponseEntity<VideoMultiplexWrapper> response = restOperations.exchange( buildUri( "GetVideoMultiplex", parameters ), HttpMethod.GET, getRequestEntity(), VideoMultiplexWrapper.class );
+		return response.getBody();
 	}
 
 	/* (non-Javadoc)
@@ -174,8 +188,18 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public List<VideoMultiplex> getVideoMultiplexList( int sourceId, int startIndex, int count ) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( sourceId > 0 ) {
+			parameters.add( "SourceID", "" + sourceId );
+		}
+		if(startIndex >= 0) {
+			parameters.add( "StartIndex", "" + startIndex );
+		}
+		if(count > 0) {
+			parameters.add( "Count", "" + count );
+		}
+		ResponseEntity<VideoMultiplexList> response = restOperations.exchange( buildUri( "GetVideoMultiplexList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMultiplexList.class );
+		return response.getBody().getVideoMultiplexes().getVideoMultiplexes();
 	}
 
 	/* (non-Javadoc)

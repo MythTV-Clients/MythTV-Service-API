@@ -35,11 +35,11 @@ public class GuideFactory extends ResponseFactory {
 	 */
 	@Override
 	public MythFakeHttpInputMessage create(URI url) {
-		if(url.getPath().contains("/GetChannelIcon")){
+		if(url.getPath().endsWith("/GetChannelIcon")){
 			return new MythFakeHttpInputMessage("guide/GetChannelIcon.png");
-		} else if (url.getPath().contains("/GetProgramGuide")){
+		} else if (url.getPath().endsWith("/GetProgramGuide")){
 			return new MythFakeHttpInputMessage("guide/GetProgramGuide.json");
-		} else if (url.getPath().contains("/GetProgramDetails")) {
+		} else if (url.getPath().endsWith("/GetProgramDetails")) {
 			return new MythFakeHttpInputMessage("guide/GetProgramDetails.json");
 		}
 		return unknownOperation(url);

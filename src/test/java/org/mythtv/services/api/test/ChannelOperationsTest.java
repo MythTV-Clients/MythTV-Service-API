@@ -27,10 +27,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mythtv.services.api.channel.ChannelInfo;
+import org.mythtv.services.api.channel.ChannelInfoList;
 import org.mythtv.services.api.channel.ChannelInfoWrapper;
 import org.mythtv.services.api.channel.ChannelOperations;
+import org.mythtv.services.api.channel.Lineup;
+import org.mythtv.services.api.channel.VideoMultiplex;
+import org.mythtv.services.api.channel.VideoMultiplexWrapper;
 import org.mythtv.services.api.channel.VideoSource;
 import org.mythtv.services.api.channel.VideoSourceWrapper;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author sebastien
@@ -97,7 +102,9 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoListResponseEntityIntIntInt() {
-		fail("Not yet implemented"); // TODO
+		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(1, 1, 10);
+		Assert.assertNotNull(list);
+		Assert.assertNotNull(list.getBody().getChannelInfos());
 	}
 
 	/**
@@ -105,7 +112,9 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoList() {
-		fail("Not yet implemented"); // TODO
+		List<ChannelInfo> list = operations.getChannelInfoList();
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
 	}
 
 	/**
@@ -113,7 +122,9 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoListResponseEntity() {
-		fail("Not yet implemented"); // TODO
+		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity();
+		Assert.assertNotNull(list);
+		Assert.assertNotNull(list.getBody().getChannelInfos());
 	}
 
 	/**
@@ -121,7 +132,9 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetDDLineupList() {
-		fail("Not yet implemented"); // TODO
+		List<Lineup> list = operations.getDDLineupList("SchedulesDirect", "user", "password");
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
 	}
 
 	/**
@@ -129,7 +142,12 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoMultiplex() {
-		fail("Not yet implemented"); // TODO
+		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10);
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
+		VideoMultiplexWrapper mplex = operations.getVideoMultiplex(list.get(0).getMultiplexId());
+		Assert.assertNotNull(mplex);
+		Assert.assertNotNull(mplex.getVideoMultiplex());
 	}
 
 	/**
@@ -137,7 +155,9 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoMultiplexList() {
-		fail("Not yet implemented"); // TODO
+		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10);
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
 	}
 
 	/**

@@ -33,16 +33,24 @@ public class ChannelFactory extends ResponseFactory {
 	 */
 	@Override
 	public MythFakeHttpInputMessage create(URI url) {
-		if(url.getPath().contains("/GetVideoSourceList")){
+		if(url.getPath().endsWith("/GetVideoSourceList")){
 			return new MythFakeHttpInputMessage("channel/GetVideoSourceList.json");
-		} else if (url.getPath().contains("/GetVideoSource")){
+		} else if (url.getPath().endsWith("/GetVideoSource")){
 			return new MythFakeHttpInputMessage("channel/GetVideoSource.json");
-		} else if (url.getPath().contains("/GetXMLTVIdList")){
+		} else if (url.getPath().endsWith("/GetXMLTVIdList")){
 			return new MythFakeHttpInputMessage("channel/GetXMLTVIdList.json");
-		} else if (url.getPath().contains("/FetchChannelsFromSource")){
+		} else if (url.getPath().endsWith("/FetchChannelsFromSource")){
 			return new MythFakeHttpInputMessage("channel/FetchChannelsFromSource.json");
-		} else if (url.getPath().contains("/GetChannelInfo")){
+		} else if (url.getPath().endsWith("/GetChannelInfoList")){
+			return new MythFakeHttpInputMessage("channel/GetChannelInfoList.json");
+		} else if (url.getPath().endsWith("/GetChannelInfo")){
 			return new MythFakeHttpInputMessage("channel/GetChannelInfo.json");
+		} else if (url.getPath().endsWith("/GetVideoMultiplexList")){
+			return new MythFakeHttpInputMessage("channel/GetVideoMultiplexList.json");
+		} else if (url.getPath().endsWith("/GetVideoMultiplex")){
+			return new MythFakeHttpInputMessage("channel/GetVideoMultiplex.json");
+		} else if (url.getPath().endsWith("/GetDDLineupList")){
+			return new MythFakeHttpInputMessage("channel/GetDDLineupList.json");
 		}
 		return unknownOperation(url);
 	}

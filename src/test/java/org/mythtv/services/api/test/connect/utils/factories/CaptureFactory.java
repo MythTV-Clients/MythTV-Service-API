@@ -35,9 +35,9 @@ public class CaptureFactory extends ResponseFactory {
 	 */
 	@Override
 	public MythFakeHttpInputMessage create(URI url) {
-		if(url.getPath().contains("GetCaptureCardList")){
+		if(url.getPath().endsWith("GetCaptureCardList")){
 			return new MythFakeHttpInputMessage("capture/GetCaptureCardList.json");
-		} else if (url.getPath().contains("GetCaptureCard")){
+		} else if (url.getPath().endsWith("GetCaptureCard")){
 			return new MythFakeHttpInputMessage("capture/GetCaptureCard.json");
 		}
 		return unknownOperation(url);

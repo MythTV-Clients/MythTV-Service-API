@@ -122,7 +122,7 @@ public interface ChannelOperations {
 	 * @param password
 	 * @return
 	 */
-	List<LineupList> getDDLineupList( String source, String userId, String password );
+	List<Lineup> getDDLineupList( String source, String userId, String password );
 	
 	/**
 	 * - GET
@@ -130,7 +130,7 @@ public interface ChannelOperations {
 	 * @param multiplexId
 	 * @return
 	 */
-	VideoMultiplex getVideoMultiplex( int multiplexId );
+	VideoMultiplexWrapper getVideoMultiplex( int multiplexId );
 	
 	/**
 	 * - GET

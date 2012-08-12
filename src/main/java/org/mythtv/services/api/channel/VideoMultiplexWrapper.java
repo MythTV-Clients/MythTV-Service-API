@@ -22,28 +22,28 @@ package org.mythtv.services.api.channel;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * @author Daniel Frey
+ * @author Sebastien Astie
  *
  */
-public class VideoMultiplexList {
+public class VideoMultiplexWrapper {
 
-	@JsonProperty("VideoMultiplexList")
-	private VideoMultiplexes videoMultiplexes;
+	@JsonProperty( "VideoMultiplex" )
+	private VideoMultiplex videoMultiplex;
 	
-	public VideoMultiplexList() { }
+	public VideoMultiplexWrapper() { }
 
 	/**
-	 * @return the videoMultiplexes
+	 * @return the videoMultiplex
 	 */
-	public VideoMultiplexes getVideoMultiplexes() {
-		return videoMultiplexes;
+	public VideoMultiplex getVideoMultiplex() {
+		return videoMultiplex;
 	}
 
 	/**
-	 * @param videoMultiplexes the videoMultiplexes to set
+	 * @param videoMultiplex the videoMultiplex to set
 	 */
-	public void setVideoMultiplexes( VideoMultiplexes videoMultiplexes ) {
-		this.videoMultiplexes = videoMultiplexes;
+	public void setVideoMultiplex( VideoMultiplex videoMultiplex ) {
+		this.videoMultiplex = videoMultiplex;
 	}
 
 	/* (non-Javadoc)
@@ -52,16 +52,17 @@ public class VideoMultiplexList {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append( "VideoMultiplexList [" );
 		
-		if( videoMultiplexes != null ) {
-			builder.append( "videoMultiplexes=" );
-			builder.append( videoMultiplexes );
+		builder.append( "VideoMultiplexWrapper [" );
+		
+		if( videoMultiplex != null ) {
+			builder.append( "videoMultiplex=" );
+			builder.append( videoMultiplex );
 		}
 		
 		builder.append( "]" );
 	
 		return builder.toString();
 	}
-	
+
 }
