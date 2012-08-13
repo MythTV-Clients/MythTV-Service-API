@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="lib" path="libs/jackson-core-asl-1.9.8.jar"/>
-	<classpathentry kind="lib" path="libs/jackson-mapper-asl-1.9.8.jar"/>
-	<classpathentry kind="lib" path="libs/spring-android-core-1.0.0.RELEASE.jar" sourcepath="docs/spring-android-core-1.0.0.RELEASE-sources.jar"/>
-	<classpathentry kind="lib" path="libs/spring-android-rest-template-1.0.0.RELEASE.jar" sourcepath="docs/spring-android-rest-template-1.0.0.RELEASE-sources.jar"/>
-	<classpathentry kind="lib" path="libs/spring-social-core-1.0.2.RELEASE.jar"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry including="**/*.java" kind="src" path="src/test/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/joda-time-2.1.jar" sourcepath="docs/joda-time-2.1-sources.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
