@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>MythTV-Service-API</groupId>
+  <artifactId>MythTV-Service-API</artifactId>
+  <version>0.0.6-SNAPSHOT</version>
+  <name>mythtv-service-api</name>
+   <repositories>
+	<repository>
+    	<id>springsource-repo</id>
+    	<name>SpringSource Repository</name>
+    	<url>http://repo.springsource.org/release</url>
+	</repository>
+  </repositories>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+
+  <dependency>
+  	<groupId>org.springframework.android</groupId>
+  	<artifactId>spring-android-rest-template</artifactId>
+  	<version>1.0.0.RELEASE</version>
+  </dependency>
+  <dependency>
+  	<groupId>org.springframework.social</groupId>
+  	<artifactId>spring-social-core</artifactId>
+  	<version>1.0.2.RELEASE</version>
+  	<exclusions>
+         <!-- Exclude in favor of Spring Android RestTemplate -->
+         <exclusion>
+             <artifactId>spring-web</artifactId>
+             <groupId>org.springframework</groupId>
+         </exclusion>
+         <!-- Provided by Android -->
+         <exclusion>
+             <artifactId>commons-logging</artifactId>
+             <groupId>commons-logging</groupId>
+         </exclusion>
+     </exclusions>
+  </dependency>
+  <dependency>
+	<groupId>joda-time</groupId>
+	<artifactId>joda-time</artifactId>
+	<version>2.1</version>
+  </dependency>
+  <dependency>
+   <groupId>org.codehaus.jackson</groupId>
+   <artifactId>jackson-mapper-asl</artifactId>
+   <version>1.9.9</version>
+  </dependency>
+  <dependency>
+  	<groupId>junit</groupId>
+  	<artifactId>junit</artifactId>
+  	<version>4.10</version>
+  	<scope>test</scope>
+  </dependency>
+  </dependencies>
+</project>
