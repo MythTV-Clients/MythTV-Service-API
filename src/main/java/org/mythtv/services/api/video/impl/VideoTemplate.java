@@ -22,9 +22,10 @@ package org.mythtv.services.api.video.impl;
 import java.util.List;
 
 import org.mythtv.services.api.Bool;
-import org.mythtv.services.api.video.BlurayInfo;
+import org.mythtv.services.api.video.BlurayInfoWrapper;
 import org.mythtv.services.api.video.VideoLookup;
 import org.mythtv.services.api.video.VideoLookupList;
+import org.mythtv.services.api.video.VideoMetaDataInfoWrapper;
 import org.mythtv.services.api.video.VideoMetadataInfo;
 import org.mythtv.services.api.video.VideoMetadataInfoList;
 import org.mythtv.services.api.video.VideoOperations;
@@ -66,13 +67,13 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 	 * @see org.mythtv.services.api.video.VideoOperations#getBluray(java.lang.String)
 	 */
 	@Override
-	public BlurayInfo getBluray( String path ) {
+	public BlurayInfoWrapper getBluray( String path ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Path", path );
 
-		ResponseEntity<BlurayInfo> responseEntity = restOperations.exchange( buildUri( "GetBluray", parameters ), HttpMethod.GET, getRequestEntity(), BlurayInfo.class );
-		BlurayInfo blurayInfo = responseEntity.getBody();
+		ResponseEntity<BlurayInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetBluray", parameters ), HttpMethod.GET, getRequestEntity(), BlurayInfoWrapper.class );
+		BlurayInfoWrapper blurayInfo = responseEntity.getBody();
 
 		return blurayInfo;
 	}
@@ -81,13 +82,13 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 	 * @see org.mythtv.services.api.video.VideoOperations#getVideo(int)
 	 */
 	@Override
-	public VideoMetadataInfo getVideo( int id ) {
+	public VideoMetaDataInfoWrapper getVideo( int id ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 
-		ResponseEntity<VideoMetadataInfo> responseEntity = restOperations.exchange( buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfo.class );
-		VideoMetadataInfo videoMetadataInfo = responseEntity.getBody();
+		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetVideo", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetaDataInfoWrapper.class );
+		VideoMetaDataInfoWrapper videoMetadataInfo = responseEntity.getBody();
 
 		return videoMetadataInfo;
 	}
@@ -96,13 +97,13 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 	 * @see org.mythtv.services.api.video.VideoOperations#getVideByFilename(java.lang.String)
 	 */
 	@Override
-	public VideoMetadataInfo getVideByFilename( String filename ) {
+	public VideoMetaDataInfoWrapper getVideoByFilename( String filename ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "FileName", filename );
 
-		ResponseEntity<VideoMetadataInfo> responseEntity = restOperations.exchange( buildUri( "GetVideoByFileName", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetadataInfo.class );
-		VideoMetadataInfo videoMetadataInfo = responseEntity.getBody();
+		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetVideoByFileName", parameters ), HttpMethod.GET, getRequestEntity(), VideoMetaDataInfoWrapper.class );
+		VideoMetaDataInfoWrapper videoMetadataInfo = responseEntity.getBody();
 
 		return videoMetadataInfo;
 	}

@@ -42,7 +42,7 @@ public interface VideoOperations {
 	 * @param path
 	 * @return
 	 */
-	BlurayInfo getBluray( String path );
+	BlurayInfoWrapper getBluray( String path );
 	
 	/**
 	 * - GET
@@ -50,7 +50,7 @@ public interface VideoOperations {
 	 * @param id
 	 * @return
 	 */
-	VideoMetadataInfo getVideo( int id );
+	VideoMetaDataInfoWrapper getVideo( int id );
 	
 	/**
 	 * - GET
@@ -58,7 +58,7 @@ public interface VideoOperations {
 	 * @param filename
 	 * @return
 	 */
-	VideoMetadataInfo getVideByFilename( String filename );
+	VideoMetaDataInfoWrapper getVideoByFilename( String filename );
 	
 	/**
 	 * - GET
