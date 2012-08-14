@@ -23,7 +23,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
-import org.mythtv.services.api.content.ArtworkInfoList;
+import org.mythtv.services.api.content.ArtworkInfos;
 
 /**
  * @author Daniel Frey
@@ -127,7 +127,7 @@ public class VideoMetadataInfo {
 	private String trailer;
 
 	@JsonProperty( "Artwork" )
-	private ArtworkInfoList	artwork;
+	private ArtworkInfos	artwork;
 
 	public VideoMetadataInfo() { }
 
@@ -568,14 +568,14 @@ public class VideoMetadataInfo {
 	/**
 	 * @return the artwork
 	 */
-	public ArtworkInfoList getArtwork() {
+	public ArtworkInfos getArtwork() {
 		return artwork;
 	}
 
 	/**
 	 * @param artwork the artwork to set
 	 */
-	public void setArtwork( ArtworkInfoList artwork ) {
+	public void setArtwork( ArtworkInfos artwork ) {
 		this.artwork = artwork;
 	}
 

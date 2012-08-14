@@ -21,8 +21,15 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.video.BlurayInfoWrapper;
+import org.mythtv.services.api.video.VideoLookup;
+import org.mythtv.services.api.video.VideoMetaDataInfoWrapper;
+import org.mythtv.services.api.video.VideoMetadataInfo;
 import org.mythtv.services.api.video.VideoOperations;
 
 /**
@@ -54,7 +61,8 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetBluray() {
-		fail("Not yet implemented"); // TODO
+		BlurayInfoWrapper info = videoOperations.getBluray("/path/to/video");
+		Assert.assertNotNull(info);
 	}
 
 	/**
@@ -62,15 +70,17 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideo() {
-		fail("Not yet implemented"); // TODO
+		VideoMetaDataInfoWrapper info = videoOperations.getVideo(1);
+		Assert.assertNotNull(info);
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideByFilename(java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoByFilename(java.lang.String)}.
 	 */
 	@Test
-	public void testGetVideByFilename() {
-		fail("Not yet implemented"); // TODO
+	public void testGetVideoByFilename() {
+		VideoMetaDataInfoWrapper info = videoOperations.getVideoByFilename("/path/to/video");
+		Assert.assertNotNull(info);
 	}
 
 	/**
@@ -78,7 +88,9 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoList() {
-		fail("Not yet implemented"); // TODO
+		List<VideoMetadataInfo> list = videoOperations.getVideoList(false, 0, 10);
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
 	}
 
 	/**
@@ -86,7 +98,9 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testLookupVideo() {
-		fail("Not yet implemented"); // TODO
+		List<VideoLookup> list = videoOperations.lookupVideo("test", "", "", 1, 1, "", true);
+		Assert.assertNotNull(list);
+		Assert.assertFalse(list.isEmpty());
 	}
 
 	/**
