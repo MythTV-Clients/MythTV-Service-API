@@ -494,7 +494,12 @@ public class ChannelInfo implements Comparable<ChannelInfo> {
 	 */
 	public void setPrograms( List<Program> programs ) {
 		this.programs = programs;
-		Collections.sort(programs, new Comparator<Program>(){
+		
+		/* *
+		 * Sort the program list in chronological order. The list is assumed
+		 * to be sorted when building the guide user interface.
+		 * */
+		Collections.sort(programs, new Comparator<Program>(){ 
 
 			@Override
 			public int compare(Program o1, Program o2) {
