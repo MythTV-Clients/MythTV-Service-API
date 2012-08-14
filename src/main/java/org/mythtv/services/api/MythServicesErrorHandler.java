@@ -19,12 +19,25 @@
  */
 package org.mythtv.services.api;
 
+import java.io.IOException;
+
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.DefaultResponseErrorHandler;
+import org.springframework.web.client.RestClientException;
 
 /**
  * @author Daniel Frey
  *
  */
 public class MythServicesErrorHandler extends DefaultResponseErrorHandler {
+
+	@Override
+	public void handleError(ClientHttpResponse response) throws IOException {
+		try{
+			super.handleError(response);
+		} catch (RestClientException ex) {
+			throw new MythServiceApiRuntimeException(ex);
+		}
+	}
 
 }
