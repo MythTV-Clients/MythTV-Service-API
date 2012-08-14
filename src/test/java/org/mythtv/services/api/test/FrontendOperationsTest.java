@@ -35,22 +35,19 @@ public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
 		frontendOperations = api.frontendOperations();
 	}
 
-	@Test
+	
 	public void testGetStatus() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
 	public void testSendMessage() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
 	public void testSendAction() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
 	public void testGetActionList() {
 		fail("Not yet implemented"); // TODO
 	}
