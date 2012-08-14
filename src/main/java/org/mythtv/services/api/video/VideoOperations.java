@@ -21,6 +21,8 @@ package org.mythtv.services.api.video;
 
 import java.util.List;
 
+import org.mythtv.services.api.MythServiceApiRuntimeException;
+
 /**
  * @author Daniel Frey
  *
@@ -34,7 +36,7 @@ public interface VideoOperations {
 	 * @param hostname
 	 * @return
 	 */
-	boolean addVideo( String filename, String hostname );
+	boolean addVideo( String filename, String hostname ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -42,7 +44,7 @@ public interface VideoOperations {
 	 * @param path
 	 * @return
 	 */
-	BlurayInfoWrapper getBluray( String path );
+	BlurayInfoWrapper getBluray( String path ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -50,7 +52,7 @@ public interface VideoOperations {
 	 * @param id
 	 * @return
 	 */
-	VideoMetaDataInfoWrapper getVideo( int id );
+	VideoMetaDataInfoWrapper getVideo( int id ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -58,7 +60,7 @@ public interface VideoOperations {
 	 * @param filename
 	 * @return
 	 */
-	VideoMetaDataInfoWrapper getVideoByFilename( String filename );
+	VideoMetaDataInfoWrapper getVideoByFilename( String filename ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -68,7 +70,7 @@ public interface VideoOperations {
 	 * @param count
 	 * @return
 	 */
-	List<VideoMetadataInfo> getVideoList( boolean descending, int startIndex, int count );
+	List<VideoMetadataInfo> getVideoList( boolean descending, int startIndex, int count ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -82,7 +84,7 @@ public interface VideoOperations {
 	 * @param allowGeneric
 	 * @return
 	 */
-	List<VideoLookup> lookupVideo( String title, String subtitle, String inetRef, int season, int episode, String grabberType, boolean allowGeneric );
+	List<VideoLookup> lookupVideo( String title, String subtitle, String inetRef, int season, int episode, String grabberType, boolean allowGeneric ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -90,6 +92,6 @@ public interface VideoOperations {
 	 * @param id
 	 * @return
 	 */
-	boolean removeVideoFromDatabase( int id );
+	boolean removeVideoFromDatabase( int id ) throws MythServiceApiRuntimeException;
 	
 }

@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api.frontend;
 
+import org.mythtv.services.api.MythServiceApiRuntimeException;
+
 /**
  * @author Daniel Frey
  *
@@ -31,7 +33,7 @@ public interface FrontendOperations {
 	 * @param frontedApiUrlBase
 	 * @return
 	 */
-	FrontendStatus getStatus( String frontedApiUrlBase );
+	FrontendStatus getStatus( String frontedApiUrlBase ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -40,7 +42,7 @@ public interface FrontendOperations {
 	 * @param message
 	 * @return
 	 */
-	boolean sendMessage( String frontedApiUrlBase, String message );
+	boolean sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -52,7 +54,7 @@ public interface FrontendOperations {
 	 * @param height
 	 * @return
 	 */
-	boolean sendAction( String frontedApiUrlBase, String action, String file, int width, int height );
+	boolean sendAction( String frontedApiUrlBase, String action, String file, int width, int height ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -60,6 +62,6 @@ public interface FrontendOperations {
 	 * @param frontedApiUrlBase
 	 * @return
 	 */
-	FrontendActionList getActionList( String frontedApiUrlBase );
+	FrontendActionList getActionList( String frontedApiUrlBase ) throws MythServiceApiRuntimeException;
 	
 }

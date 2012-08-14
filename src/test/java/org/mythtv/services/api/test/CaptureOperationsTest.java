@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.capture.CaptureCard;
 import org.mythtv.services.api.capture.CaptureCardWrapper;
 import org.mythtv.services.api.capture.CaptureOperations;
@@ -65,7 +66,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCard(int)}.
 	 */
 	@Test
-	public void testGetCaptureCard() {
+	public void testGetCaptureCard() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = getCaptureCards();
 		CaptureCardWrapper card = captureOperations.getCaptureCard(cards.get(0).getCardId());
 		Assert.assertNotNull("card object is null", card);
@@ -74,7 +75,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCardList()}.
 	 */
-	public void testGetCaptureCardList() {
+	public void testGetCaptureCardList() throws MythServiceApiRuntimeException {
 		getCaptureCards();
 	}
 
@@ -82,7 +83,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCardList(java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testGetCaptureCardListStringString() {
+	public void testGetCaptureCardListStringString() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = getCaptureCards();
 		CaptureCard c = cards.get(0);
 		cards = captureOperations.getCaptureCardList(c.getHostName(), c.getCardType());
@@ -118,7 +119,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 		fail("Not yet implemented"); // TODO
 	}
 	
-	private List<CaptureCard> getCaptureCards() {
+	private List<CaptureCard> getCaptureCards() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = captureOperations.getCaptureCardList();
 		Assert.assertNotNull("List of card is null...", cards);
 		Assert.assertFalse("No capture cards returned...", cards.isEmpty());

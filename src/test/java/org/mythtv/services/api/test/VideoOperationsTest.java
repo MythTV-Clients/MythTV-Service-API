@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.video.BlurayInfoWrapper;
 import org.mythtv.services.api.video.VideoLookup;
 import org.mythtv.services.api.video.VideoMetaDataInfoWrapper;
@@ -60,7 +61,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getBluray(java.lang.String)}.
 	 */
 	@Test
-	public void testGetBluray() {
+	public void testGetBluray() throws MythServiceApiRuntimeException {
 		BlurayInfoWrapper info = videoOperations.getBluray("/path/to/video");
 		Assert.assertNotNull(info);
 	}
@@ -69,7 +70,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideo(int)}.
 	 */
 	@Test
-	public void testGetVideo() {
+	public void testGetVideo() throws MythServiceApiRuntimeException {
 		VideoMetaDataInfoWrapper info = videoOperations.getVideo(1);
 		Assert.assertNotNull(info);
 	}
@@ -78,7 +79,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoByFilename(java.lang.String)}.
 	 */
 	@Test
-	public void testGetVideoByFilename() {
+	public void testGetVideoByFilename() throws MythServiceApiRuntimeException {
 		VideoMetaDataInfoWrapper info = videoOperations.getVideoByFilename("/path/to/video");
 		Assert.assertNotNull(info);
 	}
@@ -87,7 +88,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoList(boolean, int, int)}.
 	 */
 	@Test
-	public void testGetVideoList() {
+	public void testGetVideoList() throws MythServiceApiRuntimeException {
 		List<VideoMetadataInfo> list = videoOperations.getVideoList(false, 0, 10);
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -97,7 +98,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#lookupVideo(java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, boolean)}.
 	 */
 	@Test
-	public void testLookupVideo() {
+	public void testLookupVideo() throws MythServiceApiRuntimeException {
 		List<VideoLookup> list = videoOperations.lookupVideo("test", "", "", 1, 1, "", true);
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());

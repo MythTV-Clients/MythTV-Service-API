@@ -22,6 +22,7 @@ package org.mythtv.services.api.myth;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 /**
  * @author Daniel Frey
@@ -37,14 +38,14 @@ public interface MythOperations {
 	 * @param hostName
 	 * @return
 	 */
-	boolean addStorageGroupDir( String groupName, String directoryName, String hostName );
+	boolean addStorageGroupDir( String groupName, String directoryName, String hostName ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
 	 * 
 	 * @return
 	 */
-	boolean backupDatabase();
+	boolean backupDatabase() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -54,7 +55,7 @@ public interface MythOperations {
 	 * @param newPassword
 	 * @return
 	 */
-	boolean changePassword( String username, String oldPassword, String newPassword );
+	boolean changePassword( String username, String oldPassword, String newPassword ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -62,7 +63,7 @@ public interface MythOperations {
 	 * @param repair
 	 * @return
 	 */
-	boolean checkDatabase( boolean repair );
+	boolean checkDatabase( boolean repair ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -70,28 +71,28 @@ public interface MythOperations {
 	 * @param pin
 	 * @return
 	 */
-	ConnectionInfo getConnectionInfo( String pin );
+	ConnectionInfo getConnectionInfo( String pin ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String getHostName();
+	String getHostName() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<String> getHosts();
+	List<String> getHosts() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<String> getKeys();
+	List<String> getKeys() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -110,7 +111,7 @@ public interface MythOperations {
 	 * @param messageContains
 	 * @return
 	 */
-	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains );
+	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -120,7 +121,7 @@ public interface MythOperations {
 	 * @param defaultValue
 	 * @return
 	 */
-	List<Setting> getSetting( String hostname, String key, String defaultValue );
+	List<Setting> getSetting( String hostname, String key, String defaultValue ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -129,49 +130,49 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	List<StorageGroupDirectory> getStoreageGroupDirectories( String groupName, String hostname );
+	List<StorageGroupDirectory> getStoreageGroupDirectories( String groupName, String hostname ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	TimeZoneInfo getTimeZoneInfo();
+	TimeZoneInfo getTimeZoneInfo() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
 	 * 
 	 * @return
 	 */
-	boolean profileDelete();
+	boolean profileDelete() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
 	 * 
 	 * @return
 	 */
-	boolean profileSubmit();
+	boolean profileSubmit() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String profileText();
+	String profileText() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String profileUrl();
+	String profileUrl() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String profileUpdated();
+	String profileUpdated() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -181,7 +182,7 @@ public interface MythOperations {
 	 * @param value
 	 * @return
 	 */
-	boolean putSetting( String hostname, String key, String value );
+	boolean putSetting( String hostname, String key, String value ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -191,7 +192,7 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	boolean removeStorageGroupDirectory( String groupName, String directoryName, String hostname );
+	boolean removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -202,7 +203,7 @@ public interface MythOperations {
 	 * @param timeout
 	 * @return
 	 */
-	boolean sendMessage( String message, String address, int udpPort, int timeout );
+	boolean sendMessage( String message, String address, int udpPort, int timeout ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -214,6 +215,6 @@ public interface MythOperations {
 	 * @param databasePort
 	 * @return
 	 */
-	boolean testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort );
+	boolean testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort ) throws MythServiceApiRuntimeException;
 	
 }

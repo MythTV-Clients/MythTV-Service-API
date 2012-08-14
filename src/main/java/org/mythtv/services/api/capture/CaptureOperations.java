@@ -21,6 +21,8 @@ package org.mythtv.services.api.capture;
 
 import java.util.List;
 
+import org.mythtv.services.api.MythServiceApiRuntimeException;
+
 /**
  * @author Daniel Frey
  *
@@ -33,7 +35,7 @@ public interface CaptureOperations {
 	 * @param captureCard
 	 * @return
 	 */
-	int addCaptureCard( CaptureCard captureCard );
+	int addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -41,7 +43,7 @@ public interface CaptureOperations {
 	 * @param cardInput
 	 * @return
 	 */
-	int addCardInput( CardInput cardInput );
+	int addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -49,14 +51,14 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	CaptureCardWrapper getCaptureCard( int cardId );
+	CaptureCardWrapper getCaptureCard( int cardId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<CaptureCard> getCaptureCardList();
+	List<CaptureCard> getCaptureCardList() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -65,7 +67,7 @@ public interface CaptureOperations {
 	 * @param cardType
 	 * @return
 	 */
-	List<CaptureCard> getCaptureCardList( String hostName, String cardType );
+	List<CaptureCard> getCaptureCardList( String hostName, String cardType ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -73,7 +75,7 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	boolean removeCaptureCard( int cardId );
+	boolean removeCaptureCard( int cardId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -81,7 +83,7 @@ public interface CaptureOperations {
 	 * @param cardInputId
 	 * @return
 	 */
-	boolean removeCardInput( int cardInputId );
+	boolean removeCardInput( int cardInputId ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -91,7 +93,7 @@ public interface CaptureOperations {
 	 * @param value
 	 * @return
 	 */
-	boolean updateCaptureCard( int cardId, String setting, String value );
+	boolean updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -101,6 +103,6 @@ public interface CaptureOperations {
 	 * @param value
 	 * @return
 	 */
-	boolean updateCardInput( int cardInputId, String setting, String value );
+	boolean updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException;
 
 }

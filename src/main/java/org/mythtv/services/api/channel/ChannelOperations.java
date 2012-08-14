@@ -21,6 +21,7 @@ package org.mythtv.services.api.channel;
 
 import java.util.List;
 
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -50,7 +51,7 @@ public interface ChannelOperations {
 	 * @param defaultAuthority
 	 * @return
 	 */
-	boolean addDBChannel( int multiplexId, int sourceId, int channelId, String callSign, String channelName, String channelNumber, int serviceId, int atscMajorChannel, int atscMinorChannel, boolean userEIT, boolean visible, String frequencyId, String icon, String format, String xmltvId, String defaultAuthority );
+	boolean addDBChannel( int multiplexId, int sourceId, int channelId, String callSign, String channelName, String channelNumber, int serviceId, int atscMajorChannel, int atscMinorChannel, boolean userEIT, boolean visible, String frequencyId, String icon, String format, String xmltvId, String defaultAuthority ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -66,7 +67,7 @@ public interface ChannelOperations {
 	 * @param nitId
 	 * @return
 	 */
-	int addVideoSource( String sourceName, String grabber, String userId, String frequencyTable, String lineupId, String password, boolean useEit, String configPath, int nitId );
+	int addVideoSource( String sourceName, String grabber, String userId, String frequencyTable, String lineupId, String password, boolean useEit, String configPath, int nitId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -76,7 +77,7 @@ public interface ChannelOperations {
 	 * @param waitForFinish
 	 * @return
 	 */
-	int fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish );
+	int fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -84,7 +85,7 @@ public interface ChannelOperations {
 	 * @param channelId
 	 * @return
 	 */
-	ChannelInfoWrapper getChannelInfo( int channelId );
+	ChannelInfoWrapper getChannelInfo( int channelId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -94,7 +95,7 @@ public interface ChannelOperations {
 	 * @param count
 	 * @return
 	 */
-	List<ChannelInfo> getChannelInfoList( int sourceId, int startIndex, int count );
+	List<ChannelInfo> getChannelInfoList( int sourceId, int startIndex, int count ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * @param sourceId
@@ -102,17 +103,17 @@ public interface ChannelOperations {
 	 * @param count
 	 * @return
 	 */
-	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity( int sourceId, int startIndex, int count );
+	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity( int sourceId, int startIndex, int count ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * @return
 	 */
-	List<ChannelInfo> getChannelInfoList();
+	List<ChannelInfo> getChannelInfoList() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @return
 	 */
-	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity();
+	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -122,7 +123,7 @@ public interface ChannelOperations {
 	 * @param password
 	 * @return
 	 */
-	List<Lineup> getDDLineupList( String source, String userId, String password );
+	List<Lineup> getDDLineupList( String source, String userId, String password ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -130,7 +131,7 @@ public interface ChannelOperations {
 	 * @param multiplexId
 	 * @return
 	 */
-	VideoMultiplexWrapper getVideoMultiplex( int multiplexId );
+	VideoMultiplexWrapper getVideoMultiplex( int multiplexId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -140,7 +141,7 @@ public interface ChannelOperations {
 	 * @param count
 	 * @return
 	 */
-	List<VideoMultiplex> getVideoMultiplexList( int sourceId, int startIndex, int count );
+	List<VideoMultiplex> getVideoMultiplexList( int sourceId, int startIndex, int count ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -148,14 +149,14 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	VideoSourceWrapper getVideoSource( int sourceId );
+	VideoSourceWrapper getVideoSource( int sourceId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<VideoSource> getVideoSourceList();
+	List<VideoSource> getVideoSourceList() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -163,7 +164,7 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	List<String> getXmltvIdList( int sourceId );
+	List<String> getXmltvIdList( int sourceId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -171,7 +172,7 @@ public interface ChannelOperations {
 	 * @param channelId
 	 * @return
 	 */
-	boolean removeDBChannel( int channelId );
+	boolean removeDBChannel( int channelId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -179,7 +180,7 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	boolean removeVideoSource( int sourceId );
+	boolean removeVideoSource( int sourceId ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -202,7 +203,7 @@ public interface ChannelOperations {
 	 * @param defaultAuthority
 	 * @return
 	 */
-	boolean updateDBChannel( int multiplexId, int sourceId, int channelId, String callSign, String channelName, String channelNumber, int serviceId, int atscMajorChannel, int atscMinorChannel, boolean useEIT, boolean visible, String frequencyId, String icon, String format, String xmltvId, String defaultAuthority );
+	boolean updateDBChannel( int multiplexId, int sourceId, int channelId, String callSign, String channelName, String channelNumber, int serviceId, int atscMajorChannel, int atscMinorChannel, boolean useEIT, boolean visible, String frequencyId, String icon, String format, String xmltvId, String defaultAuthority ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -219,6 +220,6 @@ public interface ChannelOperations {
 	 * @param nitId
 	 * @return
 	 */
-	boolean updateVideoSource( int sourceId, String sourceName, String grabber, String userId, String frequencyTable, String lineupId, String password, boolean userEIT, String configPath, int nitId );
+	boolean updateVideoSource( int sourceId, String sourceName, String grabber, String userId, String frequencyTable, String lineupId, String password, boolean userEIT, String configPath, int nitId ) throws MythServiceApiRuntimeException;
 	
 }

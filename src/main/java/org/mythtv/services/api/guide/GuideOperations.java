@@ -20,6 +20,7 @@
 package org.mythtv.services.api.guide;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -36,7 +37,7 @@ public interface GuideOperations {
 	 * @param height
 	 * @return
 	 */
-	String getChannelIcon( int channelId, int width, int height );
+	String getChannelIcon( int channelId, int width, int height ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -45,7 +46,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ProgramWrapper getProgramDetails( int channelId, DateTime startTime );
+	ProgramWrapper getProgramDetails( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -54,7 +55,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ResponseEntity<ProgramWrapper> getProgramResponseEntity( int channelId, DateTime startTime );
+	ResponseEntity<ProgramWrapper> getProgramResponseEntity( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -66,7 +67,7 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details );
+	ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @param start
@@ -76,6 +77,6 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details );
+	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) throws MythServiceApiRuntimeException;
 
 }

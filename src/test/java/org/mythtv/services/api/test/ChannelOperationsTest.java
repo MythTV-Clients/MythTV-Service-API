@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.channel.ChannelInfoList;
 import org.mythtv.services.api.channel.ChannelInfoWrapper;
@@ -70,9 +71,10 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#fetchChannelsFromSource(int, int, boolean)}.
+	 * @throws MythServiceApiRuntimeException 
 	 */
 	@Test
-	public void testFetchChannelsFromSource() {
+	public void testFetchChannelsFromSource() throws MythServiceApiRuntimeException {
 		int val = operations.fetchChannelsFromSource(1, 2, true);
 		Assert.assertEquals(358, val);
 	}
@@ -81,7 +83,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfo(int)}.
 	 */
 	@Test
-	public void testGetChannelInfo() {
+	public void testGetChannelInfo() throws MythServiceApiRuntimeException {
 		ChannelInfoWrapper info = operations.getChannelInfo(1021);
 		Assert.assertNotNull(info);
 	}
@@ -90,7 +92,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList(int, int, int)}.
 	 */
 	@Test
-	public void testGetChannelInfoListIntIntInt() {
+	public void testGetChannelInfoListIntIntInt() throws MythServiceApiRuntimeException {
 		List<ChannelInfo> list = operations.getChannelInfoList(1, 1, 10);
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -101,7 +103,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoListResponseEntity(int, int, int)}.
 	 */
 	@Test
-	public void testGetChannelInfoListResponseEntityIntIntInt() {
+	public void testGetChannelInfoListResponseEntityIntIntInt() throws MythServiceApiRuntimeException {
 		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(1, 1, 10);
 		Assert.assertNotNull(list);
 		Assert.assertNotNull(list.getBody().getChannelInfos());
@@ -111,7 +113,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList()}.
 	 */
 	@Test
-	public void testGetChannelInfoList() {
+	public void testGetChannelInfoList() throws MythServiceApiRuntimeException {
 		List<ChannelInfo> list = operations.getChannelInfoList();
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -121,7 +123,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoListResponseEntity()}.
 	 */
 	@Test
-	public void testGetChannelInfoListResponseEntity() {
+	public void testGetChannelInfoListResponseEntity() throws MythServiceApiRuntimeException {
 		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity();
 		Assert.assertNotNull(list);
 		Assert.assertNotNull(list.getBody().getChannelInfos());
@@ -131,7 +133,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testGetDDLineupList() {
+	public void testGetDDLineupList() throws MythServiceApiRuntimeException {
 		List<Lineup> list = operations.getDDLineupList("SchedulesDirect", "user", "password");
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -141,7 +143,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplex(int)}.
 	 */
 	@Test
-	public void testGetVideoMultiplex() {
+	public void testGetVideoMultiplex() throws MythServiceApiRuntimeException {
 		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10);
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -154,7 +156,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplexList(int, int, int)}.
 	 */
 	@Test
-	public void testGetVideoMultiplexList() {
+	public void testGetVideoMultiplexList() throws MythServiceApiRuntimeException {
 		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10);
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -164,7 +166,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSource(int)}.
 	 */
 	@Test
-	public void testGetVideoSource() {
+	public void testGetVideoSource() throws MythServiceApiRuntimeException {
 		List<VideoSource> list = operations.getVideoSourceList();
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -176,7 +178,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSourceList()}.
 	 */
 	@Test
-	public void testGetVideoSourceList() {
+	public void testGetVideoSourceList() throws MythServiceApiRuntimeException {
 		List<VideoSource> list = operations.getVideoSourceList();
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
@@ -186,7 +188,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getXmltvIdList(int)}.
 	 */
 	@Test
-	public void testGetXmltvIdList() {
+	public void testGetXmltvIdList() throws MythServiceApiRuntimeException {
 		List<VideoSource> list = operations.getVideoSourceList();
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());

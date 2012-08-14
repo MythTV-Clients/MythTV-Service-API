@@ -26,6 +26,7 @@ import org.joda.time.Period;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.guide.GuideOperations;
@@ -62,7 +63,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getChannelIcon(int, int, int)}.
 	 */
 	@Test
-	public void testGetChannelIcon() {
+	public void testGetChannelIcon() throws MythServiceApiRuntimeException {
 		String res = operations.getChannelIcon(chanid, iconsize, iconsize);
 		res.toString();
 	}
@@ -71,7 +72,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramDetails(int, org.joda.time.DateTime)}.
 	 */
 	@Test
-	public void testGetProgramDetails() {
+	public void testGetProgramDetails() throws MythServiceApiRuntimeException {
 		// let's run getProgramGuide to get an actual program.
 		DateTime fourHours = now.plus(Period.hours(4));
 		ProgramGuideWrapper guideWrapper = operations.getProgramGuide(now, fourHours, 0, 10, false);
@@ -90,7 +91,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
 	 */
 	@Test
-	public void testGetProgramGuide() {
+	public void testGetProgramGuide() throws MythServiceApiRuntimeException {
 		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true);
 		guide.toString();
 	}

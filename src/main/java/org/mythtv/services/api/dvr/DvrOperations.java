@@ -22,6 +22,7 @@ package org.mythtv.services.api.dvr;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -67,7 +68,7 @@ public interface DvrOperations {
 	 * @param transcoder
 	 * @return
 	 */
-	int addRecordingSchedule( int channelId, DateTime startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder );
+	int addRecordingSchedule( int channelId, DateTime startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -75,7 +76,7 @@ public interface DvrOperations {
 	 * @param recordingId
 	 * @return
 	 */
-	boolean disableRecordingSchedule( int recordingId );
+	boolean disableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -83,7 +84,7 @@ public interface DvrOperations {
 	 * @param recordingId
 	 * @return
 	 */
-	boolean enableRecordingSchedule( int recordingId );
+	boolean enableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -92,14 +93,14 @@ public interface DvrOperations {
 	 * @param count
 	 * @return
 	 */
-	List<Program> getConflictList( int startIndex, int count );
+	List<Program> getConflictList( int startIndex, int count ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<Encoder> getEncoderList();
+	List<Encoder> getEncoderList() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -108,7 +109,7 @@ public interface DvrOperations {
 	 * @param count
 	 * @return
 	 */
-	List<Program> getExpiringList( int startIndex, int count );
+	List<Program> getExpiringList( int startIndex, int count ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -121,7 +122,7 @@ public interface DvrOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup );
+	List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -129,7 +130,7 @@ public interface DvrOperations {
 	 * @param recordId
 	 * @return
 	 */
-	RecRule getRecordSchedule( int recordId );
+	RecRule getRecordSchedule( int recordId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -138,7 +139,7 @@ public interface DvrOperations {
 	 * @param count
 	 * @return
 	 */
-	List<RecRule> getRecordScheduleList( int startIndex, int count );
+	List<RecRule> getRecordScheduleList( int startIndex, int count ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -147,19 +148,19 @@ public interface DvrOperations {
 	 * @param startTime
 	 * @return
 	 */
-	Program getRecorded( int channelId, DateTime startTime );
+	Program getRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<Program> getRecordedList();
+	List<Program> getRecordedList() throws MythServiceApiRuntimeException;
 
 	/**
 	 * @return
 	 */
-	ResponseEntity<ProgramList> getRecordedListResponseEntity();
+	ResponseEntity<ProgramList> getRecordedListResponseEntity() throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -169,7 +170,7 @@ public interface DvrOperations {
 	 * @param descending
 	 * @return
 	 */
-	List<Program> getRecordedList( int startIndex, int count, boolean descending );
+	List<Program> getRecordedList( int startIndex, int count, boolean descending ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -179,12 +180,12 @@ public interface DvrOperations {
 	 * @param showAll
 	 * @return
 	 */
-	List<Program> getUpcomingList( int startIndex, int count, boolean showAll );
+	List<Program> getUpcomingList( int startIndex, int count, boolean showAll ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @return
 	 */
-	ResponseEntity<ProgramList> getUpcomingListResponseEntity();
+	ResponseEntity<ProgramList> getUpcomingListResponseEntity() throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -192,7 +193,7 @@ public interface DvrOperations {
 	 * @param recordingId
 	 * @return
 	 */
-	boolean removeRecordingSchedule( int recordingId );
+	boolean removeRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -201,6 +202,6 @@ public interface DvrOperations {
 	 * @param startTime
 	 * @return
 	 */
-	boolean removeRecorded( int channelId, DateTime startTime );
+	boolean removeRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
 
 }
