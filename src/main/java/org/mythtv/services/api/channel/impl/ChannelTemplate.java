@@ -14,23 +14,32 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.channel.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.mythtv.services.api.Int;
+import org.mythtv.services.api.StringList;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.channel.ChannelInfoList;
+import org.mythtv.services.api.channel.ChannelInfoWrapper;
 import org.mythtv.services.api.channel.ChannelOperations;
+import org.mythtv.services.api.channel.Lineup;
 import org.mythtv.services.api.channel.LineupList;
 import org.mythtv.services.api.channel.VideoMultiplex;
+import org.mythtv.services.api.channel.VideoMultiplexList;
+import org.mythtv.services.api.channel.VideoMultiplexWrapper;
 import org.mythtv.services.api.channel.VideoSource;
+import org.mythtv.services.api.channel.VideoSourceList;
+import org.mythtv.services.api.channel.VideoSourceWrapper;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -38,11 +47,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ChannelTemplate extends AbstractChannelOperations implements ChannelOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public ChannelTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public ChannelTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -68,23 +77,26 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public int fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish ) {
-		// TODO Auto-generated method stub
-		return 0;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.add( "SourceId", "" + sourceId );
+		parameters.add("CardId", "" + cardId );
+		parameters.add("WaitForFinish", Boolean.toString(waitForFinish) );
+
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "FetchChannelsFromSource", parameters ), HttpMethod.GET, getRequestEntity(), Int.class );
+		return responseEntity.getBody().getInteger().intValue();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getChannelInfo(int)
 	 */
 	@Override
-	public ChannelInfo getChannelInfo( int channelId ) {
+	public ChannelInfoWrapper getChannelInfo( int channelId ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 
-		ResponseEntity<ChannelInfo> responseEntity = restTemplate.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfo.class );
-		ChannelInfo channelInfo = responseEntity.getBody();
-		
-		return channelInfo;
+		ResponseEntity<ChannelInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfoWrapper.class );
+		return responseEntity.getBody();
 	}
 
 	/* (non-Javadoc)
@@ -119,7 +131,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "Count", "" + count );
 		}
 
-		return restTemplate.exchange( buildUri( "GetChannelInfoList", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
+		return restOperations.exchange( buildUri( "GetChannelInfoList", parameters ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
 	}
 
 	/* (non-Javadoc)
@@ -139,25 +151,36 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity() {
-		return restTemplate.exchange( buildUri( "GetChannelInfoList" ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
+		return restOperations.exchange( buildUri( "GetChannelInfoList" ), HttpMethod.GET, getRequestEntity(), ChannelInfoList.class );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<LineupList> getDDLineupList( String source, String userId, String password ) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Lineup> getDDLineupList( String source, String userId, String password ) {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if(source != null)
+			parameters.add("Source", source);
+		if(userId != null)
+			parameters.add("UserId", userId);
+		if(password != null)
+			parameters.add("Password", password);
+		ResponseEntity<LineupList> response = restOperations.exchange( buildUri( "GetDDLineupList", parameters ), HttpMethod.GET, getRequestEntity(), LineupList.class );
+		return response.getBody().getLineups().getLineups();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoMultiplex(int)
 	 */
 	@Override
-	public VideoMultiplex getVideoMultiplex( int multiplexId ) {
-		// TODO Auto-generated method stub
-		return null;
+	public VideoMultiplexWrapper getVideoMultiplex( int multiplexId ) {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( multiplexId > 0 ) {
+			parameters.add( "MplexID", "" + multiplexId );
+		}
+		ResponseEntity<VideoMultiplexWrapper> response = restOperations.exchange( buildUri( "GetVideoMultiplex", parameters ), HttpMethod.GET, getRequestEntity(), VideoMultiplexWrapper.class );
+		return response.getBody();
 	}
 
 	/* (non-Javadoc)
@@ -165,17 +188,32 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public List<VideoMultiplex> getVideoMultiplexList( int sourceId, int startIndex, int count ) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( sourceId > 0 ) {
+			parameters.add( "SourceID", "" + sourceId );
+		}
+		if(startIndex >= 0) {
+			parameters.add( "StartIndex", "" + startIndex );
+		}
+		if(count > 0) {
+			parameters.add( "Count", "" + count );
+		}
+		ResponseEntity<VideoMultiplexList> response = restOperations.exchange( buildUri( "GetVideoMultiplexList", parameters ), HttpMethod.GET, getRequestEntity(), VideoMultiplexList.class );
+		return response.getBody().getVideoMultiplexes().getVideoMultiplexes();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoSource(int)
 	 */
 	@Override
-	public VideoSource getVideoSource( int sourceId ) {
-		// TODO Auto-generated method stub
-		return null;
+	public VideoSourceWrapper getVideoSource( int sourceId ) {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( sourceId > 0 ) {
+			parameters.add( "SourceID", "" + sourceId );
+		}
+		
+		ResponseEntity<VideoSourceWrapper> response = restOperations.exchange( buildUri( "GetVideoSource", parameters ), HttpMethod.GET, getRequestEntity(), VideoSourceWrapper.class );
+		return response.getBody();
 	}
 
 	/* (non-Javadoc)
@@ -183,8 +221,9 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public List<VideoSource> getVideoSourceList() {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<VideoSourceList> responseEntity = restOperations.exchange( buildUri( "GetVideoSourceList" ), HttpMethod.GET, getRequestEntity(), VideoSourceList.class );
+		VideoSourceList list = responseEntity.getBody();
+		return list.getVideoSources().getVideoSources();
 	}
 
 	/* (non-Javadoc)
@@ -192,8 +231,12 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public List<String> getXmltvIdList( int sourceId ) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if( sourceId > 0 ) {
+			parameters.add( "SourceID", "" + sourceId );
+		}
+		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( "GetXMLTVIdList", parameters ), HttpMethod.GET, getRequestEntity(), StringList.class );
+		return Arrays.asList( responseEntity.getBody().getStringList() );
 	}
 
 	/* (non-Javadoc)
@@ -231,5 +274,4 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
 }

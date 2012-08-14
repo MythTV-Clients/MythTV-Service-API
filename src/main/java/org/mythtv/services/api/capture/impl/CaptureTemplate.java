@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.capture.impl;
@@ -31,7 +31,7 @@ import org.mythtv.services.api.capture.CardInput;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -39,11 +39,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class CaptureTemplate extends AbstractCaptureOperations implements CaptureOperations {
 	
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public CaptureTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public CaptureTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 	
 	/* (non-Javadoc)
@@ -51,7 +51,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public int addCaptureCard( CaptureCard captureCard ) {
-		ResponseEntity<Int> responseEntity = restTemplate.exchange( buildUri( "AddCaptureCard", convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(), Int.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCaptureCard", convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(), Int.class );
 		Int integer = responseEntity.getBody();
 		
 		return integer.getInteger();
@@ -62,7 +62,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public int addCardInput( CardInput cardInput ) {
-		ResponseEntity<Int> responseEntity = restTemplate.exchange( buildUri( "AddCardInput", convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(), Int.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCardInput", convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(), Int.class );
 		Int integer = responseEntity.getBody();
 		
 		return integer.getInteger();
@@ -73,7 +73,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public CaptureCardWrapper getCaptureCard( int cardId ) {
-		ResponseEntity<CaptureCardWrapper> responseEntity = restTemplate.exchange( buildUri( "GetCaptureCard", "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(), CaptureCardWrapper.class );
+		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( "GetCaptureCard", "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(), CaptureCardWrapper.class );
 		return responseEntity.getBody();
 	}
 
@@ -82,7 +82,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public List<CaptureCard> getCaptureCardList() {
-		ResponseEntity<CaptureCardList> responseEntity = restTemplate.exchange( buildUri( "GetCaptureCardList" ), HttpMethod.GET, getRequestEntity(), CaptureCardList.class );
+		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList" ), HttpMethod.GET, getRequestEntity(), CaptureCardList.class );
 		CaptureCardList captureCardList = responseEntity.getBody();
 		
 		return captureCardList.getCaptureCards().getCaptureCards();
@@ -103,7 +103,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 			parameters.add( "CardType", cardType );
 		}
 		
-		ResponseEntity<CaptureCardList> responseEntity = restTemplate.exchange( buildUri( "GetCaptureCardList", parameters ), HttpMethod.GET, getRequestEntity(), CaptureCardList.class );
+		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList", parameters ), HttpMethod.GET, getRequestEntity(), CaptureCardList.class );
 		CaptureCardList captureCardList = responseEntity.getBody();
 		
 		return captureCardList.getCaptureCards().getCaptureCards();
@@ -117,7 +117,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardId", new String( "" + cardId ) );
 
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 		
 		return bool.getBool();
@@ -131,7 +131,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardInputId", new String( "" + cardInputId ) );
 
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();
@@ -146,7 +146,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		parameters.add( "CardId", new String( "" + cardId ) );
 		parameters.add( setting, value );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();
@@ -161,7 +161,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		parameters.add( "CardInputId", new String( "" + cardInputId ) );
 		parameters.add( setting, value );
 		
-		ResponseEntity<Bool> responseEntity = restTemplate.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.GET, getRequestEntity(), Bool.class );
 		Bool bool = responseEntity.getBody();
 
 		return bool.getBool();

@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.channel;
@@ -84,7 +84,7 @@ public interface ChannelOperations {
 	 * @param channelId
 	 * @return
 	 */
-	ChannelInfo getChannelInfo( int channelId );
+	ChannelInfoWrapper getChannelInfo( int channelId );
 	
 	/**
 	 * - GET
@@ -122,7 +122,7 @@ public interface ChannelOperations {
 	 * @param password
 	 * @return
 	 */
-	List<LineupList> getDDLineupList( String source, String userId, String password );
+	List<Lineup> getDDLineupList( String source, String userId, String password );
 	
 	/**
 	 * - GET
@@ -130,7 +130,7 @@ public interface ChannelOperations {
 	 * @param multiplexId
 	 * @return
 	 */
-	VideoMultiplex getVideoMultiplex( int multiplexId );
+	VideoMultiplexWrapper getVideoMultiplex( int multiplexId );
 	
 	/**
 	 * - GET
@@ -148,7 +148,7 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	VideoSource getVideoSource( int sourceId );
+	VideoSourceWrapper getVideoSource( int sourceId );
 	
 	/**
 	 * - GET

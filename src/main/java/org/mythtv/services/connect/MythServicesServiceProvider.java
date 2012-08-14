@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.connect;
@@ -42,7 +42,7 @@ public class MythServicesServiceProvider {
 	
 	// internal helpers
 	
-	private String getApiUrlBase() {
+	protected String getApiUrlBase() {
 		return apiUrlBase;
 	}
 

@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.channel;
@@ -22,19 +22,18 @@ package org.mythtv.services.api.channel;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.mythtv.services.api.dvr.Program;
 
-import android.util.Log;
 
 /**
  * @author Daniel Frey
  *
  */
 public class ChannelInfo implements Comparable<ChannelInfo> {
-	
-	private static final String TAG = "ChannelInfo";
+	private static Logger LOGGER = Logger.getLogger("ChannelInfo");
 	
 	@JsonProperty( "ChanId" )
 	private String channelId;
@@ -530,7 +529,7 @@ public class ChannelInfo implements Comparable<ChannelInfo> {
 
 			return dThisChannelNumber.compareTo(dOtherChannelNumber);
 		} catch (Exception e) {
-			Log.d(TAG, "Error comparing channels: " + e.getMessage());
+			LOGGER.fine("Error comparing channels: " + e.getMessage());
 			return 0;
 		}
 	}

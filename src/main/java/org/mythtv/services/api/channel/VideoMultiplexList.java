@@ -14,10 +14,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.channel;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * @author Daniel Frey
@@ -25,6 +27,7 @@ package org.mythtv.services.api.channel;
  */
 public class VideoMultiplexList {
 
+	@JsonProperty("VideoMultiplexList")
 	private VideoMultiplexes videoMultiplexes;
 	
 	public VideoMultiplexList() { }

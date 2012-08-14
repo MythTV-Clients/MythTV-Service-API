@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.myth.impl;
@@ -30,7 +30,7 @@ import org.mythtv.services.api.myth.StorageGroupDirectory;
 import org.mythtv.services.api.myth.TimeZoneInfo;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
@@ -38,11 +38,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class MythTemplate extends AbstractMythOperations implements MythOperations {
 
-	private final RestTemplate restTemplate;
+	private final RestOperations restOperations;
 
-	public MythTemplate( RestTemplate restTemplate, String apiUrlBase ) {
+	public MythTemplate( RestOperations restOperations, String apiUrlBase ) {
 		super( apiUrlBase );
-		this.restTemplate = restTemplate;
+		this.restOperations = restOperations;
 	}
 
 	/* (non-Javadoc)
@@ -87,7 +87,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	@Override
 	public ConnectionInfo getConnectionInfo( String pin ) {
 		
-		ResponseEntity<ConnectionInfo> responseEntity = restTemplate.exchange( buildUri( "GetConnectionInfo" ), HttpMethod.GET, getRequestEntity(), ConnectionInfo.class );
+		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( "GetConnectionInfo" ), HttpMethod.GET, getRequestEntity(), ConnectionInfo.class );
 		ConnectionInfo connectionInfo = responseEntity.getBody();
 		
 		return connectionInfo;
@@ -98,8 +98,11 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public String getHostName() {
-		// TODO Auto-generated method stub
-		return null;
+
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHostName" ), HttpMethod.GET, getRequestEntity(), String.class );
+		String hostname = responseEntity.getBody();
+		
+		return hostname;
 	}
 
 	/* (non-Javadoc)

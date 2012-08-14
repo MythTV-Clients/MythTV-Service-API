@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api;
@@ -27,7 +27,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.springframework.http.ContentCodingType;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -60,7 +59,9 @@ public abstract class AbstractOperations {
 		
 		HttpHeaders requestHeaders = new HttpHeaders();
 		requestHeaders.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
-		requestHeaders.setAcceptEncoding( Collections.singletonList( ContentCodingType.GZIP ) );
+		
+		// Currently does not work with .26 backends
+		//requestHeaders.setAcceptEncoding( Collections.singletonList( ContentCodingType.GZIP ) );
 		
 		requestEntity = new HttpEntity<Object>( requestHeaders );
 	}

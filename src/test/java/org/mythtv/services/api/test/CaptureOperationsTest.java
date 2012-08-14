@@ -1,9 +1,25 @@
 /**
+ *  This file is part of MythTV for Android
  * 
+ *  MythTV for Android is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  MythTV for Android is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
+ *   
+ * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
+ *
  */
 package org.mythtv.services.api.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -34,17 +50,15 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#addCaptureCard(org.mythtv.services.api.capture.CaptureCard)}.
 	 */
-	@Test
 	public void testAddCaptureCard() {
-		Assert.assertTrue("Needs to be implemented", true);
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#addCardInput(org.mythtv.services.api.capture.CardInput)}.
 	 */
-	@Test
 	public void testAddCardInput() {
-		Assert.assertTrue("Needs to be implemented", true);
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -60,7 +74,6 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCardList()}.
 	 */
-	@Test
 	public void testGetCaptureCardList() {
 		getCaptureCards();
 	}
@@ -80,33 +93,29 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#removeCaptureCard(int)}.
 	 */
-	@Test
 	public void testRemoveCaptureCard() {
-		Assert.assertTrue("Needs to be implemented", true);
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#removeCardInput(int)}.
 	 */
-	@Test
 	public void testRemoveCardInput() {
-		Assert.assertTrue("Needs to be implemented", true);
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#updateCaptureCard(int, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testUpdateCaptureCard() {
-		Assert.assertTrue("Needs to be implemented", true);
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#updateCardInput(int, java.lang.String, java.lang.String)}.
 	 */
-	@Test
 	public void testUpdateCardInput() {
-		Assert.assertTrue("Needs to be implemented", true);
+		fail("Not yet implemented"); // TODO
 	}
 	
 	private List<CaptureCard> getCaptureCards() {
