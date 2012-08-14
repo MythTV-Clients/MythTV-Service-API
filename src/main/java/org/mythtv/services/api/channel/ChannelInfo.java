@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api.channel;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -493,6 +495,20 @@ public class ChannelInfo implements Comparable<ChannelInfo> {
 	 */
 	public void setPrograms( List<Program> programs ) {
 		this.programs = programs;
+		Collections.sort(programs, new Comparator<Program>(){
+
+			@Override
+			public int compare(Program o1, Program o2) {
+				
+				if(o1.equals(o2)) return 0;
+				
+				if(o1.getStartTime().isAfter(o2.getStartTime()))
+					return 1;
+				else
+					return -1;
+				
+			}});
+		
 	}
 
 	/* (non-Javadoc)
