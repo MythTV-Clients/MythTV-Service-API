@@ -17,38 +17,54 @@
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
-package org.mythtv.services.api.test;
+package org.mythtv.services.api;
 
-import static org.junit.Assert.fail;
-
-import org.junit.Before;
-import org.mythtv.services.api.frontend.FrontendOperations;
-
-public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
+/**
+ * @author Sebastien Astie
+ *
+ */
+public class ETagInfo {
+	private String eTag;
 	
-	private FrontendOperations frontendOperations;
+	private boolean newETag;
 	
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-		frontendOperations = api.frontendOperations();
+	public ETagInfo(String eTag){
+		this.eTag = eTag;
+		newETag = false;
 	}
 
+	public String getETag() {
+		return eTag;
+	}
+
+	public void setETag(String eTag) {
+		if(this.eTag == null)
+		{
+			if(eTag == null){
+				newETag = false;
+			} else {
+				this.eTag = eTag;
+				newETag = true;
+			}
+		} else {
+			if(!this.eTag.equals(eTag)){
+				this.eTag = eTag;
+				newETag = true;
+			} else {
+				newETag = false;
+			}
+		}
+	}
+
+	public boolean isNewETag() {
+		return newETag;
+	}
 	
-	public void testGetStatus() {
-		fail("Not yet implemented"); // TODO
+	public boolean isEmptyEtag(){
+		return eTag == null || eTag.isEmpty();
 	}
-
-	public void testSendMessage() {
-		fail("Not yet implemented"); // TODO
+	
+	public static ETagInfo createEmptyETag() {
+		return new ETagInfo(null);
 	}
-
-	public void testSendAction() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testGetActionList() {
-		fail("Not yet implemented"); // TODO
-	}
-
 }

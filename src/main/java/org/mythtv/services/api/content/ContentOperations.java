@@ -22,6 +22,7 @@ package org.mythtv.services.api.content;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 public interface ContentOperations {
@@ -78,7 +79,7 @@ public interface ContentOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	boolean downloadFile( String url, String storageGroup ) throws MythServiceApiRuntimeException;
+	boolean downloadFile( String url, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -88,7 +89,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getAlbumArt( int id, int width, int height ) throws MythServiceApiRuntimeException;
+	byte[] getAlbumArt( int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -97,7 +98,7 @@ public interface ContentOperations {
 	 * @param filename
 	 * @return
 	 */
-	byte[] getFile( String storageGroup, String filename ) throws MythServiceApiRuntimeException;
+	byte[] getFile( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -105,7 +106,7 @@ public interface ContentOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	List<String> getFileList( String storageGroup ) throws MythServiceApiRuntimeException;
+	List<String> getFileList( String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -113,7 +114,7 @@ public interface ContentOperations {
 	 * @param filename
 	 * @return
 	 */
-	List<LiveStreamInfo> getFilteredLiveStreamList( String filename ) throws MythServiceApiRuntimeException;
+	List<LiveStreamInfo> getFilteredLiveStreamList( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -122,7 +123,7 @@ public interface ContentOperations {
 	 * @param filename
 	 * @return
 	 */
-	String getHash( String storageGroup, String filename ) throws MythServiceApiRuntimeException;
+	String getHash( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -133,7 +134,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getImageFile( String storageGroup, String filename, int width, int height ) throws MythServiceApiRuntimeException;
+	byte[] getImageFile( String storageGroup, String filename, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -141,14 +142,14 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	LiveStreamInfo getLiveStream( int id ) throws MythServiceApiRuntimeException;
+	LiveStreamInfo getLiveStream( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<LiveStreamInfo> getLiveStreamList() throws MythServiceApiRuntimeException;
+	List<LiveStreamInfo> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -156,7 +157,7 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	byte[] getMusic( int id ) throws MythServiceApiRuntimeException;
+	byte[] getMusic( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -168,7 +169,7 @@ public interface ContentOperations {
 	 * @param secondsIn
 	 * @return
 	 */
-	byte[] getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn ) throws MythServiceApiRuntimeException;
+	byte[] getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -177,7 +178,7 @@ public interface ContentOperations {
 	 * @param season
 	 * @return
 	 */
-	List<ArtworkInfo> getProgramArtworkList( String inetRef, int season ) throws MythServiceApiRuntimeException;
+	List<ArtworkInfo> getProgramArtworkList( String inetRef, int season, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -186,7 +187,7 @@ public interface ContentOperations {
 	 * @param startTime
 	 * @return
 	 */
-	byte[] getRecording( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	byte[] getRecording( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -198,7 +199,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getRecordingArtwork( String type, String inetRef, int season, int width, int height ) throws MythServiceApiRuntimeException;
+	byte[] getRecordingArtwork( String type, String inetRef, int season, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -207,7 +208,7 @@ public interface ContentOperations {
 	 * @param startTime
 	 * @return
 	 */
-	List<ArtworkInfo> getRecordingArtworkList( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	List<ArtworkInfo> getRecordingArtworkList( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -215,7 +216,7 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	byte[] getVideo( int id ) throws MythServiceApiRuntimeException;
+	byte[] getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -226,7 +227,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getVideoArtwork( String type, int id, int width, int height ) throws MythServiceApiRuntimeException;
+	byte[] getVideoArtwork( String type, int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET

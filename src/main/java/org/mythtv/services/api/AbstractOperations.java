@@ -45,8 +45,6 @@ public abstract class AbstractOperations {
 	protected static final DateTimeFormatter formatter = DateTimeFormat.forPattern( "yyyy-MM-dd'T'HH:mm:ss" );
 
 	private final String apiUrlBase;
-
-	private HttpEntity<?> requestEntity;
 	
 	private final Logger logger;
 	
@@ -57,13 +55,7 @@ public abstract class AbstractOperations {
 		this.apiUrlBase = apiUrlBase;
 		logger = Logger.getLogger(AbstractOperations.TAG);
 		
-		HttpHeaders requestHeaders = new HttpHeaders();
-		requestHeaders.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
 		
-		// Currently does not work with .26 backends
-		//requestHeaders.setAcceptEncoding( Collections.singletonList( ContentCodingType.GZIP ) );
-		
-		requestEntity = new HttpEntity<Object>( requestHeaders );
 	}
 
 	/**
@@ -110,8 +102,21 @@ public abstract class AbstractOperations {
 	/**
 	 * @return the requestEntity
 	 */
-	protected HttpEntity<?> getRequestEntity() {
-		return requestEntity;
+	protected HttpEntity<?> getRequestEntity(ETagInfo info) {
+		HttpHeaders requestHeaders = new HttpHeaders();
+		requestHeaders.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
+		if(info != null && !info.isEmptyEtag())
+			requestHeaders.setETag(info.getETag());
+		
+		// Currently does not work with .26 backends
+		//requestHeaders.setAcceptEncoding( Collections.singletonList( ContentCodingType.GZIP ) );
+		
+		return new HttpEntity<Object>( requestHeaders );
+	}
+	
+	protected void handleResponseEtag(ETagInfo etagInfo, HttpHeaders headers){
+		if(etagInfo != null)
+			etagInfo.setETag(headers.getETag());
 	}
 
 	protected String convertUtcAndFormat( DateTime dt ) {

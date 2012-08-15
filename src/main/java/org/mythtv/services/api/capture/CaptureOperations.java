@@ -21,6 +21,7 @@ package org.mythtv.services.api.capture;
 
 import java.util.List;
 
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 /**
@@ -51,14 +52,14 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	CaptureCardWrapper getCaptureCard( int cardId ) throws MythServiceApiRuntimeException;
+	CaptureCardWrapper getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<CaptureCard> getCaptureCardList() throws MythServiceApiRuntimeException;
+	List<CaptureCard> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -67,7 +68,7 @@ public interface CaptureOperations {
 	 * @param cardType
 	 * @return
 	 */
-	List<CaptureCard> getCaptureCardList( String hostName, String cardType ) throws MythServiceApiRuntimeException;
+	List<CaptureCard> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -75,7 +76,7 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	boolean removeCaptureCard( int cardId ) throws MythServiceApiRuntimeException;
+	boolean removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST

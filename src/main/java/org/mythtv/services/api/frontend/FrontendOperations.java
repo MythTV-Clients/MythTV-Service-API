@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.frontend;
 
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 /**
@@ -33,7 +34,7 @@ public interface FrontendOperations {
 	 * @param frontedApiUrlBase
 	 * @return
 	 */
-	FrontendStatus getStatus( String frontedApiUrlBase ) throws MythServiceApiRuntimeException;
+	FrontendStatus getStatus( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -62,6 +63,6 @@ public interface FrontendOperations {
 	 * @param frontedApiUrlBase
 	 * @return
 	 */
-	FrontendActionList getActionList( String frontedApiUrlBase ) throws MythServiceApiRuntimeException;
+	FrontendActionList getActionList( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 }

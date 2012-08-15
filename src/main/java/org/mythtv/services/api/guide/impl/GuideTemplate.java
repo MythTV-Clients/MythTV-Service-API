@@ -20,6 +20,8 @@
 package org.mythtv.services.api.guide.impl;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
 import org.mythtv.services.api.guide.ProgramWrapper;
@@ -45,7 +47,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getChannelIcon(int, int, int)
 	 */
 	@Override
-	public String getChannelIcon( int channelId, int width, int height ) {
+	public String getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
@@ -58,9 +60,9 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "Height", "" + height );
 		}
 		
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetChannelIcon", parameters ), HttpMethod.GET, getRequestEntity(), String.class );
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetChannelIcon", parameters ), HttpMethod.GET, getRequestEntity(etag), String.class );
 		String icon = responseEntity.getBody();
-
+		handleResponseEtag(etag, responseEntity.getHeaders());
 		return icon;
 	}
 	
@@ -69,8 +71,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramResponseEntity(int, java.util.Date)
 	 */
 	@Override
-	public ResponseEntity<ProgramWrapper> getProgramResponseEntity(
-			int channelId, DateTime startTime) {
+	public ResponseEntity<ProgramWrapper> getProgramResponseEntity(int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 		
@@ -78,15 +79,17 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		}
 
-		return restOperations.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(), ProgramWrapper.class );
+		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(etag), ProgramWrapper.class );
+		handleResponseEtag(etag, responseEntity.getHeaders());
+		return responseEntity;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramDetails(int, java.util.Date)
 	 */
 	@Override
-	public ProgramWrapper getProgramDetails( int channelId, DateTime startTime ) {		
-		ResponseEntity<ProgramWrapper> responseEntity = getProgramResponseEntity(channelId, startTime);
+	public ProgramWrapper getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {		
+		ResponseEntity<ProgramWrapper> responseEntity = getProgramResponseEntity(channelId, startTime, etag);
 		return responseEntity.getBody();
 	}
 
@@ -94,9 +97,9 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramGuide(java.util.Date, java.util.Date, int, int, boolean)
 	 */
 	@Override
-	public ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) {
+	public ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<ProgramGuideWrapper> responseEntity = getProgramGuideResponseEntity( start, end, startChannelId, numberOfChannels, details );
+		ResponseEntity<ProgramGuideWrapper> responseEntity = getProgramGuideResponseEntity( start, end, startChannelId, numberOfChannels, details, etag );
 		ProgramGuideWrapper programGuide = responseEntity.getBody();
 
 		return programGuide;
@@ -106,7 +109,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * @see org.mythtv.services.api.guide.GuideOperations#getProgramGuideResponseEntity(java.util.Date, java.util.Date, int, int, boolean)
 	 */
 	@Override
-	public ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) {
+	public ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "StartTime", convertUtcAndFormat( start ) );
 		parameters.add( "EndTime", convertUtcAndFormat( end ) );
@@ -124,7 +127,9 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 		}
 
 		try {
-			return restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(), ProgramGuideWrapper.class );
+			ResponseEntity<ProgramGuideWrapper> responseEntity = restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(etag), ProgramGuideWrapper.class );
+			handleResponseEtag(etag, responseEntity.getHeaders());
+			return responseEntity;
 		} catch( Exception e ) {
 			e.printStackTrace();
 		}

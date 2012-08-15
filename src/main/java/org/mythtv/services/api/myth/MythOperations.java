@@ -22,6 +22,7 @@ package org.mythtv.services.api.myth;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 /**
@@ -71,7 +72,7 @@ public interface MythOperations {
 	 * @param pin
 	 * @return
 	 */
-	ConnectionInfo getConnectionInfo( String pin ) throws MythServiceApiRuntimeException;
+	ConnectionInfo getConnectionInfo( String pin, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -85,14 +86,14 @@ public interface MythOperations {
 	 * 
 	 * @return
 	 */
-	List<String> getHosts() throws MythServiceApiRuntimeException;
+	List<String> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<String> getKeys() throws MythServiceApiRuntimeException;
+	List<String> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -111,7 +112,7 @@ public interface MythOperations {
 	 * @param messageContains
 	 * @return
 	 */
-	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains ) throws MythServiceApiRuntimeException;
+	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -121,7 +122,7 @@ public interface MythOperations {
 	 * @param defaultValue
 	 * @return
 	 */
-	List<Setting> getSetting( String hostname, String key, String defaultValue ) throws MythServiceApiRuntimeException;
+	List<Setting> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -130,7 +131,7 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	List<StorageGroupDirectory> getStoreageGroupDirectories( String groupName, String hostname ) throws MythServiceApiRuntimeException;
+	List<StorageGroupDirectory> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET

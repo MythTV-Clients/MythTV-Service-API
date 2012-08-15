@@ -20,6 +20,7 @@
 package org.mythtv.services.api.guide;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.springframework.http.ResponseEntity;
 
@@ -37,7 +38,7 @@ public interface GuideOperations {
 	 * @param height
 	 * @return
 	 */
-	String getChannelIcon( int channelId, int width, int height ) throws MythServiceApiRuntimeException;
+	String getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -46,7 +47,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ProgramWrapper getProgramDetails( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	ProgramWrapper getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -55,7 +56,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ResponseEntity<ProgramWrapper> getProgramResponseEntity( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramWrapper> getProgramResponseEntity( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -67,7 +68,7 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) throws MythServiceApiRuntimeException;
+	ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @param start
@@ -77,6 +78,6 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 }

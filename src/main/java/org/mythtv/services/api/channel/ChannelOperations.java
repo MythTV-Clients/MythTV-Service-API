@@ -21,6 +21,7 @@ package org.mythtv.services.api.channel;
 
 import java.util.List;
 
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.springframework.http.ResponseEntity;
 
@@ -77,7 +78,7 @@ public interface ChannelOperations {
 	 * @param waitForFinish
 	 * @return
 	 */
-	int fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish ) throws MythServiceApiRuntimeException;
+	int fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -85,7 +86,7 @@ public interface ChannelOperations {
 	 * @param channelId
 	 * @return
 	 */
-	ChannelInfoWrapper getChannelInfo( int channelId ) throws MythServiceApiRuntimeException;
+	ChannelInfoWrapper getChannelInfo( int channelId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -95,7 +96,7 @@ public interface ChannelOperations {
 	 * @param count
 	 * @return
 	 */
-	List<ChannelInfo> getChannelInfoList( int sourceId, int startIndex, int count ) throws MythServiceApiRuntimeException;
+	List<ChannelInfo> getChannelInfoList( int sourceId, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * @param sourceId
@@ -103,17 +104,17 @@ public interface ChannelOperations {
 	 * @param count
 	 * @return
 	 */
-	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity( int sourceId, int startIndex, int count ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity( int sourceId, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * @return
 	 */
-	List<ChannelInfo> getChannelInfoList() throws MythServiceApiRuntimeException;
+	List<ChannelInfo> getChannelInfoList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @return
 	 */
-	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity() throws MythServiceApiRuntimeException;
+	ResponseEntity<ChannelInfoList> getChannelInfoListResponseEntity( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -123,7 +124,7 @@ public interface ChannelOperations {
 	 * @param password
 	 * @return
 	 */
-	List<Lineup> getDDLineupList( String source, String userId, String password ) throws MythServiceApiRuntimeException;
+	List<Lineup> getDDLineupList( String source, String userId, String password, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -131,7 +132,7 @@ public interface ChannelOperations {
 	 * @param multiplexId
 	 * @return
 	 */
-	VideoMultiplexWrapper getVideoMultiplex( int multiplexId ) throws MythServiceApiRuntimeException;
+	VideoMultiplexWrapper getVideoMultiplex( int multiplexId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -141,7 +142,7 @@ public interface ChannelOperations {
 	 * @param count
 	 * @return
 	 */
-	List<VideoMultiplex> getVideoMultiplexList( int sourceId, int startIndex, int count ) throws MythServiceApiRuntimeException;
+	List<VideoMultiplex> getVideoMultiplexList( int sourceId, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -149,14 +150,14 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	VideoSourceWrapper getVideoSource( int sourceId ) throws MythServiceApiRuntimeException;
+	VideoSourceWrapper getVideoSource( int sourceId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<VideoSource> getVideoSourceList() throws MythServiceApiRuntimeException;
+	List<VideoSource> getVideoSourceList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -164,7 +165,7 @@ public interface ChannelOperations {
 	 * @param sourceId
 	 * @return
 	 */
-	List<String> getXmltvIdList( int sourceId ) throws MythServiceApiRuntimeException;
+	List<String> getXmltvIdList( int sourceId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST

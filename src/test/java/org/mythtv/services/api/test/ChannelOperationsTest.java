@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.channel.ChannelInfoList;
@@ -75,7 +76,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testFetchChannelsFromSource() throws MythServiceApiRuntimeException {
-		int val = operations.fetchChannelsFromSource(1, 2, true);
+		int val = operations.fetchChannelsFromSource(1, 2, true, ETagInfo.createEmptyETag());
 		Assert.assertEquals(358, val);
 	}
 
@@ -84,7 +85,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfo() throws MythServiceApiRuntimeException {
-		ChannelInfoWrapper info = operations.getChannelInfo(1021);
+		ChannelInfoWrapper info = operations.getChannelInfo(1021, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(info);
 	}
 
@@ -93,7 +94,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoListIntIntInt() throws MythServiceApiRuntimeException {
-		List<ChannelInfo> list = operations.getChannelInfoList(1, 1, 10);
+		List<ChannelInfo> list = operations.getChannelInfoList(1, 1, 10, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 		
@@ -104,7 +105,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoListResponseEntityIntIntInt() throws MythServiceApiRuntimeException {
-		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(1, 1, 10);
+		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(1, 1, 10, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertNotNull(list.getBody().getChannelInfos());
 	}
@@ -114,7 +115,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoList() throws MythServiceApiRuntimeException {
-		List<ChannelInfo> list = operations.getChannelInfoList();
+		List<ChannelInfo> list = operations.getChannelInfoList(ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 	}
@@ -124,7 +125,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetChannelInfoListResponseEntity() throws MythServiceApiRuntimeException {
-		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity();
+		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertNotNull(list.getBody().getChannelInfos());
 	}
@@ -134,7 +135,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetDDLineupList() throws MythServiceApiRuntimeException {
-		List<Lineup> list = operations.getDDLineupList("SchedulesDirect", "user", "password");
+		List<Lineup> list = operations.getDDLineupList("SchedulesDirect", "user", "password", ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 	}
@@ -144,10 +145,10 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoMultiplex() throws MythServiceApiRuntimeException {
-		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10);
+		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
-		VideoMultiplexWrapper mplex = operations.getVideoMultiplex(list.get(0).getMultiplexId());
+		VideoMultiplexWrapper mplex = operations.getVideoMultiplex(list.get(0).getMultiplexId(), ETagInfo.createEmptyETag());
 		Assert.assertNotNull(mplex);
 		Assert.assertNotNull(mplex.getVideoMultiplex());
 	}
@@ -157,7 +158,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoMultiplexList() throws MythServiceApiRuntimeException {
-		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10);
+		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 	}
@@ -167,10 +168,10 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoSource() throws MythServiceApiRuntimeException {
-		List<VideoSource> list = operations.getVideoSourceList();
+		List<VideoSource> list = operations.getVideoSourceList(ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
-		VideoSourceWrapper source = operations.getVideoSource(list.get(0).getId());
+		VideoSourceWrapper source = operations.getVideoSource(list.get(0).getId(), ETagInfo.createEmptyETag());
 		Assert.assertNotNull(source);
 	}
 
@@ -179,7 +180,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoSourceList() throws MythServiceApiRuntimeException {
-		List<VideoSource> list = operations.getVideoSourceList();
+		List<VideoSource> list = operations.getVideoSourceList(ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 	}
@@ -189,10 +190,10 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetXmltvIdList() throws MythServiceApiRuntimeException {
-		List<VideoSource> list = operations.getVideoSourceList();
+		List<VideoSource> list = operations.getVideoSourceList(ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
-		List<String> ids = operations.getXmltvIdList(list.get(0).getId());
+		List<String> ids = operations.getXmltvIdList(list.get(0).getId(), ETagInfo.createEmptyETag());
 		Assert.assertNotNull(ids);
 		Assert.assertFalse(ids.isEmpty());
 	}

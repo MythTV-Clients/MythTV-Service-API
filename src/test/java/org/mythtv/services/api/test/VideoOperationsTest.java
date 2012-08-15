@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.video.BlurayInfoWrapper;
 import org.mythtv.services.api.video.VideoLookup;
@@ -62,7 +63,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetBluray() throws MythServiceApiRuntimeException {
-		BlurayInfoWrapper info = videoOperations.getBluray("/path/to/video");
+		BlurayInfoWrapper info = videoOperations.getBluray("/path/to/video", ETagInfo.createEmptyETag());
 		Assert.assertNotNull(info);
 	}
 
@@ -71,7 +72,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideo() throws MythServiceApiRuntimeException {
-		VideoMetaDataInfoWrapper info = videoOperations.getVideo(1);
+		VideoMetaDataInfoWrapper info = videoOperations.getVideo(1, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(info);
 	}
 
@@ -80,7 +81,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoByFilename() throws MythServiceApiRuntimeException {
-		VideoMetaDataInfoWrapper info = videoOperations.getVideoByFilename("/path/to/video");
+		VideoMetaDataInfoWrapper info = videoOperations.getVideoByFilename("/path/to/video", ETagInfo.createEmptyETag());
 		Assert.assertNotNull(info);
 	}
 
@@ -89,7 +90,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetVideoList() throws MythServiceApiRuntimeException {
-		List<VideoMetadataInfo> list = videoOperations.getVideoList(false, 0, 10);
+		List<VideoMetadataInfo> list = videoOperations.getVideoList(false, 0, 10, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 	}
@@ -99,7 +100,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testLookupVideo() throws MythServiceApiRuntimeException {
-		List<VideoLookup> list = videoOperations.lookupVideo("test", "", "", 1, 1, "", true);
+		List<VideoLookup> list = videoOperations.lookupVideo("test", "", "", 1, 1, "", true, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(list);
 		Assert.assertFalse(list.isEmpty());
 	}

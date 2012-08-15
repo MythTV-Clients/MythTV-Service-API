@@ -22,6 +22,7 @@ package org.mythtv.services.api.dvr;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.springframework.http.ResponseEntity;
 
@@ -93,14 +94,14 @@ public interface DvrOperations {
 	 * @param count
 	 * @return
 	 */
-	List<Program> getConflictList( int startIndex, int count ) throws MythServiceApiRuntimeException;
+	List<Program> getConflictList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<Encoder> getEncoderList() throws MythServiceApiRuntimeException;
+	List<Encoder> getEncoderList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -109,7 +110,7 @@ public interface DvrOperations {
 	 * @param count
 	 * @return
 	 */
-	List<Program> getExpiringList( int startIndex, int count ) throws MythServiceApiRuntimeException;
+	List<Program> getExpiringList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -122,7 +123,7 @@ public interface DvrOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup ) throws MythServiceApiRuntimeException;
+	List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -130,7 +131,7 @@ public interface DvrOperations {
 	 * @param recordId
 	 * @return
 	 */
-	RecRule getRecordSchedule( int recordId ) throws MythServiceApiRuntimeException;
+	RecRule getRecordSchedule( int recordId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -139,7 +140,7 @@ public interface DvrOperations {
 	 * @param count
 	 * @return
 	 */
-	List<RecRule> getRecordScheduleList( int startIndex, int count ) throws MythServiceApiRuntimeException;
+	List<RecRule> getRecordScheduleList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -148,19 +149,19 @@ public interface DvrOperations {
 	 * @param startTime
 	 * @return
 	 */
-	Program getRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	Program getRecorded( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<Program> getRecordedList() throws MythServiceApiRuntimeException;
+	List<Program> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * @return
 	 */
-	ResponseEntity<ProgramList> getRecordedListResponseEntity() throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramList> getRecordedListResponseEntity( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -170,7 +171,7 @@ public interface DvrOperations {
 	 * @param descending
 	 * @return
 	 */
-	List<Program> getRecordedList( int startIndex, int count, boolean descending ) throws MythServiceApiRuntimeException;
+	List<Program> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -180,12 +181,12 @@ public interface DvrOperations {
 	 * @param showAll
 	 * @return
 	 */
-	List<Program> getUpcomingList( int startIndex, int count, boolean showAll ) throws MythServiceApiRuntimeException;
+	List<Program> getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @return
 	 */
-	ResponseEntity<ProgramList> getUpcomingListResponseEntity() throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramList> getUpcomingListResponseEntity( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST

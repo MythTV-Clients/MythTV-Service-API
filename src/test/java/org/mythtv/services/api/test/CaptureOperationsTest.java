@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.capture.CaptureCard;
 import org.mythtv.services.api.capture.CaptureCardWrapper;
@@ -68,7 +69,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testGetCaptureCard() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = getCaptureCards();
-		CaptureCardWrapper card = captureOperations.getCaptureCard(cards.get(0).getCardId());
+		CaptureCardWrapper card = captureOperations.getCaptureCard(cards.get(0).getCardId(), ETagInfo.createEmptyETag());
 		Assert.assertNotNull("card object is null", card);
 	}
 
@@ -86,7 +87,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	public void testGetCaptureCardListStringString() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = getCaptureCards();
 		CaptureCard c = cards.get(0);
-		cards = captureOperations.getCaptureCardList(c.getHostName(), c.getCardType());
+		cards = captureOperations.getCaptureCardList(c.getHostName(), c.getCardType(), ETagInfo.createEmptyETag());
 		Assert.assertNotNull("List of card is null...", cards);
 		Assert.assertFalse("No capture cards returned...", cards.isEmpty());
 	}
@@ -120,7 +121,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 	
 	private List<CaptureCard> getCaptureCards() throws MythServiceApiRuntimeException {
-		List<CaptureCard> cards = captureOperations.getCaptureCardList();
+		List<CaptureCard> cards = captureOperations.getCaptureCardList(ETagInfo.createEmptyETag());
 		Assert.assertNotNull("List of card is null...", cards);
 		Assert.assertFalse("No capture cards returned...", cards.isEmpty());
 		return cards;
