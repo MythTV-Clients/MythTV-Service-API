@@ -25,6 +25,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -35,7 +36,7 @@ import org.mythtv.services.api.guide.ProgramGuideWrapper;
 import org.mythtv.services.api.guide.ProgramWrapper;
 
 /**
- * @author sebastien
+ * @author Sebastien Astie
  *
  */
 public class GuideOperationsTest extends BaseMythtvServiceApiTester {
@@ -66,7 +67,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testGetChannelIcon() throws MythServiceApiRuntimeException {
 		String res = operations.getChannelIcon(chanid, iconsize, iconsize, ETagInfo.createEmptyETag());
-		res.toString();
+		Assert.assertNotNull(res);
 	}
 
 	/**
@@ -94,6 +95,24 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testGetProgramGuide() throws MythServiceApiRuntimeException {
 		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true, ETagInfo.createEmptyETag());
-		guide.toString();
+		Assert.assertNotNull(guide);
+	}
+	
+	/**
+	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
+	 */
+	@Ignore("Use only against a live 0.26 backend")
+	@Test
+	public void testGetProgramGuideWithEtag() throws MythServiceApiRuntimeException {
+		ETagInfo etag = ETagInfo.createEmptyETag();
+		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true, etag);
+		Assert.assertNotNull(guide);
+		// make sure that we now have the etag marked as a new one (retrieved from previous call)
+		Assert.assertTrue(etag.isNewDataEtag());
+		guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true, etag);
+		// etag should be the same
+		Assert.assertFalse(etag.isNewDataEtag());
+		// because of the etag matching no data will be returned.
+		Assert.assertNull(guide);
 	}
 }

@@ -41,6 +41,7 @@ import org.springframework.util.MultiValueMap;
 public abstract class AbstractOperations {
 	
 	private static final String TAG = AbstractOperations.class.getSimpleName();
+	private static final String MYTHTV_ETAG = "If-None-Match";
 	
 	protected static final DateTimeFormatter formatter = DateTimeFormat.forPattern( "yyyy-MM-dd'T'HH:mm:ss" );
 
@@ -105,8 +106,12 @@ public abstract class AbstractOperations {
 	protected HttpEntity<?> getRequestEntity(ETagInfo info) {
 		HttpHeaders requestHeaders = new HttpHeaders();
 		requestHeaders.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
-		if(info != null && !info.isEmptyEtag())
+		if(info != null && !info.isEmptyEtag()){
+			// it seems that mythtv uses "If-None-Match" and not "ETag"
+			// we will still add etag the regular way and add it via If-None-Match 
 			requestHeaders.setETag(info.getETag());
+			requestHeaders.add(MYTHTV_ETAG, info.getETag());
+		}
 		
 		// Currently does not work with .26 backends
 		//requestHeaders.setAcceptEncoding( Collections.singletonList( ContentCodingType.GZIP ) );
@@ -115,8 +120,9 @@ public abstract class AbstractOperations {
 	}
 	
 	protected void handleResponseEtag(ETagInfo etagInfo, HttpHeaders headers){
-		if(etagInfo != null)
+		if(etagInfo != null){
 			etagInfo.setETag(headers.getETag());
+		}
 	}
 
 	protected String convertUtcAndFormat( DateTime dt ) {

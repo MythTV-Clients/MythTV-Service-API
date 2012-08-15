@@ -56,7 +56,7 @@ public class ETagInfo {
 		}
 	}
 
-	public boolean isNewETag() {
+	public boolean isNewDataEtag() {
 		return newETag;
 	}
 	
