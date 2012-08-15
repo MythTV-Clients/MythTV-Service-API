@@ -1,2 +1,6 @@
 /export
 /bin
+/target
+/.classpath
+/.project
+/.settings
