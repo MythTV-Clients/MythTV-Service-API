@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mythtv.android</groupId>
 	<artifactId>mythtv-service-api</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<name>MythTV-Service-API</name>
 	<properties>
 		<org.springframework.android-version>1.0.0.RELEASE</org.springframework.android-version>
