@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -52,6 +53,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#addCaptureCard(org.mythtv.services.api.capture.CaptureCard)}.
 	 */
+	@Ignore
 	public void testAddCaptureCard() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -59,6 +61,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#addCardInput(org.mythtv.services.api.capture.CardInput)}.
 	 */
+	@Ignore
 	public void testAddCardInput() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -95,6 +98,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#removeCaptureCard(int)}.
 	 */
+	@Ignore
 	public void testRemoveCaptureCard() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -102,6 +106,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#removeCardInput(int)}.
 	 */
+	@Ignore
 	public void testRemoveCardInput() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -109,6 +114,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#updateCaptureCard(int, java.lang.String, java.lang.String)}.
 	 */
+	@Ignore
 	public void testUpdateCaptureCard() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -116,6 +122,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#updateCardInput(int, java.lang.String, java.lang.String)}.
 	 */
+	@Ignore
 	public void testUpdateCardInput() {
 		fail("Not yet implemented"); // TODO
 	}

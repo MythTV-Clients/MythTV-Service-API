@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -59,6 +60,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
+	@Ignore
 	public void testAddDBChannel() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -66,6 +68,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}.
 	 */
+	@Ignore
 	public void testAddVideoSource() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -201,6 +204,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeDBChannel(int)}.
 	 */
+	@Ignore
 	public void testRemoveDBChannel() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -208,6 +212,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeVideoSource(int)}.
 	 */
+	@Ignore
 	public void testRemoveVideoSource() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -215,6 +220,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
+	@Ignore
 	public void testUpdateDBChannel() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -222,6 +228,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}.
 	 */
+	@Ignore
 	public void testUpdateVideoSource() {
 		fail("Not yet implemented"); // TODO
 	}

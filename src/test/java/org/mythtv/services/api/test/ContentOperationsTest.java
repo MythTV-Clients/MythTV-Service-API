@@ -22,6 +22,7 @@ package org.mythtv.services.api.test;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.content.ContentOperations;
 
@@ -45,6 +46,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)}.
 	 */
+	@Ignore
 	public void testAddLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -52,6 +54,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addRecordingLiveStream(int, org.joda.time.DateTime, int, int, int, int, int, int)}.
 	 */
+	@Ignore
 	public void testAddRecordingLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -59,6 +62,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addVideoLiveStream(int, int, int, int, int, int, int)}.
 	 */
+	@Ignore
 	public void testAddVideoLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -66,7 +70,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#downloadFile(java.lang.String, java.lang.String)}.
 	 */
-	@Test
+	@Ignore
 	public void testDownloadFile() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -74,7 +78,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getAlbumArt(int, int, int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetAlbumArt() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -82,7 +86,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFile(java.lang.String, java.lang.String)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetFile() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -90,7 +94,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFileList(java.lang.String)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetFileList() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -98,7 +102,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFilteredLiveStreamList(java.lang.String)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetFilteredLiveStreamList() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -106,7 +110,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getHash(java.lang.String, java.lang.String)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetHash() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -114,7 +118,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getImageFile(java.lang.String, java.lang.String, int, int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetImageFile() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -122,7 +126,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getLiveStream(int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -130,7 +134,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getLiveStreamList()}.
 	 */
-	@Test
+	@Ignore
 	public void testGetLiveStreamList() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -138,7 +142,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getMusic(int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetMusic() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -146,7 +150,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getPreviewImage(int, org.joda.time.DateTime, int, int, int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetPreviewImage() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -154,7 +158,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getProgramArtworkList(java.lang.String, int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetProgramArtworkList() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -162,7 +166,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecording(int, org.joda.time.DateTime)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetRecording() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -170,7 +174,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecordingArtwork(java.lang.String, java.lang.String, int, int, int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetRecordingArtwork() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -178,7 +182,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecordingArtworkList(int, org.joda.time.DateTime)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetRecordingArtworkList() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -186,7 +190,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getVideo(int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetVideo() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -194,7 +198,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getVideoArtwork(java.lang.String, int, int, int)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetVideoArtwork() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -202,6 +206,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#removeLiveStream(int)}.
 	 */
+	@Ignore
 	public void testRemoveLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -209,6 +214,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#stopLiveStream(int)}.
 	 */
+	@Ignore
 	public void testStopLiveStream() {
 		fail("Not yet implemented"); // TODO
 	}

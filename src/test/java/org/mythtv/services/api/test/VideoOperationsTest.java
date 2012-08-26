@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -54,6 +55,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#addVideo(java.lang.String, java.lang.String)}.
 	 */
+	@Ignore
 	public void testAddVideo() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -108,6 +110,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#removeVideoFromDatabase(int)}.
 	 */
+	@Ignore
 	public void testRemoveVideoFromDatabase() {
 		fail("Not yet implemented"); // TODO
 	}

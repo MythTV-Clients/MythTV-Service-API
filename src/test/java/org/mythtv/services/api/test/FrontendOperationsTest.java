@@ -22,6 +22,7 @@ package org.mythtv.services.api.test;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.mythtv.services.api.frontend.FrontendOperations;
 
 public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
@@ -35,18 +36,22 @@ public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	
+	@Ignore
 	public void testGetStatus() {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Ignore
 	public void testSendMessage() {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Ignore
 	public void testSendAction() {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Ignore
 	public void testGetActionList() {
 		fail("Not yet implemented"); // TODO
 	}
