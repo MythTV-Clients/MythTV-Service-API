@@ -30,12 +30,12 @@ import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
 /**
- * @author Daniel Frey
+ * @author dmfrey
  *
  */
-public class DateTimeSerializer extends JsonSerializer<DateTime> {
+public class TimeSerializer extends JsonSerializer<DateTime> {
 
-	private static DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
+	private static DateTimeFormatter formatter = ISODateTimeFormat.time();
 
 	@Override
 	public void serialize( DateTime value, JsonGenerator generator, SerializerProvider provider ) throws IOException, JsonProcessingException {

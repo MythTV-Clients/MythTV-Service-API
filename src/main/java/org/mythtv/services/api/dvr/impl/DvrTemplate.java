@@ -33,6 +33,7 @@ import org.mythtv.services.api.dvr.Program;
 import org.mythtv.services.api.dvr.ProgramList;
 import org.mythtv.services.api.dvr.RecRule;
 import org.mythtv.services.api.dvr.RecRuleList;
+import org.mythtv.services.api.dvr.RecRuleWrapper;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -229,10 +230,10 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordId );
 		
-		ResponseEntity<RecRule> responseEntity = restOperations.exchange( buildUri( "GetRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(etag), RecRule.class );
-		RecRule recRule = responseEntity.getBody();
+		ResponseEntity<RecRuleWrapper> responseEntity = restOperations.exchange( buildUri( "GetRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(etag), RecRuleWrapper.class );
+		RecRuleWrapper recRule = responseEntity.getBody();
 		handleResponseEtag(etag, responseEntity.getHeaders());
-		return recRule;
+		return recRule.getRecRule();
 	}
 
 	/* (non-Javadoc)

@@ -20,6 +20,7 @@
 package org.mythtv.services.api.dvr;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
@@ -84,8 +85,7 @@ public class RecRule {
 	private int day;
 
 	@JsonProperty( "Time" )
-	@JsonSerialize( using = DateTimeSerializer.class )
-	private DateTime time;
+	private String time;
 
 	@JsonProperty( "FindId" )
 	private int findId;
@@ -420,14 +420,14 @@ public class RecRule {
 	/**
 	 * @return the time
 	 */
-	public DateTime getTime() {
+	public String getTime() {
 		return time;
 	}
 
 	/**
 	 * @param time the time to set
 	 */
-	public void setTime( DateTime time ) {
+	public void setTime( String time ) {
 		this.time = time;
 	}
 
