@@ -26,6 +26,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.mythtv.services.api.test.connect.utils.factories.CaptureFactory;
 import org.mythtv.services.api.test.connect.utils.factories.ChannelFactory;
+import org.mythtv.services.api.test.connect.utils.factories.DvrFactory;
 import org.mythtv.services.api.test.connect.utils.factories.GuideFactory;
 import org.mythtv.services.api.test.connect.utils.factories.ResponseFactory;
 import org.mythtv.services.api.test.connect.utils.factories.VideoFactory;
@@ -60,5 +61,6 @@ public class MythFakeHttpResponseFactory {
 		factories.add(new GuideFactory());
 		factories.add(new ChannelFactory());
 		factories.add(new VideoFactory());
+		factories.add(new DvrFactory());
 	}
 }

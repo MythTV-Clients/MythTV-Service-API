@@ -21,10 +21,15 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.dvr.DvrOperations;
+import org.mythtv.services.api.dvr.Program;
+import org.springframework.util.Assert;
 
 /**
  * @author Sebastien Astie
@@ -150,9 +155,11 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getUpcomingList(int, int, boolean)}.
 	 */
-	@Ignore
+	@Test
 	public void testGetUpcomingList() {
-		fail("Not yet implemented");
+		List<Program> programs =api.dvrOperations().getUpcomingList(0, 0, true, ETagInfo.createEmptyETag());
+		Assert.notNull(programs);
+		Assert.notEmpty(programs);
 	}
 
 	/**
