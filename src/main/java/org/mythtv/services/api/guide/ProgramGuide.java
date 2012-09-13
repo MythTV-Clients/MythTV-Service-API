@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.guide;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -31,7 +32,9 @@ import org.mythtv.services.api.channel.ChannelInfo;
  * @author Daniel Frey
  *
  */
-public class ProgramGuide {
+public class ProgramGuide implements Serializable {
+
+	private static final long serialVersionUID = 772513807010585699L;
 
 	@JsonProperty( "StartTime" )
 	@JsonSerialize( using = DateTimeSerializer.class )

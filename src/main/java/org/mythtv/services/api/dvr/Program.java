@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api.dvr;
 
+import java.io.Serializable;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.joda.time.DateTime;
@@ -30,7 +32,9 @@ import org.mythtv.services.api.content.ArtworkInfos;
  * @author Daniel Frey
  *
  */
-public class Program {
+public class Program implements Serializable {
+
+	private static final long serialVersionUID = 4144422404144517653L;
 
 	@JsonProperty( "StartTime" )
 	@JsonSerialize( using = DateTimeSerializer.class )

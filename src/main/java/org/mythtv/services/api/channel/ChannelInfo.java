@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.channel;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -32,7 +33,10 @@ import org.mythtv.services.api.dvr.Program;
  * @author Daniel Frey
  *
  */
-public class ChannelInfo implements Comparable<ChannelInfo> {
+public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
+	
+	private static final long serialVersionUID = 5939218201237085127L;
+
 	private static Logger LOGGER = Logger.getLogger("ChannelInfo");
 	
 	@JsonProperty( "ChanId" )
