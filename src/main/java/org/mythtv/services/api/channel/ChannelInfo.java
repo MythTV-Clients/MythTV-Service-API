@@ -25,8 +25,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.mythtv.services.api.dvr.Program;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**

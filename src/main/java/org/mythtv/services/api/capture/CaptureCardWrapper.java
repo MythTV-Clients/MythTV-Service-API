@@ -3,7 +3,7 @@
  */
 package org.mythtv.services.api.capture;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Sebastien Astie

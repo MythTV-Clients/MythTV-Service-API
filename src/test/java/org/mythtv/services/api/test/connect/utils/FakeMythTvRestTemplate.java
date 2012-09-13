@@ -38,7 +38,7 @@ import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpMessageConverterExtractor;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResourceAccessException;
@@ -47,6 +47,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriTemplate;
 import org.springframework.web.util.UriUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 /**
  * @author Sebastien Astie
@@ -61,11 +64,16 @@ public class FakeMythTvRestTemplate implements RestOperations {
 	 * 
 	 */
 	public FakeMythTvRestTemplate() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule( new JodaModule() );
+		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+		mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
+		
 		messageConverters = new ArrayList<HttpMessageConverter<?>>();
 		messageConverters.add(new ByteArrayHttpMessageConverter());
 		messageConverters.add(new StringHttpMessageConverter());
 		messageConverters.add(new ResourceHttpMessageConverter());
-		messageConverters.add(new MappingJacksonHttpMessageConverter());
+		messageConverters.add(mappingJackson2HttpMessageConverter);
 		
 		mythResponseFactory = MythFakeHttpResponseFactory.getInstance();
 	}

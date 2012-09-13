@@ -19,9 +19,13 @@
  */
 package org.mythtv.services.api;
 
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 /**
  * @author Daniel Frey
@@ -36,6 +40,13 @@ public class MythServicesTemplate extends BaseMythServicesTemplate {
 	@Override
 	protected RestOperations createRestOperations() {
 		RestTemplate rest = new RestTemplate( true, ClientHttpRequestFactorySelector.getRequestFactory() );
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule( new JodaModule() );
+		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+		mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
+		rest.getMessageConverters().add( mappingJackson2HttpMessageConverter );
+		
 		rest.setErrorHandler( new MythServicesErrorHandler() );
 		return rest;
 	}
