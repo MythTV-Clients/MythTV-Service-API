@@ -123,7 +123,7 @@ public interface DvrOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ProgramList getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET

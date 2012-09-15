@@ -190,7 +190,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#getFiltererRecordedList(boolean, int, int, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ProgramList getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Descending", Boolean.toString( descending ) );
@@ -218,7 +218,8 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetFilteredRecordedList", parameters ), HttpMethod.GET, getRequestEntity(etag), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		handleResponseEtag(etag, responseEntity.getHeaders());
-		return programList.getPrograms().getPrograms();
+		
+		return programList;
 	}
 
 	/* (non-Javadoc)
