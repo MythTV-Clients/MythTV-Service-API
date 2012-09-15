@@ -278,12 +278,13 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecordedList()
 	 */
 	@Override
-	public List<Program> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ProgramList getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity(etag), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		handleResponseEtag(etag, responseEntity.getHeaders());
-		return programList.getPrograms().getPrograms();
+		
+		return programList;
 	}
 
 	/* (non-Javadoc)
@@ -293,6 +294,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	public ResponseEntity<ProgramList> getRecordedListResponseEntity(ETagInfo etag) throws MythServiceApiRuntimeException {
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity(etag), ProgramList.class );
 		handleResponseEtag(etag, responseEntity.getHeaders());
+		
 		return responseEntity;
 	}
 
@@ -300,7 +302,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecordedList(int, int, boolean)
 	 */
 	@Override
-	public List<Program> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ProgramList getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
@@ -317,14 +319,15 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity(etag), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		handleResponseEtag(etag, responseEntity.getHeaders());
-		return programList.getPrograms().getPrograms();
+		
+		return programList;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.dvr.DvrOperations#getUpcomingList(int, int, boolean)
 	 */
 	@Override
-	public List<Program> getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ProgramList getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
@@ -341,7 +344,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity(etag), ProgramList.class );
 		ProgramList programList = responseEntity.getBody();
 		handleResponseEtag(etag, responseEntity.getHeaders());
-		return programList.getPrograms().getPrograms();
+		return programList;
 	}
 
 	/* (non-Javadoc)

@@ -25,6 +25,7 @@ import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.content.ArtworkInfos;
+import org.mythtv.services.utils.ArticleCleaner;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -33,7 +34,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @author Daniel Frey
  *
  */
-public class Program implements Serializable {
+public class Program implements Serializable, Comparable<Program> {
 
 	private static final long serialVersionUID = 4144422404144517653L;
 
@@ -642,6 +643,19 @@ public class Program implements Serializable {
 		builder.append( "]" );
 		
 		return builder.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo( Program arg ) {
+	
+		String sThisTitle = ArticleCleaner.clean( title );
+		String sOtherTitle = ArticleCleaner.clean( arg.getTitle() );
+
+		return sThisTitle.compareTo( sOtherTitle );
+
 	}
 	
 }

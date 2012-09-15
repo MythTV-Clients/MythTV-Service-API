@@ -21,14 +21,10 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
-import org.mythtv.services.api.dvr.DvrOperations;
-import org.mythtv.services.api.dvr.Program;
+import org.mythtv.services.api.dvr.ProgramList;
 import org.springframework.util.Assert;
 
 /**
@@ -36,17 +32,6 @@ import org.springframework.util.Assert;
  *
  */
 public class DvrOperationsTest extends BaseMythtvServiceApiTester {
-
-	private DvrOperations dvrOperations;
-	
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
-	 */
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-		dvrOperations = api.dvrOperations();
-	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.dvr.impl.DvrTemplate#addRecordingSchedule(int, org.joda.time.DateTime, int, boolean, int, int, java.lang.String, int, java.lang.String, java.lang.String, int, int, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, int, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, int)}.
@@ -157,9 +142,9 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetUpcomingList() {
-		List<Program> programs =api.dvrOperations().getUpcomingList(0, 0, true, ETagInfo.createEmptyETag());
+		ProgramList programs = api.dvrOperations().getUpcomingList(0, 0, true, ETagInfo.createEmptyETag());
 		Assert.notNull(programs);
-		Assert.notEmpty(programs);
+		Assert.notEmpty(programs.getPrograms().getPrograms());
 	}
 
 	/**
