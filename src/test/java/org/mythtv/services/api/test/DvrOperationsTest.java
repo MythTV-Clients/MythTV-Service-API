@@ -21,10 +21,13 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.dvr.ProgramList;
+import org.mythtv.services.api.dvr.RecRule;
 import org.springframework.util.Assert;
 
 /**
@@ -100,9 +103,11 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordScheduleList(int, int)}.
 	 */
-	@Ignore
+	@Test
 	public void testGetRecordScheduleList() {
-		fail("Not yet implemented");
+		List<RecRule> rules = api.dvrOperations().getRecordScheduleList(0, 0, ETagInfo.createEmptyETag());
+		Assert.notNull(rules);
+		Assert.notEmpty(rules);
 	}
 
 	/**

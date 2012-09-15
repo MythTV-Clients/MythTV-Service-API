@@ -38,6 +38,9 @@ public class DvrFactory extends ResponseFactory {
 		if(url.getPath().endsWith("GetUpcomingList")){
 			return new MythFakeHttpInputMessage("dvr/GetUpcomingList.json");
 		}
+		if(url.getPath().endsWith("GetRecordScheduleList")){
+			return new MythFakeHttpInputMessage("dvr/GetRecordScheduleList.json");
+		}
 		return unknownOperation(url);
 	}
 
