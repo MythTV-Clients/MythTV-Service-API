@@ -19,18 +19,24 @@
  */
 package org.mythtv.services.api.dvr;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import java.io.Serializable;
+
 import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.content.ArtworkInfos;
+import org.mythtv.services.utils.ArticleCleaner;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * @author Daniel Frey
  *
  */
-public class Program {
+public class Program implements Serializable, Comparable<Program> {
+
+	private static final long serialVersionUID = 4144422404144517653L;
 
 	@JsonProperty( "StartTime" )
 	@JsonSerialize( using = DateTimeSerializer.class )
@@ -637,6 +643,19 @@ public class Program {
 		builder.append( "]" );
 		
 		return builder.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo( Program arg ) {
+	
+		String sThisTitle = ArticleCleaner.clean( title );
+		String sOtherTitle = ArticleCleaner.clean( arg.getTitle() );
+
+		return sThisTitle.compareTo( sOtherTitle );
+
 	}
 	
 }

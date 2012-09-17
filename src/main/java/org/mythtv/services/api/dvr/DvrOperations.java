@@ -123,7 +123,7 @@ public interface DvrOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	List<Program> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ProgramList getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -156,7 +156,7 @@ public interface DvrOperations {
 	 * 
 	 * @return
 	 */
-	List<Program> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ProgramList getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * @return
@@ -171,7 +171,7 @@ public interface DvrOperations {
 	 * @param descending
 	 * @return
 	 */
-	List<Program> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ProgramList getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -181,7 +181,7 @@ public interface DvrOperations {
 	 * @param showAll
 	 * @return
 	 */
-	List<Program> getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ProgramList getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * @return

@@ -19,15 +19,18 @@
  */
 package org.mythtv.services.api.content;
 
+import java.io.Serializable;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Daniel Frey
  *
  */
-public class ArtworkInfos {
+public class ArtworkInfos implements Serializable {
+
+	private static final long serialVersionUID = 223919846162208999L;
 
 	@JsonProperty( "ArtworkInfos" )
 	private List<ArtworkInfo> artworkInfos;

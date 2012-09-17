@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mythtv.android</groupId>
 	<artifactId>mythtv-service-api</artifactId>
-	<version>0.0.8-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>MythTV-Service-API</name>
 	<properties>
 		<org.springframework.android-version>1.0.0.RELEASE</org.springframework.android-version>
 		<org.springframework.social-version>1.0.2.RELEASE</org.springframework.social-version>
-		<org.codehaus.jackson-version>1.9.9</org.codehaus.jackson-version>
+		<com.fasterxml.jackson-version>2.0.6</com.fasterxml.jackson-version>
 		<junit-version>4.10</junit-version>
 		<joda-time-version>2.1</joda-time-version>
 	</properties>
@@ -86,9 +86,24 @@
 			<version>${joda-time-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${org.codehaus.jackson-version}</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${com.fasterxml.jackson-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${com.fasterxml.jackson-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${com.fasterxml.jackson-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-joda</artifactId>
+			<version>2.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

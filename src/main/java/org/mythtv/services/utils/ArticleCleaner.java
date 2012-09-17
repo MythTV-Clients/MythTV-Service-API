@@ -14,40 +14,37 @@
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
  *   
- * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
+ * This software can be found at <https://github.com/MythTV-Android/mythtv-for-android/>
  *
  */
-package org.mythtv.services.api.capture;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package org.mythtv.services.utils;
 
 /**
  * @author Daniel Frey
  *
  */
-public class CaptureCardList {
+public class ArticleCleaner {
 
-	@JsonProperty( "CaptureCardList" )
-	private CaptureCards captureCards;
+	private static final String[] ARTICLES = new String[] { "THE", "AN", "A " };
 	
-	public CaptureCardList() { }
-	
-	public CaptureCardList( CaptureCards captureCards ) {
-		this.captureCards = captureCards;
+	public static String clean( String text ) {
+		
+		if( null != text && !"".equals( text ) ) {
+			String temp = text.toUpperCase();
+			
+			// iterate over all articles
+			for( String article : ARTICLES ) {
+				
+				if( temp.startsWith( article ) ) {
+					int len = article.length();
+					
+					// remove the length of the article from the beginning and trim any remaining whitespace from the original text
+					text = text.substring( len ).trim();
+				}
+				
+			}
+		}
+		
+		return text;
 	}
-
-	/**
-	 * @return the captureCards
-	 */
-	public CaptureCards getCaptureCards() {
-		return captureCards;
-	}
-
-	/**
-	 * @param captureCards the captureCards to set
-	 */
-	public void setCaptureCards( CaptureCards captureCards ) {
-		this.captureCards = captureCards;
-	}
-	
 }

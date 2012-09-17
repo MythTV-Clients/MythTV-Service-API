@@ -19,7 +19,7 @@
  */
 package org.mythtv.services.api.dvr;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Daniel Frey
