@@ -97,7 +97,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "AutoUserJob4", Boolean.toString( autoUserJob4 ) );
 		parameters.add( "Transcoder", "" + transcoder );
 
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(null), Int.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
 		Int i = responseEntity.getBody();
 		return i.getInteger();
 	}
@@ -111,7 +111,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		Bool bool = responseEntity.getBody();
 		return bool.getBool();
 	}
@@ -125,7 +125,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		Bool bool = responseEntity.getBody();
 		return bool.getBool();
 	}
@@ -363,7 +363,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		Bool bool = responseEntity.getBody();
 		return bool.getBool();
 	}
