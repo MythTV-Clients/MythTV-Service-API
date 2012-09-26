@@ -111,7 +111,9 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		
 		ResponseEntity<ChannelInfoList> responseEntity = getChannelInfoListResponseEntity( sourceId, startIndex, count, etag );
 		ChannelInfoList channelInfoList = responseEntity.getBody();	
-		return channelInfoList.getChannelInfos().getChannelInfos();
+		if(channelInfoList != null && channelInfoList.getChannelInfos() != null)
+			return channelInfoList.getChannelInfos().getChannelInfos();
+		return null;
 	}
 
 	/* (non-Javadoc)
