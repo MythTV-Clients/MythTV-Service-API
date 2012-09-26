@@ -123,7 +123,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
 		if( sourceId > 0 ) {
-			parameters.add( "SourceId", "" + sourceId );
+			parameters.add( "SourceID", "" + sourceId );
 		}
 		
 		if( startIndex > 0 ) {
