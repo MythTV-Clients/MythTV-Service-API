@@ -1,6 +1,6 @@
-/export
-/bin
-/target
-/.classpath
-/.project
-/.settings
+export
+bin
+target
+.classpath
+.project
+.settings
