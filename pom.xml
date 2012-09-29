@@ -18,7 +18,7 @@
   	</licenses>
 	
 	<scm>
-		<url>https://github.com/MythTV-Android/MythTV-Service-API</url>
+		<url>https://github.com/MythTV-Android/MythTV-Service-API.git</url>
 	</scm>
 	
 	<properties>
