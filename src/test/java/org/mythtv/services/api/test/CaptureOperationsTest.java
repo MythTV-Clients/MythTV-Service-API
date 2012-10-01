@@ -30,8 +30,10 @@ import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.capture.CaptureCard;
+import org.mythtv.services.api.capture.CaptureCardList;
 import org.mythtv.services.api.capture.CaptureCardWrapper;
 import org.mythtv.services.api.capture.CaptureOperations;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author sebastien
@@ -72,8 +74,8 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testGetCaptureCard() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = getCaptureCards();
-		CaptureCardWrapper card = captureOperations.getCaptureCard(cards.get(0).getCardId(), ETagInfo.createEmptyETag());
-		Assert.assertNotNull("card object is null", card);
+		ResponseEntity<CaptureCardWrapper> card = captureOperations.getCaptureCard( cards.get(0).getCardId(), ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( "card object is null", card.getBody() );
 	}
 
 	/**
@@ -89,8 +91,10 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testGetCaptureCardListStringString() throws MythServiceApiRuntimeException {
 		List<CaptureCard> cards = getCaptureCards();
-		CaptureCard c = cards.get(0);
-		cards = captureOperations.getCaptureCardList(c.getHostName(), c.getCardType(), ETagInfo.createEmptyETag());
+		CaptureCard c = cards.get( 0 );
+		
+		ResponseEntity<CaptureCardList> responseEntity = captureOperations.getCaptureCardList( c.getHostName(), c.getCardType(), ETagInfo.createEmptyETag() );
+		cards = responseEntity.getBody().getCaptureCards().getCaptureCards();
 		Assert.assertNotNull("List of card is null...", cards);
 		Assert.assertFalse("No capture cards returned...", cards.isEmpty());
 	}
@@ -128,10 +132,12 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 	
 	private List<CaptureCard> getCaptureCards() throws MythServiceApiRuntimeException {
-		List<CaptureCard> cards = captureOperations.getCaptureCardList(ETagInfo.createEmptyETag());
-		Assert.assertNotNull("List of card is null...", cards);
-		Assert.assertFalse("No capture cards returned...", cards.isEmpty());
-		return cards;
+		ResponseEntity<CaptureCardList> responseEntity = captureOperations.getCaptureCardList( ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( "responseEntity is null...", responseEntity );
+		
+		CaptureCardList cards = responseEntity.getBody();
+		Assert.assertFalse( "No capture cards returned...", cards.getCaptureCards().getCaptureCards().isEmpty() );
+		return cards.getCaptureCards().getCaptureCards();
 	}
 
 }

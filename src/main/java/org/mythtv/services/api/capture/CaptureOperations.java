@@ -19,10 +19,11 @@
  */
 package org.mythtv.services.api.capture;
 
-import java.util.List;
-
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author Daniel Frey
@@ -36,7 +37,7 @@ public interface CaptureOperations {
 	 * @param captureCard
 	 * @return
 	 */
-	int addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Int> addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -44,7 +45,7 @@ public interface CaptureOperations {
 	 * @param cardInput
 	 * @return
 	 */
-	int addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Int> addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -52,14 +53,14 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	CaptureCardWrapper getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<CaptureCardWrapper> getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<CaptureCard> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<CaptureCardList> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -68,7 +69,7 @@ public interface CaptureOperations {
 	 * @param cardType
 	 * @return
 	 */
-	List<CaptureCard> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<CaptureCardList> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -76,7 +77,7 @@ public interface CaptureOperations {
 	 * @param cardId
 	 * @return
 	 */
-	boolean removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -84,7 +85,7 @@ public interface CaptureOperations {
 	 * @param cardInputId
 	 * @return
 	 */
-	boolean removeCardInput( int cardInputId ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeCardInput( int cardInputId ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - POST
@@ -94,7 +95,7 @@ public interface CaptureOperations {
 	 * @param value
 	 * @return
 	 */
-	boolean updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -104,6 +105,6 @@ public interface CaptureOperations {
 	 * @param value
 	 * @return
 	 */
-	boolean updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException;
 
 }

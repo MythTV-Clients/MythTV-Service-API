@@ -19,8 +19,6 @@
  */
 package org.mythtv.services.api.capture.impl;
 
-import java.util.List;
-
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.Int;
@@ -52,48 +50,45 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 * @see org.mythtv.services.api.capture.CaptureOperations#addCaptureCard(org.mythtv.services.api.capture.CaptureCard)
 	 */
 	@Override
-	public int addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException {
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCaptureCard", convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
-		Int integer = responseEntity.getBody();
-		return integer.getInteger();
+	public ResponseEntity<Int> addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException {
+		return restOperations.exchange( buildUri( "AddCaptureCard", convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#addCardInput(org.mythtv.services.api.capture.CardInput)
 	 */
 	@Override
-	public int addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException {
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCardInput", convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
-		Int integer = responseEntity.getBody();
-		return integer.getInteger();
+	public ResponseEntity<Int> addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException {
+		return restOperations.exchange( buildUri( "AddCardInput", convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCard(int)
 	 */
 	@Override
-	public CaptureCardWrapper getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<CaptureCardWrapper> getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( "GetCaptureCard", "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(etag), CaptureCardWrapper.class );
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return responseEntity.getBody();
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+		
+		return responseEntity;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCardList()
 	 */
 	@Override
-	public List<CaptureCard> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList" ), HttpMethod.GET, getRequestEntity(etag), CaptureCardList.class );
-		CaptureCardList captureCardList = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return captureCardList.getCaptureCards().getCaptureCards();
+	public ResponseEntity<CaptureCardList> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException {
+		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList" ), HttpMethod.GET, getRequestEntity( etag ), CaptureCardList.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+		
+		return responseEntity;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCardList(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<CaptureCard> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<CaptureCardList> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
 		if( null != hostName && !"".equals( hostName ) ) {
@@ -105,64 +100,58 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		}
 		
 		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList", parameters ), HttpMethod.GET, getRequestEntity(etag), CaptureCardList.class );
-		CaptureCardList captureCardList = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return captureCardList.getCaptureCards().getCaptureCards();
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#removeCaptureCard(int)
 	 */
 	@Override
-	public boolean removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardId", new String( "" + cardId ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(etag), Bool.class );
-		Bool bool = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return bool.getBool();
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+		
+		return responseEntity;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#removeCardInput(int)
 	 */
 	@Override
-	public boolean removeCardInput( int cardInputId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeCardInput( int cardInputId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardInputId", new String( "" + cardInputId ) );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
-		return bool.getBool();
+		return restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#updateCaptureCard(int, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardId", new String( "" + cardId ) );
 		parameters.add( setting, value );
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
-		return bool.getBool();
+		return restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.capture.CaptureOperations#updateCardInput(int, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardInputId", new String( "" + cardInputId ) );
 		parameters.add( setting, value );
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
-		return bool.getBool();
+		return restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
 	}
 
 	// internal helpers
