@@ -19,11 +19,12 @@
  */
 package org.mythtv.services.api.myth;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.mythtv.services.api.StringList;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author Daniel Frey
@@ -39,14 +40,14 @@ public interface MythOperations {
 	 * @param hostName
 	 * @return
 	 */
-	boolean addStorageGroupDir( String groupName, String directoryName, String hostName ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
 	 * 
 	 * @return
 	 */
-	boolean backupDatabase() throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> backupDatabase() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -56,7 +57,7 @@ public interface MythOperations {
 	 * @param newPassword
 	 * @return
 	 */
-	boolean changePassword( String username, String oldPassword, String newPassword ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> changePassword( String username, String oldPassword, String newPassword ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -64,7 +65,7 @@ public interface MythOperations {
 	 * @param repair
 	 * @return
 	 */
-	boolean checkDatabase( boolean repair ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> checkDatabase( boolean repair ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -72,28 +73,28 @@ public interface MythOperations {
 	 * @param pin
 	 * @return
 	 */
-	ConnectionInfo getConnectionInfo( String pin, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ConnectionInfo> getConnectionInfo( String pin, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String getHostName() throws MythServiceApiRuntimeException;
+	ResponseEntity<String> getHostName() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<String> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<StringList> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<String> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<StringList> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -112,7 +113,7 @@ public interface MythOperations {
 	 * @param messageContains
 	 * @return
 	 */
-	List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LogMessageList> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -122,7 +123,7 @@ public interface MythOperations {
 	 * @param defaultValue
 	 * @return
 	 */
-	List<Setting> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<SettingList> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -131,49 +132,49 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	List<StorageGroupDirectory> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	TimeZoneInfo getTimeZoneInfo() throws MythServiceApiRuntimeException;
+	ResponseEntity<TimeZoneInfo> getTimeZoneInfo() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
 	 * 
 	 * @return
 	 */
-	boolean profileDelete() throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> profileDelete() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
 	 * 
 	 * @return
 	 */
-	boolean profileSubmit() throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> profileSubmit() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String profileText() throws MythServiceApiRuntimeException;
+	ResponseEntity<String> profileText() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String profileUrl() throws MythServiceApiRuntimeException;
+	ResponseEntity<String> profileUrl() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	String profileUpdated() throws MythServiceApiRuntimeException;
+	ResponseEntity<String> profileUpdated() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -183,7 +184,7 @@ public interface MythOperations {
 	 * @param value
 	 * @return
 	 */
-	boolean putSetting( String hostname, String key, String value ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> putSetting( String hostname, String key, String value ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -193,7 +194,7 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	boolean removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -204,7 +205,7 @@ public interface MythOperations {
 	 * @param timeout
 	 * @return
 	 */
-	boolean sendMessage( String message, String address, int udpPort, int timeout ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> sendMessage( String message, String address, int udpPort, int timeout ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -216,6 +217,6 @@ public interface MythOperations {
 	 * @param databasePort
 	 * @return
 	 */
-	boolean testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort ) throws MythServiceApiRuntimeException;
 	
 }

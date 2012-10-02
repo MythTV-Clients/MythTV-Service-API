@@ -31,13 +31,14 @@ import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.dvr.Program;
+import org.mythtv.services.api.dvr.ProgramWrapper;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.ProgramGuideWrapper;
-import org.mythtv.services.api.guide.ProgramWrapper;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author Sebastien Astie
- *
+ * 
  */
 public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
@@ -45,74 +46,88 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	private int chanid = 2502;
 	private DateTime now;
 	private DateTime tomorrow;
-	
+
 	private GuideOperations operations;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
 	 */
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
 		now = new DateTime();
-		tomorrow = now.plus(  Period.days( 1 ) );
+		tomorrow = now.plus( Period.days( 1 ) );
 		operations = api.guideOperations();
-		iconsize = Integer.parseInt(properties.getProperty("MythServicesServiceProvider.GuideOperationsTest.IconSize", "512"));
-		chanid = Integer.parseInt(properties.getProperty("MythServicesServiceProvider.GuideOperationsTest.ChannelId", "2502"));
+		iconsize = Integer.parseInt( properties.getProperty(
+				"MythServicesServiceProvider.GuideOperationsTest.IconSize", "512" ) );
+		chanid = Integer.parseInt( properties.getProperty( "MythServicesServiceProvider.GuideOperationsTest.ChannelId",
+				"2502" ) );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getChannelIcon(int, int, int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getChannelIcon(int, int, int)}
+	 * .
 	 */
 	@Test
 	public void testGetChannelIcon() throws MythServiceApiRuntimeException {
-		String res = operations.getChannelIcon(chanid, iconsize, iconsize, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(res);
+		ResponseEntity<String> res = operations.getChannelIcon( chanid, iconsize, iconsize, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( res.getBody() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramDetails(int, org.joda.time.DateTime)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramDetails(int, org.joda.time.DateTime)}
+	 * .
 	 */
 	@Test
 	public void testGetProgramDetails() throws MythServiceApiRuntimeException {
 		// let's run getProgramGuide to get an actual program.
-		DateTime fourHours = now.plus(Period.hours(4));
-		ProgramGuideWrapper guideWrapper = operations.getProgramGuide(now, fourHours, 0, 10, false, ETagInfo.createEmptyETag());
-		List<ChannelInfo> channels = guideWrapper.getProgramGuide().getChannels();
-		Assert.assertNotNull(channels);
-		Assert.assertFalse("No channels retuned", channels.isEmpty());
-		ChannelInfo chan = channels.get(0);
+		DateTime fourHours = now.plus( Period.hours( 4 ) );
+		ResponseEntity<ProgramGuideWrapper> guideWrapper = operations.getProgramGuide( now, fourHours, 0, 10, false, ETagInfo.createEmptyETag() );
+		List<ChannelInfo> channels = guideWrapper.getBody().getProgramGuide().getChannels();
+		Assert.assertNotNull( channels );
+		Assert.assertFalse( "No channels retuned", channels.isEmpty() );
+		ChannelInfo chan = channels.get( 0 );
 		List<Program> programs = chan.getPrograms();
-		Assert.assertFalse("No programs retuned", programs.isEmpty());
-		ProgramWrapper p = operations.getProgramDetails(Integer.parseInt(chan.getChannelId()), programs.get(0).getStartTime(), ETagInfo.createEmptyETag());
-		Assert.assertNotNull("ProgramWrapper is null", p);
-		Assert.assertNotNull("Program is null", p.getProgram());		
+		Assert.assertFalse( "No programs retuned", programs.isEmpty() );
+		ResponseEntity<ProgramWrapper> p = operations.getProgramDetails( Integer.parseInt( chan.getChannelId() ), programs.get( 0 ).getStartTime(), ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( "ProgramWrapper is null", p.getBody() );
+		Assert.assertNotNull( "Program is null", p.getBody().getProgram() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}
+	 * .
 	 */
 	@Test
 	public void testGetProgramGuide() throws MythServiceApiRuntimeException {
-		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(guide);
+		ResponseEntity<ProgramGuideWrapper> guide = operations.getProgramGuide( now, tomorrow, 0, 100, true, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( guide.getBody() );
 	}
-	
+
 	/**
-	 * Test method for {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}
+	 * .
 	 */
-	@Ignore("Use only against a live 0.26 backend")
+	@Ignore( "Use only against a live 0.26 backend" )
 	@Test
 	public void testGetProgramGuideWithEtag() throws MythServiceApiRuntimeException {
 		ETagInfo etag = ETagInfo.createEmptyETag();
-		ProgramGuideWrapper guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true, etag);
-		Assert.assertNotNull(guide);
-		// make sure that we now have the etag marked as a new one (retrieved from previous call)
-		Assert.assertTrue(etag.isNewDataEtag());
-		guide =  operations.getProgramGuide(now, tomorrow, 0, 100, true, etag);
+		ResponseEntity<ProgramGuideWrapper> guide = operations.getProgramGuide( now, tomorrow, 0, 100, true, etag );
+		Assert.assertNotNull( guide.getBody() );
+		// make sure that we now have the etag marked as a new one (retrieved
+		// from previous call)
+		Assert.assertTrue( etag.isNewDataEtag() );
+		guide = operations.getProgramGuide( now, tomorrow, 0, 100, true, etag );
 		// etag should be the same
-		Assert.assertFalse(etag.isNewDataEtag());
+		Assert.assertFalse( etag.isNewDataEtag() );
 		// because of the etag matching no data will be returned.
-		Assert.assertNull(guide);
+		Assert.assertNull( guide.getBody() );
 	}
+	
 }

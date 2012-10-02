@@ -22,6 +22,7 @@ package org.mythtv.services.api.guide;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.mythtv.services.api.dvr.ProgramWrapper;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -38,7 +39,7 @@ public interface GuideOperations {
 	 * @param height
 	 * @return
 	 */
-	String getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<String> getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -47,16 +48,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ProgramWrapper getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
-
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
-	 * @param startTime
-	 * @return
-	 */
-	ResponseEntity<ProgramWrapper> getProgramResponseEntity( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -68,16 +60,6 @@ public interface GuideOperations {
 	 * @param details
 	 * @return
 	 */
-	ProgramGuideWrapper getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramGuideWrapper> getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
-	/**
-	 * @param start
-	 * @param end
-	 * @param startChannelId
-	 * @param numberOfChannels
-	 * @param details
-	 * @return
-	 */
-	ResponseEntity<ProgramGuideWrapper> getProgramGuideResponseEntity( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException;
-
 }

@@ -19,16 +19,16 @@
  */
 package org.mythtv.services.api.myth.impl;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.mythtv.services.api.StringList;
 import org.mythtv.services.api.myth.ConnectionInfo;
-import org.mythtv.services.api.myth.LogMessage;
+import org.mythtv.services.api.myth.LogMessageList;
 import org.mythtv.services.api.myth.MythOperations;
-import org.mythtv.services.api.myth.Setting;
-import org.mythtv.services.api.myth.StorageGroupDirectory;
+import org.mythtv.services.api.myth.SettingList;
+import org.mythtv.services.api.myth.StorageGroupDirectoryList;
 import org.mythtv.services.api.myth.TimeZoneInfo;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,7 @@ import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
- *
+ * 
  */
 public class MythTemplate extends AbstractMythOperations implements MythOperations {
 
@@ -47,199 +47,274 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 		this.restOperations = restOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#addStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#addStorageGroupDir(java.lang
+	 * .String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean addStorageGroupDir( String groupName, String directoryName, String hostName ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName )
+			throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#backupDatabase()
 	 */
 	@Override
-	public boolean backupDatabase() throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> backupDatabase() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#changePassword(java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#changePassword(java.lang.
+	 * String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean changePassword( String username, String oldPassword, String newPassword ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> changePassword( String username, String oldPassword, String newPassword )
+			throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#checkDatabase(boolean)
 	 */
 	@Override
-	public boolean checkDatabase( boolean repair ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> checkDatabase( boolean repair ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#getConnectionInfo(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#getConnectionInfo(java.lang
+	 * .String)
 	 */
 	@Override
-	public ConnectionInfo getConnectionInfo( String pin, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		
-		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( "GetConnectionInfo" ), HttpMethod.GET, getRequestEntity(null), ConnectionInfo.class );
-		ConnectionInfo connectionInfo = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return connectionInfo;
+	public ResponseEntity<ConnectionInfo> getConnectionInfo( String pin, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
+
+		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( "GetConnectionInfo" ),
+				HttpMethod.GET, getRequestEntity( null ), ConnectionInfo.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#getHostName()
 	 */
 	@Override
-	public String getHostName() throws MythServiceApiRuntimeException {
+	public ResponseEntity<String> getHostName() throws MythServiceApiRuntimeException {
 
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHostName" ), HttpMethod.GET, getRequestEntity(null), String.class );
-		String hostname = responseEntity.getBody();
-		
-		return hostname;
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHostName" ), HttpMethod.GET,
+				getRequestEntity( null ), String.class );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#getHosts()
 	 */
 	@Override
-	public List<String> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<StringList> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#getKeys()
 	 */
 	@Override
-	public List<String> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<StringList> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#getLogs(java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.util.Date, java.util.Date, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#getLogs(java.lang.String,
+	 * java.lang.String, int, int, java.lang.String, java.lang.String, int,
+	 * java.lang.String, java.util.Date, java.util.Date, java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
-	public List<LogMessage> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<LogMessageList> getLogs( String hostname, String application, int pid, int tid, String thread,
+			String filename, int line, String function, DateTime from, DateTime to, String level,
+			String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#getSetting(java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#getSetting(java.lang.String,
+	 * java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<Setting> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<SettingList> getSetting( String hostname, String key, String defaultValue, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#getStoreageGroupDirectories(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#getStoreageGroupDirectories
+	 * (java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<StorageGroupDirectory> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#getTimeZoneInfo()
 	 */
 	@Override
-	public TimeZoneInfo getTimeZoneInfo() throws MythServiceApiRuntimeException {
+	public ResponseEntity<TimeZoneInfo> getTimeZoneInfo() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#profileDelete()
 	 */
 	@Override
-	public boolean profileDelete() throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> profileDelete() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#profileSubmit()
 	 */
 	@Override
-	public boolean profileSubmit() throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> profileSubmit() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#profileText()
 	 */
 	@Override
-	public String profileText() throws MythServiceApiRuntimeException {
+	public ResponseEntity<String> profileText() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#profileUrl()
 	 */
 	@Override
-	public String profileUrl() throws MythServiceApiRuntimeException {
+	public ResponseEntity<String> profileUrl() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.myth.MythOperations#profileUpdated()
 	 */
 	@Override
-	public String profileUpdated() throws MythServiceApiRuntimeException {
+	public ResponseEntity<String> profileUpdated() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#putSetting(java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#putSetting(java.lang.String,
+	 * java.lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean putSetting( String hostname, String key, String value ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> putSetting( String hostname, String key, String value ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#removeStorageGroupDirectory(java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#removeStorageGroupDirectory
+	 * (java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname )
+			throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#sendMessage(java.lang.String, java.lang.String, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#sendMessage(java.lang.String,
+	 * java.lang.String, int, int)
 	 */
 	@Override
-	public boolean sendMessage( String message, String address, int udpPort, int timeout ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendMessage( String message, String address, int udpPort, int timeout )
+			throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.myth.MythOperations#testDatabaseSettings(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.myth.MythOperations#testDatabaseSettings(java
+	 * .lang.String, java.lang.String, java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public boolean testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> testDatabaseSettings( String hostname, String username, String password, String databaseName,
+			int databasePort ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
-	
+
 }
