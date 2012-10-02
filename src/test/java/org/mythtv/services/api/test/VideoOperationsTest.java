@@ -21,8 +21,6 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -30,20 +28,23 @@ import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.video.BlurayInfoWrapper;
-import org.mythtv.services.api.video.VideoLookup;
+import org.mythtv.services.api.video.VideoLookupList;
 import org.mythtv.services.api.video.VideoMetaDataInfoWrapper;
-import org.mythtv.services.api.video.VideoMetadataInfo;
+import org.mythtv.services.api.video.VideoMetadataInfoList;
 import org.mythtv.services.api.video.VideoOperations;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author Sebastien Astie
- *
+ * 
  */
 public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	private VideoOperations videoOperations;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
 	 */
 	@Before
@@ -53,66 +54,82 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#addVideo(java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#addVideo(java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Ignore
 	public void testAddVideo() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getBluray(java.lang.String)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getBluray(java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testGetBluray() throws MythServiceApiRuntimeException {
-		BlurayInfoWrapper info = videoOperations.getBluray("/path/to/video", ETagInfo.createEmptyETag());
-		Assert.assertNotNull(info);
+		ResponseEntity<BlurayInfoWrapper> info = videoOperations.getBluray( "/path/to/video",
+				ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( info.getBody() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideo(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideo(int)}.
 	 */
 	@Test
 	public void testGetVideo() throws MythServiceApiRuntimeException {
-		VideoMetaDataInfoWrapper info = videoOperations.getVideo(1, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(info);
+		ResponseEntity<VideoMetaDataInfoWrapper> info = videoOperations.getVideo( 1, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( info.getBody() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoByFilename(java.lang.String)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoByFilename(java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testGetVideoByFilename() throws MythServiceApiRuntimeException {
-		VideoMetaDataInfoWrapper info = videoOperations.getVideoByFilename("/path/to/video", ETagInfo.createEmptyETag());
-		Assert.assertNotNull(info);
+		ResponseEntity<VideoMetaDataInfoWrapper> info = videoOperations.getVideoByFilename( "/path/to/video",
+				ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( info.getBody() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoList(boolean, int, int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoList(boolean, int, int)}
+	 * .
 	 */
 	@Test
 	public void testGetVideoList() throws MythServiceApiRuntimeException {
-		List<VideoMetadataInfo> list = videoOperations.getVideoList(false, 0, 10, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
+		ResponseEntity<VideoMetadataInfoList> list = videoOperations.getVideoList( false, 0, 10, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoMetadataInfos().getVideoMetadataInfos().isEmpty() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#lookupVideo(java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, boolean)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#lookupVideo(java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, boolean)}
+	 * .
 	 */
 	@Test
 	public void testLookupVideo() throws MythServiceApiRuntimeException {
-		List<VideoLookup> list = videoOperations.lookupVideo("test", "", "", 1, 1, "", true, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
+		ResponseEntity<VideoLookupList> list = videoOperations.lookupVideo( "test", "", "", 1, 1, "", true,
+				ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoLookups().getVideoLookups().isEmpty() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.video.impl.VideoTemplate#removeVideoFromDatabase(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#removeVideoFromDatabase(int)}
+	 * .
 	 */
 	@Ignore
 	public void testRemoveVideoFromDatabase() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 }

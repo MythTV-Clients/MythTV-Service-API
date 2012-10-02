@@ -19,16 +19,12 @@
  */
 package org.mythtv.services.api.video.impl;
 
-import java.util.List;
-
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.video.BlurayInfoWrapper;
-import org.mythtv.services.api.video.VideoLookup;
 import org.mythtv.services.api.video.VideoLookupList;
 import org.mythtv.services.api.video.VideoMetaDataInfoWrapper;
-import org.mythtv.services.api.video.VideoMetadataInfo;
 import org.mythtv.services.api.video.VideoMetadataInfoList;
 import org.mythtv.services.api.video.VideoOperations;
 import org.springframework.http.HttpMethod;
@@ -38,7 +34,7 @@ import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
- *
+ * 
  */
 public class VideoTemplate extends AbstractVideoOperations implements VideoOperations {
 
@@ -49,76 +45,100 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		this.restOperations = restOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.video.VideoOperations#addVideo(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.video.VideoOperations#addVideo(java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
-	public boolean addVideo( String filename, String hostname ) throws MythServiceApiRuntimeException{
+	public ResponseEntity<Bool> addVideo( String filename, String hostname ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "FileName", filename );
 		parameters.add( "HostName", hostname );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddVideo", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddVideo", parameters ),
+				HttpMethod.GET, getRequestEntity( null ), Bool.class );
 
-		return bool.getBool();
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.video.VideoOperations#getBluray(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.video.VideoOperations#getBluray(java.lang.String)
 	 */
 	@Override
-	public BlurayInfoWrapper getBluray( String path, ETagInfo etag ) throws MythServiceApiRuntimeException{
+	public ResponseEntity<BlurayInfoWrapper> getBluray( String path, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Path", path );
 
-		ResponseEntity<BlurayInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetBluray", parameters ), HttpMethod.GET, getRequestEntity(etag), BlurayInfoWrapper.class );
-		BlurayInfoWrapper blurayInfo = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return blurayInfo;
+		ResponseEntity<BlurayInfoWrapper> responseEntity = restOperations.exchange(
+				buildUri( "GetBluray", parameters ), HttpMethod.GET, getRequestEntity( etag ), BlurayInfoWrapper.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.video.VideoOperations#getVideo(int)
 	 */
 	@Override
-	public VideoMetaDataInfoWrapper getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<VideoMetaDataInfoWrapper> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 
-		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetVideo", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMetaDataInfoWrapper.class );
-		VideoMetaDataInfoWrapper videoMetadataInfo = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return videoMetadataInfo;
+		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange(
+				buildUri( "GetVideo", parameters ), HttpMethod.GET, getRequestEntity( etag ),
+				VideoMetaDataInfoWrapper.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.video.VideoOperations#getVideByFilename(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.video.VideoOperations#getVideByFilename(java.
+	 * lang.String)
 	 */
 	@Override
-	public VideoMetaDataInfoWrapper getVideoByFilename( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<VideoMetaDataInfoWrapper> getVideoByFilename( String filename, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "FileName", filename );
 
-		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetVideoByFileName", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMetaDataInfoWrapper.class );
-		VideoMetaDataInfoWrapper videoMetadataInfo = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return videoMetadataInfo;
+		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange(
+				buildUri( "GetVideoByFileName", parameters ), HttpMethod.GET, getRequestEntity( etag ),
+				VideoMetaDataInfoWrapper.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.video.VideoOperations#getVideoList(boolean, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.mythtv.services.api.video.VideoOperations#getVideoList(boolean,
+	 * int, int)
 	 */
 	@Override
-	public List<VideoMetadataInfo> getVideoList( boolean descending, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<VideoMetadataInfoList> getVideoList( boolean descending, int startIndex, int count, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Descending", Boolean.toString( descending ) );
-		
+
 		if( startIndex > 0 ) {
 			parameters.add( "StartIndex", "" + startIndex );
 		}
@@ -127,21 +147,29 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<VideoMetadataInfoList> responseEntity = restOperations.exchange( buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMetadataInfoList.class );
-		VideoMetadataInfoList videoMetadataInfoList = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return videoMetadataInfoList.getVideoMetadataInfos().getVideoMetadataInfos();
+		ResponseEntity<VideoMetadataInfoList> responseEntity = restOperations.exchange(
+				buildUri( "GetVideoList", parameters ), HttpMethod.GET, getRequestEntity( etag ),
+				VideoMetadataInfoList.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.video.VideoOperations#lookupVideo(java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.video.VideoOperations#lookupVideo(java.lang.String
+	 * , java.lang.String, java.lang.String, int, int, java.lang.String,
+	 * boolean)
 	 */
 	@Override
-	public List<VideoLookup> lookupVideo( String title, String subtitle, String inetRef, int season, int episode, String grabberType, boolean allowGeneric, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<VideoLookupList> lookupVideo( String title, String subtitle, String inetRef, int season, int episode,
+			String grabberType, boolean allowGeneric, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Title", title );
-		
+
 		if( null != subtitle && !"".equals( subtitle ) ) {
 			parameters.add( "Subtitle", subtitle );
 		}
@@ -158,25 +186,30 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 			parameters.add( "Episode", "" + episode );
 		}
 
-		ResponseEntity<VideoLookupList> responseEntity = restOperations.exchange( buildUri( "LookupVideo", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoLookupList.class );
-		VideoLookupList videoLookupList = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return videoLookupList.getVideoLookups().getVideoLookups();
+		ResponseEntity<VideoLookupList> responseEntity = restOperations.exchange(
+				buildUri( "LookupVideo", parameters ), HttpMethod.GET, getRequestEntity( etag ), VideoLookupList.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.video.VideoOperations#removeVideoFromDatabase(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.video.VideoOperations#removeVideoFromDatabase
+	 * (int)
 	 */
 	@Override
-	public boolean removeVideoFromDatabase( int id ) {
+	public ResponseEntity<Bool> removeVideoFromDatabase( int id ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
-		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveVideoFromDB", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
 
-		return bool.getBool();
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveVideoFromDB", parameters ),
+				HttpMethod.GET, getRequestEntity( null ), Bool.class );
+
+		return responseEntity;
 	}
-	
+
 }

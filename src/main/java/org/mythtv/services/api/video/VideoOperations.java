@@ -19,10 +19,10 @@
  */
 package org.mythtv.services.api.video;
 
-import java.util.List;
-
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author Daniel Frey
@@ -37,7 +37,7 @@ public interface VideoOperations {
 	 * @param hostname
 	 * @return
 	 */
-	boolean addVideo( String filename, String hostname ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> addVideo( String filename, String hostname ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -45,7 +45,7 @@ public interface VideoOperations {
 	 * @param path
 	 * @return
 	 */
-	BlurayInfoWrapper getBluray( String path, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<BlurayInfoWrapper> getBluray( String path, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -53,7 +53,7 @@ public interface VideoOperations {
 	 * @param id
 	 * @return
 	 */
-	VideoMetaDataInfoWrapper getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<VideoMetaDataInfoWrapper> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -61,7 +61,7 @@ public interface VideoOperations {
 	 * @param filename
 	 * @return
 	 */
-	VideoMetaDataInfoWrapper getVideoByFilename( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<VideoMetaDataInfoWrapper> getVideoByFilename( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -71,7 +71,7 @@ public interface VideoOperations {
 	 * @param count
 	 * @return
 	 */
-	List<VideoMetadataInfo> getVideoList( boolean descending, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<VideoMetadataInfoList> getVideoList( boolean descending, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -85,7 +85,7 @@ public interface VideoOperations {
 	 * @param allowGeneric
 	 * @return
 	 */
-	List<VideoLookup> lookupVideo( String title, String subtitle, String inetRef, int season, int episode, String grabberType, boolean allowGeneric, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<VideoLookupList> lookupVideo( String title, String subtitle, String inetRef, int season, int episode, String grabberType, boolean allowGeneric, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -93,6 +93,6 @@ public interface VideoOperations {
 	 * @param id
 	 * @return
 	 */
-	boolean removeVideoFromDatabase( int id ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeVideoFromDatabase( int id ) throws MythServiceApiRuntimeException;
 	
 }
