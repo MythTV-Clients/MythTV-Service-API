@@ -32,7 +32,7 @@ import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
- *
+ * 
  */
 public class FrontendTemplate extends AbstractFrontendOperations implements FrontendOperations {
 
@@ -43,61 +43,90 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		this.restOperations = restOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.frontend.FrontendOperations#getStatus(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.frontend.FrontendOperations#getStatus(java.lang
+	 * .String)
 	 */
 	@Override
-	public FrontendStatus getStatus( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<FrontendStatus> getStatus( String frontedApiUrlBase, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
+
+		ResponseEntity<FrontendStatus> responseEntity = restOperations.exchange( frontedApiUrlBase
+				+ "/Frontend/GetStatus", HttpMethod.GET, getRequestEntity( etag ), FrontendStatus.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
-		ResponseEntity<FrontendStatus> responseEntity = restOperations.exchange( frontedApiUrlBase + "/Frontend/GetStatus", HttpMethod.GET, getRequestEntity(etag), FrontendStatus.class );
-		FrontendStatus frontendStatus = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return frontendStatus;
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.frontend.FrontendOperations#sendMessage(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.frontend.FrontendOperations#sendMessage(java.
+	 * lang.String, java.lang.String)
 	 */
 	@Override
-	public boolean sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Message", message );
-		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase + "/Frontend/SendMessage", parameters), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
-		return bool.getBool();
+
+		ResponseEntity<Bool> responseEntity = restOperations.exchange(
+				buildUri( frontedApiUrlBase + "/Frontend/SendMessage", parameters ), HttpMethod.GET,
+				getRequestEntity( null ), Bool.class );
+
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.frontend.FrontendOperations#sendAction(java.lang.String, java.lang.String, java.lang.String, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.frontend.FrontendOperations#sendAction(java.lang
+	 * .String, java.lang.String, java.lang.String, int, int)
 	 */
 	@Override
-	public boolean sendAction( String frontedApiUrlBase, String action, String file, int width, int height ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendAction( String frontedApiUrlBase, String action, String file, int width, int height )
+			throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Action", action );
-		if(null != file) parameters.add( "File", file );
-		if(width > 0 && height > 0){
+		
+		if( null != file ) {
+			parameters.add( "File", file );
+		}
+		
+		if( width > 0 && height > 0 ) {
 			parameters.add( "Width", "" + width );
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
-		Bool bool = responseEntity.getBody();
-		return bool.getBool();
+		ResponseEntity<Bool> responseEntity = restOperations.exchange(
+				buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ), HttpMethod.GET,
+				getRequestEntity( null ), Bool.class );
+		
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.frontend.FrontendOperations#getActionList(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mythtv.services.api.frontend.FrontendOperations#getActionList(java
+	 * .lang.String)
 	 */
 	@Override
-	public FrontendActionList getActionList( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException {
-	
-		ResponseEntity<FrontendActionList> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase + "/Frontend/GetActionList" ), HttpMethod.GET, getRequestEntity(etag), FrontendActionList.class );
-		FrontendActionList frontendActionList = responseEntity.getBody();
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return frontendActionList;
+	public ResponseEntity<FrontendActionList> getActionList( String frontedApiUrlBase, ETagInfo etag )
+			throws MythServiceApiRuntimeException {
+
+		ResponseEntity<FrontendActionList> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase
+				+ "/Frontend/GetActionList" ), HttpMethod.GET, getRequestEntity( etag ), FrontendActionList.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+		
+		return responseEntity;
 	}
-	
+
 }

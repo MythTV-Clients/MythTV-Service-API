@@ -19,8 +19,10 @@
  */
 package org.mythtv.services.api.frontend;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author Daniel Frey
@@ -34,7 +36,7 @@ public interface FrontendOperations {
 	 * @param frontedApiUrlBase
 	 * @return
 	 */
-	FrontendStatus getStatus( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<FrontendStatus> getStatus( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -43,7 +45,7 @@ public interface FrontendOperations {
 	 * @param message
 	 * @return
 	 */
-	boolean sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -55,7 +57,7 @@ public interface FrontendOperations {
 	 * @param height
 	 * @return
 	 */
-	boolean sendAction( String frontedApiUrlBase, String action, String file, int width, int height ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> sendAction( String frontedApiUrlBase, String action, String file, int width, int height ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -63,6 +65,6 @@ public interface FrontendOperations {
 	 * @param frontedApiUrlBase
 	 * @return
 	 */
-	FrontendActionList getActionList( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<FrontendActionList> getActionList( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 }
