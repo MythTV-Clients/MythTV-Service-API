@@ -21,34 +21,35 @@ package org.mythtv.services.api.test;
 
 import static org.junit.Assert.fail;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.channel.ChannelInfo;
+import org.mythtv.services.api.StringList;
 import org.mythtv.services.api.channel.ChannelInfoList;
 import org.mythtv.services.api.channel.ChannelInfoWrapper;
 import org.mythtv.services.api.channel.ChannelOperations;
-import org.mythtv.services.api.channel.Lineup;
-import org.mythtv.services.api.channel.VideoMultiplex;
+import org.mythtv.services.api.channel.LineupList;
+import org.mythtv.services.api.channel.VideoMultiplexList;
 import org.mythtv.services.api.channel.VideoMultiplexWrapper;
-import org.mythtv.services.api.channel.VideoSource;
+import org.mythtv.services.api.channel.VideoSourceList;
 import org.mythtv.services.api.channel.VideoSourceWrapper;
 import org.springframework.http.ResponseEntity;
 
 /**
  * @author sebastien
- *
+ * 
  */
 public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	private ChannelOperations operations;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
 	 */
 	@Before
@@ -58,179 +59,192 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Ignore
 	public void testAddDBChannel() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}
+	 * .
 	 */
 	@Ignore
 	public void testAddVideoSource() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#fetchChannelsFromSource(int, int, boolean)}.
-	 * @throws MythServiceApiRuntimeException 
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#fetchChannelsFromSource(int, int, boolean)}
+	 * .
+	 * 
+	 * @throws MythServiceApiRuntimeException
 	 */
 	@Test
 	public void testFetchChannelsFromSource() throws MythServiceApiRuntimeException {
-		int val = operations.fetchChannelsFromSource(1, 2, true, ETagInfo.createEmptyETag());
-		Assert.assertEquals(358, val);
+		ResponseEntity<Int> responseEntity = operations.fetchChannelsFromSource( 1, 2, true, ETagInfo.createEmptyETag() );
+		Assert.assertEquals( 358, responseEntity.getBody().getInteger().intValue() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfo(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfo(int)}
+	 * .
 	 */
 	@Test
 	public void testGetChannelInfo() throws MythServiceApiRuntimeException {
-		ChannelInfoWrapper info = operations.getChannelInfo(1021, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(info);
+		ResponseEntity<ChannelInfoWrapper> info = operations.getChannelInfo( 1021, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( info.getBody() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList(int, int, int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList(int, int, int)}
+	 * .
 	 */
 	@Test
 	public void testGetChannelInfoListIntIntInt() throws MythServiceApiRuntimeException {
-		List<ChannelInfo> list = operations.getChannelInfoList(1, 1, 10, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
-		
+		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoList( 1, 1, 10, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getChannelInfos().getChannelInfos().isEmpty() );
+
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoListResponseEntity(int, int, int)}.
-	 */
-	@Test
-	public void testGetChannelInfoListResponseEntityIntIntInt() throws MythServiceApiRuntimeException {
-		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(1, 1, 10, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertNotNull(list.getBody().getChannelInfos());
-	}
-
-	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList()}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList()}
+	 * .
 	 */
 	@Test
 	public void testGetChannelInfoList() throws MythServiceApiRuntimeException {
-		List<ChannelInfo> list = operations.getChannelInfoList(ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
+		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoList( ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getChannelInfos().getChannelInfos().isEmpty() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoListResponseEntity()}.
-	 */
-	@Test
-	public void testGetChannelInfoListResponseEntity() throws MythServiceApiRuntimeException {
-		ResponseEntity<ChannelInfoList> list = operations.getChannelInfoListResponseEntity(ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertNotNull(list.getBody().getChannelInfos());
-	}
-
-	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testGetDDLineupList() throws MythServiceApiRuntimeException {
-		List<Lineup> list = operations.getDDLineupList("SchedulesDirect", "user", "password", ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
+		ResponseEntity<LineupList> list = operations.getDDLineupList( "SchedulesDirect", "user", "password", ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list );
+		Assert.assertFalse( list.getBody().getLineups().getLineups().isEmpty() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplex(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplex(int)}
+	 * .
 	 */
 	@Test
 	public void testGetVideoMultiplex() throws MythServiceApiRuntimeException {
-		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
-		VideoMultiplexWrapper mplex = operations.getVideoMultiplex(list.get(0).getMultiplexId(), ETagInfo.createEmptyETag());
-		Assert.assertNotNull(mplex);
-		Assert.assertNotNull(mplex.getVideoMultiplex());
+		ResponseEntity<VideoMultiplexList> list = operations.getVideoMultiplexList( 1, 0, 10, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoMultiplexes().getVideoMultiplexes().isEmpty() );
+		ResponseEntity<VideoMultiplexWrapper> mplex = operations.getVideoMultiplex( list.getBody().getVideoMultiplexes().getVideoMultiplexes().get( 0 ).getMultiplexId(), ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( mplex.getBody() );
+		Assert.assertNotNull( mplex.getBody().getVideoMultiplex() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplexList(int, int, int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplexList(int, int, int)}
+	 * .
 	 */
 	@Test
 	public void testGetVideoMultiplexList() throws MythServiceApiRuntimeException {
-		List<VideoMultiplex> list = operations.getVideoMultiplexList(1, 0, 10, ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
+		ResponseEntity<VideoMultiplexList> list = operations.getVideoMultiplexList( 1, 0, 10, ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoMultiplexes().getVideoMultiplexes().isEmpty() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSource(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSource(int)}
+	 * .
 	 */
 	@Test
 	public void testGetVideoSource() throws MythServiceApiRuntimeException {
-		List<VideoSource> list = operations.getVideoSourceList(ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
-		VideoSourceWrapper source = operations.getVideoSource(list.get(0).getId(), ETagInfo.createEmptyETag());
-		Assert.assertNotNull(source);
+		ResponseEntity<VideoSourceList> list = operations.getVideoSourceList( ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoSources().getVideoSources().isEmpty() );
+		ResponseEntity<VideoSourceWrapper> source = operations.getVideoSource( list.getBody().getVideoSources().getVideoSources().get( 0 ).getId(), ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( source.getBody() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSourceList()}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSourceList()}
+	 * .
 	 */
 	@Test
 	public void testGetVideoSourceList() throws MythServiceApiRuntimeException {
-		List<VideoSource> list = operations.getVideoSourceList(ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
+		ResponseEntity<VideoSourceList> list = operations.getVideoSourceList( ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoSources().getVideoSources().isEmpty() );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getXmltvIdList(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getXmltvIdList(int)}
+	 * .
 	 */
 	@Test
 	public void testGetXmltvIdList() throws MythServiceApiRuntimeException {
-		List<VideoSource> list = operations.getVideoSourceList(ETagInfo.createEmptyETag());
-		Assert.assertNotNull(list);
-		Assert.assertFalse(list.isEmpty());
-		List<String> ids = operations.getXmltvIdList(list.get(0).getId(), ETagInfo.createEmptyETag());
-		Assert.assertNotNull(ids);
-		Assert.assertFalse(ids.isEmpty());
+		ResponseEntity<VideoSourceList> list = operations.getVideoSourceList( ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( list.getBody() );
+		Assert.assertFalse( list.getBody().getVideoSources().getVideoSources().isEmpty() );
+		ResponseEntity<StringList> ids = operations.getXmltvIdList( list.getBody().getVideoSources().getVideoSources().get( 0 ).getId(), ETagInfo.createEmptyETag() );
+		Assert.assertNotNull( ids.getBody() );
+		Assert.assertTrue( ids.getBody().getStringList().length > 0 );
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeDBChannel(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeDBChannel(int)}
+	 * .
 	 */
 	@Ignore
 	public void testRemoveDBChannel() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeVideoSource(int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeVideoSource(int)}
+	 * .
 	 */
 	@Ignore
 	public void testRemoveVideoSource() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Ignore
 	public void testUpdateDBChannel() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}.
+	 * Test method for
+	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}
+	 * .
 	 */
 	@Ignore
 	public void testUpdateVideoSource() {
-		fail("Not yet implemented"); // TODO
+		fail( "Not yet implemented" ); // TODO
 	}
 
 }

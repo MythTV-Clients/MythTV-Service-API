@@ -19,11 +19,12 @@
  */
 package org.mythtv.services.api.content;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.mythtv.services.api.StringList;
+import org.springframework.http.ResponseEntity;
 
 public interface ContentOperations {
 
@@ -41,7 +42,7 @@ public interface ContentOperations {
 	 * @param sampleRate
 	 * @return
 	 */
-	LiveStreamInfo addLiveStream( String storageGroup, String filename, String hostname, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfoWrapper> addLiveStream( String storageGroup, String filename, String hostname, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -56,7 +57,7 @@ public interface ContentOperations {
 	 * @param sampleRate
 	 * @return
 	 */
-	LiveStreamInfo addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfoWrapper> addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -70,7 +71,7 @@ public interface ContentOperations {
 	 * @param sampleRate
 	 * @return
 	 */
-	LiveStreamInfo addVideoLiveStream( int id, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfoWrapper> addVideoLiveStream( int id, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST
@@ -79,7 +80,7 @@ public interface ContentOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	boolean downloadFile( String url, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> downloadFile( String url, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -89,7 +90,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getAlbumArt( int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getAlbumArt( int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -98,7 +99,7 @@ public interface ContentOperations {
 	 * @param filename
 	 * @return
 	 */
-	byte[] getFile( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getFile( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -106,7 +107,7 @@ public interface ContentOperations {
 	 * @param storageGroup
 	 * @return
 	 */
-	List<String> getFileList( String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<StringList> getFileList( String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -114,7 +115,7 @@ public interface ContentOperations {
 	 * @param filename
 	 * @return
 	 */
-	List<LiveStreamInfo> getFilteredLiveStreamList( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfos> getFilteredLiveStreamList( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -123,7 +124,7 @@ public interface ContentOperations {
 	 * @param filename
 	 * @return
 	 */
-	String getHash( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<String> getHash( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -134,7 +135,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getImageFile( String storageGroup, String filename, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getImageFile( String storageGroup, String filename, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -142,14 +143,14 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	LiveStreamInfo getLiveStream( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfoWrapper> getLiveStream( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	List<LiveStreamInfo> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfos> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET
@@ -157,7 +158,7 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	byte[] getMusic( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getMusic( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -169,7 +170,7 @@ public interface ContentOperations {
 	 * @param secondsIn
 	 * @return
 	 */
-	byte[] getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -178,7 +179,7 @@ public interface ContentOperations {
 	 * @param season
 	 * @return
 	 */
-	List<ArtworkInfo> getProgramArtworkList( String inetRef, int season, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ArtworkInfos> getProgramArtworkList( String inetRef, int season, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -187,7 +188,7 @@ public interface ContentOperations {
 	 * @param startTime
 	 * @return
 	 */
-	byte[] getRecording( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getRecording( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -199,7 +200,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getRecordingArtwork( String type, String inetRef, int season, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getRecordingArtwork( String type, String inetRef, int season, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -208,7 +209,7 @@ public interface ContentOperations {
 	 * @param startTime
 	 * @return
 	 */
-	List<ArtworkInfo> getRecordingArtworkList( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ArtworkInfoList> getRecordingArtworkList( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -216,7 +217,7 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	byte[] getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -227,7 +228,7 @@ public interface ContentOperations {
 	 * @param height
 	 * @return
 	 */
-	byte[] getVideoArtwork( String type, int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<byte[]> getVideoArtwork( String type, int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -235,7 +236,7 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	boolean removeLiveStream( int id ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeLiveStream( int id ) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -243,6 +244,6 @@ public interface ContentOperations {
 	 * @param id
 	 * @return
 	 */
-	LiveStreamInfo stopLiveStream( int id ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfo> stopLiveStream( int id ) throws MythServiceApiRuntimeException;
 	
 }
