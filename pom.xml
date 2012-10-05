@@ -5,9 +5,6 @@
 	<version>0.0.10-SNAPSHOT</version>
 	<name>MythTV-Service-API</name>
 	
-	<url>https://github.com/MythTV-Android/MythTV-Service-API</url>
-	<description>MythTV Services API for android and java</description>
-
 	<licenses>
     
 		<license>
@@ -17,8 +14,12 @@
   	
   	</licenses>
 	
+	<url>https://github.com/MythTV-Android/MythTV-Service-API</url>
+	<description>MythTV Services API for android and java</description>
 	<scm>
-		<url>https://github.com/MythTV-Android/MythTV-Service-API.git</url>
+    	<connection>scm:git:git@github.com:MythTV-Android/MythTV-Service-API.git</connection>
+    	<developerConnection>scm:git:git@github.com:MythTV-Android/MythTV-Service-API.git</developerConnection>
+    	<url>git@github.com:MythTV-Android/MythTV-Service-API.git</url>
 	</scm>
 	
 	<properties>
@@ -28,6 +29,12 @@
 		<junit-version>4.10</junit-version>
 		<joda-time-version>2.1</joda-time-version>
 	</properties>
+	
+	<parent>
+    	<groupId>org.sonatype.oss</groupId>
+    	<artifactId>oss-parent</artifactId>
+    	<version>7</version>
+  	</parent>
 	
 	<dependencies>
 		
@@ -139,4 +146,39 @@
 
 	</build>
 	
+	<profiles>
+  		
+  		<profile>
+    	
+  		    <id>release-sign-artifacts</id>
+    		<activation>
+      			<property>
+        			<name>performRelease</name>
+        			<value>true</value>
+      			</property>
+    		</activation>
+    
+    		<build>
+      			<plugins>
+        			<plugin>
+          				<groupId>org.apache.maven.plugins</groupId>
+          				<artifactId>maven-gpg-plugin</artifactId>
+          				<version>1.1</version>
+          				<executions>
+            				<execution>
+              					<id>sign-artifacts</id>
+              					<phase>verify</phase>
+              					<goals>
+					                <goal>sign</goal>
+              					</goals>
+            				</execution>
+          				</executions>
+        			</plugin>
+      			</plugins>
+    		</build>
+  		
+  		</profile>
+	
+	</profiles>
+
 </project>
