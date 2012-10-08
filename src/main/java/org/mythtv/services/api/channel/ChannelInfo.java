@@ -521,11 +521,58 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	}
 
 	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		
+		int result = 1;
+		result = prime * result + ( ( channelNumber == null ) ? 0 : channelNumber.hashCode() );
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals( Object obj ) {
+		if( this == obj ) {
+			return true;
+		}
+		
+		if( obj == null ) {
+			return false;
+		}
+		
+		if( getClass() != obj.getClass() ) {
+			return false;
+		}
+		
+		ChannelInfo other = (ChannelInfo) obj;
+		if( channelNumber == null ) {
+			if( other.channelNumber != null ) {
+				return false;
+			}
+		} else if( !channelNumber.equals( other.channelNumber ) ) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
 	public int compareTo( ChannelInfo arg ) {
+	    final int BEFORE = -1;
+	    final int EQUAL = 0;
+	    final int AFTER = 1;
 		
+	    if( this == arg ) return EQUAL;
+	    
 		try {
 			String sThisChannelNumber = channelNumber;
 			sThisChannelNumber = sThisChannelNumber.replaceAll("\\D+", ".");
@@ -533,15 +580,16 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 			String sOtherChannelNumber = arg.getChannelNumber();
 			sOtherChannelNumber = sOtherChannelNumber.replaceAll("\\D+", ".");
 
-			Double dThisChannelNumber = Double.parseDouble(sThisChannelNumber);
-			Double dOtherChannelNumber = Double
-					.parseDouble(sOtherChannelNumber);
+			Double dThisChannelNumber = Double.parseDouble( sThisChannelNumber );
+			Double dOtherChannelNumber = Double.parseDouble( sOtherChannelNumber );
 
-			return dThisChannelNumber.compareTo(dOtherChannelNumber);
-		} catch (Exception e) {
-			LOGGER.fine("Error comparing channels: " + e.getMessage());
-			return 0;
+			if( dThisChannelNumber.doubleValue() < dOtherChannelNumber.doubleValue() ) return BEFORE;
+			if( dThisChannelNumber.doubleValue() > dOtherChannelNumber.doubleValue() ) return AFTER;
+		} catch( Exception e ) {
+			LOGGER.fine( "Error comparing channels: " + e.getMessage() );
 		}
+
+		return EQUAL;
 	}
 
 	/* (non-Javadoc)
