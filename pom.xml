@@ -17,9 +17,9 @@
 	<url>https://github.com/MythTV-Android/MythTV-Service-API</url>
 	<description>MythTV Services API for android and java</description>
 	<scm>
-    	<connection>scm:git:git@github.com:MythTV-Android/MythTV-Service-API.git</connection>
-    	<developerConnection>scm:git:git@github.com:MythTV-Android/MythTV-Service-API.git</developerConnection>
-    	<url>git@github.com:MythTV-Android/MythTV-Service-API.git</url>
+    	<connection>scm:git:git@github.com:MythTV-Clients/MythTV-Service-API.git</connection>
+    	<developerConnection>scm:git:git@github.com:MythTV-Clients/MythTV-Service-API.git</developerConnection>
+    	<url>git@github.com:MythTV-Clients/MythTV-Service-API.git</url>
 	</scm>
 	
 	<properties>
