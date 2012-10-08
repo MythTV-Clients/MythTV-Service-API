@@ -14,7 +14,7 @@
   	
   	</licenses>
 	
-	<url>https://github.com/MythTV-Android/MythTV-Service-API</url>
+	<url>https://github.com/MythTV-Clients/MythTV-Service-API</url>
 	<description>MythTV Services API for android and java</description>
 	<scm>
     	<connection>scm:git:git@github.com:MythTV-Clients/MythTV-Service-API.git</connection>
