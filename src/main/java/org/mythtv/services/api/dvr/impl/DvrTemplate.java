@@ -333,11 +333,15 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	@Override
 	public ResponseEntity<ProgramList> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList" ),
-				HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		try {
+			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+			handleResponseEtag( etag, responseEntity.getHeaders() );
 
-		return responseEntity;
+			return responseEntity;
+		} catch( Exception e ) {
+			throw new MythServiceApiRuntimeException( e );
+		}
+		
 	}
 
 	/*
@@ -347,8 +351,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * boolean)
 	 */
 	@Override
-	public ResponseEntity<ProgramList> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<ProgramList> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
@@ -362,11 +365,15 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 
 		parameters.add( "Descending", Boolean.toString( descending ) );
 
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange(
-				buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		try {
+			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+			handleResponseEtag( etag, responseEntity.getHeaders() );
 
-		return responseEntity;
+			return responseEntity;
+		} catch( Exception e ) {
+			throw new MythServiceApiRuntimeException( e );
+		}
+		
 	}
 
 	/*
@@ -391,11 +398,14 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 
 		parameters.add( "ShowAll", Boolean.toString( showAll ) );
 
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange(
-				buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		try {
+			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+			handleResponseEtag( etag, responseEntity.getHeaders() );
 		
-		return responseEntity;
+			return responseEntity;
+		} catch( Exception e ) {
+			throw new MythServiceApiRuntimeException( e );
+		}
 	}
 
 	/*

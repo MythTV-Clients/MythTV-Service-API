@@ -123,11 +123,14 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "Details", Boolean.toString( details ) );
 		}
 
-		ResponseEntity<ProgramGuideWrapper> responseEntity = restOperations.exchange(
-				buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramGuideWrapper.class );
+		try {
+			ResponseEntity<ProgramGuideWrapper> responseEntity = restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramGuideWrapper.class );
 			handleResponseEtag( etag, responseEntity.getHeaders() );
 		
-		return responseEntity;
+			return responseEntity;
+		} catch( Exception e ) {
+			throw new MythServiceApiRuntimeException( e );
+		}
 	}
 
 }
