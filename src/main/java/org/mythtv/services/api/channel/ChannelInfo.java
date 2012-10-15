@@ -555,8 +555,23 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 			if( other.channelNumber != null ) {
 				return false;
 			}
-		} else if( !channelNumber.equals( other.channelNumber ) ) {
-			return false;
+		} else {
+			try {
+				String sThisChannelNumber = channelNumber;
+				sThisChannelNumber = sThisChannelNumber.replaceAll("\\D+", ".");
+
+				String sOtherChannelNumber = other.getChannelNumber();
+				sOtherChannelNumber = sOtherChannelNumber.replaceAll("\\D+", ".");
+
+				Double dThisChannelNumber = Double.parseDouble( sThisChannelNumber );
+				Double dOtherChannelNumber = Double.parseDouble( sOtherChannelNumber );
+
+				if( dThisChannelNumber.doubleValue() != dOtherChannelNumber.doubleValue() ) {
+					return false;
+				}
+			} catch( Exception e ) {
+				LOGGER.fine( "Error comparing channels: " + e.getMessage() );
+			}
 		}
 		
 		return true;
