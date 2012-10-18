@@ -25,7 +25,7 @@ package org.mythtv.services.utils;
  */
 public class ArticleCleaner {
 
-	private static final String[] ARTICLES = new String[] { "THE", "AN", "A " };
+	private static final String[] ARTICLES = new String[] { "THE", "AN ", "A " };
 	
 	public static String clean( String text ) {
 		
