@@ -40,6 +40,21 @@ import org.springframework.web.client.RestOperations;
  */
 public class MythTemplate extends AbstractMythOperations implements MythOperations {
 
+	public enum Endpoint {
+		GET_CONNECTION_INFO( "GetConnectionInfo" ),
+		GET_HOST_NAME( "GetHostName" );
+		
+		private String endpoint;
+		
+		private Endpoint( String endpoint ) {
+			this.endpoint = endpoint;
+		}
+		
+		public String getEndpoint() {
+			return endpoint;
+		}
+		
+	}
 	private final RestOperations restOperations;
 
 	public MythTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -55,8 +70,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * .String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -80,8 +94,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<Bool> changePassword( String username, String oldPassword, String newPassword )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> changePassword( String username, String oldPassword, String newPassword ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -105,11 +118,9 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * .String)
 	 */
 	@Override
-	public ResponseEntity<ConnectionInfo> getConnectionInfo( String pin, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<ConnectionInfo> getConnectionInfo( String pin, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( "GetConnectionInfo" ),
-				HttpMethod.GET, getRequestEntity( null ), ConnectionInfo.class );
+		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CONNECTION_INFO.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), ConnectionInfo.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 
 		return responseEntity;
@@ -123,8 +134,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	@Override
 	public ResponseEntity<String> getHostName() throws MythServiceApiRuntimeException {
 
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHostName" ), HttpMethod.GET,
-				getRequestEntity( null ), String.class );
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HOST_NAME.getEndpoint() ), HttpMethod.GET,	getRequestEntity( null ), String.class );
 
 		return responseEntity;
 	}
@@ -161,9 +171,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<LogMessageList> getLogs( String hostname, String application, int pid, int tid, String thread,
-			String filename, int line, String function, DateTime from, DateTime to, String level,
-			String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<LogMessageList> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -176,8 +184,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<SettingList> getSetting( String hostname, String key, String defaultValue, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<SettingList> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -190,8 +197,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * (java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -283,8 +289,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * (java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -297,8 +302,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * java.lang.String, int, int)
 	 */
 	@Override
-	public ResponseEntity<Bool> sendMessage( String message, String address, int udpPort, int timeout )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendMessage( String message, String address, int udpPort, int timeout ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -311,8 +315,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * .lang.String, java.lang.String, java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public ResponseEntity<Bool> testDatabaseSettings( String hostname, String username, String password, String databaseName,
-			int databasePort ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort ) throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}

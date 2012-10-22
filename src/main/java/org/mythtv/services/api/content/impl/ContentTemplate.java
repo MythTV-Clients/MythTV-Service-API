@@ -42,6 +42,42 @@ import org.springframework.web.client.RestOperations;
  */
 public class ContentTemplate extends AbstractContentOperations implements ContentOperations {
 
+	public enum Endpoint {
+		ADD_LIVE_STREAM( "AddLiveStream" ),
+		ADD_RECORDING_LIVE_STREAM( "AddRecordingLiveStream" ),
+		ADD_VIDEO_LIVE_STREAM( "AddVideoLiveStream" ),
+		DOWNLOAD_FILE( "DownloadFile" ),
+		GET_ALBUM_ART( "GetAlbumArt" ),
+		GET_FILE( "GetFile"),
+		GET_FILE_LIST( "GetFileList" ),
+		GET_FILTERED_LIVE_STREAM_LIST( "GetFilteredLiveStreamList" ),
+		GET_HASH( "GetHash" ),
+		GET_IMAGE_FILE( "GetImageFile" ),
+		GET_LIVE_STREAM( "GetLiveStream" ),
+		GET_LIVE_STREAM_LIST( "GetLiveStreamList" ),
+		GET_MUSIC( "GetMusic" ),
+		GET_PREVIEW_IMAGE( "GetPreviewImage" ),
+		GET_PROGRAM_ARTWORK_LIST( "GetProgramArtworkList" ),
+		GET_RECORDING( "GetRecording" ),
+		GET_RECORDING_ARTWORK( "GetRecordingArtwork" ),
+		GET_RECORDING_ARTWORK_LIST( "GetRecordingArtworkList" ),
+		GET_VIDEO( "GetVideo" ),
+		GET_VIDEO_ARTWORK( "GetVideoArtwork"),
+		REMOVE_LIVE_STREAM( "RemoveLiveStream" ),
+		STOP_LIVE_STREAM( "StopLiveStream" );
+		
+		private String endpoint;
+		
+		private Endpoint( String endpoint ) {
+			this.endpoint = endpoint;
+		}
+		
+		public String getEndpoint() {
+			return endpoint;
+		}
+		
+	}
+
 	private final RestOperations restOperations;
 	
 	public ContentTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -90,7 +126,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "SampleRate", "" + sampleRate );
 		}
 
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( "AddLiveStream", parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
+		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
 		
 		return responseEntity;
 	}
@@ -129,7 +165,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "SampleRate", "" + sampleRate );
 		}
 
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( "AddRecordingLiveStream", parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
+		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_RECORDING_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
 		
 		return responseEntity;
 	}
@@ -167,7 +203,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "SampleRate", "" + sampleRate );
 		}
 
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( "AddVideoLiveStream", parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
+		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_VIDEO_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
 		
 		return responseEntity;
 	}
@@ -182,7 +218,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		parameters.add( "StorageGroup", storageGroup );
 		parameters.add( "URL", url );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DownloadFile", parameters ), HttpMethod.GET, getRequestEntity( etag ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.DOWNLOAD_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), Bool.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -205,7 +241,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetAlbumArt", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_ALBUM_ART.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -224,7 +260,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "FileName", filename );
 		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetFile", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -239,7 +275,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "StorageGroup", storageGroup );
 		
-		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( "GetFileList", parameters ), HttpMethod.GET, getRequestEntity( etag ), StringList.class );
+		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILE_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), StringList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -254,7 +290,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "FileName", filename );
 		
-		ResponseEntity<LiveStreamInfos> responseEntity = restOperations.exchange( buildUri( "GetFilteredLiveStreamList", parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfos.class );
+		ResponseEntity<LiveStreamInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILTERED_LIVE_STREAM_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfos.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -269,7 +305,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		parameters.add( "StorageGroup", storageGroup );
 		parameters.add( "FileName", filename );
 		
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHash", parameters ), HttpMethod.GET, getRequestEntity( etag ), String.class );
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HASH.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), String.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -293,7 +329,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetImageFile", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_IMAGE_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -308,7 +344,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetLiveStream", parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfoWrapper.class );
+		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfoWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -320,7 +356,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	@Override
 	public ResponseEntity<LiveStreamInfos> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<LiveStreamInfos> responseEntity = restOperations.exchange( buildUri( "GetLiveStreamList" ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfos.class );
+		ResponseEntity<LiveStreamInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfos.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -335,7 +371,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetMusic", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_MUSIC.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -363,7 +399,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "SecsIn", "" + secondsIn );
 		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetPreviewImage", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PREVIEW_IMAGE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -382,7 +418,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "Season", "" + season );
 		}
 
-		ResponseEntity<ArtworkInfos> responseEntity = restOperations.exchange( buildUri( "GetProgramArtwork", parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfos.class );
+		ResponseEntity<ArtworkInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROGRAM_ARTWORK_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfos.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -398,7 +434,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		parameters.add( "ChanId", "" + channelId );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetRecording", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -429,7 +465,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetRecordingArtwork", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING_ARTWORK.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -445,7 +481,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		parameters.add( "ChanId", "" + channelId );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
-		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( "GetRecordingArtworkList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfoList.class );
+		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING_ARTWORK_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfoList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -460,7 +496,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", "" + id );
 		
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetVideo", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -487,7 +523,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( "GetVideoArtwork", parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
+		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_ARTWORK.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -499,7 +535,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	@Override
 	public ResponseEntity<Bool> removeLiveStream( int id ) throws MythServiceApiRuntimeException {
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveLiveStream", "Id", "" + id ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_LIVE_STREAM.getEndpoint(), "Id", "" + id ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 		
 		return responseEntity;
 	}
@@ -510,7 +546,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	@Override
 	public ResponseEntity<LiveStreamInfo> stopLiveStream( int id ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( "StopLiveStream", "Id", "" + id ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfo.class );
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.STOP_LIVE_STREAM.getEndpoint(), "Id", "" + id ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfo.class );
 		
 		return responseEntity;
 	}

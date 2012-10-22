@@ -43,6 +43,34 @@ import org.springframework.web.client.RestOperations;
  */
 public class ChannelTemplate extends AbstractChannelOperations implements ChannelOperations {
 
+	public enum Endpoint {
+		ADD_DB_CHANNEL( "AddDBChannel" ),
+		ADD_VIDEO_SOURCE( "AddVideoSource" ),
+		FETCH_CHANNELS_FROM_SOURCE( "FetchChannelsFromSource" ),
+		GET_CHANNEL_INFO( "GetChannelInfo" ),
+		GET_CHANNEL_INFO_LIST( "GetChannelInfoList" ),
+		GET_DD_LINEUP_LIST( "GetDDLineupList"),
+		GET_VIDEO_MULTIPLEX( "GetVideoMultiplex" ),
+		GET_VIDEO_MULTIPLEX_LIST( "GetVideoMultiplexList" ),
+		GET_VIDEO_SOURCE( "GetVideoSource" ),
+		GET_VIDEO_SOURCE_LIST( "GetVideoSourceList" ),
+		GET_XMLTVID_LIST( "GetXMLTVIdList" ),
+		REMOVE_DB_CHANNEL( "RemoveDBChannel" ),
+		REMOVE_VIDEO_SOURCE( "RemoveVideoSource" ),
+		UPDATE_DB_CHANNEL( "UpdateDBChannel" ),
+		UPDATE_VIDEO_SOURCE( "UpdateVideoSource" );
+		
+		private String endpoint;
+		
+		private Endpoint( String endpoint ) {
+			this.endpoint = endpoint;
+		}
+		
+		public String getEndpoint() {
+			return endpoint;
+		}
+		
+	}
 	private final RestOperations restOperations;
 
 	public ChannelTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -78,7 +106,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		parameters.add("CardId", "" + cardId );
 		parameters.add("WaitForFinish", Boolean.toString(waitForFinish) );
 
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "FetchChannelsFromSource", parameters ), HttpMethod.GET, getRequestEntity(etag), Int.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( Endpoint.FETCH_CHANNELS_FROM_SOURCE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), Int.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -93,7 +121,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 
-		ResponseEntity<ChannelInfoWrapper> responseEntity = restOperations.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoWrapper.class );
+		ResponseEntity<ChannelInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -119,7 +147,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "Count", "" + count );
 		}
 		
-		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( "GetChannelInfoList", parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
+		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -130,7 +158,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public ResponseEntity<ChannelInfoList> getChannelInfoList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( "GetChannelInfoList" ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
+		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
 		handleResponseEtag(etag, responseEntity.getHeaders());
 		return responseEntity;
 	}
@@ -154,7 +182,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "Password", password );
 		}
 		
-		ResponseEntity<LineupList> response = restOperations.exchange( buildUri( "GetDDLineupList", parameters ), HttpMethod.GET, getRequestEntity(etag), LineupList.class );
+		ResponseEntity<LineupList> response = restOperations.exchange( buildUri( Endpoint.GET_DD_LINEUP_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), LineupList.class );
 		handleResponseEtag( etag, response.getHeaders() );
 		
 		return response;
@@ -169,7 +197,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		if( multiplexId > 0 ) {
 			parameters.add( "MplexID", "" + multiplexId );
 		}
-		ResponseEntity<VideoMultiplexWrapper> response = restOperations.exchange( buildUri( "GetVideoMultiplex", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexWrapper.class );
+		ResponseEntity<VideoMultiplexWrapper> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_MULTIPLEX.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexWrapper.class );
 		handleResponseEtag( etag, response.getHeaders() );
 		
 		return response;
@@ -194,7 +222,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "Count", "" + count );
 		}
 		
-		ResponseEntity<VideoMultiplexList> response = restOperations.exchange( buildUri( "GetVideoMultiplexList", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexList.class );
+		ResponseEntity<VideoMultiplexList> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_MULTIPLEX_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexList.class );
 		handleResponseEtag(etag, response.getHeaders());
 		
 		return response;
@@ -211,7 +239,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "SourceID", "" + sourceId );
 		}
 		
-		ResponseEntity<VideoSourceWrapper> response = restOperations.exchange( buildUri( "GetVideoSource", parameters ), HttpMethod.GET, getRequestEntity(etag), VideoSourceWrapper.class );
+		ResponseEntity<VideoSourceWrapper> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_SOURCE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoSourceWrapper.class );
 		handleResponseEtag( etag, response.getHeaders() );
 		
 		return response;
@@ -222,7 +250,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	 */
 	@Override
 	public ResponseEntity<VideoSourceList> getVideoSourceList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<VideoSourceList> responseEntity = restOperations.exchange( buildUri( "GetVideoSourceList" ), HttpMethod.GET, getRequestEntity(etag), VideoSourceList.class );
+		ResponseEntity<VideoSourceList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_SOURCE_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity(etag), VideoSourceList.class );
 		handleResponseEtag(etag, responseEntity.getHeaders());
 		
 		return responseEntity;
@@ -239,7 +267,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 			parameters.add( "SourceID", "" + sourceId );
 		}
 		
-		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( "GetXMLTVIdList", parameters ), HttpMethod.GET, getRequestEntity(etag), StringList.class );
+		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_XMLTVID_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), StringList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;

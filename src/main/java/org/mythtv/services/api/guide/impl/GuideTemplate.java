@@ -36,6 +36,23 @@ import org.springframework.web.client.RestOperations;
  */
 public class GuideTemplate extends AbstractGuideOperations implements GuideOperations {
 
+	public enum Endpoint {
+		GET_CHANNEL_ICON( "GetChannelIcon" ),
+		GET_PROGRAM_DETAILS( "GetProgramDetails" ),
+		GET_PROGRAM_GUIDE( "GetProgramGuide" );
+		
+		private String endpoint;
+		
+		private Endpoint( String endpoint ) {
+			this.endpoint = endpoint;
+		}
+		
+		public String getEndpoint() {
+			return endpoint;
+		}
+		
+	}
+	
 	private final RestOperations restOperations;
 
 	public GuideTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -50,8 +67,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * int, int)
 	 */
 	@Override
-	public ResponseEntity<String> getChannelIcon( int channelId, int width, int height, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<String> getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
@@ -64,8 +80,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "Height", "" + height );
 		}
 
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetChannelIcon", parameters ),
-				HttpMethod.GET, getRequestEntity( etag ), String.class );
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_ICON.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), String.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 
 		return responseEntity;
@@ -79,8 +94,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * (int, java.util.Date)
 	 */
 	@Override
-	public ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );
 
@@ -88,9 +102,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 			parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		}
 
-		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange(
-				buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity( etag ),
-				ProgramWrapper.class );
+		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROGRAM_DETAILS.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 
 		return responseEntity;
@@ -104,8 +116,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * .Date, java.util.Date, int, int, boolean)
 	 */
 	@Override
-	public ResponseEntity<ProgramGuideWrapper> getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels,
-			boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ProgramGuideWrapper> getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "StartTime", convertUtcAndFormat( start ) );
@@ -124,7 +135,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 		}
 
 		try {
-			ResponseEntity<ProgramGuideWrapper> responseEntity = restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramGuideWrapper.class );
+			ResponseEntity<ProgramGuideWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROGRAM_GUIDE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramGuideWrapper.class );
 			handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 			return responseEntity;

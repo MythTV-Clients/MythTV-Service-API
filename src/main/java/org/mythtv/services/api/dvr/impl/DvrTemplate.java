@@ -41,6 +41,34 @@ import org.springframework.web.client.RestOperations;
  */
 public class DvrTemplate extends AbstractDvrOperations implements DvrOperations {
 
+	public enum Endpoint {
+		ADD_RECORD_SCHEDULE( "AddRecordSchedule" ),
+		DISABLE_RECORD_SCHEDULE( "DisableRecordSchedule" ),
+		ENABLE_RECORD_SCHEDULE( "EnableRecordSchedule" ),
+		GET_CONFLICT_LIST( "GetConflictList" ),
+		GET_ENCODER_LIST( "GetEncoderList" ),
+		GET_EXPIRING_LIST( "GetExpiringList"),
+		GET_FILTERED_RECORDED_LIST( "GetFilteredRecordedList" ),
+		GET_RECORD_SCHEDULE( "GetRecordSchedule" ),
+		GET_RECORD_SCHEDULE_LIST( "GetRecordScheduleList" ),
+		GET_RECORDED( "GetRecorded" ),
+		GET_RECORDED_LIST( "GetRecordedList" ),
+		GET_UPCOMING_LIST( "GetUpcomingList" ),
+		REMOVE_RECORD_SCHEDULE( "RemoveRecordSchedule" ),
+		REMOVE_RECORDED( "RemoveRecorded" );
+		
+		private String endpoint;
+		
+		private Endpoint( String endpoint ) {
+			this.endpoint = endpoint;
+		}
+		
+		public String getEndpoint() {
+			return endpoint;
+		}
+		
+	}
+	
 	private final RestOperations restOperations;
 
 	/**
@@ -106,8 +134,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "AutoUserJob4", Boolean.toString( autoUserJob4 ) );
 		parameters.add( "Transcoder", "" + transcoder );
 
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddRecordSchedule", parameters ),
-				HttpMethod.POST, getRequestEntity( null ), Int.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Int.class );
 
 		return responseEntity;
 	}
@@ -124,8 +151,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ),
-				HttpMethod.POST, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.DISABLE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 
 		return responseEntity;
 	}
@@ -142,8 +168,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ),
-				HttpMethod.POST, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.ENABLE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 
 		return responseEntity;
 	}
@@ -167,8 +192,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange(
-				buildUri( "GetConflictList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CONFLICT_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 
 		return responseEntity;
@@ -182,8 +206,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	@Override
 	public ResponseEntity<EncoderList> getEncoderList( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<EncoderList> responseEntity = restOperations.exchange( buildUri( "GetConflictList" ),
-				HttpMethod.GET, getRequestEntity( etag ), EncoderList.class );
+		ResponseEntity<EncoderList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_ENCODER_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), EncoderList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -195,8 +218,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * @see org.mythtv.services.api.dvr.DvrOperations#getExpiringList(int, int)
 	 */
 	@Override
-	public ResponseEntity<ProgramList> getExpiringList( int startIndex, int count, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
+	public ResponseEntity<ProgramList> getExpiringList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
@@ -208,8 +230,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange(
-				buildUri( "GetExpiringList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_EXPIRING_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -249,9 +270,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "StorageGroup", storageGroup );
 		}
 
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange(
-				buildUri( "GetFilteredRecordedList", parameters ), HttpMethod.GET, getRequestEntity( etag ),
-				ProgramList.class );
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILTERED_RECORDED_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 
 		return responseEntity;
@@ -268,9 +287,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordId );
 
-		ResponseEntity<RecRuleWrapper> responseEntity = restOperations.exchange(
-				buildUri( "GetRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity( etag ),
-				RecRuleWrapper.class );
+		ResponseEntity<RecRuleWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), RecRuleWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -296,9 +313,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			parameters.add( "Count", "" + count );
 		}
 
-		ResponseEntity<RecRuleList> responseEntity = restOperations.exchange(
-				buildUri( "GetRecordScheduleList", parameters ), HttpMethod.GET, getRequestEntity( etag ),
-				RecRuleList.class );
+		ResponseEntity<RecRuleList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORD_SCHEDULE_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), RecRuleList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -318,8 +333,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "ChanId", "" + channelId );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange( buildUri( "GetRecorded", parameters ),
-				HttpMethod.GET, getRequestEntity( etag ), ProgramWrapper.class );
+		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED.getEndpoint(), parameters ),	HttpMethod.GET, getRequestEntity( etag ), ProgramWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -334,7 +348,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	public ResponseEntity<ProgramList> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		try {
-			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList" ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
 			handleResponseEtag( etag, responseEntity.getHeaders() );
 
 			return responseEntity;
@@ -366,7 +380,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "Descending", Boolean.toString( descending ) );
 
 		try {
-			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
 			handleResponseEtag( etag, responseEntity.getHeaders() );
 
 			return responseEntity;
@@ -399,7 +413,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "ShowAll", Boolean.toString( showAll ) );
 
 		try {
-			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
+			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_UPCOMING_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
 			handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 			return responseEntity;
@@ -420,8 +434,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "RecordId", "" + recordingId );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ),
-				HttpMethod.POST, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 		
 		return responseEntity;
 	}
@@ -439,8 +452,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "ChanId", "" + channelId );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecorded", parameters ),
-				HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_RECORDED.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 		
 		return responseEntity;
 	}

@@ -27,6 +27,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.springframework.http.ContentCodingType;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -54,9 +55,7 @@ public abstract class AbstractOperations {
 	 */
 	public AbstractOperations( String apiUrlBase ) {
 		this.apiUrlBase = apiUrlBase;
-		logger = Logger.getLogger(AbstractOperations.TAG);
-		
-		
+		logger = Logger.getLogger( AbstractOperations.TAG );
 	}
 
 	/**
@@ -106,11 +105,11 @@ public abstract class AbstractOperations {
 	protected HttpEntity<?> getRequestEntity(ETagInfo info) {
 		HttpHeaders requestHeaders = new HttpHeaders();
 		requestHeaders.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
-		if(info != null && !info.isEmptyEtag()){
+		if( info != null && !info.isEmptyEtag() ) {
 			// it seems that mythtv uses "If-None-Match" and not "ETag"
 			// we will still add etag the regular way and add it via If-None-Match 
-			requestHeaders.setETag(info.getETag());
-			requestHeaders.add(MYTHTV_ETAG, info.getETag());
+			requestHeaders.setETag( info.getETag() );
+			requestHeaders.add( MYTHTV_ETAG, info.getETag() );
 		}
 		
 		// Currently does not work with .26 backends

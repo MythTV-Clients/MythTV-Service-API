@@ -39,6 +39,28 @@ import org.springframework.web.client.RestOperations;
  */
 public class CaptureTemplate extends AbstractCaptureOperations implements CaptureOperations {
 	
+	public enum Endpoint {
+		ADD_CAPTURE_CARD( "AddCaptureCard" ),
+		ADD_CARD_INPUT( "AddCardInput" ),
+		GET_CAPTURE_CARD( "GetCaptureCard" ),
+		GET_CAPTURE_CARD_LIST( "GetCaptureCardList" ),
+		REMOVE_CAPTURE_CARD( "RemoveCaptureCard" ),
+		REMOVE_CARD_INPUT( "RemoveCardInput"),
+		UPDATE_CAPTURE_CARD( "UpdateCaptureCard" ),
+		UPDATE_CARD_INPUT( "UpdateCardInput" );
+		
+		private String endpoint;
+		
+		private Endpoint( String endpoint ) {
+			this.endpoint = endpoint;
+		}
+		
+		public String getEndpoint() {
+			return endpoint;
+		}
+		
+	}
+	
 	private final RestOperations restOperations;
 
 	public CaptureTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -51,7 +73,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public ResponseEntity<Int> addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException {
-		return restOperations.exchange( buildUri( "AddCaptureCard", convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
+		return restOperations.exchange( buildUri( Endpoint.ADD_CAPTURE_CARD.getEndpoint(), convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
 	}
 
 	/* (non-Javadoc)
@@ -59,7 +81,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public ResponseEntity<Int> addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException {
-		return restOperations.exchange( buildUri( "AddCardInput", convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
+		return restOperations.exchange( buildUri( Endpoint.ADD_CARD_INPUT.getEndpoint(), convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
 	}
 
 	/* (non-Javadoc)
@@ -67,7 +89,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public ResponseEntity<CaptureCardWrapper> getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( "GetCaptureCard", "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(etag), CaptureCardWrapper.class );
+		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD.getEndpoint(), "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(etag), CaptureCardWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -78,7 +100,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public ResponseEntity<CaptureCardList> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList" ), HttpMethod.GET, getRequestEntity( etag ), CaptureCardList.class );
+		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), CaptureCardList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -99,7 +121,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 			parameters.add( "CardType", cardType );
 		}
 		
-		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList", parameters ), HttpMethod.GET, getRequestEntity(etag), CaptureCardList.class );
+		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), CaptureCardList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 
 		return responseEntity;
@@ -113,7 +135,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardId", new String( "" + cardId ) );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(etag), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_CAPTURE_CARD.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), Bool.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -127,7 +149,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "CardInputId", new String( "" + cardInputId ) );
 
-		return restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		return restOperations.exchange( buildUri( Endpoint.REMOVE_CARD_INPUT.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 	}
 
 	/* (non-Javadoc)
@@ -139,7 +161,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		parameters.add( "CardId", new String( "" + cardId ) );
 		parameters.add( setting, value );
 		
-		return restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		return restOperations.exchange( buildUri( Endpoint.UPDATE_CAPTURE_CARD.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
 	}
 
 	/* (non-Javadoc)
@@ -151,7 +173,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		parameters.add( "CardInputId", new String( "" + cardInputId ) );
 		parameters.add( setting, value );
 		
-		return restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		return restOperations.exchange( buildUri( Endpoint.UPDATE_CARD_INPUT.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
 	}
 
 	// internal helpers
