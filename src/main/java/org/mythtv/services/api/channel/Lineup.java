@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Lineup {
 
 	@JsonProperty( "LineupId" )
-	private int lineupId;
+	private String lineupId;
 	
 	@JsonProperty( "Name" )
 	private String name;
@@ -50,14 +50,14 @@ public class Lineup {
 	/**
 	 * @return the lineupId
 	 */
-	public int getLineupId() {
+	public String getLineupId() {
 		return lineupId;
 	}
 
 	/**
 	 * @param lineupId the lineupId to set
 	 */
-	public void setLineupId( int lineupId ) {
+	public void setLineupId( String lineupId ) {
 		this.lineupId = lineupId;
 	}
 
@@ -140,9 +140,11 @@ public class Lineup {
 		
 		builder.append( "Lineup [" );
 		
-		builder.append( "lineupId=" );
-		builder.append( lineupId );
-		builder.append( ", " );
+		if( lineupId != null ) {
+			builder.append( "lineupId=" );
+			builder.append( lineupId );
+			builder.append( ", " );
+		}
 		
 		if( name != null ) {
 			builder.append( "name=" );
