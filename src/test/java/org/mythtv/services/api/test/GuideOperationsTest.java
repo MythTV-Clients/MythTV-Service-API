@@ -93,7 +93,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 		ChannelInfo chan = channels.get( 0 );
 		List<Program> programs = chan.getPrograms();
 		Assert.assertFalse( "No programs retuned", programs.isEmpty() );
-		ResponseEntity<ProgramWrapper> p = operations.getProgramDetails( Integer.parseInt( chan.getChannelId() ), programs.get( 0 ).getStartTime(), ETagInfo.createEmptyETag() );
+		ResponseEntity<ProgramWrapper> p = operations.getProgramDetails( chan.getChannelId(), programs.get( 0 ).getStartTime(), ETagInfo.createEmptyETag() );
 		Assert.assertNotNull( "ProgramWrapper is null", p.getBody() );
 		Assert.assertNotNull( "Program is null", p.getBody().getProgram() );
 	}

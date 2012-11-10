@@ -24,6 +24,7 @@ import java.io.Serializable;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -35,6 +36,9 @@ public class Recording implements Serializable {
 
 	private static final long serialVersionUID = 3815054457896074557L;
 
+	@JsonIgnore
+	private int id;
+	
 	@JsonProperty( "Status" )
 	private int status;
 	
@@ -77,6 +81,20 @@ public class Recording implements Serializable {
 	private String profile;
 	
 	public Recording() { }
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId( int id ) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the status
@@ -267,8 +285,13 @@ public class Recording implements Serializable {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append( "Recording [status=" );
+		builder.append( "Recording [" );
 		
+		builder.append( "id=" );
+		builder.append( id );
+		builder.append( ", " );
+		
+		builder.append( "status=" );
 		builder.append( status );
 		builder.append( ", priority=" );
 		builder.append( priority );

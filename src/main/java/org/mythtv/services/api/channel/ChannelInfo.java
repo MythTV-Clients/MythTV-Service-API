@@ -41,7 +41,7 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	private static Logger LOGGER = Logger.getLogger("ChannelInfo");
 	
 	@JsonProperty( "ChanId" )
-	private String channelId;
+	private int channelId;
 	
 	@JsonProperty( "ChanNum" )
 	private String channelNumber;
@@ -126,14 +126,14 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	/**
 	 * @return the channelId
 	 */
-	public String getChannelId() {
+	public int getChannelId() {
 		return channelId;
 	}
 
 	/**
 	 * @param channelId the channelId to set
 	 */
-	public void setChannelId( String channelId ) {
+	public void setChannelId( int channelId ) {
 		this.channelId = channelId;
 	}
 
@@ -616,11 +616,9 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 		
 		builder.append( "Channel [" );
 		
-		if( channelId != null ) {
-			builder.append( "channelId=" );
-			builder.append( channelId );
-			builder.append( ", " );
-		}
+		builder.append( "channelId=" );
+		builder.append( channelId );
+		builder.append( ", " );
 		
 		if( channelNumber != null ) {
 			builder.append( "channelNumber=" );
