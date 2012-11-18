@@ -24,7 +24,6 @@ import java.io.Serializable;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -36,9 +35,6 @@ public class Recording implements Serializable {
 
 	private static final long serialVersionUID = 3815054457896074557L;
 
-	@JsonIgnore
-	private int id;
-	
 	@JsonProperty( "Status" )
 	private int status;
 	
@@ -54,7 +50,7 @@ public class Recording implements Serializable {
 	private DateTime endTimestamp;
 	
 	@JsonProperty( "RecordId" )
-	private int recordid;
+	private Long recordId;
 	
 	@JsonProperty( "RecGroup" )
 	private String recordingGroup;
@@ -81,20 +77,6 @@ public class Recording implements Serializable {
 	private String profile;
 	
 	public Recording() { }
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId( int id ) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the status
@@ -153,17 +135,17 @@ public class Recording implements Serializable {
 	}
 
 	/**
-	 * @return the recordid
+	 * @return the recordId
 	 */
-	public int getRecordid() {
-		return recordid;
+	public Long getRecordId() {
+		return recordId;
 	}
 
 	/**
-	 * @param recordid the recordid to set
+	 * @param recordId the recordId to set
 	 */
-	public void setRecordid( int recordid ) {
-		this.recordid = recordid;
+	public void setRecordId( Long recordId ) {
+		this.recordId = recordId;
 	}
 
 	/**
@@ -287,10 +269,6 @@ public class Recording implements Serializable {
 		
 		builder.append( "Recording [" );
 		
-		builder.append( "id=" );
-		builder.append( id );
-		builder.append( ", " );
-		
 		builder.append( "status=" );
 		builder.append( status );
 		builder.append( ", priority=" );
@@ -309,9 +287,11 @@ public class Recording implements Serializable {
 			builder.append( ", " );
 		}
 		
-		builder.append( "recordid=" );
-		builder.append( recordid );
-		builder.append( ", " );
+		if( recordId != null ) {
+			builder.append( "recordId=" );
+			builder.append( recordId );
+			builder.append( ", " );
+		}
 		
 		if( recordingGroup != null ) {
 			builder.append( "recordingGroup=" );

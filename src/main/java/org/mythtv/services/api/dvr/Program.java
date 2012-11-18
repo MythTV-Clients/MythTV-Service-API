@@ -27,7 +27,6 @@ import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.content.ArtworkInfos;
 import org.mythtv.services.utils.ArticleCleaner;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -39,9 +38,6 @@ public class Program implements Serializable, Comparable<Program> {
 
 	private static final long serialVersionUID = 4144422404144517653L;
 
-	@JsonIgnore
-	private int id;
-	
 	@JsonProperty( "StartTime" )
 	@JsonSerialize( using = DateTimeSerializer.class )
 	private DateTime startTime;
@@ -125,20 +121,6 @@ public class Program implements Serializable, Comparable<Program> {
 	private ArtworkInfos artwork;
 	
 	public Program() { }
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId( int id ) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the startTime
@@ -504,6 +486,19 @@ public class Program implements Serializable, Comparable<Program> {
 		this.artwork = artwork;
 	}
 
+	public long getDurationInMinutes() {
+		
+		if( null == startTime ) {
+			return 0;
+		}
+		
+		if( null == endTime ) {
+			return 0;
+		}
+		
+		return ( endTime.getMillis() / 60000 ) - ( startTime.getMillis() / 60000 );
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -548,10 +543,6 @@ public class Program implements Serializable, Comparable<Program> {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append( "Program [" );
-		
-		builder.append( "id=" );
-		builder.append( id );
-		builder.append( ", " );
 		
 		if( startTime != null ) {
 			builder.append( "startTime=" );

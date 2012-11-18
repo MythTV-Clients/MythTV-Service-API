@@ -446,7 +446,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * java.util.Date)
 	 */
 	@Override
-	public ResponseEntity<Bool> removeRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeRecorded( Long channelId, DateTime startTime ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", "" + channelId );

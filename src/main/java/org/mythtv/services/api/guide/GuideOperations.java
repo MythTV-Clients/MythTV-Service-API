@@ -48,7 +48,7 @@ public interface GuideOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramWrapper> getProgramDetails( Long channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET

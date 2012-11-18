@@ -94,9 +94,9 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * (int, java.util.Date)
 	 */
 	@Override
-	public ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ProgramWrapper> getProgramDetails( Long channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 
 		if( null != startTime ) {
 			parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
