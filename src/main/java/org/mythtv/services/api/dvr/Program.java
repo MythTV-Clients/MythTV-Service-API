@@ -27,6 +27,7 @@ import org.mythtv.services.api.channel.ChannelInfo;
 import org.mythtv.services.api.content.ArtworkInfos;
 import org.mythtv.services.utils.ArticleCleaner;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -486,6 +487,7 @@ public class Program implements Serializable, Comparable<Program> {
 		this.artwork = artwork;
 	}
 
+	@JsonIgnore
 	public long getDurationInMinutes() {
 		
 		if( null == startTime ) {
