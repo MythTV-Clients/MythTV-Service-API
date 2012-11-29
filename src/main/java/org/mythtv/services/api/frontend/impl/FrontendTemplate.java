@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api.frontend.impl;
 
+import java.net.URI;
+
 import org.joda.time.DateTime;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
@@ -31,12 +33,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
+import android.util.Log;
+
 /**
  * @author Daniel Frey
  * 
  */
 public class FrontendTemplate extends AbstractFrontendOperations implements FrontendOperations {
 
+	private static final String TAG = "FrontendTemplate";
+	
 	private final RestOperations restOperations;
 
 	public FrontendTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -148,10 +154,13 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 	{
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", channelId.toString() );
-		parameters.add( "StartTime", startTime.toString());
+		parameters.add( "StartTime", startTime.toString("yyyy-MM-dd'T'HH:mm:ss"));
+		
+		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters );
+		Log.d(TAG, uri.toString());
 		
 		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters ),
+				uri,
 				HttpMethod.GET,
 				getRequestEntity( null ),
 				Bool.class );
@@ -177,8 +186,11 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		parameters.add( "Id", id.toString() );
 		if(useBookmark) parameters.add( "UseBookmark", "1");
 		
+		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayVideo", parameters );
+		Log.d(TAG, uri.toString());
+		
 		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				buildUri( frontedApiUrlBase + "/Frontend/PlayVideo", parameters ),
+				uri,
 				HttpMethod.GET,
 				getRequestEntity( null ),
 				Bool.class );
