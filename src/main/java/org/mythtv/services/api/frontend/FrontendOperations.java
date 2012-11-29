@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.frontend;
 
+import org.joda.time.DateTime;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -67,4 +68,25 @@ public interface FrontendOperations {
 	 */
 	ResponseEntity<FrontendActionList> getActionList( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
 	
+	/**
+	 * 
+	 * - GET
+	 * 
+	 * @param frontedApiUrlBase
+	 * @param channelId - (Required) The database channel id for the recording
+	 * @param startTime - (Required) The recording start time for the item. This should be in MySQL ISO format, eg: 2011-08-29 18:59:00. You can replace the space with %20 or T.
+	 * @return
+	 * @throws MythServiceApiRuntimeException
+	 */
+	ResponseEntity<Bool> playRecording(String frontedApiUrlBase, Long channelId, DateTime startTime) throws MythServiceApiRuntimeException;
+	
+	/**
+	 * 
+	 * @param frontedApiUrlBase
+	 * @param id - (Required) The database id for the video file
+	 * @param useBookmark - (Optional) Pass 1 to resume playback at a bookmark
+	 * @return
+	 * @throws MythServiceApiRuntimeException
+	 */
+	ResponseEntity<Bool> playVideo(String frontedApiUrlBase, String id, boolean useBookmark) throws MythServiceApiRuntimeException;
 }

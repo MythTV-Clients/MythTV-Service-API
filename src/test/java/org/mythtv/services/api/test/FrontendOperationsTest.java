@@ -55,5 +55,15 @@ public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
 	public void testGetActionList() {
 		fail("Not yet implemented"); // TODO
 	}
+	
+	@Ignore
+	public void testPlayRecording() {
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Ignore
+	public void testPlayVideo() {
+		fail("Not yet implemented"); // TODO
+	}
 
 }
