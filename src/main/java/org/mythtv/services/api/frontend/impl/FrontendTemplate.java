@@ -19,6 +19,9 @@
  */
 package org.mythtv.services.api.frontend.impl;
 
+import java.net.URI;
+
+import org.joda.time.DateTime;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -30,12 +33,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
+import android.util.Log;
+
 /**
  * @author Daniel Frey
  * 
  */
 public class FrontendTemplate extends AbstractFrontendOperations implements FrontendOperations {
 
+	private static final String TAG = "FrontendTemplate";
+	
 	private final RestOperations restOperations;
 
 	public FrontendTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -105,8 +112,10 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		}
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ), HttpMethod.GET,
-				getRequestEntity( null ), Bool.class );
+				buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ),
+				HttpMethod.GET,
+				getRequestEntity( null ),
+				Bool.class );
 		
 		return responseEntity;
 	}
@@ -125,6 +134,66 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		ResponseEntity<FrontendActionList> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase
 				+ "/Frontend/GetActionList" ), HttpMethod.GET, getRequestEntity( etag ), FrontendActionList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
+		
+		return responseEntity;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * - GET
+	 * 
+	 * @param frontedApiUrlBase
+	 * @param channelId - (Required) The database channel id for the recording
+	 * @param startTime - (Required) The recording start time for the item. This should be in MySQL ISO format, eg: 2011-08-29 18:59:00. You can replace the space with %20 or T.
+	 * @return
+	 * @throws MythServiceApiRuntimeException
+	 */
+	@Override
+	public ResponseEntity<Bool> playRecording(String frontedApiUrlBase, Long channelId, DateTime startTime)
+	{
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.add( "ChanId", channelId.toString() );
+		parameters.add( "StartTime", startTime.toString("yyyy-MM-dd'T'HH:mm:ss"));
+		
+		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters );
+		Log.d(TAG, uri.toString());
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange(
+				uri,
+				HttpMethod.GET,
+				getRequestEntity( null ),
+				Bool.class );
+		
+		return responseEntity;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * - Get 
+	 * 
+	 * @param frontedApiUrlBase
+	 * @param id - (Required) The database id for the video file
+	 * @param useBookmark - (Optional) Pass 1 to resume playback at a bookmark
+	 * @return
+	 * @throws MythServiceApiRuntimeException
+	 */
+	@Override
+	public ResponseEntity<Bool> playVideo(String frontedApiUrlBase, String id, boolean useBookmark)
+	{
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.add( "Id", id.toString() );
+		if(useBookmark) parameters.add( "UseBookmark", "1");
+		
+		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayVideo", parameters );
+		Log.d(TAG, uri.toString());
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange(
+				uri,
+				HttpMethod.GET,
+				getRequestEntity( null ),
+				Bool.class );
 		
 		return responseEntity;
 	}
