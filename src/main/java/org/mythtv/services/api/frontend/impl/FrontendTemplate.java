@@ -33,8 +33,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
-import android.util.Log;
-
 /**
  * @author Daniel Frey
  * 
@@ -157,7 +155,6 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		parameters.add( "StartTime", startTime.toString("yyyy-MM-dd'T'HH:mm:ss"));
 		
 		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters );
-		Log.d(TAG, uri.toString());
 		
 		ResponseEntity<Bool> responseEntity = restOperations.exchange(
 				uri,
