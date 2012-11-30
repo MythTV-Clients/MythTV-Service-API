@@ -187,7 +187,6 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		if(useBookmark) parameters.add( "UseBookmark", "1");
 		
 		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayVideo", parameters );
-		Log.d(TAG, uri.toString());
 		
 		ResponseEntity<Bool> responseEntity = restOperations.exchange(
 				uri,
