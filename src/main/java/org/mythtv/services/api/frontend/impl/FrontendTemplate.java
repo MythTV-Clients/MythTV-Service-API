@@ -39,8 +39,6 @@ import org.springframework.web.client.RestOperations;
  */
 public class FrontendTemplate extends AbstractFrontendOperations implements FrontendOperations {
 
-	private static final String TAG = "FrontendTemplate";
-	
 	private final RestOperations restOperations;
 
 	public FrontendTemplate( RestOperations restOperations, String apiUrlBase ) {
@@ -152,7 +150,7 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 	{
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", channelId.toString() );
-		parameters.add( "StartTime", startTime.toString("yyyy-MM-dd'T'HH:mm:ss"));
+		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters );
 		
