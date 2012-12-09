@@ -102,8 +102,8 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	@Override
 	public ResponseEntity<Int> fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "SourceId", "" + sourceId );
-		parameters.add("CardId", "" + cardId );
+		parameters.add( "SourceId", String.valueOf( sourceId ) );
+		parameters.add("CardId", String.valueOf( cardId ) );
 		parameters.add("WaitForFinish", Boolean.toString(waitForFinish) );
 
 		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( Endpoint.FETCH_CHANNELS_FROM_SOURCE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), Int.class );
@@ -119,7 +119,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	public ResponseEntity<ChannelInfoWrapper> getChannelInfo( int channelId, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 
 		ResponseEntity<ChannelInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -136,15 +136,15 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
 		if( sourceId > 0 ) {
-			parameters.add( "SourceID", "" + sourceId );
+			parameters.add( "SourceID", String.valueOf( sourceId ) );
 		}
 		
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 		
 		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
@@ -195,7 +195,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 	public ResponseEntity<VideoMultiplexWrapper> getVideoMultiplex( int multiplexId, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if( multiplexId > 0 ) {
-			parameters.add( "MplexID", "" + multiplexId );
+			parameters.add( "MplexID", String.valueOf( multiplexId ) );
 		}
 		ResponseEntity<VideoMultiplexWrapper> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_MULTIPLEX.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexWrapper.class );
 		handleResponseEtag( etag, response.getHeaders() );
@@ -211,15 +211,15 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
 		if( sourceId > 0 ) {
-			parameters.add( "SourceID", "" + sourceId );
+			parameters.add( "SourceID", String.valueOf( sourceId ) );
 		}
 		
 		if( startIndex >= 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 		
 		if(count > 0) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 		
 		ResponseEntity<VideoMultiplexList> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_MULTIPLEX_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexList.class );
@@ -236,7 +236,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
 		if( sourceId > 0 ) {
-			parameters.add( "SourceID", "" + sourceId );
+			parameters.add( "SourceID", String.valueOf( sourceId ) );
 		}
 		
 		ResponseEntity<VideoSourceWrapper> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_SOURCE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoSourceWrapper.class );
@@ -264,7 +264,7 @@ public class ChannelTemplate extends AbstractChannelOperations implements Channe
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
 		if( sourceId > 0 ) {
-			parameters.add( "SourceID", "" + sourceId );
+			parameters.add( "SourceID", String.valueOf( sourceId ) );
 		}
 		
 		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_XMLTVID_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), StringList.class );
