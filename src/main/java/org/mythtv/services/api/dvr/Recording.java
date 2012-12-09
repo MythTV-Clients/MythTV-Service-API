@@ -50,7 +50,7 @@ public class Recording implements Serializable {
 	private DateTime endTimestamp;
 	
 	@JsonProperty( "RecordId" )
-	private Long recordId;
+	private int recordId;
 	
 	@JsonProperty( "RecGroup" )
 	private String recordingGroup;
@@ -137,14 +137,14 @@ public class Recording implements Serializable {
 	/**
 	 * @return the recordId
 	 */
-	public Long getRecordId() {
+	public int getRecordId() {
 		return recordId;
 	}
 
 	/**
 	 * @param recordId the recordId to set
 	 */
-	public void setRecordId( Long recordId ) {
+	public void setRecordId( int recordId ) {
 		this.recordId = recordId;
 	}
 
@@ -287,11 +287,11 @@ public class Recording implements Serializable {
 			builder.append( ", " );
 		}
 		
-		if( recordId != null ) {
+		//if( recordId != null ) {
 			builder.append( "recordId=" );
 			builder.append( recordId );
 			builder.append( ", " );
-		}
+		//}
 		
 		if( recordingGroup != null ) {
 			builder.append( "recordingGroup=" );
