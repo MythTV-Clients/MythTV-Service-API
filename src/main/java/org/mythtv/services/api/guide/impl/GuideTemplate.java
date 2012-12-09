@@ -70,14 +70,14 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	public ResponseEntity<String> getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_ICON.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), String.class );
@@ -94,7 +94,7 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 	 * (int, java.util.Date)
 	 */
 	@Override
-	public ResponseEntity<ProgramWrapper> getProgramDetails( Long channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "ChanId", String.valueOf( channelId ) );
 
@@ -123,11 +123,11 @@ public class GuideTemplate extends AbstractGuideOperations implements GuideOpera
 		parameters.add( "EndTime", convertUtcAndFormat( end ) );
 
 		if( startChannelId > 0 ) {
-			parameters.add( "StartChanId", "" + startChannelId );
+			parameters.add( "StartChanId", String.valueOf( startChannelId ) );
 		}
 
 		if( numberOfChannels > 0 ) {
-			parameters.add( "NumChannels", "" + numberOfChannels );
+			parameters.add( "NumChannels", String.valueOf( numberOfChannels ) );
 		}
 
 		if( details ) {
