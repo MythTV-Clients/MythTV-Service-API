@@ -113,7 +113,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 	public ResponseEntity<VideoMetaDataInfoWrapper> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 
 		ResponseEntity<VideoMetaDataInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), VideoMetaDataInfoWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -155,11 +155,11 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		parameters.add( "Descending", Boolean.toString( descending ) );
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		ResponseEntity<VideoMetadataInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), VideoMetadataInfoList.class );
@@ -192,11 +192,11 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		}
 
 		if( season > 0 ) {
-			parameters.add( "Season", "" + season );
+			parameters.add( "Season", String.valueOf( season ) );
 		}
 
 		if( episode > 0 ) {
-			parameters.add( "Episode", "" + episode );
+			parameters.add( "Episode", String.valueOf( episode ) );
 		}
 
 		ResponseEntity<VideoLookupList> responseEntity = restOperations.exchange( buildUri( Endpoint.LOOKUP_VIDEO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), VideoLookupList.class );
@@ -216,7 +216,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 	public ResponseEntity<Bool> removeVideoFromDatabase( int id ) {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_VIDEO_FROM_DB.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 
