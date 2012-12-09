@@ -92,38 +92,38 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<LiveStreamInfoWrapper> addLiveStream( String storageGroup, String filename, String hostname, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException {
 		
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "FileName", "" + filename );
+		parameters.add( "FileName", filename );
 		
 		if( storageGroup != null ) {
-			parameters.add( "StorageGroup", "" + storageGroup );
+			parameters.add( "StorageGroup", storageGroup );
 		}
 		
 		if( hostname != null ) {
-			parameters.add( "HostName", "" + hostname );
+			parameters.add( "HostName", hostname );
 		}
 		
 		if( maxSegments > 0 ) {
-			parameters.add( "MaxSegments", "" + maxSegments );
+			parameters.add( "MaxSegments", String.valueOf( maxSegments ) );
 		}
 		
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		if( bitrate > 0 ) {
-			parameters.add( "Bitrate", "" + bitrate );
+			parameters.add( "Bitrate", String.valueOf( bitrate ) );
 		}
 
 		if( audioBitrate > 0 ) {
-			parameters.add( "AudioBitrate", "" + audioBitrate );
+			parameters.add( "AudioBitrate", String.valueOf( audioBitrate ) );
 		}
 
 		if( sampleRate > 0 ) {
-			parameters.add( "SampleRate", "" + sampleRate );
+			parameters.add( "SampleRate", String.valueOf( sampleRate ) );
 		}
 
 		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
@@ -138,31 +138,31 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<LiveStreamInfoWrapper> addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		if( maxSegments > 0 ) {
-			parameters.add( "MaxSegments", "" + maxSegments );
+			parameters.add( "MaxSegments", String.valueOf( maxSegments ) );
 		}
 		
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		if( bitrate > 0 ) {
-			parameters.add( "Bitrate", "" + bitrate );
+			parameters.add( "Bitrate", String.valueOf( bitrate ) );
 		}
 
 		if( audioBitrate > 0 ) {
-			parameters.add( "AudioBitrate", "" + audioBitrate );
+			parameters.add( "AudioBitrate", String.valueOf( audioBitrate ) );
 		}
 
 		if( sampleRate > 0 ) {
-			parameters.add( "SampleRate", "" + sampleRate );
+			parameters.add( "SampleRate", String.valueOf( sampleRate ) );
 		}
 
 		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_RECORDING_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
@@ -177,30 +177,30 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<LiveStreamInfoWrapper> addVideoLiveStream( int id, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException {
 		
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 		
 		if( maxSegments > 0 ) {
-			parameters.add( "MaxSegments", "" + maxSegments );
+			parameters.add( "MaxSegments", String.valueOf( maxSegments ) );
 		}
 
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		if( bitrate > 0 ) {
-			parameters.add( "Bitrate", "" + bitrate );
+			parameters.add( "Bitrate", String.valueOf( bitrate ) );
 		}
 
 		if( audioBitrate > 0 ) {
-			parameters.add( "AudioBitrate", "" + audioBitrate );
+			parameters.add( "AudioBitrate", String.valueOf( audioBitrate ) );
 		}
 
 		if( sampleRate > 0 ) {
-			parameters.add( "SampleRate", "" + sampleRate );
+			parameters.add( "SampleRate", String.valueOf( sampleRate ) );
 		}
 
 		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_VIDEO_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
@@ -231,14 +231,14 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<byte[]> getAlbumArt( int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 		
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_ALBUM_ART.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
@@ -322,11 +322,11 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		parameters.add( "FileName", filename );
 		
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_IMAGE_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
@@ -342,7 +342,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<LiveStreamInfoWrapper> getLiveStream( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
 	
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 
 		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfoWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -369,7 +369,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<byte[]> getMusic( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_MUSIC.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -384,19 +384,19 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<byte[]> getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		if( secondsIn > 0 ) {
-			parameters.add( "SecsIn", "" + secondsIn );
+			parameters.add( "SecsIn", String.valueOf( secondsIn ) );
 		}
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PREVIEW_IMAGE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
@@ -415,7 +415,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		parameters.add( "Inetref", inetRef );
 		
 		if( season > 0 ) {
-			parameters.add( "Season", "" + season );
+			parameters.add( "Season", String.valueOf( season ) );
 		}
 
 		ResponseEntity<ArtworkInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROGRAM_ARTWORK_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfos.class );
@@ -431,7 +431,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<byte[]> getRecording( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
@@ -454,15 +454,15 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 		}
 
 		if( season > 0 ) {
-			parameters.add( "Season", "" + season );
+			parameters.add( "Season", String.valueOf( season ) );
 		}
 
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING_ARTWORK.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
@@ -478,7 +478,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<ArtworkInfoList> getRecordingArtworkList( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING_ARTWORK_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfoList.class );
@@ -494,7 +494,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<byte[]> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 		
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -509,18 +509,18 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	public ResponseEntity<byte[]> getVideoArtwork( String type, int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", "" + id );
+		parameters.add( "Id", String.valueOf( id ) );
 		
 		if( null != type && !"".equals( type ) ) {
 			parameters.add( "Type", type );
 		}
 
 		if( width > 0 ) {
-			parameters.add( "Width", "" + width );
+			parameters.add( "Width", String.valueOf( width ) );
 		}
 
 		if( height > 0 ) {
-			parameters.add( "Height", "" + height );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_ARTWORK.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
@@ -535,7 +535,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	@Override
 	public ResponseEntity<Bool> removeLiveStream( int id ) throws MythServiceApiRuntimeException {
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_LIVE_STREAM.getEndpoint(), "Id", "" + id ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_LIVE_STREAM.getEndpoint(), "Id", String.valueOf( id ) ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 		
 		return responseEntity;
 	}
@@ -546,7 +546,7 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	@Override
 	public ResponseEntity<LiveStreamInfo> stopLiveStream( int id ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.STOP_LIVE_STREAM.getEndpoint(), "Id", "" + id ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfo.class );
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.STOP_LIVE_STREAM.getEndpoint(), "Id", String.valueOf( id ) ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfo.class );
 		
 		return responseEntity;
 	}
