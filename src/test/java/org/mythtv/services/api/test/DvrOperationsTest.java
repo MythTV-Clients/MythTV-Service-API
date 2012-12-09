@@ -150,9 +150,11 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordedListResponseEntity()}
 	 * .
 	 */
-	@Ignore
+	@Test
 	public void testGetRecordedListResponseEntity() {
-		fail( "Not yet implemented" );
+		ResponseEntity<ProgramList> programs = api.dvrOperations().getRecordedList( 0, 0, false, ETagInfo.createEmptyETag() );
+		Assert.notNull( programs.getBody() );
+		Assert.notEmpty( programs.getBody().getPrograms().getPrograms() );
 	}
 
 	/**

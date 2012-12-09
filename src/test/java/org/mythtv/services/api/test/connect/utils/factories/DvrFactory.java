@@ -35,6 +35,9 @@ public class DvrFactory extends ResponseFactory {
 	 */
 	@Override
 	public MythFakeHttpInputMessage create(URI url) {
+		if(url.getPath().endsWith("GetRecordedList")){
+			return new MythFakeHttpInputMessage("dvr/GetRecordedList.json");
+		}
 		if(url.getPath().endsWith("GetUpcomingList")){
 			return new MythFakeHttpInputMessage("dvr/GetUpcomingList.json");
 		}
