@@ -101,29 +101,29 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			boolean autoUserJob3, boolean autoUserJob4, int transcoder ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
-		parameters.add( "ParentId", "" + parentId );
+		parameters.add( "ParentId", String.valueOf( parentId ) );
 		parameters.add( "Inactive", Boolean.toString( interactive ) );
-		parameters.add( "Season", "" + season );
-		parameters.add( "Episode", "" + episode );
+		parameters.add( "Season", String.valueOf( season ) );
+		parameters.add( "Episode", String.valueOf( episode ) );
 		parameters.add( "Inetref", inetRef );
-		parameters.add( "FindId", "" + findId );
+		parameters.add( "FindId", String.valueOf( findId ) );
 		parameters.add( "Type", type );
 		parameters.add( "SearchType", searchType );
-		parameters.add( "RecPriority", "" + recordingPriority );
-		parameters.add( "PreferredInput", "" + perferredInput );
-		parameters.add( "StartOffset", "" + startOffset );
-		parameters.add( "EndOffset", "" + endOffset );
+		parameters.add( "RecPriority", String.valueOf( recordingPriority ) );
+		parameters.add( "PreferredInput", String.valueOf( perferredInput ) );
+		parameters.add( "StartOffset", String.valueOf( startOffset ) );
+		parameters.add( "EndOffset", String.valueOf( endOffset ) );
 		parameters.add( "DupMethod", duplicateMethod );
 		parameters.add( "DupIn", duplicateIn );
-		parameters.add( "Filter", "" + filter );
+		parameters.add( "Filter", String.valueOf( filter ) );
 		parameters.add( "RecProfile", recordingProfile );
 		parameters.add( "RecGroup", recordingGroup );
 		parameters.add( "StorageGroup", storageGroup );
 		parameters.add( "PlayGroup", playGroup );
 		parameters.add( "AutoExpire", Boolean.toString( autoExpire ) );
-		parameters.add( "MaxEpisodes", "" + maxEpisodes );
+		parameters.add( "MaxEpisodes", String.valueOf( maxEpisodes ) );
 		parameters.add( "MaxNewest", Boolean.toString( maxNewest ) );
 		parameters.add( "AutoCommflag", Boolean.toString( autoCommercialFlag ) );
 		parameters.add( "AutoTranscode", Boolean.toString( autoTranscode ) );
@@ -132,7 +132,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "AutoUserJob2", Boolean.toString( autoUserJob2 ) );
 		parameters.add( "AutoUserJob3", Boolean.toString( autoUserJob3 ) );
 		parameters.add( "AutoUserJob4", Boolean.toString( autoUserJob4 ) );
-		parameters.add( "Transcoder", "" + transcoder );
+		parameters.add( "Transcoder", String.valueOf( transcoder ) );
 
 		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Int.class );
 
@@ -149,7 +149,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	public ResponseEntity<Bool> disableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", "" + recordingId );
+		parameters.add( "RecordId", String.valueOf( recordingId ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.DISABLE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 
@@ -166,7 +166,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	public ResponseEntity<Bool> enableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", "" + recordingId );
+		parameters.add( "RecordId", String.valueOf( recordingId ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.ENABLE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 
@@ -185,11 +185,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CONFLICT_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
@@ -223,11 +223,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_EXPIRING_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
@@ -251,11 +251,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		parameters.add( "Descending", Boolean.toString( descending ) );
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		if( null != titleRegEx && !"".equals( titleRegEx ) ) {
@@ -285,7 +285,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	public ResponseEntity<RecRuleWrapper> getRecordSchedule( int recordId, ETagInfo etag ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", "" + recordId );
+		parameters.add( "RecordId", String.valueOf( recordId ) );
 
 		ResponseEntity<RecRuleWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), RecRuleWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -306,11 +306,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		ResponseEntity<RecRuleList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORD_SCHEDULE_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), RecRuleList.class );
@@ -330,7 +330,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 			throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
 		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED.getEndpoint(), parameters ),	HttpMethod.GET, getRequestEntity( etag ), ProgramWrapper.class );
@@ -370,11 +370,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		parameters.add( "Descending", Boolean.toString( descending ) );
@@ -403,11 +403,11 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", "" + startIndex );
+			parameters.add( "StartIndex", String.valueOf( startIndex ) );
 		}
 
 		if( count > 0 ) {
-			parameters.add( "Count", "" + count );
+			parameters.add( "Count", String.valueOf( count ) );
 		}
 
 		parameters.add( "ShowAll", Boolean.toString( showAll ) );
@@ -432,7 +432,7 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	public ResponseEntity<Bool> removeRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", "" + recordingId );
+		parameters.add( "RecordId", String.valueOf( recordingId ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 		
@@ -446,10 +446,10 @@ public class DvrTemplate extends AbstractDvrOperations implements DvrOperations 
 	 * java.util.Date)
 	 */
 	@Override
-	public ResponseEntity<Bool> removeRecorded( Long channelId, DateTime startTime ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException {
 
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", "" + channelId );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_RECORDED.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
