@@ -89,7 +89,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	 */
 	@Override
 	public ResponseEntity<CaptureCardWrapper> getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD.getEndpoint(), "CardId", new String( "" + cardId ) ), HttpMethod.GET, getRequestEntity(etag), CaptureCardWrapper.class );
+		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD.getEndpoint(), "CardId", new String( String.valueOf( cardId ) ) ), HttpMethod.GET, getRequestEntity(etag), CaptureCardWrapper.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
@@ -133,7 +133,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	@Override
 	public ResponseEntity<Bool> removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardId", new String( "" + cardId ) );
+		parameters.add( "CardId", new String( String.valueOf( cardId ) ) );
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_CAPTURE_CARD.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), Bool.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
@@ -147,7 +147,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	@Override
 	public ResponseEntity<Bool> removeCardInput( int cardInputId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardInputId", new String( "" + cardInputId ) );
+		parameters.add( "CardInputId", new String( String.valueOf( cardInputId ) ) );
 
 		return restOperations.exchange( buildUri( Endpoint.REMOVE_CARD_INPUT.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
 	}
@@ -158,7 +158,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	@Override
 	public ResponseEntity<Bool> updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardId", new String( "" + cardId ) );
+		parameters.add( "CardId", new String( String.valueOf( cardId ) ) );
 		parameters.add( setting, value );
 		
 		return restOperations.exchange( buildUri( Endpoint.UPDATE_CAPTURE_CARD.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
@@ -170,7 +170,7 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	@Override
 	public ResponseEntity<Bool> updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardInputId", new String( "" + cardInputId ) );
+		parameters.add( "CardInputId", new String( String.valueOf( cardInputId ) ) );
 		parameters.add( setting, value );
 		
 		return restOperations.exchange( buildUri( Endpoint.UPDATE_CARD_INPUT.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
@@ -213,8 +213,8 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 	private LinkedMultiValueMap<String, String> convertCardInputToParameters( CardInput cardInput ) {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		
-		parameters.add( "CardId", "" + cardInput.getCardId() );
-		parameters.add( "SourceId", "" + cardInput.getSourceId() );
+		parameters.add( "CardId", String.valueOf( cardInput.getCardId() ) );
+		parameters.add( "SourceId", String.valueOf( cardInput.getSourceId() ) );
 		parameters.add( "InputName", cardInput.getInputName() );
 		parameters.add( "ExternalCommand", cardInput.getExternalCommand() );
 		parameters.add( "ChangerDevice", cardInput.getChangerDevice() );
@@ -223,11 +223,11 @@ public class CaptureTemplate extends AbstractCaptureOperations implements Captur
 		parameters.add( "TuneChan", cardInput.getTuneChannel() );
 		parameters.add( "StartChan", cardInput.getStartChannel() );
 		parameters.add( "DisplayName", cardInput.getDisplayName() );
-		parameters.add( "DishnetEIT", "" + cardInput.isDishnetEIT() );
-		parameters.add( "RecPriority", "" + cardInput.getRecordingPriority() );
-		parameters.add( "Quicktune", "" + cardInput.getQuicktune() );
-		parameters.add( "SchedOrder", "" + cardInput.getSchedOrder() );
-		parameters.add( "LiveTVOrder", "" + cardInput.getLiveTVOrder() );
+		parameters.add( "DishnetEIT", String.valueOf( cardInput.isDishnetEIT() ) );
+		parameters.add( "RecPriority", String.valueOf( cardInput.getRecordingPriority() ) );
+		parameters.add( "Quicktune", String.valueOf( cardInput.getQuicktune() ) );
+		parameters.add( "SchedOrder", String.valueOf( cardInput.getSchedOrder() ) );
+		parameters.add( "LiveTVOrder", String.valueOf( cardInput.getLiveTVOrder() ) );
 
 		return parameters;
 	}
