@@ -44,13 +44,13 @@ public class VideoMultiplex {
 	private int networkId;
 	
 	@JsonProperty( "Frequency" )
-	private long frequency;
+	private int frequency;
 	
 	@JsonProperty( "Inversion" )
 	private String inversion;
 	
 	@JsonProperty( "SymbolRate" )
-	private long symbolRate;
+	private int symbolRate;
 	
 	@JsonProperty( "FEC" )
 	private String fec;
@@ -165,14 +165,14 @@ public class VideoMultiplex {
 	/**
 	 * @return the frequency
 	 */
-	public long getFrequency() {
+	public int getFrequency() {
 		return frequency;
 	}
 
 	/**
 	 * @param frequency the frequency to set
 	 */
-	public void setFrequency( long frequency ) {
+	public void setFrequency( int frequency ) {
 		this.frequency = frequency;
 	}
 
@@ -193,14 +193,14 @@ public class VideoMultiplex {
 	/**
 	 * @return the symbolRate
 	 */
-	public long getSymbolRate() {
+	public int getSymbolRate() {
 		return symbolRate;
 	}
 
 	/**
 	 * @param symbolRate the symbolRate to set
 	 */
-	public void setSymbolRate( long symbolRate ) {
+	public void setSymbolRate( int symbolRate ) {
 		this.symbolRate = symbolRate;
 	}
 
