@@ -103,8 +103,8 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 		}
 		
 		if( width > 0 && height > 0 ) {
-			parameters.add( "Width", "" + width );
-			parameters.add( "Height", "" + height );
+			parameters.add( "Width", String.valueOf( width ) );
+			parameters.add( "Height", String.valueOf( height ) );
 		}
 
 		ResponseEntity<Bool> responseEntity = restOperations.exchange(
@@ -146,10 +146,10 @@ public class FrontendTemplate extends AbstractFrontendOperations implements Fron
 	 * @throws MythServiceApiRuntimeException
 	 */
 	@Override
-	public ResponseEntity<Bool> playRecording(String frontedApiUrlBase, Long channelId, DateTime startTime)
+	public ResponseEntity<Bool> playRecording(String frontedApiUrlBase, int channelId, DateTime startTime)
 	{
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", channelId.toString() );
+		parameters.add( "ChanId", String.valueOf( channelId ) );
 		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 		
 		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters );
