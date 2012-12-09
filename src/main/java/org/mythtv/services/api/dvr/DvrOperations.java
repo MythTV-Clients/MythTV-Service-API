@@ -193,6 +193,6 @@ public interface DvrOperations {
 	 * @param startTime
 	 * @return
 	 */
-	ResponseEntity<Bool> removeRecorded( Long channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
 
 }
