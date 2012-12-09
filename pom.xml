@@ -23,7 +23,7 @@
 	</scm>
 	
 	<properties>
-		<org.springframework.android-version>1.0.0.RELEASE</org.springframework.android-version>
+		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
 		<org.springframework.social-version>1.0.2.RELEASE</org.springframework.social-version>
 		<com.fasterxml.jackson-version>2.0.6</com.fasterxml.jackson-version>
 		<junit-version>4.10</junit-version>
