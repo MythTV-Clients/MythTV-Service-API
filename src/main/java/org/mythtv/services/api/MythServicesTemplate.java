@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api;
 
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
@@ -42,9 +43,14 @@ public class MythServicesTemplate extends BaseMythServicesTemplate {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.registerModule( new JodaModule() );
-		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-		mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
-		rest.getMessageConverters().add( mappingJackson2HttpMessageConverter );
+		
+		for( HttpMessageConverter messageConverter : rest.getMessageConverters() ) {
+			if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
+				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
+				mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
+			}
+		
+		}
 		
 		rest.setErrorHandler( new MythServicesErrorHandler() );
 		return rest;
