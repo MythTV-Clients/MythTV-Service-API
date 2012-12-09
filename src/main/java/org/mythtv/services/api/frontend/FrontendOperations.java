@@ -78,7 +78,7 @@ public interface FrontendOperations {
 	 * @return
 	 * @throws MythServiceApiRuntimeException
 	 */
-	ResponseEntity<Bool> playRecording(String frontedApiUrlBase, Long channelId, DateTime startTime) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> playRecording(String frontedApiUrlBase, int channelId, DateTime startTime) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * 
