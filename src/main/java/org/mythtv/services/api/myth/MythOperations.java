@@ -24,6 +24,7 @@ import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.StringList;
+import org.mythtv.services.api.StringWrapper;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -80,7 +81,7 @@ public interface MythOperations {
 	 * 
 	 * @return
 	 */
-	ResponseEntity<String> getHostName() throws MythServiceApiRuntimeException;
+	ResponseEntity<StringWrapper> getHostName() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -160,21 +161,21 @@ public interface MythOperations {
 	 * 
 	 * @return
 	 */
-	ResponseEntity<String> profileText() throws MythServiceApiRuntimeException;
+	ResponseEntity<StringWrapper> profileText() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	ResponseEntity<String> profileUrl() throws MythServiceApiRuntimeException;
+	ResponseEntity<StringWrapper> profileUrl() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
 	 * 
 	 * @return
 	 */
-	ResponseEntity<String> profileUpdated() throws MythServiceApiRuntimeException;
+	ResponseEntity<StringWrapper> profileUpdated() throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - POST

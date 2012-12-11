@@ -24,6 +24,7 @@ import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.StringList;
+import org.mythtv.services.api.StringWrapper;
 import org.mythtv.services.api.myth.ConnectionInfo;
 import org.mythtv.services.api.myth.LogMessageList;
 import org.mythtv.services.api.myth.MythOperations;
@@ -132,9 +133,9 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * @see org.mythtv.services.api.myth.MythOperations#getHostName()
 	 */
 	@Override
-	public ResponseEntity<String> getHostName() throws MythServiceApiRuntimeException {
+	public ResponseEntity<StringWrapper> getHostName() throws MythServiceApiRuntimeException {
 
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HOST_NAME.getEndpoint() ), HttpMethod.GET,	getRequestEntity( null ), String.class );
+		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HOST_NAME.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
 
 		return responseEntity;
 	}
@@ -241,7 +242,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * @see org.mythtv.services.api.myth.MythOperations#profileText()
 	 */
 	@Override
-	public ResponseEntity<String> profileText() throws MythServiceApiRuntimeException {
+	public ResponseEntity<StringWrapper> profileText() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -252,7 +253,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * @see org.mythtv.services.api.myth.MythOperations#profileUrl()
 	 */
 	@Override
-	public ResponseEntity<String> profileUrl() throws MythServiceApiRuntimeException {
+	public ResponseEntity<StringWrapper> profileUrl() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -263,7 +264,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * @see org.mythtv.services.api.myth.MythOperations#profileUpdated()
 	 */
 	@Override
-	public ResponseEntity<String> profileUpdated() throws MythServiceApiRuntimeException {
+	public ResponseEntity<StringWrapper> profileUpdated() throws MythServiceApiRuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
