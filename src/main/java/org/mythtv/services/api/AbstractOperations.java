@@ -110,11 +110,11 @@ public abstract class AbstractOperations {
 			// we will still add etag the regular way and add it via If-None-Match 
 			requestHeaders.setETag( info.getETag() );
 			requestHeaders.add( MYTHTV_ETAG, info.getETag() );
+
+			// Currently does not work with .26 backends
+			requestHeaders.setAcceptEncoding( ContentCodingType.GZIP );
 		}
-		
-		// Currently does not work with .26 backends
-		requestHeaders.setAcceptEncoding( ContentCodingType.GZIP );
-		
+				
 		return new HttpEntity<Object>( requestHeaders );
 	}
 	
