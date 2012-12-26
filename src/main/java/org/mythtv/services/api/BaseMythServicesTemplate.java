@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api;
 
+import java.util.logging.Level;
+
 import org.mythtv.services.api.capture.CaptureOperations;
 import org.mythtv.services.api.capture.impl.CaptureTemplate;
 import org.mythtv.services.api.channel.ChannelOperations;
@@ -56,11 +58,16 @@ public abstract class BaseMythServicesTemplate implements MythServices {
 	private VideoOperations videoOperations;
 
 	public BaseMythServicesTemplate( String apiUrlBase ) {
+		this(apiUrlBase, Level.INFO);
+	}
+	
+	public BaseMythServicesTemplate( String apiUrlBase, Level logLevel ) {
+		AbstractOperations.setLogLevel(logLevel);
 		this.apiUrlBase = apiUrlBase;
 		this.restOperations = createRestOperations();
 		initSubApis();
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 

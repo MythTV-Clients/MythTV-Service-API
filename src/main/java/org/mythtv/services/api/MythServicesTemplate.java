@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api;
 
+import java.util.logging.Level;
+
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestOperations;
@@ -35,6 +37,10 @@ public class MythServicesTemplate extends BaseMythServicesTemplate {
 
 	public MythServicesTemplate( String apiUrlBase ) {
 		super(apiUrlBase);
+	}
+	
+	public MythServicesTemplate( String apiUrlBase, Level logLevel) {
+		super(apiUrlBase, logLevel);
 	}
 	
 	@Override

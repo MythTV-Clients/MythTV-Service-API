@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.connect;
 
+import java.util.logging.Level;
+
 import org.mythtv.services.api.MythServices;
 import org.mythtv.services.api.MythServicesTemplate;
 
@@ -29,15 +31,21 @@ import org.mythtv.services.api.MythServicesTemplate;
 public class MythServicesServiceProvider {
 
 	private final String apiUrlBase;
+	private Level logLevel;
 	
-	public MythServicesServiceProvider( String apiUrlBase ) {
+	public MythServicesServiceProvider( String apiUrlBase) {
+		this(apiUrlBase, Level.INFO);
+	}
+	
+	public MythServicesServiceProvider( String apiUrlBase, Level logLevel ) {
 		if(!apiUrlBase.endsWith("/"))
 			apiUrlBase += "/";
 		this.apiUrlBase = apiUrlBase;
+		this.logLevel = logLevel;
 	}
 
 	public MythServices getApi() {
-		return new MythServicesTemplate( getApiUrlBase() );
+		return new MythServicesTemplate( getApiUrlBase(), logLevel );
 	}
 	
 	// internal helpers

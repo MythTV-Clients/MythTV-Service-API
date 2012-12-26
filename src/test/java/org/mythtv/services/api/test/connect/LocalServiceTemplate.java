@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api.test.connect;
 
+import java.util.logging.Level;
+
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.test.connect.utils.FakeMythTvRestTemplate;
 import org.springframework.web.client.RestOperations;
@@ -34,6 +36,10 @@ public class LocalServiceTemplate extends BaseMythServicesTemplate {
 	 */
 	public LocalServiceTemplate(String apiUrlBase) {
 		super(apiUrlBase);
+	}
+	
+	public LocalServiceTemplate(String apiUrlBase, Level logLevel) {
+		super(apiUrlBase, logLevel);
 	}
 
 	/* (non-Javadoc)

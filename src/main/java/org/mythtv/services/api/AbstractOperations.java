@@ -21,6 +21,7 @@ package org.mythtv.services.api;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.joda.time.DateTime;
@@ -40,7 +41,6 @@ import org.springframework.util.MultiValueMap;
  * 
  */
 public abstract class AbstractOperations {
-	
 	private static final String TAG = AbstractOperations.class.getSimpleName();
 	private static final String MYTHTV_ETAG = "If-None-Match";
 	
@@ -58,12 +58,17 @@ public abstract class AbstractOperations {
 		logger = Logger.getLogger( AbstractOperations.TAG );
 	}
 
+	public static void setLogLevel(Level lvl){
+		Logger.getLogger( AbstractOperations.TAG ).setLevel(lvl);
+	}
+	
 	/**
 	 * @param path
 	 * @return
 	 */
 	protected URI buildUri( String path ) {
-		logger.info( buildUri( path, EMPTY_PARAMETERS ).toString() );
+		if (logger.isLoggable(Level.FINE))
+			logger.fine( buildUri( path, EMPTY_PARAMETERS ).toString() );
 		
 		return buildUri( path, EMPTY_PARAMETERS );
 	}
@@ -87,7 +92,8 @@ public abstract class AbstractOperations {
 	 * @return
 	 */
 	protected URI buildUri( String path, MultiValueMap<String, String> parameters ) {
-		logger.warning( "URI : " + URIBuilder.fromUri( getApiUrlBase() + path ).queryParams( parameters ).build() );
+		if (logger.isLoggable(Level.FINE))
+			logger.fine( "URI : " + URIBuilder.fromUri( getApiUrlBase() + path ).queryParams( parameters ).build() );
 		
 		return URIBuilder.fromUri( getApiUrlBase() + path ).queryParams( parameters ).build();
 	}
@@ -127,7 +133,7 @@ public abstract class AbstractOperations {
 	protected String convertUtcAndFormat( DateTime dt ) {
 		return formatter.print( dt.withZone( DateTimeZone.UTC ) );
 	}
-	
+		
 	private static final LinkedMultiValueMap<String, String> EMPTY_PARAMETERS = new LinkedMultiValueMap<String, String>();
 
 }
