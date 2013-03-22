@@ -33,6 +33,7 @@ import org.mythtv.services.api.myth.StorageGroupDirectoryList;
 import org.mythtv.services.api.myth.TimeZoneInfo;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
@@ -43,8 +44,15 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 
 	public enum Endpoint {
 		GET_CONNECTION_INFO( "GetConnectionInfo" ),
-		GET_HOST_NAME( "GetHostName" );
-		
+		GET_HOST_NAME( "GetHostName" ),
+		GET_HOSTS( "GetHosts" ),
+		GET_KEYS( "GetKeys" ),
+		GET_PROFILE_TEXT( "ProfileText" ),
+		GET_PROFILE_UPDATED( "ProfileUpdated" ),
+		GET_PROFILE_URL( "ProfileURL" ),
+		GET_SETTING( "GetSetting" ),
+		GET_TIMEZONE( "GetTimeZone" );
+				
 		private String endpoint;
 		
 		private Endpoint( String endpoint ) {
@@ -147,8 +155,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<StringList> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HOSTS.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringList.class );
+		return responseEntity;
 	}
 
 	/*
@@ -158,8 +166,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<StringList> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_KEYS.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringList.class );
+		return responseEntity;
 	}
 
 	/*
@@ -186,8 +194,19 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<SettingList> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if(hostname != null && !hostname.trim().isEmpty())
+			parameters.add("HostName", hostname);
+		if(key != null && !key.trim().isEmpty()){
+			parameters.add( "Key", key );
+			if(defaultValue != null && !defaultValue.trim().isEmpty()){
+				parameters.add( "Default", defaultValue );
+			}
+		}
+		ResponseEntity<SettingList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_SETTING.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), SettingList.class );
+		handleResponseEtag( etag, responseEntity.getHeaders() );
+
+		return responseEntity;
 	}
 
 	/*
@@ -210,8 +229,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<TimeZoneInfo> getTimeZoneInfo() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<TimeZoneInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_TIMEZONE.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), TimeZoneInfo.class );
+		return responseEntity;
 	}
 
 	/*
@@ -243,8 +262,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<StringWrapper> profileText() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROFILE_TEXT.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
+		return responseEntity;
 	}
 
 	/*
@@ -254,8 +273,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<StringWrapper> profileUrl() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROFILE_URL.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
+		return responseEntity;
 	}
 
 	/*
@@ -265,8 +284,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 */
 	@Override
 	public ResponseEntity<StringWrapper> profileUpdated() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROFILE_UPDATED.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
+		return responseEntity;
 	}
 
 	/*

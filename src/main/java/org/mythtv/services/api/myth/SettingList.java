@@ -19,7 +19,7 @@
  */
 package org.mythtv.services.api.myth;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Daniel Frey
@@ -27,21 +27,22 @@ import java.util.List;
  */
 public class SettingList {
 
-	private List<Setting> settings;
+	@JsonProperty( "SettingList" )
+	private Setting settings;
 	
 	public SettingList() { }
 
 	/**
 	 * @return the setting
 	 */
-	public List<Setting> getSetting() {
+	public Setting getSetting() {
 		return settings;
 	}
 
 	/**
 	 * @param setting the setting to set
 	 */
-	public void setSetting( List<Setting> settings ) {
+	public void setSetting( Setting settings ) {
 		this.settings = settings;
 	}
 
@@ -52,14 +53,14 @@ public class SettingList {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append( "SettingList [" );
+		builder.append( "SettingList {" );
 		
 		if( settings != null ) {
 			builder.append( "settings=" );
 			builder.append( settings );
 		}
 		
-		builder.append( "]" );
+		builder.append( "}" );
 	
 		return builder.toString();
 	}
