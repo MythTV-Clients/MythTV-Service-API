@@ -20,6 +20,7 @@
 package org.mythtv.services.api;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -108,9 +109,19 @@ public abstract class AbstractOperations {
 	/**
 	 * @return the requestEntity
 	 */
-	protected HttpEntity<?> getRequestEntity(ETagInfo info) {
+	protected HttpEntity<?> getRequestEntity( ETagInfo info, MediaType ...mediaTypes ) {
+		
+		if( null == mediaTypes ) {
+			mediaTypes = new MediaType[ 1 ];
+			mediaTypes[ 0 ] = MediaType.APPLICATION_JSON;
+		}
+		
+		if( mediaTypes.length > 1 ) {
+			throw new IllegalArgumentException( "Should only be one MediaType here" );
+		}
+		
 		HttpHeaders requestHeaders = new HttpHeaders();
-		requestHeaders.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
+		requestHeaders.setAccept( Arrays.asList( mediaTypes ) );
 		if( info != null && !info.isEmptyEtag() ) {
 			// it seems that mythtv uses "If-None-Match" and not "ETag"
 			// we will still add etag the regular way and add it via If-None-Match 
