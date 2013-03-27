@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.mythtv.services.api.dvr.Program;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -34,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Daniel Frey
  *
  */
+@Root( name = "Channel" )
 public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	
 	private static final long serialVersionUID = 5939218201237085127L;
@@ -41,18 +44,22 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	private static Logger LOGGER = Logger.getLogger("ChannelInfo");
 	
 	@JsonProperty( "ChanId" )
+	@Attribute( name = "chanId" )
 	private int channelId;
 	
 	@JsonProperty( "ChanNum" )
+	@Attribute( name = "chanNum" )
 	private String channelNumber;
 	
 	@JsonProperty( "CallSign" )
+	@Attribute( name = "callSign" )
 	private String callSign;
 	
 	@JsonProperty( "IconURL" )
 	private String iconUrl;
 	
 	@JsonProperty( "ChannelName" )
+	@Attribute( name = "channelName" )
 	private String channelName;
 	
 	@JsonProperty( "MplexId" )
@@ -95,15 +102,19 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	private String siStandard;
 	
 	@JsonProperty( "ChanFilters" )
+	@Attribute( name = "chanFilters" )
 	private String channelFilters;
 	
 	@JsonProperty( "SourceId" )
+	@Attribute( name = "sourceId" )
 	private int sourceId;
 	
 	@JsonProperty( "InputId" )
+	@Attribute( name = "inputId" )
 	private int inputId;
 	
 	@JsonProperty( "CommFree" )
+	@Attribute( name = "commFree" )
 	private int commercialFree;
 	
 	@JsonProperty( "UseEIT" )

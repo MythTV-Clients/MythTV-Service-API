@@ -26,6 +26,7 @@ import org.mythtv.services.api.dvr.DvrOperations;
 import org.mythtv.services.api.frontend.FrontendOperations;
 import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.myth.MythOperations;
+import org.mythtv.services.api.status.StatusOperations;
 import org.mythtv.services.api.video.VideoOperations;
 
 /**
@@ -47,6 +48,8 @@ public interface MythServices {
 	GuideOperations guideOperations();
 	
 	MythOperations mythOperations();
+	
+	StatusOperations statusOperations();
 	
 	VideoOperations videoOperations();
 	

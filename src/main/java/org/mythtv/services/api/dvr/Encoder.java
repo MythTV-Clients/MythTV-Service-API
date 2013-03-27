@@ -19,36 +19,54 @@
  */
 package org.mythtv.services.api.dvr;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Daniel Frey
  *
  */
+@Root( name = "Encoder" )
 public class Encoder {
 
 	@JsonProperty( "Id" )
+	@Attribute
 	private int id;
 	
 	@JsonProperty( "HostName" )
+	@Attribute
 	private String hostname;
 	
 	@JsonProperty( "Local" )
+	@Attribute
 	private boolean local;
 	
 	@JsonProperty( "Connected" )
+	@Attribute
 	private boolean connected;
 	
 	@JsonProperty( "State" )
+	@Attribute
 	private int state;
 	
 	@JsonProperty( "SleepStatus" )
+	@Attribute( name = "sleepstatus" )
 	private int sleepStatus;
 	
+	@JsonIgnore
+	@Attribute( name = "devlabel" )
+	private String deviceLabel;
+	
 	@JsonProperty( "LowOnFreeSpace" )
+	@Attribute( required = false )
 	private boolean lowOnFreeSpace;
 	
 	@JsonProperty( "Recording" )
+	@Element( name = "Program", required = false )
 	private Program recording;
 	
 	public Encoder() { }
@@ -138,6 +156,20 @@ public class Encoder {
 	}
 
 	/**
+	 * @return the deviceLabel
+	 */
+	public String getDeviceLabel() {
+		return deviceLabel;
+	}
+
+	/**
+	 * @param deviceLabel the deviceLabel to set
+	 */
+	public void setDeviceLabel( String deviceLabel ) {
+		this.deviceLabel = deviceLabel;
+	}
+
+	/**
 	 * @return the lowOnFreeSpace
 	 */
 	public boolean isLowOnFreeSpace() {
@@ -171,17 +203,14 @@ public class Encoder {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		
 		builder.append( "Encoder [id=" );
 		builder.append( id );
 		builder.append( ", " );
-		
 		if( hostname != null ) {
 			builder.append( "hostname=" );
 			builder.append( hostname );
 			builder.append( ", " );
 		}
-		
 		builder.append( "local=" );
 		builder.append( local );
 		builder.append( ", connected=" );
@@ -190,17 +219,20 @@ public class Encoder {
 		builder.append( state );
 		builder.append( ", sleepStatus=" );
 		builder.append( sleepStatus );
-		builder.append( ", lowOnFreeSpace=" );
+		builder.append( ", " );
+		if( deviceLabel != null ) {
+			builder.append( "deviceLabel=" );
+			builder.append( deviceLabel );
+			builder.append( ", " );
+		}
+		builder.append( "lowOnFreeSpace=" );
 		builder.append( lowOnFreeSpace );
 		builder.append( ", " );
-		
 		if( recording != null ) {
 			builder.append( "recording=" );
 			builder.append( recording );
 		}
-		
 		builder.append( "]" );
-		
 		return builder.toString();
 	}
 	

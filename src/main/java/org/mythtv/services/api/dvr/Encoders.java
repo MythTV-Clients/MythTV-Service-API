@@ -21,15 +21,25 @@ package org.mythtv.services.api.dvr;
 
 import java.util.List;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Daniel Frey
  *
  */
+@Root( name = "Encoders" )
 public class Encoders {
 
+	@JsonProperty
+	@Attribute( name = "count" )
+	private int count;
+	
 	@JsonProperty( "Encoders" )
+	@ElementList( inline = true )
 	private List<Encoder> encoders;
 	
 	public Encoders() { }

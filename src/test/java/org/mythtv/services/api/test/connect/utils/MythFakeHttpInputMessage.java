@@ -51,6 +51,8 @@ public class MythFakeHttpInputMessage implements ClientHttpResponse {
 		
 		if(filePath.endsWith(".json"))
 			headers.setContentType(MediaType.APPLICATION_JSON);
+		else if( filePath.endsWith( ".xml" ) ) 
+			headers.setContentType( MediaType.APPLICATION_XML );
 		else if(filePath.endsWith(".png"))
 			headers.setContentType(MediaType.IMAGE_PNG);
 			

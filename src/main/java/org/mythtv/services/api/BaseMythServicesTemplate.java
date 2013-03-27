@@ -35,6 +35,8 @@ import org.mythtv.services.api.guide.GuideOperations;
 import org.mythtv.services.api.guide.impl.GuideTemplate;
 import org.mythtv.services.api.myth.MythOperations;
 import org.mythtv.services.api.myth.impl.MythTemplate;
+import org.mythtv.services.api.status.StatusOperations;
+import org.mythtv.services.api.status.impl.StatusTemplate;
 import org.mythtv.services.api.video.VideoOperations;
 import org.mythtv.services.api.video.impl.VideoTemplate;
 import org.springframework.web.client.RestOperations;
@@ -55,6 +57,7 @@ public abstract class BaseMythServicesTemplate implements MythServices {
 	private FrontendOperations frontendOperations;
 	private GuideOperations guideOperations;
 	private MythOperations mythOperations;
+	private StatusOperations statusOperations;
 	private VideoOperations videoOperations;
 
 	public BaseMythServicesTemplate( String apiUrlBase ) {
@@ -127,6 +130,14 @@ public abstract class BaseMythServicesTemplate implements MythServices {
 	}
 
 	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.MythServices#statusOperations()
+	 */
+	@Override
+	public StatusOperations statusOperations() {
+		return statusOperations;
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.MythServices#videoOperations()
 	 */
 	@Override
@@ -155,6 +166,7 @@ public abstract class BaseMythServicesTemplate implements MythServices {
 		this.frontendOperations = new FrontendTemplate( getRestOperations(), getApiUrlBase() );
 		this.guideOperations = new GuideTemplate( getRestOperations(), getApiUrlBase() );
 		this.mythOperations = new MythTemplate( getRestOperations(), getApiUrlBase() );
+		this.statusOperations = new StatusTemplate( getRestOperations(), getApiUrlBase() );
 		this.videoOperations = new VideoTemplate( getRestOperations(), getApiUrlBase() );
 	}
 
