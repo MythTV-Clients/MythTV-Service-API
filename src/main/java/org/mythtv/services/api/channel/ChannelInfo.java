@@ -519,13 +519,19 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 
 			@Override
 			public int compare(Program o1, Program o2) {
-				
-				if(o1.equals(o2)) return 0;
-				
-				if(o1.getStartTime().isAfter(o2.getStartTime()))
-					return 1;
-				else
+				if (o1 == null && o2 == null)
+					return 0;
+				if (o1 == null)
 					return -1;
+				if (o2 == null)
+					return 1;
+				if (o1.getStartTime() == null && o2.getStartTime() == null)
+					return 0;
+				if (o1.getStartTime() == null)
+					return -1;
+				if (o2.getStartTime() == null)
+					return 1;
+				return o1.getStartTime().compareTo(o2.getStartTime());
 				
 			}});
 		
@@ -562,30 +568,7 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 		}
 		
 		ChannelInfo other = (ChannelInfo) obj;
-		if( channelNumber == null ) {
-			if( other.channelNumber != null ) {
-				return false;
-			}
-		} else {
-			try {
-				String sThisChannelNumber = channelNumber;
-				sThisChannelNumber = sThisChannelNumber.replaceAll("\\D+", ".");
-
-				String sOtherChannelNumber = other.getChannelNumber();
-				sOtherChannelNumber = sOtherChannelNumber.replaceAll("\\D+", ".");
-
-				Double dThisChannelNumber = Double.parseDouble( sThisChannelNumber );
-				Double dOtherChannelNumber = Double.parseDouble( sOtherChannelNumber );
-
-				if( dThisChannelNumber.doubleValue() != dOtherChannelNumber.doubleValue() ) {
-					return false;
-				}
-			} catch( Exception e ) {
-				LOGGER.fine( "Error comparing channels: " + e.getMessage() );
-			}
-		}
-		
-		return true;
+		return compareTo(other) == 0;
 	}
 
 	/* (non-Javadoc)
@@ -598,6 +581,7 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	    final int AFTER = 1;
 		
 	    if( this == arg ) return EQUAL;
+	    if( arg == null ) return AFTER;
 	    
 		try {
 			String sThisChannelNumber = channelNumber;
@@ -609,6 +593,14 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 			Double dThisChannelNumber = Double.parseDouble( sThisChannelNumber );
 			Double dOtherChannelNumber = Double.parseDouble( sOtherChannelNumber );
 
+			// check for NaN
+			if (dThisChannelNumber.isNaN() && dOtherChannelNumber.isNaN())
+				return EQUAL;
+			if (dThisChannelNumber.isNaN())
+				return BEFORE;
+			if (dOtherChannelNumber.isNaN())
+				return AFTER;
+			
 			if( dThisChannelNumber.doubleValue() < dOtherChannelNumber.doubleValue() ) return BEFORE;
 			if( dThisChannelNumber.doubleValue() > dOtherChannelNumber.doubleValue() ) return AFTER;
 		} catch( Exception e ) {

@@ -555,14 +555,7 @@ public class Program implements Serializable, Comparable<Program> {
 			return false;
 		}
 		Program other = (Program) obj;
-		if( title == null ) {
-			if( other.title != null ) {
-				return false;
-			}
-		} else if( !title.equals( other.title ) ) {
-			return false;
-		}
-		return true;
+		return compareTo(other) == 0;
 	}
 
 	/* (non-Javadoc)
@@ -729,7 +722,16 @@ public class Program implements Serializable, Comparable<Program> {
 	 */
 	@Override
 	public int compareTo( Program arg ) {
-	
+		if (arg == null) {
+			return 1;
+		}
+		if (title == null && arg.getTitle() == null)
+			return 0;
+		if (title == null)
+			return -1;
+		if (arg.getTitle() == null)
+			return 1;
+		
 		String sThisTitle = ArticleCleaner.clean( title );
 		String sOtherTitle = ArticleCleaner.clean( arg.getTitle() );
 
