@@ -111,7 +111,7 @@ public abstract class AbstractOperations {
 	 */
 	protected HttpEntity<?> getRequestEntity( ETagInfo info, MediaType ...mediaTypes ) {
 		
-		if( null == mediaTypes ) {
+		if( null == mediaTypes || mediaTypes.length == 0 ) {
 			mediaTypes = new MediaType[ 1 ];
 			mediaTypes[ 0 ] = MediaType.APPLICATION_JSON;
 		}
