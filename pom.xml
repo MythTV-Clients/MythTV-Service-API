@@ -21,16 +21,28 @@
     	<developerConnection>scm:git:git@github.com:MythTV-Clients/MythTV-Service-API.git</developerConnection>
     	<url>git@github.com:MythTV-Clients/MythTV-Service-API.git</url>
 	</scm>
-	
 	<properties>
 		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
 		<org.springframework.social-version>1.0.2.RELEASE</org.springframework.social-version>
 		<com.fasterxml.jackson-version>2.1.2</com.fasterxml.jackson-version>
-		<simple-version>2.6.9</simple-version>
+		<simple-version>2.7</simple-version>
 		<junit-version>4.10</junit-version>
 		<joda-time-version>2.1</joda-time-version>
 	</properties>
-	
+	<repositories>
+		<repository>
+			<id>lib</id>
+			<name>lib</name>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>file://${project.basedir}/lib</url>
+		</repository>
+	</repositories>
 	<parent>
     	<groupId>org.sonatype.oss</groupId>
     	<artifactId>oss-parent</artifactId>
@@ -95,8 +107,24 @@
 
 		<dependency>
     		<groupId>org.simpleframework</groupId>
-    		<artifactId>simple-xml</artifactId>
+    		<artifactId>simple-xml-android</artifactId>
     		<version>${simple-version}</version>
+   		    <exclusions>
+		        <!-- StAX is not available on Android -->
+		        <exclusion>
+		            <artifactId>stax</artifactId>
+		            <groupId>stax</groupId>
+		        </exclusion>
+		        <exclusion>
+		            <artifactId>stax-api</artifactId>
+		            <groupId>stax</groupId>
+		        </exclusion>
+		        <!-- Provided by Android -->
+		        <exclusion>
+		            <artifactId>xpp3</artifactId>
+		            <groupId>xpp3</groupId>
+		        </exclusion>
+		    </exclusions>
 		</dependency>
 
 		<dependency>
