@@ -29,20 +29,7 @@
 		<junit-version>4.10</junit-version>
 		<joda-time-version>2.1</joda-time-version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>lib</id>
-			<name>lib</name>
-			<releases>
-				<enabled>true</enabled>
-				<checksumPolicy>ignore</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<url>file://${project.basedir}/lib</url>
-		</repository>
-	</repositories>
+
 	<parent>
     	<groupId>org.sonatype.oss</groupId>
     	<artifactId>oss-parent</artifactId>
@@ -107,7 +94,7 @@
 
 		<dependency>
     		<groupId>org.simpleframework</groupId>
-    		<artifactId>simple-xml-android</artifactId>
+    		<artifactId>simple-xml</artifactId>
     		<version>${simple-version}</version>
    		    <exclusions>
 		        <!-- StAX is not available on Android -->
