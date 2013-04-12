@@ -218,7 +218,7 @@ public class VideoTemplate extends AbstractVideoOperations implements VideoOpera
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add( "Id", String.valueOf( id ) );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_VIDEO_FROM_DB.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_VIDEO_FROM_DB.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
 
 		return responseEntity;
 	}
