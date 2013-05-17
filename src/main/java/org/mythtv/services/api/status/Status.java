@@ -46,6 +46,9 @@ public class Status {
 	@Element( name = "MachineInfo" )
 	private MachineInfo machineInfo;
 	
+	@Element( name = "Miscellaneous", required = false )
+	private Miscellaneous miscellaneous;
+	
 	public Status() { }
 
 	/**
@@ -202,6 +205,20 @@ public class Status {
 		this.machineInfo = machineInfo;
 	}
 
+	/**
+	 * @return the miscellaneous
+	 */
+	public Miscellaneous getMiscellaneous() {
+		return miscellaneous;
+	}
+
+	/**
+	 * @param miscellaneous the miscellaneous to set
+	 */
+	public void setMiscellaneous( Miscellaneous miscellaneous ) {
+		this.miscellaneous = miscellaneous;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -260,6 +277,11 @@ public class Status {
 		if( machineInfo != null ) {
 			builder.append( "machineInfo=" );
 			builder.append( machineInfo );
+			builder.append( ", " );
+		}
+		if( miscellaneous != null ) {
+			builder.append( "miscellaneous=" );
+			builder.append( miscellaneous );
 		}
 		builder.append( "]" );
 		return builder.toString();
