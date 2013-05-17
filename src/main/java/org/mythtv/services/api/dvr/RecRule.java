@@ -22,6 +22,7 @@ package org.mythtv.services.api.dvr;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @author Daniel Frey
  *
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class RecRule {
 
 	@JsonProperty( "Id" )
