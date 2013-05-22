@@ -46,9 +46,14 @@ public class StatusTemplate extends AbstractStatusOperations implements StatusOp
 	@Override
 	public ResponseEntity<Status> getStatus( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<Status> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_STATUS.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag, MediaType.APPLICATION_XML ), Status.class );
+		try {
+			ResponseEntity<Status> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_STATUS.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag, MediaType.APPLICATION_XML ), Status.class );
 
-		return responseEntity;
+			return responseEntity;
+		} catch( Exception e ) {
+			throw new MythServiceApiRuntimeException( e );
+		}
+		
 	}
 
 }
