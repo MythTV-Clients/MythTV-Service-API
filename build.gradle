@@ -1,0 +1,126 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+group = 'org.mythtv.android'
+version = '0.0.31'
+
+def isDevBuild
+def isReleaseBuild
+def sonatypeRepositoryUrl
+
+//set build variables based on build type (release, development)
+if(hasProperty('release')) {
+    isReleaseBuild = true
+    sonatypeRepositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+} else {
+    version += '-SNAPSHOT'
+    isDevBuild = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+	// StAX is not available on Android
+    compile.exclude group:'stax', module:'stax'
+    compile.exclude group:'stax', module:'stax-api'
+    // Exclude in favor of Spring Android RestTemplate
+    compile.exclude group:'org.springframework', module:'spring-web' 
+    // provided by Android
+    compile.exclude group:'xpp3', module:'xpp3'
+    compile.exclude group:'commons-logging', module:'commons-logging'
+}
+
+dependencies { 
+    compile group:'org.apache.commons', name:'commons-io', version:'1.3.2' 
+    compile group:'org.joda', name:'joda-convert', version:'1.2' 
+    compile group:'joda-time', name:'joda-time', version:'2.1' 
+    compile group:'javax.jmdns', name:'jmdns', version:'3.4.1'
+    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.1.2'
+	compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.1.2'
+	compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.1.2'
+	compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:'2.1.2'
+	compile group:'org.springframework.android', name:'spring-android-rest-template', version:'1.0.1.RELEASE'
+	compile group:'org.springframework.social', name:'spring-social-core', version:'1.0.2.RELEASE'
+    compile group:'org.simpleframework', name:'simple-xml', version:'2.7'
+    testCompile group:'junit', name:'junit', version:'4.10'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+//********* artifact signing *********
+if(isReleaseBuild) {
+    signing {
+        sign configurations.archives
+    }
+} else {
+    task signArchives {
+        // do nothing
+    }
+}
+
+uploadArchives {
+    repositories {
+	if (isDevBuild) {
+            mavenLocal()
+        }
+        else {
+		mavenDeployer {
+		    beforeDeployment { MavenDeployment deployment -> signPom(deployment) }
+
+		    repository(url: sonatypeRepositoryUrl) {
+		        authentication(userName: sonatypeUsername, password: sonatypePassword)
+		    }
+
+		    pom.project {
+		        name 'MythTV-Service-API'
+		        packaging 'jar'
+		        description 'MythTV Services API for android and java'
+		        url ' https://github.com/MythTV-Clients/MythTV-Service-API'
+
+		        scm {
+		            url 'git@github.com:MythTV-Clients/MythTV-Service-API.git'
+		            connection 'scm:git:git@github.com:MythTV-Clients/MythTV-Service-API.git'
+		            developerConnection 'scm:git:git@github.com:MythTV-Clients/MythTV-Service-API.git'
+		        }
+
+		        licenses {
+		            license {
+		                name 'GNU General Public License, Version 3.0'
+		                url 'http://www.gnu.org/licenses/gpl-3.0.html'
+		                distribution 'repo'
+		            }
+		        }
+
+		        developers {
+		            developer {
+		                id 'dmfrey'
+		                name 'Daniel Frey'
+		            }
+		            developer {
+		                id 'tafypz'
+		                name 'Sebastien Astie'
+		            }
+		        }
+		    }
+		}
+	}
+    }
+}
