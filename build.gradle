@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'org.mythtv.android'
-version = '0.0.31'
+version = '0.0.32'
 
 def isDevBuild
 def isReleaseBuild
