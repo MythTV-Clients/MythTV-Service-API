@@ -133,7 +133,7 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<StorageGroupDirectoryList> getStorageGroupDirectories(String groupName, String hostname, ETagInfo etag) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET

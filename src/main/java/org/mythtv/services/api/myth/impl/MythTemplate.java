@@ -51,6 +51,7 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 		GET_PROFILE_UPDATED( "ProfileUpdated" ),
 		GET_PROFILE_URL( "ProfileURL" ),
 		GET_SETTING( "GetSetting" ),
+        GET_STORAGE_GROUP_DIRS( "GetStorageGroupDirs"),
 		GET_TIMEZONE( "GetTimeZone" );
 				
 		private String endpoint;
@@ -213,13 +214,19 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#getStoreageGroupDirectories
+	 * org.mythtv.services.api.myth.MythOperations#getStorageGroupDirectories
 	 * (java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<StorageGroupDirectoryList> getStorageGroupDirectories(String groupName, String hostname, ETagInfo etag) throws MythServiceApiRuntimeException {
+        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+        if (hostname != null && !hostname.trim().isEmpty())
+            parameters.add("HostName", hostname);
+        if (groupName != null && !groupName.trim().isEmpty())
+            parameters.add("GroupName", groupName);
+        ResponseEntity<StorageGroupDirectoryList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_STORAGE_GROUP_DIRS.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), StorageGroupDirectoryList.class );
+        handleResponseEtag( etag, responseEntity.getHeaders() );
+		return responseEntity;
 	}
 
 	/*
