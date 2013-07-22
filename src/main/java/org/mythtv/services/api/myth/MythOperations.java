@@ -192,10 +192,10 @@ public interface MythOperations {
 	 * 
 	 * @param groupName
 	 * @param directoryName
-	 * @param hostname
+	 * @param hostName
 	 * @return
 	 */
-	ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeStorageGroupDir(String groupName, String directoryName, String hostName) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET

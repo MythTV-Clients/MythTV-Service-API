@@ -38,11 +38,13 @@ import org.springframework.web.client.RestOperations;
 
 /**
  * @author Daniel Frey
+ * @author Espen A. Fossen
  * 
  */
 public class MythTemplate extends AbstractMythOperations implements MythOperations {
 
 	public enum Endpoint {
+        ADD_STORAGE_GROUP_DIR("AddStorageGroupDir"),
 		GET_CONNECTION_INFO( "GetConnectionInfo" ),
 		GET_HOST_NAME( "GetHostName" ),
 		GET_HOSTS( "GetHosts" ),
@@ -52,7 +54,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 		GET_PROFILE_URL( "ProfileURL" ),
 		GET_SETTING( "GetSetting" ),
         GET_STORAGE_GROUP_DIRS( "GetStorageGroupDirs"),
-		GET_TIMEZONE( "GetTimeZone" );
+		GET_TIMEZONE( "GetTimeZone" ),
+        REMOVE_STORAGE_GROUP_DIR("RemoveStorageGroupDir");
 				
 		private String endpoint;
 		
@@ -75,14 +78,20 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#addStorageGroupDir(java.lang
-	 * .String, java.lang.String, java.lang.String)
+	 * @see org.mythtv.services.api.myth.MythOperations#addStorageGroupDir(java.lang.String,
+	 * java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName) throws MythServiceApiRuntimeException {
+        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+        if (hostName != null && !hostName.trim().isEmpty())
+            parameters.add("HostName", hostName);
+        if (groupName != null && !groupName.trim().isEmpty())
+            parameters.add("GroupName", groupName);
+        if (directoryName != null && !directoryName.trim().isEmpty())
+            parameters.add("DirName", directoryName);
+        ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_STORAGE_GROUP_DIR.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
+		return responseEntity;
 	}
 
 	/*
@@ -213,9 +222,8 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#getStorageGroupDirectories
-	 * (java.lang.String, java.lang.String)
+	 * @see org.mythtv.services.api.myth.MythOperations#getStorageGroupDirectories(java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
 	public ResponseEntity<StorageGroupDirectoryList> getStorageGroupDirectories(String groupName, String hostname, ETagInfo etag) throws MythServiceApiRuntimeException {
@@ -312,13 +320,20 @@ public class MythTemplate extends AbstractMythOperations implements MythOperatio
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#removeStorageGroupDirectory
+	 * org.mythtv.services.api.myth.MythOperations#removeStorageGroupDir
 	 * (java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<Bool> removeStorageGroupDir(String groupName, String directoryName, String hostName) throws MythServiceApiRuntimeException {
+        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+        if (hostName != null && !hostName.trim().isEmpty())
+            parameters.add("HostName", hostName);
+        if (groupName != null && !groupName.trim().isEmpty())
+            parameters.add("GroupName", groupName);
+        if (directoryName != null && !directoryName.trim().isEmpty())
+            parameters.add("DirName", directoryName);
+        ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_STORAGE_GROUP_DIR.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
+		return responseEntity;
 	}
 
 	/*
