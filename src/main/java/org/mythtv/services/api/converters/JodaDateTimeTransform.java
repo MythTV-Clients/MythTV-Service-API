@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.simpleframework.xml.transform.Transform;
@@ -32,7 +33,7 @@ public class JodaDateTimeTransform implements Transform<DateTime> {
 	public DateTime read( String value ) throws Exception {
 
 		try {			
-			return isoFmt.parseDateTime( value );
+			return isoFmt.parseDateTime( value ).withZoneRetainFields( DateTimeZone.UTC );
 		} catch( Exception e ) {
 			//logger.log( Level.WARNING, e.getMessage(), e );
 		}
