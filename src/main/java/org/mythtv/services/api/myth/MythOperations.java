@@ -133,7 +133,7 @@ public interface MythOperations {
 	 * @param hostname
 	 * @return
 	 */
-	ResponseEntity<StorageGroupDirectoryList> getStoreageGroupDirectories( String groupName, String hostname, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<StorageGroupDirectoryList> getStorageGroupDirectories(String groupName, String hostname, ETagInfo etag) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET
@@ -192,10 +192,10 @@ public interface MythOperations {
 	 * 
 	 * @param groupName
 	 * @param directoryName
-	 * @param hostname
+	 * @param hostName
 	 * @return
 	 */
-	ResponseEntity<Bool> removeStorageGroupDirectory( String groupName, String directoryName, String hostname ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeStorageGroupDir(String groupName, String directoryName, String hostName) throws MythServiceApiRuntimeException;
 	
 	/**
 	 * - GET

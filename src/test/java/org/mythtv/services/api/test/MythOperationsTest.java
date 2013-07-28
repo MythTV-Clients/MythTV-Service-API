@@ -19,12 +19,11 @@
  */
 package org.mythtv.services.api.test;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.mythtv.services.api.myth.MythOperations;
+
+import static org.junit.Assert.fail;
 
 /**
  * @author Sebastien Astie
@@ -123,10 +122,10 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getStoreageGroupDirectories(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getStorageGroupDirectories(String, String, org.mythtv.services.api.ETagInfo)}
 	 */
 	@Ignore
-	public void testGetStoreageGroupDirectories() {
+	public void testGetStorageGroupDirectories() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -187,7 +186,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#removeStorageGroupDirectory(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#removeStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testRemoveStorageGroupDirectory() {
