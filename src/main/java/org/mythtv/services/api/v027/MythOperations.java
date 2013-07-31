@@ -10,6 +10,8 @@ import org.mythtv.services.api.v027.beans.TimeZoneInfo;
 import org.springframework.http.ResponseEntity;
 
 /**
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
 public interface MythOperations {
