@@ -24,8 +24,8 @@ import static org.junit.Assert.fail;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
-import org.mythtv.services.api.dvr.ProgramList;
-import org.mythtv.services.api.dvr.RecRuleList;
+import org.mythtv.services.api.v026.beans.ProgramList;
+import org.mythtv.services.api.v026.beans.RecRuleList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 
@@ -37,7 +37,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#addRecordingSchedule(int, org.joda.time.DateTime, int, boolean, int, int, java.lang.String, int, java.lang.String, java.lang.String, int, int, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, int, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#addRecordingSchedule(int, org.joda.time.DateTime, int, boolean, int, int, java.lang.String, int, java.lang.String, java.lang.String, int, int, int, int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, int, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, int)}
 	 * .
 	 */
 	@Ignore
@@ -47,7 +47,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#disableRecordingSchedule(int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#disableRecordingSchedule(int)}
 	 * .
 	 */
 	@Ignore
@@ -57,7 +57,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#enableRecordingSchedule(int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#enableRecordingSchedule(int)}
 	 * .
 	 */
 	@Ignore
@@ -67,7 +67,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getConflictList(int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getConflictList(int, int)}
 	 * .
 	 */
 	@Ignore
@@ -77,7 +77,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getEncoderList()}.
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getEncoderList()}.
 	 */
 	@Ignore
 	public void testGetEncoderList() {
@@ -86,7 +86,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getExpiringList(int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getExpiringList(int, int)}
 	 * .
 	 */
 	@Ignore
@@ -96,7 +96,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getFiltererRecordedList(boolean, int, int, java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getFiltererRecordedList(boolean, int, int, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Ignore
@@ -106,7 +106,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordSchedule(int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getRecordSchedule(int)}
 	 * .
 	 */
 	@Ignore
@@ -116,7 +116,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordScheduleList(int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getRecordScheduleList(int, int)}
 	 * .
 	 */
 	@Test
@@ -128,7 +128,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecorded(int, org.joda.time.DateTime)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getRecorded(int, org.joda.time.DateTime)}
 	 * .
 	 */
 	@Ignore
@@ -138,7 +138,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordedList()}.
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getRecordedList()}.
 	 */
 	@Ignore
 	public void testGetRecordedList() {
@@ -147,7 +147,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordedListResponseEntity()}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getRecordedListResponseEntity()}
 	 * .
 	 */
 	@Test
@@ -159,7 +159,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getRecordedList(int, int, boolean)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getRecordedList(int, int, boolean)}
 	 * .
 	 */
 	@Ignore
@@ -169,7 +169,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getUpcomingList(int, int, boolean)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getUpcomingList(int, int, boolean)}
 	 * .
 	 */
 	@Test
@@ -181,7 +181,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#getUpcomingListResponseEntity()}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#getUpcomingListResponseEntity()}
 	 * .
 	 */
 	@Ignore
@@ -191,7 +191,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#removeRecordingSchedule(int)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#removeRecordingSchedule(int)}
 	 * .
 	 */
 	@Ignore
@@ -201,7 +201,7 @@ public class DvrOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.dvr.impl.DvrTemplate#removeRecorded(int, org.joda.time.DateTime)}
+	 * {@link org.mythtv.services.api.v026.impl.DvrTemplate#removeRecorded(int, org.joda.time.DateTime)}
 	 * .
 	 */
 	@Ignore

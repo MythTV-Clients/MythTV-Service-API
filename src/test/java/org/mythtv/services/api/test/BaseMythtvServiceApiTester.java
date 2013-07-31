@@ -24,8 +24,9 @@ import java.lang.reflect.Constructor;
 import java.util.Properties;
 
 import org.junit.Before;
-import org.mythtv.services.api.MythServices;
-import org.mythtv.services.connect.MythServicesServiceProvider;
+import org.mythtv.services.api.BaseMythServicesTemplate;
+import org.mythtv.services.api.v026.MythServices;
+import org.mythtv.services.api.v026.MythServicesTemplate;
 
 public class BaseMythtvServiceApiTester {
 	protected MythServices api;
@@ -36,20 +37,18 @@ public class BaseMythtvServiceApiTester {
 		properties = new Properties();
 		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
 		
-		String providerClass = properties.getProperty("MythServicesServiceProvider.class");
-		String apiBase = properties.getProperty("MythServicesServiceProvider.ApiBaseUrl");
+		String templateClass = properties.getProperty("MythServicesServiceTemplate.class");
+		String apiBase = properties.getProperty("MythServicesServiceTemplate.ApiBaseUrl");
 		
-		if(providerClass == null)
-			throw new Exception("Property 'MythServicesServiceProvider.class' is missing in property file.");
+		if(templateClass == null)
+			throw new Exception("Property 'MythServicesServiceTemplate.class' is missing in property file.");
 		if(apiBase == null)
-			throw new Exception("Property 'MythServicesServiceProvider.ApiBaseUrl' is missing in property file.");
+			throw new Exception("Property 'MythServicesServiceTemplate.ApiBaseUrl' is missing in property file.");
 		
-		@SuppressWarnings("unchecked")
-		Class<? extends MythServicesServiceProvider> clazz = (Class<? extends MythServicesServiceProvider>) Class.forName(providerClass);
-		Constructor<? extends MythServicesServiceProvider> c = clazz.getConstructor(String.class);
-		MythServicesServiceProvider serv = c.newInstance(apiBase);
-		
-		api = serv.getApi();
+		Class<? extends MythServicesTemplate> clazz = Class.forName(templateClass).asSubclass(MythServicesTemplate.class);
+		Constructor<? extends MythServicesTemplate> c = clazz.getConstructor(String.class);
+		MythServicesTemplate serv = c.newInstance(apiBase);
+		api = serv;
 	}
 
 }

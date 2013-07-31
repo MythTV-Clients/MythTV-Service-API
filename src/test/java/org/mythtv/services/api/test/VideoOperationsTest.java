@@ -27,11 +27,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.video.BlurayInfoWrapper;
-import org.mythtv.services.api.video.VideoLookupList;
-import org.mythtv.services.api.video.VideoMetaDataInfoWrapper;
-import org.mythtv.services.api.video.VideoMetadataInfoList;
-import org.mythtv.services.api.video.VideoOperations;
+import org.mythtv.services.api.v026.VideoOperations;
+import org.mythtv.services.api.v026.beans.BlurayInfoWrapper;
+import org.mythtv.services.api.v026.beans.VideoLookupList;
+import org.mythtv.services.api.v026.beans.VideoMetaDataInfoWrapper;
+import org.mythtv.services.api.v026.beans.VideoMetadataInfoList;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -55,7 +55,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#addVideo(java.lang.String, java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#addVideo(java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Ignore
@@ -65,7 +65,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getBluray(java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#getBluray(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -77,7 +77,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideo(int)}.
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#getVideo(int)}.
 	 */
 	@Test
 	public void testGetVideo() throws MythServiceApiRuntimeException {
@@ -87,7 +87,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoByFilename(java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#getVideoByFilename(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -99,7 +99,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#getVideoList(boolean, int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#getVideoList(boolean, int, int)}
 	 * .
 	 */
 	@Test
@@ -111,7 +111,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#lookupVideo(java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, boolean)}
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#lookupVideo(java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, boolean)}
 	 * .
 	 */
 	@Test
@@ -124,7 +124,7 @@ public class VideoOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.video.impl.VideoTemplate#removeVideoFromDatabase(int)}
+	 * {@link org.mythtv.services.api.v026.impl.VideoTemplate#removeVideoFromDatabase(int)}
 	 * .
 	 */
 	@Ignore

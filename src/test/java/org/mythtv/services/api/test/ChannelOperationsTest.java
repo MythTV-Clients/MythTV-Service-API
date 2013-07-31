@@ -26,17 +26,17 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
-import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.StringList;
-import org.mythtv.services.api.channel.ChannelInfoList;
-import org.mythtv.services.api.channel.ChannelInfoWrapper;
-import org.mythtv.services.api.channel.ChannelOperations;
-import org.mythtv.services.api.channel.LineupList;
-import org.mythtv.services.api.channel.VideoMultiplexList;
-import org.mythtv.services.api.channel.VideoMultiplexWrapper;
-import org.mythtv.services.api.channel.VideoSourceList;
-import org.mythtv.services.api.channel.VideoSourceWrapper;
+import org.mythtv.services.api.v026.ChannelOperations;
+import org.mythtv.services.api.v026.Int;
+import org.mythtv.services.api.v026.StringList;
+import org.mythtv.services.api.v026.beans.ChannelInfoList;
+import org.mythtv.services.api.v026.beans.ChannelInfoWrapper;
+import org.mythtv.services.api.v026.beans.LineupList;
+import org.mythtv.services.api.v026.beans.VideoMultiplexList;
+import org.mythtv.services.api.v026.beans.VideoMultiplexWrapper;
+import org.mythtv.services.api.v026.beans.VideoSourceList;
+import org.mythtv.services.api.v026.beans.VideoSourceWrapper;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -60,7 +60,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Ignore
@@ -70,7 +70,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}
 	 * .
 	 */
 	@Ignore
@@ -80,7 +80,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#fetchChannelsFromSource(int, int, boolean)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#fetchChannelsFromSource(int, int, boolean)}
 	 * .
 	 * 
 	 * @throws MythServiceApiRuntimeException
@@ -88,12 +88,12 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testFetchChannelsFromSource() throws MythServiceApiRuntimeException {
 		ResponseEntity<Int> responseEntity = operations.fetchChannelsFromSource( 1, 2, true, ETagInfo.createEmptyETag() );
-		Assert.assertEquals( 358, responseEntity.getBody().getInteger().intValue() );
+		Assert.assertEquals( 17, responseEntity.getBody().getInteger().intValue() );
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfo(int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getChannelInfo(int)}
 	 * .
 	 */
 	@Test
@@ -104,7 +104,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList(int, int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getChannelInfoList(int, int, int)}
 	 * .
 	 */
 	@Test
@@ -117,7 +117,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getChannelInfoList()}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getChannelInfoList()}
 	 * .
 	 */
 	@Test
@@ -129,7 +129,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -141,7 +141,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplex(int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getVideoMultiplex(int)}
 	 * .
 	 */
 	@Test
@@ -156,7 +156,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoMultiplexList(int, int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getVideoMultiplexList(int, int, int)}
 	 * .
 	 */
 	@Test
@@ -168,7 +168,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSource(int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getVideoSource(int)}
 	 * .
 	 */
 	@Test
@@ -182,7 +182,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getVideoSourceList()}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getVideoSourceList()}
 	 * .
 	 */
 	@Test
@@ -194,7 +194,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#getXmltvIdList(int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#getXmltvIdList(int)}
 	 * .
 	 */
 	@Test
@@ -209,7 +209,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeDBChannel(int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#removeDBChannel(int)}
 	 * .
 	 */
 	@Ignore
@@ -219,7 +219,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#removeVideoSource(int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#removeVideoSource(int)}
 	 * .
 	 */
 	@Ignore
@@ -229,7 +229,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Ignore
@@ -239,7 +239,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.channel.impl.ChannelTemplate#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}
+	 * {@link org.mythtv.services.api.v026.impl.ChannelTemplate#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)}
 	 * .
 	 */
 	@Ignore

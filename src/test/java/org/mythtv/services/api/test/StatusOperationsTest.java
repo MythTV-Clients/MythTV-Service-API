@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.status.Status;
-import org.mythtv.services.api.status.StatusOperations;
+import org.mythtv.services.api.v026.StatusOperations;
+import org.mythtv.services.api.v026.beans.BackendStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -37,7 +37,7 @@ public class StatusOperationsTest extends BaseMythtvServiceApiTester {
 	 */
 	@Test
 	public void testGetStatus() throws MythServiceApiRuntimeException {
-		ResponseEntity<Status> status = statusOperations.getStatus( ETagInfo.createEmptyETag() );
+		ResponseEntity<BackendStatus> status = statusOperations.getStatus( ETagInfo.createEmptyETag() );
 		Assert.assertNotNull( status.getBody() );
 	}
 	

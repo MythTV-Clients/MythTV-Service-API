@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 public class Log {
 	public static int DEBUG = 2;
+	public static int WARN = 4;
 	public static boolean isLoggable(String s, int i) {
 		return true;
 	}
@@ -32,4 +33,8 @@ public class Log {
 		return DEBUG;
 	}
 
+	public static int w (String tag, String msg) {
+		Logger.getLogger(tag).warning(msg);
+		return WARN;
+	}
 }
