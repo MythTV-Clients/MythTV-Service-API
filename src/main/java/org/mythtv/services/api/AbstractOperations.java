@@ -38,7 +38,7 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * @author Daniel Frey
- * 
+ * @author Sebastien Astie
  */
 public abstract class AbstractOperations {
 	private static final String TAG = AbstractOperations.class.getSimpleName();

@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027.impl;
 
+import org.mythtv.services.api.AbstractOperations;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ChannelInfo;
@@ -38,12 +39,12 @@ import org.springframework.web.client.RestOperations;
  *
  * @author Sebastien Astie
  */
-public class ChannelTemplate extends AbstractChannelOperations implements org.mythtv.services.api.v027.ChannelOperations {
+public class ChannelTemplate extends AbstractOperations implements org.mythtv.services.api.v027.ChannelOperations {
 
     private final RestOperations restOperations;
 
     public ChannelTemplate( RestOperations restOperations, String apiUrlBase ) {
-        super( apiUrlBase );
+        super( apiUrlBase + "Channel/" );
         this.restOperations = restOperations;
     }
 
