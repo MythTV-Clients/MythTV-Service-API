@@ -11,6 +11,8 @@ import org.mythtv.services.api.v027.beans.TitleInfoList;
 import org.springframework.http.ResponseEntity;
 
 /**
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
 public interface DvrOperations {

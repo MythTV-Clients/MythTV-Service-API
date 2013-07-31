@@ -10,9 +10,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
-
 public class GuideTemplate extends AbstractGuideOperations implements org.mythtv.services.api.v027.GuideOperations {
 
     private final RestOperations restOperations;

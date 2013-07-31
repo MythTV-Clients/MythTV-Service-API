@@ -13,9 +13,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
-
 public class MythTemplate extends AbstractMythOperations implements org.mythtv.services.api.v027.MythOperations {
 
     private final RestOperations restOperations;

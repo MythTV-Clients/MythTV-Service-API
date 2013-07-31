@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 
 /**
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
