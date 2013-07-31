@@ -67,4 +67,11 @@ public interface MythServices {
      * @return an instance of a class implementing VideoOperations
      */
     VideoOperations videoOperations();
+
+	/*
+	 * Status Operations
+	 * @return an instance of a class implementing StatusOperations
+	 */
+	StatusOperations statusOperations();
+
 }
