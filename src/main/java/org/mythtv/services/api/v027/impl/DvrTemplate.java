@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027.impl;
 
+import org.mythtv.services.api.AbstractOperations;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.EncoderList;
@@ -37,12 +38,12 @@ import org.springframework.web.client.RestOperations;
  *
  * @author Sebastien Astie
  */
-public class DvrTemplate extends AbstractDvrOperations implements org.mythtv.services.api.v027.DvrOperations {
+public class DvrTemplate extends AbstractOperations implements org.mythtv.services.api.v027.DvrOperations {
 
     private final RestOperations restOperations;
 
     public DvrTemplate( RestOperations restOperations, String apiUrlBase ) {
-        super( apiUrlBase );
+        super( apiUrlBase + "Dvr/" );
         this.restOperations = restOperations;
     }
 

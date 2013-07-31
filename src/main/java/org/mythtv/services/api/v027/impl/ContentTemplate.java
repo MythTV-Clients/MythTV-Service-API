@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027.impl;
 
+import org.mythtv.services.api.AbstractOperations;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ArtworkInfoList;
@@ -34,12 +35,12 @@ import org.springframework.web.client.RestOperations;
  *
  * @author Sebastien Astie
  */
-public class ContentTemplate extends AbstractContentOperations implements org.mythtv.services.api.v027.ContentOperations {
+public class ContentTemplate extends AbstractOperations implements org.mythtv.services.api.v027.ContentOperations {
 
     private final RestOperations restOperations;
 
     public ContentTemplate( RestOperations restOperations, String apiUrlBase ) {
-        super( apiUrlBase );
+        super( apiUrlBase + "Content/" );
         this.restOperations = restOperations;
     }
 
