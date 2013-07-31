@@ -22,7 +22,6 @@ package org.mythtv.services.api.v026;
 import java.util.logging.Level;
 
 import org.joda.time.DateTime;
-import org.mythtv.services.api.AbstractOperations;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
 import org.mythtv.services.api.converters.JodaDateTimeTransform;
@@ -88,7 +87,7 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 	protected RestOperations createRestOperations() {
 		RestTemplate rest = new RestTemplate( true );
 		
-		for( HttpMessageConverter messageConverter : rest.getMessageConverters() ) {
+		for( HttpMessageConverter<?> messageConverter : rest.getMessageConverters() ) {
 
 			if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
 				

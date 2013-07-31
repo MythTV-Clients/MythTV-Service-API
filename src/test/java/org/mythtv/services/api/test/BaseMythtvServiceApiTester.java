@@ -24,7 +24,6 @@ import java.lang.reflect.Constructor;
 import java.util.Properties;
 
 import org.junit.Before;
-import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.v026.MythServices;
 import org.mythtv.services.api.v026.MythServicesTemplate;
 
