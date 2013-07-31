@@ -21,8 +21,8 @@ package org.mythtv.services.api.test.connect.utils.factories;
 
 import java.net.URI;
 
-import org.mythtv.services.api.status.impl.StatusTemplate;
 import org.mythtv.services.api.test.connect.utils.MythFakeHttpInputMessage;
+import org.mythtv.services.api.v026.impl.StatusTemplate;
 
 /**
  * @author Sebastien Astie

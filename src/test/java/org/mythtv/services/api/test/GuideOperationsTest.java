@@ -29,11 +29,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.channel.ChannelInfo;
-import org.mythtv.services.api.dvr.Program;
-import org.mythtv.services.api.dvr.ProgramWrapper;
-import org.mythtv.services.api.guide.GuideOperations;
-import org.mythtv.services.api.guide.ProgramGuideWrapper;
+import org.mythtv.services.api.v026.GuideOperations;
+import org.mythtv.services.api.v026.beans.ChannelInfo;
+import org.mythtv.services.api.v026.beans.Program;
+import org.mythtv.services.api.v026.beans.ProgramGuideWrapper;
+import org.mythtv.services.api.v026.beans.ProgramWrapper;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -68,7 +68,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getChannelIcon(int, int, int)}
+	 * {@link org.mythtv.services.api.v026.impl.GuideTemplate#getChannelIcon(int, int, int)}
 	 * .
 	 */
 	@Test
@@ -79,7 +79,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramDetails(int, org.joda.time.DateTime)}
+	 * {@link org.mythtv.services.api.v026.impl.GuideTemplate#getProgramDetails(int, org.joda.time.DateTime)}
 	 * .
 	 */
 	@Test
@@ -100,7 +100,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}
+	 * {@link org.mythtv.services.api.v026.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}
 	 * .
 	 */
 	@Test
@@ -111,7 +111,7 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 
 	/**
 	 * Test method for
-	 * {@link org.mythtv.services.api.guide.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}
+	 * {@link org.mythtv.services.api.v026.impl.GuideTemplate#getProgramGuide(org.joda.time.DateTime, org.joda.time.DateTime, int, int, boolean)}
 	 * .
 	 */
 	@Ignore( "Use only against a live 0.26 backend" )

@@ -29,10 +29,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.capture.CaptureCard;
-import org.mythtv.services.api.capture.CaptureCardList;
-import org.mythtv.services.api.capture.CaptureCardWrapper;
-import org.mythtv.services.api.capture.CaptureOperations;
+import org.mythtv.services.api.v026.CaptureOperations;
+import org.mythtv.services.api.v026.beans.CaptureCard;
+import org.mythtv.services.api.v026.beans.CaptureCardList;
+import org.mythtv.services.api.v026.beans.CaptureCardWrapper;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -53,7 +53,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#addCaptureCard(org.mythtv.services.api.capture.CaptureCard)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#addCaptureCard(org.mythtv.services.api.v026.beans.CaptureCard)}.
 	 */
 	@Ignore
 	public void testAddCaptureCard() {
@@ -61,7 +61,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#addCardInput(org.mythtv.services.api.capture.CardInput)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#addCardInput(org.mythtv.services.api.capture.CardInput)}.
 	 */
 	@Ignore
 	public void testAddCardInput() {
@@ -69,7 +69,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCard(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#getCaptureCard(int)}.
 	 */
 	@Test
 	public void testGetCaptureCard() throws MythServiceApiRuntimeException {
@@ -79,14 +79,14 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCardList()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#getCaptureCardList()}.
 	 */
 	public void testGetCaptureCardList() throws MythServiceApiRuntimeException {
 		getCaptureCards();
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#getCaptureCardList(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#getCaptureCardList(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testGetCaptureCardListStringString() throws MythServiceApiRuntimeException {
@@ -100,7 +100,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#removeCaptureCard(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#removeCaptureCard(int)}.
 	 */
 	@Ignore
 	public void testRemoveCaptureCard() {
@@ -108,7 +108,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#removeCardInput(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#removeCardInput(int)}.
 	 */
 	@Ignore
 	public void testRemoveCardInput() {
@@ -116,7 +116,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#updateCaptureCard(int, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#updateCaptureCard(int, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testUpdateCaptureCard() {
@@ -124,7 +124,7 @@ public class CaptureOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.capture.impl.CaptureTemplate#updateCardInput(int, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.CaptureTemplate#updateCardInput(int, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testUpdateCardInput() {

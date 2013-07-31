@@ -23,7 +23,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Ignore;
-import org.mythtv.services.api.frontend.FrontendOperations;
+import org.mythtv.services.api.v026.FrontendOperations;
 
 public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
 	

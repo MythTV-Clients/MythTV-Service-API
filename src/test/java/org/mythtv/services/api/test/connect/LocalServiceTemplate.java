@@ -21,21 +21,21 @@ package org.mythtv.services.api.test.connect;
 
 import java.util.logging.Level;
 
-import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.test.connect.utils.FakeMythTvRestTemplate;
+import org.mythtv.services.api.v026.MythServicesTemplate;
 import org.springframework.web.client.RestOperations;
 
 /**
  * @author Sebastien Astie
  *
  */
-public class LocalServiceTemplate extends BaseMythServicesTemplate {
+public class LocalServiceTemplate extends MythServicesTemplate {
 
 	/**
 	 * @param apiUrlBase
 	 */
 	public LocalServiceTemplate(String apiUrlBase) {
-		super(apiUrlBase);
+		this(apiUrlBase, Level.INFO);
 	}
 	
 	public LocalServiceTemplate(String apiUrlBase, Level logLevel) {
@@ -45,7 +45,6 @@ public class LocalServiceTemplate extends BaseMythServicesTemplate {
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.BaseMythServicesTemplate#createRestOperations()
 	 */
-	@Override
 	protected RestOperations createRestOperations() {
 		return new FakeMythTvRestTemplate();
 	}

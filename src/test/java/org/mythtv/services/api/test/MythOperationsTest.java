@@ -19,9 +19,14 @@
  */
 package org.mythtv.services.api.test;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
-import org.mythtv.services.api.myth.MythOperations;
+import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.v026.MythOperations;
+import org.mythtv.services.api.v026.beans.SettingList;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.Assert.fail;
 
@@ -42,7 +47,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#addStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#addStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testAddStorageGroupDir() {
@@ -50,7 +55,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#backupDatabase()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#backupDatabase()}.
 	 */
 	@Ignore
 	public void testBackupDatabase() {
@@ -58,7 +63,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#changePassword(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#changePassword(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testChangePassword() {
@@ -66,7 +71,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#checkDatabase(boolean)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#checkDatabase(boolean)}.
 	 */
 	@Ignore
 	public void testCheckDatabase() {
@@ -74,7 +79,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getConnectionInfo(java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getConnectionInfo(java.lang.String)}.
 	 */
 	@Ignore
 	public void testGetConnectionInfo() {
@@ -82,7 +87,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getHostName()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getHostName()}.
 	 */
 	@Ignore
 	public void testGetHostName() {
@@ -90,7 +95,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getHosts()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getHosts()}.
 	 */
 	@Ignore
 	public void testGetHosts() {
@@ -98,7 +103,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getKeys()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getKeys()}.
 	 */
 	@Ignore
 	public void testGetKeys() {
@@ -106,7 +111,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getLogs(java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, int, java.lang.String, org.joda.time.DateTime, org.joda.time.DateTime, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getLogs(java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, int, java.lang.String, org.joda.time.DateTime, org.joda.time.DateTime, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testGetLogs() {
@@ -114,15 +119,19 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getSetting(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getSetting(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Ignore
+	@Test
 	public void testGetSetting() {
-		fail("Not yet implemented"); // TODO
+		ResponseEntity<SettingList> response = mythOperations.getSetting(null, null, null, ETagInfo.createEmptyETag());
+		Assert.assertNotNull(response.getBody());
+		Assert.assertNotNull(response.getBody().getSetting());
+		Assert.assertNotNull(response.getBody().getSetting().getSettings());
+		Assert.assertFalse(response.getBody().getSetting().getSettings().isEmpty());
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getStorageGroupDirectories(String, String, org.mythtv.services.api.ETagInfo)}
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getStorageGroupDirectories(String, String, org.mythtv.services.api.ETagInfo)}
 	 */
 	@Ignore
 	public void testGetStorageGroupDirectories() {
@@ -130,7 +139,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#getTimeZoneInfo()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getTimeZoneInfo()}.
 	 */
 	@Ignore
 	public void testGetTimeZoneInfo() {
@@ -138,7 +147,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileDelete()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#profileDelete()}.
 	 */
 	@Ignore
 	public void testProfileDelete() {
@@ -146,7 +155,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileSubmit()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#profileSubmit()}.
 	 */
 	@Ignore
 	public void testProfileSubmit() {
@@ -154,7 +163,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileText()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#profileText()}.
 	 */
 	@Ignore
 	public void testProfileText() {
@@ -162,7 +171,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileUrl()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#profileUrl()}.
 	 */
 	@Ignore
 	public void testProfileUrl() {
@@ -170,7 +179,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#profileUpdated()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#profileUpdated()}.
 	 */
 	@Ignore
 	public void testProfileUpdated() {
@@ -178,7 +187,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#putSetting(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#putSetting(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testPutSetting() {
@@ -186,7 +195,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#removeStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#removeStorageGroupDir(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testRemoveStorageGroupDirectory() {
@@ -194,7 +203,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#sendMessage(java.lang.String, java.lang.String, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#sendMessage(java.lang.String, java.lang.String, int, int)}.
 	 */
 	@Ignore
 	public void testSendMessage() {
@@ -202,7 +211,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.myth.impl.MythTemplate#testDatabaseSettings(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#testDatabaseSettings(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int)}.
 	 */
 	@Ignore
 	public void testTestDatabaseSettings() {

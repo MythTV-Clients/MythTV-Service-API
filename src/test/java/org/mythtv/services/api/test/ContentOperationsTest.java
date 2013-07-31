@@ -23,8 +23,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
-import org.mythtv.services.api.content.ContentOperations;
+import org.mythtv.services.api.v026.ContentOperations;
 
 /**
  * @author Sebastien Astie
@@ -44,7 +43,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)}.
 	 */
 	@Ignore
 	public void testAddLiveStream() {
@@ -52,7 +51,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addRecordingLiveStream(int, org.joda.time.DateTime, int, int, int, int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#addRecordingLiveStream(int, org.joda.time.DateTime, int, int, int, int, int, int)}.
 	 */
 	@Ignore
 	public void testAddRecordingLiveStream() {
@@ -60,7 +59,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#addVideoLiveStream(int, int, int, int, int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#addVideoLiveStream(int, int, int, int, int, int, int)}.
 	 */
 	@Ignore
 	public void testAddVideoLiveStream() {
@@ -68,7 +67,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#downloadFile(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#downloadFile(java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testDownloadFile() {
@@ -76,7 +75,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getAlbumArt(int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getAlbumArt(int, int, int)}.
 	 */
 	@Ignore
 	public void testGetAlbumArt() {
@@ -84,7 +83,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFile(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getFile(java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testGetFile() {
@@ -92,7 +91,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFileList(java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getFileList(java.lang.String)}.
 	 */
 	@Ignore
 	public void testGetFileList() {
@@ -100,7 +99,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getFilteredLiveStreamList(java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getFilteredLiveStreamList(java.lang.String)}.
 	 */
 	@Ignore
 	public void testGetFilteredLiveStreamList() {
@@ -108,7 +107,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getHash(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getHash(java.lang.String, java.lang.String)}.
 	 */
 	@Ignore
 	public void testGetHash() {
@@ -116,7 +115,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getImageFile(java.lang.String, java.lang.String, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getImageFile(java.lang.String, java.lang.String, int, int)}.
 	 */
 	@Ignore
 	public void testGetImageFile() {
@@ -124,7 +123,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getLiveStream(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getLiveStream(int)}.
 	 */
 	@Ignore
 	public void testGetLiveStream() {
@@ -132,7 +131,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getLiveStreamList()}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getLiveStreamList()}.
 	 */
 	@Ignore
 	public void testGetLiveStreamList() {
@@ -140,7 +139,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getMusic(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getMusic(int)}.
 	 */
 	@Ignore
 	public void testGetMusic() {
@@ -148,7 +147,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getPreviewImage(int, org.joda.time.DateTime, int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getPreviewImage(int, org.joda.time.DateTime, int, int, int)}.
 	 */
 	@Ignore
 	public void testGetPreviewImage() {
@@ -156,7 +155,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getProgramArtworkList(java.lang.String, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getProgramArtworkList(java.lang.String, int)}.
 	 */
 	@Ignore
 	public void testGetProgramArtworkList() {
@@ -164,7 +163,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecording(int, org.joda.time.DateTime)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getRecording(int, org.joda.time.DateTime)}.
 	 */
 	@Ignore
 	public void testGetRecording() {
@@ -172,7 +171,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecordingArtwork(java.lang.String, java.lang.String, int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getRecordingArtwork(java.lang.String, java.lang.String, int, int, int)}.
 	 */
 	@Ignore
 	public void testGetRecordingArtwork() {
@@ -180,7 +179,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getRecordingArtworkList(int, org.joda.time.DateTime)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getRecordingArtworkList(int, org.joda.time.DateTime)}.
 	 */
 	@Ignore
 	public void testGetRecordingArtworkList() {
@@ -188,7 +187,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getVideo(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getVideo(int)}.
 	 */
 	@Ignore
 	public void testGetVideo() {
@@ -196,7 +195,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#getVideoArtwork(java.lang.String, int, int, int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getVideoArtwork(java.lang.String, int, int, int)}.
 	 */
 	@Ignore
 	public void testGetVideoArtwork() {
@@ -204,7 +203,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#removeLiveStream(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#removeLiveStream(int)}.
 	 */
 	@Ignore
 	public void testRemoveLiveStream() {
@@ -212,7 +211,7 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	}
 
 	/**
-	 * Test method for {@link org.mythtv.services.api.content.impl.ContentTemplate#stopLiveStream(int)}.
+	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#stopLiveStream(int)}.
 	 */
 	@Ignore
 	public void testStopLiveStream() {

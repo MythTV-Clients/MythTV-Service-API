@@ -3,7 +3,6 @@
  */
 package org.mythtv.services.api.converters;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.joda.time.DateTime;
