@@ -22,8 +22,6 @@ package org.mythtv.services.api.connect;
 import java.util.logging.Level;
 
 import org.mythtv.services.api.ApiVersion;
-import org.mythtv.services.api.v026.MythServices;
-import org.mythtv.services.api.v026.MythServicesTemplate;
 
 public class MythAccessFactory {
 	/**
@@ -35,8 +33,10 @@ public class MythAccessFactory {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getServiceTemplateApiByType(Class<T> serviceClass, String baseUri, Level logLevel){
-		if(serviceClass.isAssignableFrom(MythServices.class))
-			return (T) new MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
+		if(serviceClass.isAssignableFrom(org.mythtv.services.api.v026.MythServices.class))
+			return (T) new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
+		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v027.MythServices.class))
+			return (T) new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
 		return null;
 	}
 	
@@ -70,9 +70,9 @@ public class MythAccessFactory {
 	public static Object getServiceTemplateApiByVersion(ApiVersion version, String baseUri, Level logLevel){
 		switch(version){
 			case v026:
-				return new MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
+				return new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 			case v027:
-				break;
+				return new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 			default:
 		}
 		return null;
