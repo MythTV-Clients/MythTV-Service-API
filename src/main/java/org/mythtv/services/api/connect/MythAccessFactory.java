@@ -68,13 +68,14 @@ public class MythAccessFactory {
 	 * @return the mythservice api instance or null if no version handling exists
 	 */
 	public static Object getServiceTemplateApiByVersion(ApiVersion version, String baseUri, Level logLevel){
-		switch(version){
-			case v026:
-				return new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
-			case v027:
-				return new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
-			default:
-		}
+		if(version != null)
+			switch(version){
+				case v026:
+					return new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
+				case v027:
+					return new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
+				default:
+			}
 		return null;
 	}
 	
