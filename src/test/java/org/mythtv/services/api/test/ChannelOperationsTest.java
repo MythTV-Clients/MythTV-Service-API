@@ -88,7 +88,7 @@ public class ChannelOperationsTest extends BaseMythtvServiceApiTester {
 	@Test
 	public void testFetchChannelsFromSource() throws MythServiceApiRuntimeException {
 		ResponseEntity<Int> responseEntity = operations.fetchChannelsFromSource( 1, 2, true, ETagInfo.createEmptyETag() );
-		Assert.assertEquals( 17, responseEntity.getBody().getInteger().intValue() );
+		Assert.assertEquals( 358, responseEntity.getBody().getInteger().intValue() );
 	}
 
 	/**
