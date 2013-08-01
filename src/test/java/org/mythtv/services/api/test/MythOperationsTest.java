@@ -121,7 +121,7 @@ public class MythOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.v026.impl.MythTemplate#getSetting(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
-	@Test
+	@Ignore
 	public void testGetSetting() {
 		ResponseEntity<SettingList> response = mythOperations.getSetting(null, null, null, ETagInfo.createEmptyETag());
 		Assert.assertNotNull(response.getBody());
