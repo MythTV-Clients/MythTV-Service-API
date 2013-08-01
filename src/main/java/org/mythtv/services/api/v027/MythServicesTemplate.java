@@ -120,75 +120,76 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 		return rest;
 	}
 
-    /*
-     * Capture Operations
-     * @return an instance of a class implementing CaptureOperations
-     */
+
+	/*
+	 * Capture Operations
+	 * @return an instance of a class implementing CaptureOperations
+	 */
 	@Override
-    public CaptureOperations captureOperations() {
+	public CaptureOperations captureOperations() {
 		return captureOperations;
 	}
 
-    /*
-     * Channel Operations
-     * @return an instance of a class implementing ChannelOperations
-     */
+	/*
+	 * Channel Operations
+	 * @return an instance of a class implementing ChannelOperations
+	 */
 	@Override
-    public ChannelOperations channelOperations() {
+	public ChannelOperations channelOperations() {
 		return channelOperations;
 	}
 
-    /*
-     * Content Operations
-     * @return an instance of a class implementing ContentOperations
-     */
+	/*
+	 * Content Operations
+	 * @return an instance of a class implementing ContentOperations
+	 */
 	@Override
-    public ContentOperations contentOperations() {
+	public ContentOperations contentOperations() {
 		return contentOperations;
 	}
 
-    /*
-     * Dvr Operations
-     * @return an instance of a class implementing DvrOperations
-     */
+	/*
+	 * Dvr Operations
+	 * @return an instance of a class implementing DvrOperations
+	 */
 	@Override
-    public DvrOperations dvrOperations() {
+	public DvrOperations dvrOperations() {
 		return dvrOperations;
 	}
 
-    /*
-     * Guide Operations
-     * @return an instance of a class implementing GuideOperations
-     */
+	/*
+	 * Guide Operations
+	 * @return an instance of a class implementing GuideOperations
+	 */
 	@Override
-    public GuideOperations guideOperations() {
+	public GuideOperations guideOperations() {
 		return guideOperations;
 	}
 
-    /*
-     * Myth Operations
-     * @return an instance of a class implementing MythOperations
-     */
+	/*
+	 * Myth Operations
+	 * @return an instance of a class implementing MythOperations
+	 */
 	@Override
-    public MythOperations mythOperations() {
+	public MythOperations mythOperations() {
 		return mythOperations;
 	}
 
-    /*
-     * Video Operations
-     * @return an instance of a class implementing VideoOperations
-     */
+	/*
+	 * Video Operations
+	 * @return an instance of a class implementing VideoOperations
+	 */
 	@Override
-    public VideoOperations videoOperations() {
+	public VideoOperations videoOperations() {
 		return videoOperations;
 	}
 
-    /*
-     * Frontend Operations
-     * @return an instance of a class implementing FrontendOperations
-     */
+	/*
+	 * Frontend Operations
+	 * @return an instance of a class implementing FrontendOperations
+	 */
 	@Override
-    public FrontendOperations frontendOperations() {
+	public FrontendOperations frontendOperations() {
 		return frontendOperations;
 	}
 

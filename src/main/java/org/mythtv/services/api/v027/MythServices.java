@@ -26,53 +26,53 @@ package org.mythtv.services.api.v027;
  */
 public interface MythServices {
 
-    /*
-     * Capture Operations
-     * @return an instance of a class implementing CaptureOperations
-     */
-    CaptureOperations captureOperations();
+	/*
+	 * Capture Operations
+	 * @return an instance of a class implementing CaptureOperations
+	 */
+	CaptureOperations captureOperations();
 
-    /*
-     * Channel Operations
-     * @return an instance of a class implementing ChannelOperations
-     */
-    ChannelOperations channelOperations();
+	/*
+	 * Channel Operations
+	 * @return an instance of a class implementing ChannelOperations
+	 */
+	ChannelOperations channelOperations();
 
-    /*
-     * Content Operations
-     * @return an instance of a class implementing ContentOperations
-     */
-    ContentOperations contentOperations();
+	/*
+	 * Content Operations
+	 * @return an instance of a class implementing ContentOperations
+	 */
+	ContentOperations contentOperations();
 
-    /*
-     * Dvr Operations
-     * @return an instance of a class implementing DvrOperations
-     */
-    DvrOperations dvrOperations();
+	/*
+	 * Dvr Operations
+	 * @return an instance of a class implementing DvrOperations
+	 */
+	DvrOperations dvrOperations();
 
-    /*
-     * Guide Operations
-     * @return an instance of a class implementing GuideOperations
-     */
-    GuideOperations guideOperations();
+	/*
+	 * Guide Operations
+	 * @return an instance of a class implementing GuideOperations
+	 */
+	GuideOperations guideOperations();
 
-    /*
-     * Myth Operations
-     * @return an instance of a class implementing MythOperations
-     */
-    MythOperations mythOperations();
+	/*
+	 * Myth Operations
+	 * @return an instance of a class implementing MythOperations
+	 */
+	MythOperations mythOperations();
 
-    /*
-     * Video Operations
-     * @return an instance of a class implementing VideoOperations
-     */
-    VideoOperations videoOperations();
+	/*
+	 * Video Operations
+	 * @return an instance of a class implementing VideoOperations
+	 */
+	VideoOperations videoOperations();
 
-    /*
-     * Frontend Operations
-     * @return an instance of a class implementing FrontendOperations
-     */
-    FrontendOperations frontendOperations();
+	/*
+	 * Frontend Operations
+	 * @return an instance of a class implementing FrontendOperations
+	 */
+	FrontendOperations frontendOperations();
 
 	/*
 	 * Status Operations
