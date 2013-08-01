@@ -25,19 +25,19 @@ import org.joda.time.DateTime;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
 import org.mythtv.services.api.converters.JodaDateTimeTransform;
-import org.mythtv.services.api.v027.status.beans.Job.Command;
-import org.mythtv.services.api.v027.status.beans.Job.Flag;
-import org.mythtv.services.api.v027.status.beans.Job.Status;
-import org.mythtv.services.api.v027.status.beans.Job.Type;
 import org.mythtv.services.api.v027.impl.CaptureTemplate;
 import org.mythtv.services.api.v027.impl.ChannelTemplate;
 import org.mythtv.services.api.v027.impl.ContentTemplate;
 import org.mythtv.services.api.v027.impl.DvrTemplate;
-import org.mythtv.services.api.v027.impl.FrontendTemplate;
 import org.mythtv.services.api.v027.impl.GuideTemplate;
 import org.mythtv.services.api.v027.impl.MythTemplate;
-import org.mythtv.services.api.v027.impl.StatusTemplate;
 import org.mythtv.services.api.v027.impl.VideoTemplate;
+import org.mythtv.services.api.v027.impl.FrontendTemplate;
+import org.mythtv.services.api.v027.impl.StatusTemplate;
+import org.mythtv.services.api.v027.status.beans.Job.Command;
+import org.mythtv.services.api.v027.status.beans.Job.Flag;
+import org.mythtv.services.api.v027.status.beans.Job.Status;
+import org.mythtv.services.api.v027.status.beans.Job.Type;
 import org.mythtv.services.api.v027.status.converters.JobCommandTransform;
 import org.mythtv.services.api.v027.status.converters.JobFlagTransform;
 import org.mythtv.services.api.v027.status.converters.JobStatusTransform;
@@ -57,7 +57,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
 public class MythServicesTemplate extends BaseMythServicesTemplate implements MythServices {
@@ -66,11 +67,11 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 	private ChannelOperations channelOperations;
 	private ContentOperations contentOperations;
 	private DvrOperations dvrOperations;
-	private FrontendOperations frontendOperations;
 	private GuideOperations guideOperations;
 	private MythOperations mythOperations;
-	private StatusOperations statusOperations;
 	private VideoOperations videoOperations;
+	private FrontendOperations frontendOperations;
+	private StatusOperations statusOperations;
 	protected final RestOperations restOperations;
 	
 	public MythServicesTemplate( String apiUrlBase ) {
@@ -118,81 +119,88 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 		rest.setErrorHandler( new MythServicesErrorHandler() );
 		return rest;
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.MythServices#captureOperations()
-	 */
+
+    /*
+     * Capture Operations
+     * @return an instance of a class implementing CaptureOperations
+     */
 	@Override
-	public CaptureOperations captureOperations() {
+    public CaptureOperations captureOperations() {
 		return captureOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#channelOperations()
-	 */
+    /*
+     * Channel Operations
+     * @return an instance of a class implementing ChannelOperations
+     */
 	@Override
-	public ChannelOperations channelOperations() {
+    public ChannelOperations channelOperations() {
 		return channelOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#contentOperations()
-	 */
+    /*
+     * Content Operations
+     * @return an instance of a class implementing ContentOperations
+     */
 	@Override
-	public ContentOperations contentOperations() {
+    public ContentOperations contentOperations() {
 		return contentOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#dvrOperations()
-	 */
+    /*
+     * Dvr Operations
+     * @return an instance of a class implementing DvrOperations
+     */
 	@Override
-	public DvrOperations dvrOperations() {
+    public DvrOperations dvrOperations() {
 		return dvrOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#frontendOperations()
-	 */
+    /*
+     * Guide Operations
+     * @return an instance of a class implementing GuideOperations
+     */
 	@Override
-	public FrontendOperations frontendOperations() {
-		return frontendOperations;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#guideOperations()
-	 */
-	@Override
-	public GuideOperations guideOperations() {
+    public GuideOperations guideOperations() {
 		return guideOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#mythOperations()
-	 */
+    /*
+     * Myth Operations
+     * @return an instance of a class implementing MythOperations
+     */
 	@Override
-	public MythOperations mythOperations() {
+    public MythOperations mythOperations() {
 		return mythOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#statusOperations()
+    /*
+     * Video Operations
+     * @return an instance of a class implementing VideoOperations
+     */
+	@Override
+    public VideoOperations videoOperations() {
+		return videoOperations;
+	}
+
+    /*
+     * Frontend Operations
+     * @return an instance of a class implementing FrontendOperations
+     */
+	@Override
+    public FrontendOperations frontendOperations() {
+		return frontendOperations;
+	}
+
+	/*
+	 * Status Operations
+	 * @return an instance of a class implementing StatusOperations
 	 */
 	@Override
 	public StatusOperations statusOperations() {
 		return statusOperations;
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#videoOperations()
-	 */
-	@Override
-	public VideoOperations videoOperations() {
-		return videoOperations;
-	}
-	
+
 	private RestOperations getRestOperations() {
 		return restOperations;
 	}
@@ -202,10 +210,11 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 		this.channelOperations = new ChannelTemplate( getRestOperations(), getApiUrlBase() );
 		this.contentOperations = new ContentTemplate( getRestOperations(), getApiUrlBase() );
 		this.dvrOperations = new DvrTemplate( getRestOperations(), getApiUrlBase() );
-		this.frontendOperations = new FrontendTemplate( getRestOperations(), getApiUrlBase() );
 		this.guideOperations = new GuideTemplate( getRestOperations(), getApiUrlBase() );
 		this.mythOperations = new MythTemplate( getRestOperations(), getApiUrlBase() );
-		this.statusOperations = new StatusTemplate( getRestOperations(), getApiUrlBase() );
 		this.videoOperations = new VideoTemplate( getRestOperations(), getApiUrlBase() );
+		this.frontendOperations = new FrontendTemplate( getRestOperations(), getApiUrlBase() );
+		this.statusOperations = new StatusTemplate( getRestOperations(), getApiUrlBase() );
 	}
+
 }
