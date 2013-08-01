@@ -32,92 +32,92 @@ import org.springframework.http.ResponseEntity;
  */
 public interface FrontendOperations {
 
-    /*
-     * GET method
-     *
-     * @param context
-     * @param etagInfo
-     * @return ResponseEntity<FrontendActionList>
-     */
-    ResponseEntity<FrontendActionList> getActionList(String context, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param context
+	 * @param etagInfo
+	 * @return ResponseEntity<FrontendActionList>
+	 */
+	ResponseEntity<FrontendActionList> getActionList(String context, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param etagInfo
-     * @return ResponseEntity<String[]>
-     */
-    ResponseEntity<String[]> getContextList(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param etagInfo
+	 * @return ResponseEntity<String[]>
+	 */
+	ResponseEntity<String[]> getContextList(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param etagInfo
-     * @return ResponseEntity<FrontendStatus>
-     */
-    ResponseEntity<FrontendStatus> getStatus(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param etagInfo
+	 * @return ResponseEntity<FrontendStatus>
+	 */
+	ResponseEntity<FrontendStatus> getStatus(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param chanId
-     * @param startTime
-     * @param etagInfo
-     * @return ResponseEntity<Boolean>
-     */
-    ResponseEntity<Boolean> playRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param chanId
+	 * @param startTime
+	 * @param etagInfo
+	 * @return ResponseEntity<Boolean>
+	 */
+	ResponseEntity<Boolean> playRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param id
-     * @param useBookmark
-     * @param etagInfo
-     * @return ResponseEntity<Boolean>
-     */
-    ResponseEntity<Boolean> playVideo(String id, Boolean useBookmark, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param id
+	 * @param useBookmark
+	 * @param etagInfo
+	 * @return ResponseEntity<Boolean>
+	 */
+	ResponseEntity<Boolean> playVideo(String id, Boolean useBookmark, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param action
-     * @param value
-     * @param width
-     * @param height
-     * @param etagInfo
-     * @return ResponseEntity<Boolean>
-     */
-    ResponseEntity<Boolean> sendAction(String action, String value, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param action
+	 * @param value
+	 * @param width
+	 * @param height
+	 * @param etagInfo
+	 * @return ResponseEntity<Boolean>
+	 */
+	ResponseEntity<Boolean> sendAction(String action, String value, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param message
-     * @param timeout
-     * @param etagInfo
-     * @return ResponseEntity<Boolean>
-     */
-    ResponseEntity<Boolean> sendMessage(String message, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param message
+	 * @param timeout
+	 * @param etagInfo
+	 * @return ResponseEntity<Boolean>
+	 */
+	ResponseEntity<Boolean> sendMessage(String message, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-    /*
-     * GET method
-     *
-     * @param error
-     * @param type
-     * @param message
-     * @param origin
-     * @param description
-     * @param image
-     * @param extra
-     * @param progressText
-     * @param progress
-     * @param timeout
-     * @param fullscreen
-     * @param visibility
-     * @param priority
-     * @param etagInfo
-     * @return ResponseEntity<Boolean>
-     */
-    ResponseEntity<Boolean> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	/*
+	 * GET method
+	 *
+	 * @param error
+	 * @param type
+	 * @param message
+	 * @param origin
+	 * @param description
+	 * @param image
+	 * @param extra
+	 * @param progressText
+	 * @param progress
+	 * @param timeout
+	 * @param fullscreen
+	 * @param visibility
+	 * @param priority
+	 * @param etagInfo
+	 * @return ResponseEntity<Boolean>
+	 */
+	ResponseEntity<Boolean> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 }

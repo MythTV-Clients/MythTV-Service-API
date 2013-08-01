@@ -43,66 +43,55 @@ public class GuideTemplate extends AbstractOperations implements org.mythtv.serv
         this.restOperations = restOperations;
     }
 
+	@Override
+	public ResponseEntity<String> getChannelIcon(Integer chanId, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-    @Override
-    public ResponseEntity<String> getChannelIcon(Integer chanId, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
-        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-        
-        if(chanId != null)
-            parameters.add( "ChanId", chanId.toString() );
-        if(width != null)
-            parameters.add( "Width", width.toString() );
-        if(height != null)
-            parameters.add( "Height", height.toString() );
-        if(etagInfo != null)
-            parameters.add( "etagInfo", etagInfo.toString() );
-
-        ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetChannelIcon", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
-            handleResponseEtag( etagInfo, responseEntity.getHeaders() );
-        
-        return responseEntity;
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
+		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetChannelIcon", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
+	@Override
+	public ResponseEntity<Program> getProgramDetails(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-    @Override
-    public ResponseEntity<Program> getProgramDetails(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
-        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-        
-        if(chanId != null)
-            parameters.add( "ChanId", chanId.toString() );
-        if(startTime != null)
-            parameters.add( "StartTime", startTime.toString() );
-        if(etagInfo != null)
-            parameters.add( "etagInfo", etagInfo.toString() );
-
-        ResponseEntity<Program> responseEntity = restOperations.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Program.class );
-            handleResponseEtag( etagInfo, responseEntity.getHeaders() );
-        
-        return responseEntity;
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime", startTime.toString() );
+		
+		ResponseEntity<Program> responseEntity = restOperations.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Program.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
+	@Override
+	public ResponseEntity<ProgramGuide> getProgramGuide(org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, Integer startChanId, Integer numChannels, Boolean details, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-    @Override
-    public ResponseEntity<ProgramGuide> getProgramGuide(org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, Integer startChanId, Integer numChannels, Boolean details, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
-        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-        
-        if(startTime != null)
-            parameters.add( "StartTime", startTime.toString() );
-        if(endTime != null)
-            parameters.add( "EndTime", endTime.toString() );
-        if(startChanId != null)
-            parameters.add( "StartChanId", startChanId.toString() );
-        if(numChannels != null)
-            parameters.add( "NumChannels", numChannels.toString() );
-        if(details != null)
-            parameters.add( "Details", details.toString() );
-        if(etagInfo != null)
-            parameters.add( "etagInfo", etagInfo.toString() );
-
-        ResponseEntity<ProgramGuide> responseEntity = restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramGuide.class );
-            handleResponseEtag( etagInfo, responseEntity.getHeaders() );
-        
-        return responseEntity;
+		if(startTime != null)
+           		parameters.add( "StartTime", startTime.toString() );
+		if(endTime != null)
+           		parameters.add( "EndTime", endTime.toString() );
+		if(startChanId != null)
+           		parameters.add( "StartChanId", startChanId.toString() );
+		if(numChannels != null)
+           		parameters.add( "NumChannels", numChannels.toString() );
+		if(details != null)
+           		parameters.add( "Details", details.toString() );
+		
+		ResponseEntity<ProgramGuide> responseEntity = restOperations.exchange( buildUri( "GetProgramGuide", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramGuide.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
+
 
 }
