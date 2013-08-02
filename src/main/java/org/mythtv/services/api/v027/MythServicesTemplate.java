@@ -53,6 +53,7 @@ import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
@@ -94,7 +95,7 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 				
 				ObjectMapper objectMapper = new ObjectMapper();
 				objectMapper.registerModule( new JodaModule() );
-				
+				objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
 				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
 				mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
 			}
