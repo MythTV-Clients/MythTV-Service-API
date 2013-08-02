@@ -1,0 +1,33 @@
+{
+    "VideoSourceList":{
+        "AsOf":"2012-08-10T20:05:31Z",
+        "Version":"0.25.20120506-1",
+        "ProtoVer":"72",
+        "VideoSources":[
+            {
+                "Id":"1",
+                "SourceName":"Fios QAM Unencrypted",
+                "Grabber":"schedulesdirect1",
+                "UserId":"username@myname.com",
+                "FreqTable":"us-cable",
+                "LineupId":"NY67791:X",
+                "Password":"lalalalala",
+                "UseEIT":"false",
+                "ConfigPath":"",
+                "NITId":"-1"
+            },
+            {
+                "Id":"2",
+                "SourceName":"Fios Full",
+                "Grabber":"schedulesdirect1",
+                "UserId":"username@myname.com",
+                "FreqTable":"us-cable",
+                "LineupId":"NY67791:X",
+                "Password":"lalalalala",
+                "UseEIT":"false",
+                "ConfigPath":"",
+                "NITId":"-1"
+            }
+        ]
+    }
+}

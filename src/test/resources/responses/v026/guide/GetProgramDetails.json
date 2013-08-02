@@ -1,0 +1,78 @@
+{
+    "Program":{
+        "StartTime":"2012-08-11T16:00:00Z",
+        "EndTime":"2012-08-11T16:30:00Z",
+        "Title":"Danger Rangers",
+        "SubTitle":"Safe and Sound",
+        "Category":"Children",
+        "CatType":"series",
+        "Repeat":"true",
+        "VideoProps":"0",
+        "AudioProps":"1",
+        "SubProps":"1",
+        "SeriesId":"EP00764442",
+        "ProgramId":"EP007644420015",
+        "Stars":"0",
+        "FileSize":"0",
+        "LastModified":"2012-08-11T16:00:00Z",
+        "ProgramFlags":"4096",
+        "FileName":"",
+        "HostName":"",
+        "Airdate":"2006-03-03",
+        "Description":"The Danger Rangers save Hollywood from the dangerously loud music of the new rock band the Decibulls.",
+        "Inetref":"",
+        "Season":"0",
+        "Episode":"0",
+        "Channel":{
+            "ChanId":"1021",
+            "ChanNum":"502",
+            "CallSign":"WCBSDT",
+            "IconURL":"\/Guide\/GetChannelIcon?ChanId=1021",
+            "ChannelName":"WCBSDT (WCBS-DT)",
+            "MplexId":"0",
+            "TransportId":"0",
+            "ServiceId":"0",
+            "NetworkId":"0",
+            "ATSCMajorChan":"0",
+            "ATSCMinorChan":"0",
+            "Format":"",
+            "Modulation":"",
+            "Frequency":"0",
+            "FrequencyId":"",
+            "FrequencyTable":"",
+            "FineTune":"0",
+            "SIStandard":"",
+            "ChanFilters":"",
+            "SourceId":"0",
+            "InputId":"0",
+            "CommFree":"0",
+            "UseEIT":"false",
+            "Visible":"true",
+            "XMLTVID":"",
+            "DefaultAuth":"",
+            "Programs":[
+                
+            ]
+        },
+        "Recording":{
+            "Status":"0",
+            "Priority":"0",
+            "StartTs":"",
+            "EndTs":"",
+            "RecordId":"0",
+            "RecGroup":"",
+            "PlayGroup":"",
+            "StorageGroup":"",
+            "RecType":"0",
+            "DupInType":"1",
+            "DupMethod":"1",
+            "EncoderId":"0",
+            "Profile":""
+        },
+        "Artwork":{
+            "ArtworkInfos":[
+                
+            ]
+        }
+    }
+}

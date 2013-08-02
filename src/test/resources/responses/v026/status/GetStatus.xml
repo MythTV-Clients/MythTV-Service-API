@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Status version="0.26.20130225-1" ISODate="2013-03-27T00:55:31Z" protoVer="75" time="8:55 PM" date="Tue Mar 26 2013">
+<Encoders count="6">
+<Encoder local="1" hostname="mythcenter" id="1" state="7" devlabel="[ HDHOMERUN : 192.168.10.151-0 ]" sleepstatus="8" connected="1">
+<Program title="NHL Hockey" subTitle="New York Rangers at Philadelphia Flyers" programFlags="1048576" category="Sports event" fileSize="0" seriesId="" hostname="mythcenter" catType="sports" programId="SP002767780000" repeat="0" stars="0" endTime="2013-03-27T02:00:00Z" startTime="2013-03-26T23:30:00Z" lastModified="2013-03-26T22:30:01Z">
+<Channel inputId="1" chanFilters="" commFree="0" channelName="Comcast SportsNet Phil. (HDTV)" sourceId="1" chanId="2403" chanNum="1403" callSign="CSNPHHD"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-2" recStartTs="2013-03-26T23:30:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="1" recProfile="Default" recEndTs="2013-03-27T03:00:00Z" recordId="62" dupInType="15"/>
+</Program>
+</Encoder>
+<Encoder local="1" hostname="mythcenter" id="3" state="7" devlabel="[ HDHOMERUN : 192.168.10.151-1 ]" sleepstatus="8" connected="1">
+<Program title="The Voice" subTitle="The Blind Auditions, Part 2" programFlags="1048576" category="Reality" fileSize="0" seriesId="EP01365756" hostname="mythcenter" catType="series" programId="EP013657560069" repeat="0" stars="0" endTime="2013-03-27T01:01:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T00:00:00Z" lastModified="2013-03-26T23:59:08Z">
+Auditions continue.
+<Channel inputId="2" chanFilters="" commFree="0" channelName="WCAUDT (WCAU-DT)" sourceId="1" chanId="2010" chanNum="1010" callSign="WCAUDT"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-2" recStartTs="2013-03-27T00:00:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="3" recProfile="Default" recEndTs="2013-03-27T01:01:00Z" recordId="7" dupInType="15"/>
+</Program>
+</Encoder>
+<Encoder local="1" hostname="mythcenter" id="5" state="0" devlabel="[ HDHOMERUN : 192.168.10.151-2 ]" sleepstatus="8" connected="1"/>
+<Encoder local="1" hostname="mythcenter" id="8" state="0" devlabel="[ HDHOMERUN : 192.168.10.152-0 ]" sleepstatus="8" connected="1"/>
+<Encoder local="1" hostname="mythcenter" id="10" state="0" devlabel="[ HDHOMERUN : 192.168.10.152-1 ]" sleepstatus="8" connected="1"/>
+<Encoder local="1" hostname="mythcenter" id="12" state="0" devlabel="[ HDHOMERUN : 192.168.10.152-2 ]" sleepstatus="8" connected="1"/>
+</Encoders>
+<Scheduled count="10">
+<Program title="New Girl" subTitle="Chicago" programFlags="0" category="Sitcom" fileSize="0" seriesId="EP01419203" hostname="mythcenter" catType="series" programId="EP014192030046" repeat="0" stars="0" endTime="2013-03-27T01:30:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T01:00:00Z" lastModified="2013-03-26T23:59:08Z">
+Jess, Schmidt and Winston go to Chicago with Nick to help him deal with a death in his family.
+<Channel inputId="3" chanFilters="" commFree="0" channelName="WTXFDT (WTXF-DT)" sourceId="1" chanId="2009" chanNum="1009" callSign="WTXFDT"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T01:00:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="5" recProfile="Default" recEndTs="2013-03-27T01:30:00Z" recordId="78" dupInType="15"/>
+</Program>
+<Program title="Go On" subTitle="Matchup Problems" programFlags="0" category="Sitcom" fileSize="0" seriesId="EP01567801" hostname="mythcenter" catType="series" programId="EP015678010019" repeat="0" stars="0" endTime="2013-03-27T01:31:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T01:01:00Z" lastModified="2013-03-26T23:59:08Z">
+Anne sets up Ryan with a new acquaintance, a beautiful woman (Courteney Cox) who recently became a widow; Lauren accidentally steals a man away from Yolanda.
+<Channel inputId="2" chanFilters="" commFree="0" channelName="WCAUDT (WCAU-DT)" sourceId="1" chanId="2010" chanNum="1010" callSign="WCAUDT"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T01:01:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="3" recProfile="Default" recEndTs="2013-03-27T01:31:00Z" recordId="55" dupInType="15"/>
+</Program>
+<Program title="The New Normal" subTitle="About a Boy Scout" programFlags="0" category="Sitcom" fileSize="0" seriesId="EP01567810" hostname="mythcenter" catType="series" programId="EP015678100020" repeat="0" stars="0" endTime="2013-03-27T02:01:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T01:31:00Z" lastModified="2013-03-26T23:59:08Z">
+During a Boy Scout overnight, a father disagrees with David's lifestyle; Rocky helps Goldie with her secret crush.
+<Channel inputId="2" chanFilters="" commFree="0" channelName="WCAUDT (WCAU-DT)" sourceId="1" chanId="2010" chanNum="1010" callSign="WCAUDT"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T01:31:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="3" recProfile="Default" recEndTs="2013-03-27T02:01:00Z" recordId="54" dupInType="15"/>
+</Program>
+<Program title="Tosh.0" subTitle="" programFlags="0" category="Comedy" fileSize="0" seriesId="EP01149630" hostname="mythcenter" catType="series" programId="EP011496300112" repeat="0" stars="0" endTime="2013-03-27T02:30:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T02:00:00Z" lastModified="2013-03-26T23:59:08Z">
+Daniel debuts his extremely feminine fragrance; spends some quality time with his favorite comedian named after a root vegetable; some insensitive college girls get a Web redemption.
+<Channel inputId="3" chanFilters="" commFree="0" channelName="Comedy Central HD" sourceId="1" chanId="2173" chanNum="1173" callSign="CCHD"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T02:00:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="5" recProfile="Default" recEndTs="2013-03-27T02:30:00Z" recordId="30" dupInType="15"/>
+</Program>
+<Program title="Golden Boy" subTitle="Just Say No" programFlags="0" category="Drama" fileSize="0" seriesId="EP01568675" hostname="mythcenter" catType="series" programId="EP015686750006" repeat="0" stars="0" endTime="2013-03-27T03:00:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T02:01:00Z" lastModified="2013-03-26T23:59:08Z">
+A rich philanthropist -- a shipping mogul's daughter-in-law -- is found dead in her apartment; Clark's mother is harassed by a loan shark.
+<Channel inputId="2" chanFilters="" commFree="0" channelName="KYWDT (KYW-DT)" sourceId="1" chanId="2003" chanNum="1003" callSign="KYWDT"/>
+<Recording recPriority="10" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T02:01:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="3" recProfile="Default" recEndTs="2013-03-27T03:00:00Z" recordId="144" dupInType="15"/>
+</Program>
+<Program title="Jake and the Never Land Pirates" subTitle="Tiki Tree Luau; Captain Who?" programFlags="0" category="Children" fileSize="0" seriesId="EP01376186" hostname="mythcenter" catType="series" programId="EP013761860108" repeat="0" stars="0" endTime="2013-03-27T13:00:00Z" airdate="Fri Mar 22 2013" startTime="2013-03-27T12:30:00Z" lastModified="2013-03-26T23:59:08Z">
+An invitation to the Tiki Tree Luau; Captain Hook forgets he is captain of the crew.
+<Channel inputId="1" chanFilters="" commFree="0" channelName="Disney Channel HD" sourceId="1" chanId="2285" chanNum="1285" callSign="DISNHD"/>
+<Recording recPriority="9" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T12:30:00Z" recGroup="Default" dupMethod="6" recType="9" encoderId="1" recProfile="Default" recEndTs="2013-03-27T13:00:00Z" recordId="5" dupInType="15"/>
+</Program>
+<Program title="Mickey Mouse Clubhouse" subTitle="Mickey's Fishy Story" programFlags="4096" category="Children" fileSize="0" seriesId="EP00827462" hostname="mythcenter" catType="series" programId="EP008274620090" repeat="1" stars="0" endTime="2013-03-27T13:30:00Z" airdate="Fri Jul 29 2011" startTime="2013-03-27T13:00:00Z" lastModified="2013-03-26T23:59:08Z">
+Mickey and crew journey to a waterfall to find Daisy's pet goldfish.
+<Channel inputId="1" chanFilters="" commFree="0" channelName="Disney Channel HD" sourceId="1" chanId="2285" chanNum="1285" callSign="DISNHD"/>
+<Recording recPriority="9" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T13:00:00Z" recGroup="Default" dupMethod="6" recType="9" encoderId="1" recProfile="Default" recEndTs="2013-03-27T13:30:00Z" recordId="4" dupInType="15"/>
+</Program>
+<Program title="Little Einsteins" subTitle="O Yes, O Yes, It's Springtime" programFlags="4096" category="Children" fileSize="0" seriesId="EP00776458" hostname="mythcenter" catType="series" programId="EP007764580019" repeat="1" stars="0" endTime="2013-03-27T14:00:00Z" airdate="Mon Mar 20 2006" startTime="2013-03-27T13:30:00Z" lastModified="2013-03-26T23:59:08Z">
+The children try to prevent Big Jet from ruining springtime so Baby Tulip can go home to the Netherlands.
+<Channel inputId="1" chanFilters="" commFree="0" channelName="Disney Channel (Pacific)" sourceId="1" chanId="1286" chanNum="286" callSign="DISNP"/>
+<Recording recPriority="-1" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T13:30:00Z" recGroup="Default" dupMethod="6" recType="9" encoderId="1" recProfile="Default" recEndTs="2013-03-27T14:00:00Z" recordId="26" dupInType="15"/>
+</Program>
+<Program title="Doc McStuffins" subTitle="A Good Case of the Hiccups; Stuck Up" programFlags="4096" category="Children" fileSize="0" seriesId="EP01532516" hostname="mythcenter" catType="series" programId="EP015325160012" repeat="1" stars="0" endTime="2013-03-27T15:00:00Z" airdate="Mon Apr 2 2012" startTime="2013-03-27T14:30:00Z" lastModified="2013-03-26T23:59:08Z">
+Doc and her friends help Millie Mic, the karaoke microphone.
+<Channel inputId="1" chanFilters="" commFree="0" channelName="Disney Channel HD" sourceId="1" chanId="2285" chanNum="1285" callSign="DISNHD"/>
+<Recording recPriority="9" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T14:30:00Z" recGroup="Default" dupMethod="6" recType="9" encoderId="1" recProfile="Default" recEndTs="2013-03-27T15:00:00Z" recordId="20" dupInType="15"/>
+</Program>
+<Program title="Rough Cut -- Woodworking With Tommy Mac" subTitle="Flag Box" programFlags="4096" category="How-to" fileSize="0" seriesId="EP01324196" hostname="mythcenter" catType="series" programId="EP013241960005" repeat="1" stars="0" endTime="2013-03-27T15:00:00Z" airdate="Sat Oct 30 2010" startTime="2013-03-27T14:30:00Z" lastModified="2013-03-26T23:59:08Z">
+A box which can house the American flag features splines from live oak of the USS Constitution.
+<Channel inputId="2" chanFilters="" commFree="0" channelName="WHYYDT2 (WHYY-DT2)" sourceId="1" chanId="1014" chanNum="14" callSign="WHYYDT2"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-1" recStartTs="2013-03-27T14:30:00Z" recGroup="Default" dupMethod="6" recType="4" encoderId="3" recProfile="Default" recEndTs="2013-03-27T15:00:00Z" recordId="142" dupInType="15"/>
+</Program>
+</Scheduled>
+<Frontends/>
+<Backends count="0"/>
+<JobQueue count="6">
+<Job flags="2" status="272" startTs="20130326220001" statusTime="2013-03-26T22:00:11Z" cmds="0" hostname="mythcenter" schedTime="2013-03-26T22:00:00Z" chanId="1275" insertTime="2013-03-26T22:00:00Z" type="4" id="5205" args="" startTime="2013-03-26T22:00:01Z">
+Metadata Lookup Complete.
+<Program title="The Fresh Beat Band" subTitle="Step It Up" programFlags="4101" category="Children" fileSize="493704168" seriesId="EP01174758" hostname="mythcenter" catType="" programId="EP011747580039" repeat="1" stars="0" endTime="2013-03-26T22:30:00Z" airdate="Sun Jul 17 2011" startTime="2013-03-26T22:00:00Z" lastModified="2013-03-26T22:30:03Z">
+<Channel inputId="0" chanFilters="" commFree="0" channelName="Nick Jr" sourceId="0" chanId="1275" chanNum="275" callSign="NICJR"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-3" recStartTs="2013-03-26T22:00:01Z" recGroup="Default" dupMethod="6" recType="0" encoderId="0" recProfile="Default" recEndTs="2013-03-26T22:30:00Z" recordId="23" dupInType="15"/>
+</Program>
+</Job>
+<Job flags="2" status="272" startTs="20130326220001" statusTime="2013-03-26T22:30:04Z" cmds="0" hostname="mythcenter" schedTime="2013-03-26T22:00:00Z" chanId="1275" insertTime="2013-03-26T22:00:00Z" type="2" id="5206" args="" startTime="2013-03-26T22:00:01Z">
+2 commercial breaks
+<Program title="The Fresh Beat Band" subTitle="Step It Up" programFlags="4101" category="Children" fileSize="493704168" seriesId="EP01174758" hostname="mythcenter" catType="" programId="EP011747580039" repeat="1" stars="0" endTime="2013-03-26T22:30:00Z" airdate="Sun Jul 17 2011" startTime="2013-03-26T22:00:00Z" lastModified="2013-03-26T22:30:03Z">
+<Channel inputId="0" chanFilters="" commFree="0" channelName="Nick Jr" sourceId="0" chanId="1275" chanNum="275" callSign="NICJR"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-3" recStartTs="2013-03-26T22:00:01Z" recGroup="Default" dupMethod="6" recType="0" encoderId="0" recProfile="Default" recEndTs="2013-03-26T22:30:00Z" recordId="23" dupInType="15"/>
+</Program>
+</Job>
+<Job flags="2" status="272" startTs="20130326233000" statusTime="2013-03-26T23:30:23Z" cmds="0" hostname="mythcenter" schedTime="2013-03-26T23:30:00Z" chanId="2403" insertTime="2013-03-26T23:30:00Z" type="4" id="5207" args="" startTime="2013-03-26T23:30:00Z">
+Metadata Lookup Complete.
+<Program title="NHL Hockey" subTitle="New York Rangers at Philadelphia Flyers" programFlags="4172" category="Sports event" fileSize="11811964236" seriesId="" hostname="mythcenter" catType="" programId="SP002767780000" repeat="1" stars="0" endTime="2013-03-27T02:00:00Z" startTime="2013-03-26T23:30:00Z" lastModified="2013-03-27T00:55:26Z">
+<Channel inputId="0" chanFilters="" commFree="0" channelName="Comcast SportsNet Phil. (HDTV)" sourceId="0" chanId="2403" chanNum="1403" callSign="CSNPHHD"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-3" recStartTs="2013-03-26T23:30:00Z" recGroup="Default" dupMethod="6" recType="0" encoderId="0" recProfile="Default" recEndTs="2013-03-27T03:00:00Z" recordId="62" dupInType="15"/>
+</Program>
+</Job>
+<Job flags="2" status="4" startTs="20130326233000" statusTime="2013-03-27T00:55:30Z" cmds="0" hostname="mythcenter" schedTime="2013-03-26T23:30:00Z" chanId="2403" insertTime="2013-03-26T23:30:00Z" type="2" id="5208" args="" startTime="2013-03-26T23:30:00Z">
+40% Completed @ 34.9664 fps.
+<Program title="NHL Hockey" subTitle="New York Rangers at Philadelphia Flyers" programFlags="4172" category="Sports event" fileSize="11811964236" seriesId="" hostname="mythcenter" catType="" programId="SP002767780000" repeat="1" stars="0" endTime="2013-03-27T02:00:00Z" startTime="2013-03-26T23:30:00Z" lastModified="2013-03-27T00:55:26Z">
+<Channel inputId="0" chanFilters="" commFree="0" channelName="Comcast SportsNet Phil. (HDTV)" sourceId="0" chanId="2403" chanNum="1403" callSign="CSNPHHD"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-3" recStartTs="2013-03-26T23:30:00Z" recGroup="Default" dupMethod="6" recType="0" encoderId="0" recProfile="Default" recEndTs="2013-03-27T03:00:00Z" recordId="62" dupInType="15"/>
+</Program>
+</Job>
+<Job flags="2" status="272" startTs="20130327000000" statusTime="2013-03-27T00:00:35Z" cmds="0" hostname="mythcenter" schedTime="2013-03-27T00:00:00Z" chanId="2010" insertTime="2013-03-27T00:00:00Z" type="4" id="5209" args="" startTime="2013-03-27T00:00:00Z">
+Metadata Lookup Complete.
+<Program title="The Voice" subTitle="The Blind Auditions, Part 2" programFlags="4172" category="Reality" fileSize="5691930112" seriesId="EP01365756" hostname="mythcenter" catType="" programId="EP013657560069" repeat="1" stars="0" endTime="2013-03-27T01:01:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T00:00:00Z" lastModified="2013-03-27T00:55:25Z">
+Auditions continue.
+<Channel inputId="0" chanFilters="" commFree="0" channelName="WCAUDT (WCAU-DT)" sourceId="0" chanId="2010" chanNum="1010" callSign="WCAUDT"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-3" recStartTs="2013-03-27T00:00:00Z" recGroup="Default" dupMethod="6" recType="0" encoderId="0" recProfile="Default" recEndTs="2013-03-27T01:01:00Z" recordId="7" dupInType="15"/>
+</Program>
+</Job>
+<Job flags="2" status="4" startTs="20130327000000" statusTime="2013-03-27T00:55:31Z" cmds="0" hostname="mythcenter" schedTime="2013-03-27T00:00:00Z" chanId="2010" insertTime="2013-03-27T00:00:00Z" type="2" id="5210" args="" startTime="2013-03-27T00:00:00Z">
+87% Completed @ 36.1557 fps.
+<Program title="The Voice" subTitle="The Blind Auditions, Part 2" programFlags="4172" category="Reality" fileSize="5691930112" seriesId="EP01365756" hostname="mythcenter" catType="" programId="EP013657560069" repeat="1" stars="0" endTime="2013-03-27T01:01:00Z" airdate="Tue Mar 26 2013" startTime="2013-03-27T00:00:00Z" lastModified="2013-03-27T00:55:25Z">
+Auditions continue.
+<Channel inputId="0" chanFilters="" commFree="0" channelName="WCAUDT (WCAU-DT)" sourceId="0" chanId="2010" chanNum="1010" callSign="WCAUDT"/>
+<Recording recPriority="0" playGroup="Default" recStatus="-3" recStartTs="2013-03-27T00:00:00Z" recGroup="Default" dupMethod="6" recType="0" encoderId="0" recProfile="Default" recEndTs="2013-03-27T01:01:00Z" recordId="7" dupInType="15"/>
+</Program>
+</Job>
+</JobQueue>
+<MachineInfo>
+<Storage>
+<Group dir="TotalDiskSpace" id="total" free="140296" deleted="0" total="930837" used="790541" expirable="90080" livetv="3082"/>
+<Group dir="mythcenter:/var/lib/mythtv/channels,mythcenter:/var/lib/mythtv/livetv,mythcenter:/var/lib/mythtv/recordings,mythcenter:/var/lib/mythtv/streaming" id="1" free="140296" total="930837" used="790541"/>
+</Storage>
+<Load avg1="1.22" avg2="1.32" avg3="1.27"/>
+<Guide guideThru="2013-04-09T05:00:00Z" status="Successful." next="2013-03-27T17:08:34Z" end="Tue Mar 26, 5:57 AM" guideDays="13" start="Tue Mar 26, 5:56 AM">Your subscription expires on Wed Jun 19 10:48 PM</Guide>
+</MachineInfo>
+</Status>
