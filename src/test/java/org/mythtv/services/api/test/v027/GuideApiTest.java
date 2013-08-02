@@ -19,10 +19,17 @@
  */
 package org.mythtv.services.api.test.v027;
 
-import org.junit.Ignore;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.v027.GuideOperations;
+import org.mythtv.services.api.v027.beans.Program;
+import org.mythtv.services.api.v027.beans.ProgramGuide;
+import org.springframework.http.ResponseEntity;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Sebastien Astie
@@ -30,23 +37,61 @@ import static org.junit.Assert.fail;
 public class GuideApiTest extends BaseApiTester {
     private GuideOperations operations;
 
+    private DateTime now;
+    private DateTime tomorrow;
+    private int iconsize;
+    private int chanid;
+
+    public void setUp() throws Exception {
+        super.setUp();
+        now = new DateTime();
+        tomorrow = now.plus( Period.days(1) );
+        iconsize = Integer.parseInt( properties.getProperty(
+                "MythServicesServiceProvider.GuideOperationsTest.IconSize", "512" ) );
+        chanid = Integer.parseInt( properties.getProperty( "MythServicesServiceProvider.GuideOperationsTest.ChannelId",
+                "2502" ) );
+    }
+
     @Override
     protected void prepareOperations() {
         operations = mythservices.guideOperations();
     }
 
-    @Ignore
+    @Test
     public void testGetChannelIcon() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<String> channelIcon = operations.getChannelIcon(chanid, iconsize, null, ETagInfo.createEmptyETag());
+        assertNotNull(channelIcon);
+        assertNotNull(channelIcon.getBody());
     }
 
-    @Ignore
+    @Test
     public void testGetProgramDetails() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<ProgramGuide> programGuide = operations.getProgramGuide(now, tomorrow, chanid, 1, true, ETagInfo.createEmptyETag());
+        assertNotNull(programGuide);
+        ProgramGuide res = programGuide.getBody();
+        assertNotNull(res);
+        assertNotNull(res.getChannels());
+        assertTrue(res.getChannels().length > 0);
+        assertNotNull(res.getChannels()[0].getPrograms());
+        assertNotNull(res.getChannels()[0].getPrograms());
+        assertTrue(res.getChannels()[0].getPrograms().length > 0);
+        DateTime startTime = res.getChannels()[0].getPrograms()[0].getStartTime();
+        ResponseEntity<Program> programDetails = operations.getProgramDetails(chanid, startTime, ETagInfo.createEmptyETag());
+        assertNotNull(programDetails);
+        Program p = programDetails.getBody();
+        assertNotNull(p);
     }
 
-    @Ignore
+    @Test
     public void testGetProgramGuide() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<ProgramGuide> programGuide = operations.getProgramGuide(now, tomorrow, chanid, 1, true, ETagInfo.createEmptyETag());
+        assertNotNull(programGuide);
+        ProgramGuide res = programGuide.getBody();
+        assertNotNull(res);
+        assertNotNull(res.getChannels());
+        assertTrue(res.getChannels().length > 0);
+        assertNotNull(res.getChannels()[0].getPrograms());
+        assertNotNull(res.getChannels()[0].getPrograms());
+        assertTrue(res.getChannels()[0].getPrograms().length > 0);
     }
 }

@@ -56,77 +56,77 @@ public class ContentApiTester extends BaseApiTester {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetAlbumArt() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetFile() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetFileList() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetHash() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetImageFile() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetLiveStream() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetLiveStreamList() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetMusic() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetPreviewImage() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetProgramArtworkList() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetRecording() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetRecordingArtwork() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetRecordingArtworkList() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetVideo() throws Exception {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testGetVideoArtwork() throws Exception {
         fail("Not yet implemented");
     }
