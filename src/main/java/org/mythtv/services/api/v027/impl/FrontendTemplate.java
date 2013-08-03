@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -57,11 +58,11 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 	}
 
 	@Override
-	public ResponseEntity<String[]> getContextList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ArrayOfString> getContextList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<String[]> responseEntity = restOperations.exchange( buildUri( "GetContextList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String[].class );
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetContextList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}

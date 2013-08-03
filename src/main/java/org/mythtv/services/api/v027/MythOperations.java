@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027;
 
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -92,17 +93,17 @@ public interface MythOperations {
 	 * GET method
 	 *
 	 * @param etagInfo
-	 * @return ResponseEntity<String[]>
+	 * @return ResponseEntity<ArrayOfString>
 	 */
-	ResponseEntity<String[]> getHosts(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	ResponseEntity<ArrayOfString> getHosts(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
 	 *
 	 * @param etagInfo
-	 * @return ResponseEntity<String[]>
+	 * @return ResponseEntity<ArrayOfString>
 	 */
-	ResponseEntity<String[]> getKeys(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	ResponseEntity<ArrayOfString> getKeys(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method

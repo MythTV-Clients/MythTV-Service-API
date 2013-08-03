@@ -19,11 +19,18 @@
  */
 package org.mythtv.services.api.test.v027;
 
-import static org.junit.Assert.fail;
-
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.StdDelegatingDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.util.Converter;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.v027.ChannelOperations;
 import org.mythtv.services.api.v027.beans.ChannelInfo;
@@ -31,6 +38,13 @@ import org.mythtv.services.api.v027.beans.ChannelInfoList;
 import org.mythtv.services.api.v027.beans.VideoSource;
 import org.mythtv.services.api.v027.beans.VideoSourceList;
 import org.springframework.http.ResponseEntity;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 public class ChannelApiTester extends BaseApiTester{
 	private ChannelOperations operations;
@@ -55,14 +69,14 @@ public class ChannelApiTester extends BaseApiTester{
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Ignore
 	public void testGetChannelInfo() {
 		ChannelInfo[] infos = getChannelInfos();
 		ResponseEntity<ChannelInfo> result = operations.getChannelInfo(infos[0].getChanId(), ETagInfo.createEmptyETag());
 		Assert.assertNotNull(result);
 	}
 
-	@Test
+	@Ignore
 	public void testGetChannelInfoList() {
 		getChannelInfos();
 	}
@@ -82,7 +96,7 @@ public class ChannelApiTester extends BaseApiTester{
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Ignore
 	public void testGetVideoSource() {
 		VideoSource[] sources = getVideoSources();
 		ResponseEntity<VideoSource> result = operations.getVideoSource(sources[0].getId(), ETagInfo.createEmptyETag());
@@ -91,15 +105,16 @@ public class ChannelApiTester extends BaseApiTester{
 		Assert.assertNotNull(source);	
 	}
 
-	@Test
+	@Ignore
 	public void testGetVideoSourceList() {
 		getVideoSources();
 	}
 
-	@Ignore
-	public void testGetXMLTVIdList() {
-		fail("Not yet implemented");
-	}
+	@Test
+	public void testGetXMLTVIdList() throws IOException {
+        ResponseEntity<ArrayOfString> xmltvIdList = operations.getXMLTVIdList(1, ETagInfo.createEmptyETag());
+        assertNotNull(xmltvIdList);
+    }
 
 	@Ignore
 	public void testRemoveDBChannel() {

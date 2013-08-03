@@ -20,8 +20,13 @@
 package org.mythtv.services.api.test.v027;
 
 import org.junit.Ignore;
+import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.v027.VideoOperations;
+import org.mythtv.services.api.v027.beans.VideoLookupList;
+import org.springframework.http.ResponseEntity;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 /**
@@ -60,9 +65,10 @@ public class VideoApiTest extends BaseApiTester {
         fail("Not yet implemented");
     }
 
-    @Ignore
+    @Test
     public void testLookupVideo() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<VideoLookupList> antz = operations.lookupVideo("Antz", null, null, null, null, null, null, ETagInfo.createEmptyETag());
+        assertNotNull(antz);
     }
 
     @Ignore
