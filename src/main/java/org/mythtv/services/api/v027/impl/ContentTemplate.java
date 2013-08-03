@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -168,13 +169,13 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 	}
 
 	@Override
-	public ResponseEntity<String[]> getFileList(String storageGroup, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ArrayOfString> getFileList(String storageGroup, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(storageGroup != null && !storageGroup.isEmpty())
 			parameters.add( "StorageGroup", storageGroup );
 		
-		ResponseEntity<String[]> responseEntity = restOperations.exchange( buildUri( "GetFileList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String[].class );
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetFileList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}

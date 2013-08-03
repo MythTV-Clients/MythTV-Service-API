@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.Int;
@@ -204,11 +205,11 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 	}
 
 	@Override
-	public ResponseEntity<String[]> getRecGroupList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ArrayOfString> getRecGroupList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<String[]> responseEntity = restOperations.exchange( buildUri( "GetRecGroupList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String[].class );
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetRecGroupList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
@@ -294,11 +295,11 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 	}
 
 	@Override
-	public ResponseEntity<String[]> getTitleList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ArrayOfString> getTitleList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<String[]> responseEntity = restOperations.exchange( buildUri( "GetTitleList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String[].class );
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetTitleList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}

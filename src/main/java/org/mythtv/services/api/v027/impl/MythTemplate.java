@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -124,21 +125,21 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 	}
 
 	@Override
-	public ResponseEntity<String[]> getHosts(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ArrayOfString> getHosts(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<String[]> responseEntity = restOperations.exchange( buildUri( "GetHosts", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String[].class );
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetHosts", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<String[]> getKeys(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<ArrayOfString> getKeys(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<String[]> responseEntity = restOperations.exchange( buildUri( "GetKeys", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String[].class );
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetKeys", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
