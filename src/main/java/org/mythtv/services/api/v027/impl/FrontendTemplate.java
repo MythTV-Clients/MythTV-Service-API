@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.FrontendActionList;
@@ -76,7 +77,7 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 	}
 
 	@Override
-	public ResponseEntity<Boolean> playRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> playRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(chanId != null)
@@ -84,13 +85,13 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 		if(startTime != null)
            		parameters.add( "StartTime", startTime.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "PlayRecording", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PlayRecording", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> playVideo(String id, Boolean useBookmark, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> playVideo(String id, Boolean useBookmark, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(id != null && !id.isEmpty())
@@ -98,13 +99,13 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 		if(useBookmark != null)
            		parameters.add( "UseBookmark", useBookmark.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "PlayVideo", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PlayVideo", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> sendAction(String action, String value, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendAction(String action, String value, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(action != null && !action.isEmpty())
@@ -116,13 +117,13 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 		if(height != null)
            		parameters.add( "Height", height.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "SendAction", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendAction", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> sendMessage(String message, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendMessage(String message, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(message != null && !message.isEmpty())
@@ -130,13 +131,13 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 		if(timeout != null)
            		parameters.add( "Timeout", timeout.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "SendMessage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendMessage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(error != null)
@@ -166,7 +167,7 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 		if(priority != null)
            		parameters.add( "Priority", priority.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "SendNotification", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendNotification", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}

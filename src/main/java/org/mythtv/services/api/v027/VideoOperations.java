@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.BlurayInfo;
@@ -39,9 +40,9 @@ public interface VideoOperations {
 	 *
 	 * @param fileName
 	 * @param hostName
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> addVideo(String fileName, String hostName) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> addVideo(String fileName, String hostName) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -100,8 +101,8 @@ public interface VideoOperations {
 	 * POST method
 	 *
 	 * @param id
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> removeVideoFromDB(Integer id) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeVideoFromDB(Integer id) throws MythServiceApiRuntimeException;
 
 }

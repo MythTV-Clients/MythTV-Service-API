@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ArtworkInfoList;
@@ -123,7 +124,7 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 	}
 
 	@Override
-	public ResponseEntity<Boolean> downloadFile(String uRL, String storageGroup) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> downloadFile(String uRL, String storageGroup) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(uRL != null && !uRL.isEmpty())
@@ -131,7 +132,7 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 		if(storageGroup != null && !storageGroup.isEmpty())
 			parameters.add( "StorageGroup", storageGroup );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "DownloadFile", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DownloadFile", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
@@ -359,13 +360,13 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(id != null)
            		parameters.add( "Id", id.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}

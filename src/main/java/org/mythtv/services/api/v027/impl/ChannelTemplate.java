@@ -20,7 +20,9 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ChannelInfo;
 import org.mythtv.services.api.v027.beans.ChannelInfoList;
@@ -49,7 +51,7 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
     }
 
 	@Override
-	public ResponseEntity<Boolean> addDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> addDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(mplexID != null)
@@ -85,13 +87,13 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
 		if(defaultAuthority != null && !defaultAuthority.isEmpty())
 			parameters.add( "DefaultAuthority", defaultAuthority );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "AddDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Integer> addVideoSource(String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> addVideoSource(String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(sourceName != null && !sourceName.isEmpty())
@@ -113,13 +115,13 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
 		if(nITId != null)
            		parameters.add( "NITId", nITId.toString() );
 		
-		ResponseEntity<Integer> responseEntity = restOperations.exchange( buildUri( "AddVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Integer.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Integer> fetchChannelsFromSource(Integer sourceId, Integer cardId, Boolean waitForFinish, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> fetchChannelsFromSource(Integer sourceId, Integer cardId, Boolean waitForFinish, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(sourceId != null)
@@ -129,7 +131,7 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
 		if(waitForFinish != null)
            		parameters.add( "WaitForFinish", waitForFinish.toString() );
 		
-		ResponseEntity<Integer> responseEntity = restOperations.exchange( buildUri( "FetchChannelsFromSource", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Integer.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "FetchChannelsFromSource", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Int.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
@@ -241,31 +243,31 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeDBChannel(Integer channelID) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeDBChannel(Integer channelID) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(channelID != null)
            		parameters.add( "ChannelID", channelID.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeVideoSource(Integer sourceID) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeVideoSource(Integer sourceID) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(sourceID != null)
            		parameters.add( "SourceID", sourceID.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(mplexID != null)
@@ -301,13 +303,13 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
 		if(defaultAuthority != null && !defaultAuthority.isEmpty())
 			parameters.add( "DefaultAuthority", defaultAuthority );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "UpdateDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateVideoSource(Integer sourceID, String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateVideoSource(Integer sourceID, String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(sourceID != null)
@@ -331,7 +333,7 @@ public class ChannelTemplate extends AbstractOperations implements org.mythtv.se
 		if(nITId != null)
            		parameters.add( "NITId", nITId.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "UpdateVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
