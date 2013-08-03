@@ -19,9 +19,9 @@
  */
 package org.mythtv.services.api.v026.beans;
 
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Map;
 
 /**
  * @author Daniel Frey

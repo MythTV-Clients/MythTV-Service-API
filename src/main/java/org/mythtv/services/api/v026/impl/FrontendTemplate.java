@@ -19,8 +19,6 @@
  */
 package org.mythtv.services.api.v026.impl;
 
-import java.net.URI;
-
 import org.joda.time.DateTime;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
@@ -32,6 +30,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
+
+import java.net.URI;
 
 /**
  * @author Daniel Frey

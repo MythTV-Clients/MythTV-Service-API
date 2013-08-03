@@ -3,13 +3,13 @@
  */
 package org.mythtv.services.api.v026.beans;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Daniel Frey

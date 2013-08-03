@@ -19,11 +19,11 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
+import org.junit.Assert;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Assert;
 
 public class MythFakeHttpResponseFactory {
 

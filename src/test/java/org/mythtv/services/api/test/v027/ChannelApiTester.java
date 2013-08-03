@@ -19,14 +19,6 @@
  */
 package org.mythtv.services.api.test.v027;
 
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.std.StdDelegatingDeserializer;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.util.Converter;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -40,8 +32,6 @@ import org.mythtv.services.api.v027.beans.VideoSourceList;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;

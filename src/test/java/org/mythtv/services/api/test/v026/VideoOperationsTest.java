@@ -19,8 +19,6 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -33,6 +31,8 @@ import org.mythtv.services.api.v026.beans.VideoLookupList;
 import org.mythtv.services.api.v026.beans.VideoMetaDataInfoWrapper;
 import org.mythtv.services.api.v026.beans.VideoMetadataInfoList;
 import org.springframework.http.ResponseEntity;
+
+import static org.junit.Assert.fail;
 
 /**
  * @author Sebastien Astie

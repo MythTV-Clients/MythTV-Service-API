@@ -19,12 +19,12 @@
  */
 package org.mythtv.services.api.test.connect;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.mythtv.services.api.ApiVersion;
 import org.mythtv.services.api.connect.MythAccessFactory;
 import org.mythtv.services.api.v027.MythServices;
+
+import static org.junit.Assert.*;
 
 public class ApiVersionTest {
 

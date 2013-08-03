@@ -19,11 +19,11 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import java.util.logging.Level;
-
 import org.mythtv.services.api.test.v026.connect.FakeMythTvRestTemplate;
 import org.mythtv.services.api.v026.MythServicesTemplate;
 import org.springframework.web.client.RestOperations;
+
+import java.util.logging.Level;
 
 /**
  * @author Sebastien Astie

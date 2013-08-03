@@ -19,8 +19,6 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -30,14 +28,10 @@ import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v026.ChannelOperations;
 import org.mythtv.services.api.v026.Int;
 import org.mythtv.services.api.v026.StringList;
-import org.mythtv.services.api.v026.beans.ChannelInfoList;
-import org.mythtv.services.api.v026.beans.ChannelInfoWrapper;
-import org.mythtv.services.api.v026.beans.LineupList;
-import org.mythtv.services.api.v026.beans.VideoMultiplexList;
-import org.mythtv.services.api.v026.beans.VideoMultiplexWrapper;
-import org.mythtv.services.api.v026.beans.VideoSourceList;
-import org.mythtv.services.api.v026.beans.VideoSourceWrapper;
+import org.mythtv.services.api.v026.beans.*;
 import org.springframework.http.ResponseEntity;
+
+import static org.junit.Assert.fail;
 
 /**
  * @author sebastien

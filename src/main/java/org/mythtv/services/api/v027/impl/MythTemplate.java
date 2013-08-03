@@ -19,16 +19,8 @@
  */
 package org.mythtv.services.api.v027.impl;
 
-import org.mythtv.services.api.AbstractOperations;
-import org.mythtv.services.api.ArrayOfString;
-import org.mythtv.services.api.Bool;
-import org.mythtv.services.api.ETagInfo;
-import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v027.beans.ConnectionInfo;
-import org.mythtv.services.api.v027.beans.LogMessageList;
-import org.mythtv.services.api.v027.beans.SettingList;
-import org.mythtv.services.api.v027.beans.StorageGroupDirList;
-import org.mythtv.services.api.v027.beans.TimeZoneInfo;
+import org.mythtv.services.api.*;
+import org.mythtv.services.api.v027.beans.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;

@@ -3,10 +3,10 @@
  */
 package org.mythtv.services.api.v027.status.beans;
 
-import java.util.List;
-
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+
+import java.util.List;
 
 /**
  * @author Daniel Frey

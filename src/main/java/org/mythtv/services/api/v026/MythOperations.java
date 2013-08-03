@@ -22,11 +22,7 @@ package org.mythtv.services.api.v026;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.ConnectionInfo;
-import org.mythtv.services.api.v026.beans.LogMessageList;
-import org.mythtv.services.api.v026.beans.SettingList;
-import org.mythtv.services.api.v026.beans.StorageGroupDirectoryList;
-import org.mythtv.services.api.v026.beans.TimeZoneInfo;
+import org.mythtv.services.api.v026.beans.*;
 import org.springframework.http.ResponseEntity;
 
 /**

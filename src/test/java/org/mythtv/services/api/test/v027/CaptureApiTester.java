@@ -19,10 +19,6 @@
  */
 package org.mythtv.services.api.test.v027;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
@@ -30,6 +26,8 @@ import org.mythtv.services.api.v027.CaptureOperations;
 import org.mythtv.services.api.v027.beans.CaptureCard;
 import org.mythtv.services.api.v027.beans.CaptureCardList;
 import org.springframework.http.ResponseEntity;
+
+import static org.junit.Assert.*;
 
 public class CaptureApiTester extends BaseApiTester{
 	private CaptureOperations operations;

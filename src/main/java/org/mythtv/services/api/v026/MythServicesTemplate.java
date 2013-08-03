@@ -19,8 +19,8 @@
  */
 package org.mythtv.services.api.v026;
 
-import java.util.logging.Level;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
@@ -29,15 +29,7 @@ import org.mythtv.services.api.v026.beans.Job.Command;
 import org.mythtv.services.api.v026.beans.Job.Flag;
 import org.mythtv.services.api.v026.beans.Job.Status;
 import org.mythtv.services.api.v026.beans.Job.Type;
-import org.mythtv.services.api.v026.impl.CaptureTemplate;
-import org.mythtv.services.api.v026.impl.ChannelTemplate;
-import org.mythtv.services.api.v026.impl.ContentTemplate;
-import org.mythtv.services.api.v026.impl.DvrTemplate;
-import org.mythtv.services.api.v026.impl.FrontendTemplate;
-import org.mythtv.services.api.v026.impl.GuideTemplate;
-import org.mythtv.services.api.v026.impl.MythTemplate;
-import org.mythtv.services.api.v026.impl.StatusTemplate;
-import org.mythtv.services.api.v026.impl.VideoTemplate;
+import org.mythtv.services.api.v026.impl.*;
 import org.mythtv.services.api.v026.status.converters.JobCommandTransform;
 import org.mythtv.services.api.v026.status.converters.JobFlagTransform;
 import org.mythtv.services.api.v026.status.converters.JobStatusTransform;
@@ -53,8 +45,7 @@ import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
+import java.util.logging.Level;
 
 /**
  * @author Daniel Frey

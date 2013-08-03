@@ -22,11 +22,7 @@ package org.mythtv.services.api.v026;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.ArtworkInfoList;
-import org.mythtv.services.api.v026.beans.ArtworkInfos;
-import org.mythtv.services.api.v026.beans.LiveStreamInfo;
-import org.mythtv.services.api.v026.beans.LiveStreamInfoWrapper;
-import org.mythtv.services.api.v026.beans.LiveStreamInfos;
+import org.mythtv.services.api.v026.beans.*;
 import org.springframework.http.ResponseEntity;
 
 public interface ContentOperations {

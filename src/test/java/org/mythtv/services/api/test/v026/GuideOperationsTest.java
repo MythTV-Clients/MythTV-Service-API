@@ -19,8 +19,6 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.junit.Assert;
@@ -35,6 +33,8 @@ import org.mythtv.services.api.v026.beans.Program;
 import org.mythtv.services.api.v026.beans.ProgramGuideWrapper;
 import org.mythtv.services.api.v026.beans.ProgramWrapper;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 /**
  * @author Sebastien Astie

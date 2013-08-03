@@ -1,9 +1,9 @@
 package org.mythtv.services.api.v026.beans;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 /**
  * 
