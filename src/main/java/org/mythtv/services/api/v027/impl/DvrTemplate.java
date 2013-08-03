@@ -20,7 +20,9 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.EncoderList;
 import org.mythtv.services.api.v027.beans.Program;
@@ -48,7 +50,7 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
     }
 
 	@Override
-	public ResponseEntity<Integer> addRecordSchedule(String title, String subtitle, String description, String category, org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, String seriesId, String programId, Integer chanId, String station, Integer findDay, org.joda.time.DateTime findTime, Integer parentId, Boolean inactive, Integer season, Integer episode, String inetref, String type, String searchType, Integer recPriority, Integer preferredInput, Integer startOffset, Integer endOffset, String dupMethod, String dupIn, Integer filter, String recProfile, String recGroup, String storageGroup, String playGroup, Boolean autoExpire, Integer maxEpisodes, Boolean maxNewest, Boolean autoCommflag, Boolean autoTranscode, Boolean autoMetaLookup, Boolean autoUserJob1, Boolean autoUserJob2, Boolean autoUserJob3, Boolean autoUserJob4, Integer transcoder) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> addRecordSchedule(String title, String subtitle, String description, String category, org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, String seriesId, String programId, Integer chanId, String station, Integer findDay, org.joda.time.DateTime findTime, Integer parentId, Boolean inactive, Integer season, Integer episode, String inetref, String type, String searchType, Integer recPriority, Integer preferredInput, Integer startOffset, Integer endOffset, String dupMethod, String dupIn, Integer filter, String recProfile, String recGroup, String storageGroup, String playGroup, Boolean autoExpire, Integer maxEpisodes, Boolean maxNewest, Boolean autoCommflag, Boolean autoTranscode, Boolean autoMetaLookup, Boolean autoUserJob1, Boolean autoUserJob2, Boolean autoUserJob3, Boolean autoUserJob4, Integer transcoder) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(title != null && !title.isEmpty())
@@ -134,31 +136,31 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(transcoder != null)
            		parameters.add( "Transcoder", transcoder.toString() );
 		
-		ResponseEntity<Integer> responseEntity = restOperations.exchange( buildUri( "AddRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Integer.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> disableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> disableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(recordId != null)
            		parameters.add( "RecordId", recordId.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> enableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> enableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(recordId != null)
            		parameters.add( "RecordId", recordId.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
@@ -318,19 +320,19 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(recordId != null)
            		parameters.add( "RecordId", recordId.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeRecorded(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeRecorded(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(chanId != null)
@@ -338,13 +340,13 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(startTime != null)
            		parameters.add( "StartTime", startTime.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateRecordSchedule(Integer recordId, String title, String subtitle, String description, String category, org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, String seriesId, String programId, Integer chanId, String station, Integer findDay, org.joda.time.DateTime findTime, Boolean inactive, Integer season, Integer episode, String inetref, String type, String searchType, Integer recPriority, Integer preferredInput, Integer startOffset, Integer endOffset, String dupMethod, String dupIn, Integer filter, String recProfile, String recGroup, String storageGroup, String playGroup, Boolean autoExpire, Integer maxEpisodes, Boolean maxNewest, Boolean autoCommflag, Boolean autoTranscode, Boolean autoMetaLookup, Boolean autoUserJob1, Boolean autoUserJob2, Boolean autoUserJob3, Boolean autoUserJob4, Integer transcoder) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateRecordSchedule(Integer recordId, String title, String subtitle, String description, String category, org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, String seriesId, String programId, Integer chanId, String station, Integer findDay, org.joda.time.DateTime findTime, Boolean inactive, Integer season, Integer episode, String inetref, String type, String searchType, Integer recPriority, Integer preferredInput, Integer startOffset, Integer endOffset, String dupMethod, String dupIn, Integer filter, String recProfile, String recGroup, String storageGroup, String playGroup, Boolean autoExpire, Integer maxEpisodes, Boolean maxNewest, Boolean autoCommflag, Boolean autoTranscode, Boolean autoMetaLookup, Boolean autoUserJob1, Boolean autoUserJob2, Boolean autoUserJob3, Boolean autoUserJob4, Integer transcoder) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(recordId != null)
@@ -430,7 +432,7 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(transcoder != null)
            		parameters.add( "Transcoder", transcoder.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "UpdateRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}

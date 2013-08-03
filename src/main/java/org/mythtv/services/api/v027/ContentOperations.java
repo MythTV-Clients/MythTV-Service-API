@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ArtworkInfoList;
@@ -86,9 +87,9 @@ public interface ContentOperations {
 	 *
 	 * @param uRL
 	 * @param storageGroup
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> downloadFile(String uRL, String storageGroup) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> downloadFile(String uRL, String storageGroup) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -251,9 +252,9 @@ public interface ContentOperations {
 	 *
 	 * @param id
 	 * @param etagInfo
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> removeLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method

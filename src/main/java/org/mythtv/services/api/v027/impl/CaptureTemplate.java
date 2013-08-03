@@ -20,7 +20,9 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.CaptureCard;
 import org.mythtv.services.api.v027.beans.CaptureCardList;
@@ -44,7 +46,7 @@ public class CaptureTemplate extends AbstractOperations implements org.mythtv.se
     }
 
 	@Override
-	public ResponseEntity<Integer> addCaptureCard(String videoDevice, String audioDevice, String vBIDevice, String cardType, Integer audioRateLimit, String hostName, Integer dVBSWFilter, Integer dVBSatType, Boolean dVBWaitForSeqStart, Boolean skipBTAudio, Boolean dVBOnDemand, Integer dVBDiSEqCType, Integer firewireSpeed, String firewireModel, Integer firewireConnection, Integer signalTimeout, Integer channelTimeout, Integer dVBTuningDelay, Integer contrast, Integer brightness, Integer colour, Integer hue, Integer diSEqCId, Boolean dVBEITScan) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> addCaptureCard(String videoDevice, String audioDevice, String vBIDevice, String cardType, Integer audioRateLimit, String hostName, Integer dVBSWFilter, Integer dVBSatType, Boolean dVBWaitForSeqStart, Boolean skipBTAudio, Boolean dVBOnDemand, Integer dVBDiSEqCType, Integer firewireSpeed, String firewireModel, Integer firewireConnection, Integer signalTimeout, Integer channelTimeout, Integer dVBTuningDelay, Integer contrast, Integer brightness, Integer colour, Integer hue, Integer diSEqCId, Boolean dVBEITScan) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(videoDevice != null && !videoDevice.isEmpty())
@@ -96,13 +98,13 @@ public class CaptureTemplate extends AbstractOperations implements org.mythtv.se
 		if(dVBEITScan != null)
            		parameters.add( "DVBEITScan", dVBEITScan.toString() );
 		
-		ResponseEntity<Integer> responseEntity = restOperations.exchange( buildUri( "AddCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Integer.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Integer> addCardInput(Integer cardId, Integer sourceId, String inputName, String externalCommand, String changerDevice, String changerModel, String hostName, String tuneChan, String startChan, String displayName, Boolean dishnetEIT, Integer recPriority, Integer quicktune, Integer schedOrder, Integer liveTVOrder) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> addCardInput(Integer cardId, Integer sourceId, String inputName, String externalCommand, String changerDevice, String changerModel, String hostName, String tuneChan, String startChan, String displayName, Boolean dishnetEIT, Integer recPriority, Integer quicktune, Integer schedOrder, Integer liveTVOrder) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(cardId != null)
@@ -136,7 +138,7 @@ public class CaptureTemplate extends AbstractOperations implements org.mythtv.se
 		if(liveTVOrder != null)
            		parameters.add( "LiveTVOrder", liveTVOrder.toString() );
 		
-		ResponseEntity<Integer> responseEntity = restOperations.exchange( buildUri( "AddCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Integer.class );
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
 		  
 		return responseEntity;
 	}
@@ -168,31 +170,31 @@ public class CaptureTemplate extends AbstractOperations implements org.mythtv.se
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeCaptureCard(Integer cardId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeCaptureCard(Integer cardId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(cardId != null)
            		parameters.add( "CardId", cardId.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeCardInput(Integer cardInputId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeCardInput(Integer cardInputId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(cardInputId != null)
            		parameters.add( "CardInputId", cardInputId.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateCaptureCard(Integer cardId, String setting, String value) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateCaptureCard(Integer cardId, String setting, String value) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(cardId != null)
@@ -202,13 +204,13 @@ public class CaptureTemplate extends AbstractOperations implements org.mythtv.se
 		if(value != null && !value.isEmpty())
 			parameters.add( "Value", value );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateCardInput(Integer cardInputId, String setting, String value) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> updateCardInput(Integer cardInputId, String setting, String value) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(cardInputId != null)
@@ -218,7 +220,7 @@ public class CaptureTemplate extends AbstractOperations implements org.mythtv.se
 		if(value != null && !value.isEmpty())
 			parameters.add( "Value", value );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}

@@ -19,7 +19,9 @@
  */
 package org.mythtv.services.api.v027;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ChannelInfo;
 import org.mythtv.services.api.v027.beans.ChannelInfoList;
@@ -56,9 +58,9 @@ public interface ChannelOperations {
 	 * @param format
 	 * @param xMLTVID
 	 * @param defaultAuthority
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> addDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> addDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
@@ -72,9 +74,9 @@ public interface ChannelOperations {
 	 * @param useEIT
 	 * @param configPath
 	 * @param nITId
-	 * @return ResponseEntity<Integer>
+	 * @return ResponseEntity<Int>
 	 */
-	ResponseEntity<Integer> addVideoSource(String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException;
+	ResponseEntity<Int> addVideoSource(String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -83,9 +85,9 @@ public interface ChannelOperations {
 	 * @param cardId
 	 * @param waitForFinish
 	 * @param etagInfo
-	 * @return ResponseEntity<Integer>
+	 * @return ResponseEntity<Int>
 	 */
-	ResponseEntity<Integer> fetchChannelsFromSource(Integer sourceId, Integer cardId, Boolean waitForFinish, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	ResponseEntity<Int> fetchChannelsFromSource(Integer sourceId, Integer cardId, Boolean waitForFinish, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -168,17 +170,17 @@ public interface ChannelOperations {
 	 * POST method
 	 *
 	 * @param channelID
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> removeDBChannel(Integer channelID) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeDBChannel(Integer channelID) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
 	 *
 	 * @param sourceID
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> removeVideoSource(Integer sourceID) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeVideoSource(Integer sourceID) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
@@ -199,9 +201,9 @@ public interface ChannelOperations {
 	 * @param format
 	 * @param xMLTVID
 	 * @param defaultAuthority
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> updateDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> updateDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
@@ -216,8 +218,8 @@ public interface ChannelOperations {
 	 * @param useEIT
 	 * @param configPath
 	 * @param nITId
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> updateVideoSource(Integer sourceID, String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> updateVideoSource(Integer sourceID, String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException;
 
 }

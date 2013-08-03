@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ConnectionInfo;
@@ -41,16 +42,16 @@ public interface MythOperations {
 	 * @param groupName
 	 * @param dirName
 	 * @param hostName
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> addStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> addStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
 	 *
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> backupDatabase() throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> backupDatabase() throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
@@ -58,17 +59,17 @@ public interface MythOperations {
 	 * @param userName
 	 * @param oldPassword
 	 * @param newPassword
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> changePassword(String userName, String oldPassword, String newPassword) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> changePassword(String userName, String oldPassword, String newPassword) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
 	 *
 	 * @param repair
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> checkDatabase(Boolean repair) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> checkDatabase(Boolean repair) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -155,16 +156,16 @@ public interface MythOperations {
 	/*
 	 * POST method
 	 *
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> profileDelete() throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> profileDelete() throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
 	 *
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> profileSubmit() throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> profileSubmit() throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -196,9 +197,9 @@ public interface MythOperations {
 	 * @param hostName
 	 * @param key
 	 * @param value
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> putSetting(String hostName, String key, String value) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> putSetting(String hostName, String key, String value) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
@@ -206,9 +207,9 @@ public interface MythOperations {
 	 * @param groupName
 	 * @param dirName
 	 * @param hostName
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> removeStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -218,9 +219,9 @@ public interface MythOperations {
 	 * @param udpPort
 	 * @param timeout
 	 * @param etagInfo
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> sendMessage(String message, String address, Integer udpPort, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> sendMessage(String message, String address, Integer udpPort, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 	/*
 	 * GET method
@@ -241,9 +242,9 @@ public interface MythOperations {
 	 * @param address
 	 * @param udpPort
 	 * @param etagInfo
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, String address, Integer udpPort, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, String address, Integer udpPort, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 	/*
 	 * POST method
@@ -253,8 +254,8 @@ public interface MythOperations {
 	 * @param password
 	 * @param dBName
 	 * @param dbPort
-	 * @return ResponseEntity<Boolean>
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Boolean> testDBSettings(String hostName, String userName, String password, String dBName, Integer dbPort) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> testDBSettings(String hostName, String userName, String password, String dBName, Integer dbPort) throws MythServiceApiRuntimeException;
 
 }

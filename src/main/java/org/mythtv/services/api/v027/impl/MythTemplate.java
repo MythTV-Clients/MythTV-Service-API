@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.ConnectionInfo;
@@ -47,7 +48,7 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
     }
 
 	@Override
-	public ResponseEntity<Boolean> addStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> addStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(groupName != null && !groupName.isEmpty())
@@ -57,23 +58,23 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(hostName != null && !hostName.isEmpty())
 			parameters.add( "HostName", hostName );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "AddStorageGroupDir", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddStorageGroupDir", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> backupDatabase() throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> backupDatabase() throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "BackupDatabase", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "BackupDatabase", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> changePassword(String userName, String oldPassword, String newPassword) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> changePassword(String userName, String oldPassword, String newPassword) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(userName != null && !userName.isEmpty())
@@ -83,19 +84,19 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(newPassword != null && !newPassword.isEmpty())
 			parameters.add( "NewPassword", newPassword );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "ChangePassword", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "ChangePassword", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> checkDatabase(Boolean repair) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> checkDatabase(Boolean repair) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(repair != null)
            		parameters.add( "Repair", repair.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "CheckDatabase", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "CheckDatabase", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
@@ -217,21 +218,21 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 	}
 
 	@Override
-	public ResponseEntity<Boolean> profileDelete() throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> profileDelete() throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "ProfileDelete", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "ProfileDelete", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> profileSubmit() throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> profileSubmit() throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "ProfileSubmit", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "ProfileSubmit", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
@@ -267,7 +268,7 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 	}
 
 	@Override
-	public ResponseEntity<Boolean> putSetting(String hostName, String key, String value) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> putSetting(String hostName, String key, String value) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(hostName != null && !hostName.isEmpty())
@@ -277,13 +278,13 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(value != null && !value.isEmpty())
 			parameters.add( "Value", value );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "PutSetting", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PutSetting", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(groupName != null && !groupName.isEmpty())
@@ -293,13 +294,13 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(hostName != null && !hostName.isEmpty())
 			parameters.add( "HostName", hostName );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveStorageGroupDir", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveStorageGroupDir", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> sendMessage(String message, String address, Integer udpPort, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendMessage(String message, String address, Integer udpPort, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(message != null && !message.isEmpty())
@@ -311,13 +312,13 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(timeout != null)
            		parameters.add( "Timeout", timeout.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "SendMessage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendMessage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, String address, Integer udpPort, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, String address, Integer udpPort, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(error != null)
@@ -351,13 +352,13 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(udpPort != null)
            		parameters.add( "udpPort", udpPort.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "SendNotification", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendNotification", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
 	@Override
-	public ResponseEntity<Boolean> testDBSettings(String hostName, String userName, String password, String dBName, Integer dbPort) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> testDBSettings(String hostName, String userName, String password, String dBName, Integer dbPort) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(hostName != null && !hostName.isEmpty())
@@ -371,7 +372,7 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(dbPort != null)
            		parameters.add( "dbPort", dbPort.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "TestDBSettings", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "TestDBSettings", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}

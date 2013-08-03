@@ -19,7 +19,12 @@
  */
 package org.mythtv.services.api.test.v027;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Ignore;
+import org.junit.Test;
+import org.mythtv.services.api.Bool;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.v027.DvrOperations;
 
 import static org.junit.Assert.fail;
@@ -45,9 +50,15 @@ public class DvrApiTest extends BaseApiTester {
         fail("Not yet implemented");
     }
 
-    @Ignore
+    @Test
     public void testEnableRecordSchedule() throws Exception {
-        fail("Not yet implemented");
+//        ResponseEntity<Bool> boolResponseEntity = operations.enableRecordSchedule(2386);
+//        assertNotNull(boolResponseEntity);
+        String data = "{\"int\": \"6r\"}";
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+        Int v = mapper.readValue(data, Int.class);
+        v.toString();
     }
 
     @Ignore

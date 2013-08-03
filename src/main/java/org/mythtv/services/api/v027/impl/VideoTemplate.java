@@ -20,6 +20,7 @@
 package org.mythtv.services.api.v027.impl;
 
 import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.BlurayInfo;
@@ -46,7 +47,7 @@ public class VideoTemplate extends AbstractOperations implements org.mythtv.serv
     }
 
 	@Override
-	public ResponseEntity<Boolean> addVideo(String fileName, String hostName) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> addVideo(String fileName, String hostName) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(fileName != null && !fileName.isEmpty())
@@ -54,7 +55,7 @@ public class VideoTemplate extends AbstractOperations implements org.mythtv.serv
 		if(hostName != null && !hostName.isEmpty())
 			parameters.add( "HostName", hostName );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "AddVideo", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddVideo", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
@@ -136,13 +137,13 @@ public class VideoTemplate extends AbstractOperations implements org.mythtv.serv
 	}
 
 	@Override
-	public ResponseEntity<Boolean> removeVideoFromDB(Integer id) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeVideoFromDB(Integer id) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(id != null)
            		parameters.add( "Id", id.toString() );
 		
-		ResponseEntity<Boolean> responseEntity = restOperations.exchange( buildUri( "RemoveVideoFromDB", parameters ), HttpMethod.POST, getRequestEntity(null), Boolean.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveVideoFromDB", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
 		  
 		return responseEntity;
 	}
