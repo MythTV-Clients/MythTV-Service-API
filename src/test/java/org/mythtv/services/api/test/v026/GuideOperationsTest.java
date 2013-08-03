@@ -115,7 +115,6 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 	 * .
 	 */
 	@Ignore( "Use only against a live 0.26 backend" )
-	@Test
 	public void testGetProgramGuideWithEtag() throws MythServiceApiRuntimeException {
 		ETagInfo etag = ETagInfo.createEmptyETag();
 		ResponseEntity<ProgramGuideWrapper> guide = operations.getProgramGuide( now, tomorrow, 0, 100, true, etag );
