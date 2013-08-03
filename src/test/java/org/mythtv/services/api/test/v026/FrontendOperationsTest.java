@@ -19,11 +19,11 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.mythtv.services.api.v026.FrontendOperations;
+
+import static org.junit.Assert.fail;
 
 public class FrontendOperationsTest extends BaseMythtvServiceApiTester {
 	

@@ -19,30 +19,19 @@
  */
 package org.mythtv.services.api.v027;
 
-import java.util.logging.Level;
-
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDelegatingDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
-
 import org.joda.time.DateTime;
 import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
 import org.mythtv.services.api.converters.ArrayOfStringConverter;
 import org.mythtv.services.api.converters.JodaDateTimeTransform;
-import org.mythtv.services.api.v027.impl.CaptureTemplate;
-import org.mythtv.services.api.v027.impl.ChannelTemplate;
-import org.mythtv.services.api.v027.impl.ContentTemplate;
-import org.mythtv.services.api.v027.impl.DvrTemplate;
-import org.mythtv.services.api.v027.impl.GuideTemplate;
-import org.mythtv.services.api.v027.impl.MythTemplate;
-import org.mythtv.services.api.v027.impl.VideoTemplate;
-import org.mythtv.services.api.v027.impl.FrontendTemplate;
-import org.mythtv.services.api.v027.impl.StatusTemplate;
+import org.mythtv.services.api.v027.impl.*;
 import org.mythtv.services.api.v027.status.beans.Job.Command;
 import org.mythtv.services.api.v027.status.beans.Job.Flag;
 import org.mythtv.services.api.v027.status.beans.Job.Status;
@@ -61,6 +50,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.logging.Level;
 
 /**
  * <b>Auto-generated file, do not modify manually !!!!</b>

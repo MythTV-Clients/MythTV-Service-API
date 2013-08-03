@@ -19,13 +19,13 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import java.io.FileInputStream;
-import java.lang.reflect.Constructor;
-import java.util.Properties;
-
 import org.junit.Before;
 import org.mythtv.services.api.v026.MythServices;
 import org.mythtv.services.api.v026.MythServicesTemplate;
+
+import java.io.FileInputStream;
+import java.lang.reflect.Constructor;
+import java.util.Properties;
 
 public class BaseMythtvServiceApiTester {
 	protected MythServices api;

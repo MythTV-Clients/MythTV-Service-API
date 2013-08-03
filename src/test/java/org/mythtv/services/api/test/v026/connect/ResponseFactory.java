@@ -19,9 +19,9 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
-import java.net.URI;
-
 import org.junit.Assert;
+
+import java.net.URI;
 
 public abstract class ResponseFactory {
 

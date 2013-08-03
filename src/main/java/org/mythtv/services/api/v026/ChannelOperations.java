@@ -21,13 +21,7 @@ package org.mythtv.services.api.v026;
 
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.ChannelInfoList;
-import org.mythtv.services.api.v026.beans.ChannelInfoWrapper;
-import org.mythtv.services.api.v026.beans.LineupList;
-import org.mythtv.services.api.v026.beans.VideoMultiplexList;
-import org.mythtv.services.api.v026.beans.VideoMultiplexWrapper;
-import org.mythtv.services.api.v026.beans.VideoSourceList;
-import org.mythtv.services.api.v026.beans.VideoSourceWrapper;
+import org.mythtv.services.api.v026.beans.*;
 import org.springframework.http.ResponseEntity;
 
 /**

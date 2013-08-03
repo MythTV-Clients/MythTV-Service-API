@@ -19,16 +19,12 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
+
+import java.io.*;
 
 /**
  * @author Sebastien Astie

@@ -19,16 +19,15 @@
  */
 package org.mythtv.services.api.v026.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
-
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Root;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**

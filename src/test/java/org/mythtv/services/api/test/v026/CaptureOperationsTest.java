@@ -19,10 +19,6 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import static org.junit.Assert.fail;
-
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -34,6 +30,10 @@ import org.mythtv.services.api.v026.beans.CaptureCard;
 import org.mythtv.services.api.v026.beans.CaptureCardList;
 import org.mythtv.services.api.v026.beans.CaptureCardWrapper;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
+
+import static org.junit.Assert.fail;
 
 /**
  * @author sebastien

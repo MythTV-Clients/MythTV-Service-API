@@ -19,11 +19,11 @@
  */
 package org.mythtv.services.api.v026.impl;
 
-import java.net.URI;
-
 import org.mythtv.services.api.AbstractOperations;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.util.MultiValueMap;
+
+import java.net.URI;
 
 /**
  * @author Daniel Frey

@@ -19,9 +19,9 @@
  */
 package org.mythtv.services.api.connect;
 
-import java.util.logging.Level;
-
 import org.mythtv.services.api.ApiVersion;
+
+import java.util.logging.Level;
 
 public class MythAccessFactory {
 	/**

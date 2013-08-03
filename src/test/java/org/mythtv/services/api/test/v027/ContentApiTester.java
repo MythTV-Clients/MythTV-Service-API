@@ -20,7 +20,6 @@
 package org.mythtv.services.api.test.v027;
 
 import org.junit.Ignore;
-import org.junit.Test;
 import org.mythtv.services.api.v027.ContentOperations;
 
 import static org.junit.Assert.fail;

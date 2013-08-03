@@ -19,8 +19,6 @@
  */
 package org.mythtv.services.api.test.v026;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ETagInfo;
@@ -28,6 +26,8 @@ import org.mythtv.services.api.v026.beans.ProgramList;
 import org.mythtv.services.api.v026.beans.RecRuleList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+
+import static org.junit.Assert.fail;
 
 /**
  * @author Sebastien Astie

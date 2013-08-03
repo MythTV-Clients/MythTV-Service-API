@@ -19,12 +19,12 @@
  */
 package org.mythtv.services.api.test.v027;
 
-import java.io.FileInputStream;
-import java.util.Properties;
-
 import org.junit.Before;
 import org.mythtv.services.api.connect.MythAccessFactory;
 import org.mythtv.services.api.v027.MythServices;
+
+import java.io.FileInputStream;
+import java.util.Properties;
 
 public abstract class BaseApiTester {
 	protected Properties properties;
