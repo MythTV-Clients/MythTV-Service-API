@@ -88,28 +88,53 @@ public class MythAccessFactory {
 		return null;
 	}
 
+    /**
+     * Gets the api version of the given backend
+     * @param baseUri the backend services api url
+     * @return the Api version
+     */
     public static ApiVersion getMythVersion(String baseUri){
         try {
             URL url = new URL(baseUri);
-            URLConnection urlConnection = url.openConnection();
-            Map<String,List<String>> headerFields = urlConnection.getHeaderFields();
-            String server = urlConnection.getHeaderField(MYTHTV_SERVER_HEADER);
-            if(server != null) {
-                int idx = server.indexOf(MYTHTV_SERVER_MYTHVERSION);
-                if(idx >= 0){
-                    idx += MYTHTV_SERVER_MYTHVERSION.length();
-                    String version = server.substring(idx);
-                    if(version.startsWith("0.26"))
-                        return ApiVersion.v026;
-                    else if(version.startsWith("0.27"))
-                        return ApiVersion.v027;
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            if(urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                Map<String,List<String>> headerFields = urlConnection.getHeaderFields();
+                String server = urlConnection.getHeaderField(MYTHTV_SERVER_HEADER);
+                if(server != null) {
+                    int idx = server.indexOf(MYTHTV_SERVER_MYTHVERSION);
+                    if(idx >= 0){
+                        idx += MYTHTV_SERVER_MYTHVERSION.length();
+                        String version = server.substring(idx);
+                        if(version.startsWith("0.26"))
+                            return ApiVersion.v026;
+                        else if(version.startsWith("0.27"))
+                            return ApiVersion.v027;
+                    }
                 }
+                urlConnection.disconnect();
             }
         } catch (Exception e) {
         }
         return ApiVersion.NotSupported;
     }
-	
+
+    /**
+     * Check if the server is reachable
+     * @param baseUrl The url of the server to test
+     * @return true if reachable otherwise false.
+     */
+    public static boolean isServerReachable(String baseUrl){
+        boolean isOK = false;
+        try {
+            final URL url = new URL(baseUrl.toString());
+            final HttpURLConnection urlcon = (HttpURLConnection) url.openConnection();
+            isOK = urlcon.getResponseCode() == HttpURLConnection.HTTP_OK;
+            urlcon.disconnect();
+        } catch (Exception e) {
+        }
+        return isOK;
+    }
+
 	private static String scrubApiUrl(String apiUrlBase) {
 		if(!apiUrlBase.endsWith("/"))
 			return apiUrlBase + "/";

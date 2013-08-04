@@ -49,10 +49,16 @@ public class ApiVersionTest {
 		assertNull(o);
 	}
 
-    @Ignore
+    @Test
     public void testGetMythVersion() {
         Object o = MythAccessFactory.getMythVersion("http://master:6544");
         assertNotNull(o);
+    }
+
+    @Test
+    public void testIsServerReachable() {
+        assertTrue(MythAccessFactory.isServerReachable("http://master:6544"));
+        assertFalse(MythAccessFactory.isServerReachable("fake://master:6544"));
     }
 
 	
