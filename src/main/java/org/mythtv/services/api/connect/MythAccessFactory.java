@@ -21,9 +21,18 @@ package org.mythtv.services.api.connect;
 
 import org.mythtv.services.api.ApiVersion;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class MythAccessFactory {
+    private static final String MYTHTV_SERVER_HEADER = "Server";
+    private static final String MYTHTV_SERVER_MYTHVERSION = "MythTV ";
 	/**
 	 * Get the service interface instance by inferring the mythtv version by providing the service class
 	 * @param serviceClass the service class to use to infer the backend version
@@ -78,6 +87,28 @@ public class MythAccessFactory {
 			}
 		return null;
 	}
+
+    public static ApiVersion getMythVersion(String baseUri){
+        try {
+            URL url = new URL(baseUri);
+            URLConnection urlConnection = url.openConnection();
+            Map<String,List<String>> headerFields = urlConnection.getHeaderFields();
+            String server = urlConnection.getHeaderField(MYTHTV_SERVER_HEADER);
+            if(server != null) {
+                int idx = server.indexOf(MYTHTV_SERVER_MYTHVERSION);
+                if(idx >= 0){
+                    idx += MYTHTV_SERVER_MYTHVERSION.length();
+                    String version = server.substring(idx);
+                    if(version.startsWith("0.26"))
+                        return ApiVersion.v026;
+                    else if(version.startsWith("0.27"))
+                        return ApiVersion.v027;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return ApiVersion.NotSupported;
+    }
 	
 	private static String scrubApiUrl(String apiUrlBase) {
 		if(!apiUrlBase.endsWith("/"))

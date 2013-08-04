@@ -26,5 +26,6 @@ package org.mythtv.services.api;
  */
 public enum ApiVersion {
 	v026,
-	v027
+	v027,
+    NotSupported
 }
