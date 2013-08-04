@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.test.connect;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.ApiVersion;
 import org.mythtv.services.api.connect.MythAccessFactory;
@@ -47,6 +48,13 @@ public class ApiVersionTest {
 		o = MythAccessFactory.getServiceTemplateApiByVersion(null, "fake:/uri");
 		assertNull(o);
 	}
+
+    @Ignore
+    public void testGetMythVersion() {
+        Object o = MythAccessFactory.getMythVersion("http://master:6544");
+        assertNotNull(o);
+    }
+
 	
 	private void assertions(Object instance, Class<?> valid, Class<?> invalid){
 		assertNotNull(instance);
