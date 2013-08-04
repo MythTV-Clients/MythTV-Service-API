@@ -94,7 +94,7 @@ uploadArchives {
 		    }
 
 		    pom.project {
-		        name 'MythTV-Service-API'
+		        name 'mythtv-service-api'
 		        packaging 'jar'
 		        description 'MythTV Services API for android and java'
 		        url ' https://github.com/MythTV-Clients/MythTV-Service-API'
