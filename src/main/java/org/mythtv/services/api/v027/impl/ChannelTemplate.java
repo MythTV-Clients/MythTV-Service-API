@@ -19,8 +19,19 @@
  */
 package org.mythtv.services.api.v027.impl;
 
-import org.mythtv.services.api.*;
-import org.mythtv.services.api.v027.beans.*;
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
+import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
+import org.mythtv.services.api.v027.beans.ChannelInfo;
+import org.mythtv.services.api.v027.beans.ChannelInfoList;
+import org.mythtv.services.api.v027.beans.LineupList;
+import org.mythtv.services.api.v027.beans.VideoMultiplex;
+import org.mythtv.services.api.v027.beans.VideoMultiplexList;
+import org.mythtv.services.api.v027.beans.VideoSource;
+import org.mythtv.services.api.v027.beans.VideoSourceList;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;

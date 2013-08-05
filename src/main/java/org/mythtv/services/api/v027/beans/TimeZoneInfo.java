@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
@@ -31,57 +31,56 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class TimeZoneInfo {
+        
+        @JsonProperty( "TimeZoneID" )
+        private String timeZoneID;
+            
+        @JsonProperty( "UTCOffset" )
+        private Integer uTCOffset;
+            @JsonSerialize( using = DateTimeSerializer.class )
+        @JsonProperty( "CurrentDateTime" )
+        private org.joda.time.DateTime currentDateTime;
+        
+        /**
+         * @return the timeZoneID
+         */
+        public String getTimeZoneID() {
+            return timeZoneID;
+        }
 
-    
-    @JsonProperty( "TimeZoneID" )
-    private String timeZoneID;
-    
-    @JsonProperty( "UTCOffset" )
-    private Integer uTCOffset;
-    @JsonSerialize( using = DateTimeSerializer.class )
-    @JsonProperty( "CurrentDateTime" )
-    private org.joda.time.DateTime currentDateTime;
+        /**
+         * @param timeZoneID the timeZoneID to set
+         */
+        public void setTimeZoneID( String timeZoneID ) {
+            this.timeZoneID = timeZoneID;
+        }
+        
+        /**
+         * @return the uTCOffset
+         */
+        public Integer getUTCOffset() {
+            return uTCOffset;
+        }
 
+        /**
+         * @param uTCOffset the uTCOffset to set
+         */
+        public void setUTCOffset( Integer uTCOffset ) {
+            this.uTCOffset = uTCOffset;
+        }
+        
+        /**
+         * @return the currentDateTime
+         */
+        public org.joda.time.DateTime getCurrentDateTime() {
+            return currentDateTime;
+        }
 
-    /**
-     * @return the timeZoneID
-     */
-    public String getTimeZoneID() {
-        return timeZoneID;
-    }
-    
-    /**
-     * @param timeZoneID the timeZoneID to set
-     */
-    public void setTimeZoneID( String timeZoneID ) {
-        this.timeZoneID = timeZoneID;
-    }
-
-    /**
-     * @return the uTCOffset
-     */
-    public Integer getUTCOffset() {
-        return uTCOffset;
-    }
-    
-    /**
-     * @param uTCOffset the uTCOffset to set
-     */
-    public void setUTCOffset( Integer uTCOffset ) {
-        this.uTCOffset = uTCOffset;
-    }
-
-    /**
-     * @return the currentDateTime
-     */
-    public org.joda.time.DateTime getCurrentDateTime() {
-        return currentDateTime;
-    }
-    
-    /**
-     * @param currentDateTime the currentDateTime to set
-     */
-    public void setCurrentDateTime( org.joda.time.DateTime currentDateTime ) {
-        this.currentDateTime = currentDateTime;
-    }
+        /**
+         * @param currentDateTime the currentDateTime to set
+         */
+        public void setCurrentDateTime( org.joda.time.DateTime currentDateTime ) {
+            this.currentDateTime = currentDateTime;
+        }
+        
 }

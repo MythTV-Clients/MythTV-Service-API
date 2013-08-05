@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
@@ -29,23 +29,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ArtworkInfoList {
+        
+        @JsonProperty( "ArtworkInfos" )
+        private ArtworkInfo[] artworkInfos;
+        
+        /**
+         * @return the artworkInfos
+         */
+        public ArtworkInfo[] getArtworkInfos() {
+            return artworkInfos;
+        }
 
-    
-    @JsonProperty( "ArtworkInfos" )
-    private ArtworkInfo[] artworkInfos;
-
-
-    /**
-     * @return the artworkInfos
-     */
-    public ArtworkInfo[] getArtworkInfos() {
-        return artworkInfos;
-    }
-    
-    /**
-     * @param artworkInfos the artworkInfos to set
-     */
-    public void setArtworkInfos( ArtworkInfo[] artworkInfos ) {
-        this.artworkInfos = artworkInfos;
-    }
+        /**
+         * @param artworkInfos the artworkInfos to set
+         */
+        public void setArtworkInfos( ArtworkInfo[] artworkInfos ) {
+            this.artworkInfos = artworkInfos;
+        }
+        
 }

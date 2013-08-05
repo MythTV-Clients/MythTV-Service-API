@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
@@ -31,380 +31,379 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoLookup {
+        
+        @JsonProperty( "Title" )
+        private String title;
+            
+        @JsonProperty( "SubTitle" )
+        private String subTitle;
+            
+        @JsonProperty( "Season" )
+        private Integer season;
+            
+        @JsonProperty( "Episode" )
+        private Integer episode;
+            
+        @JsonProperty( "Year" )
+        private Integer year;
+            
+        @JsonProperty( "Tagline" )
+        private String tagline;
+            
+        @JsonProperty( "Description" )
+        private String description;
+            
+        @JsonProperty( "Certification" )
+        private String certification;
+            
+        @JsonProperty( "Inetref" )
+        private String inetref;
+            
+        @JsonProperty( "Collectionref" )
+        private String collectionref;
+            
+        @JsonProperty( "HomePage" )
+        private String homePage;
+            @JsonSerialize( using = DateTimeSerializer.class )
+        @JsonProperty( "ReleaseDate" )
+        private org.joda.time.DateTime releaseDate;
+            
+        @JsonProperty( "UserRating" )
+        private Float userRating;
+            
+        @JsonProperty( "Length" )
+        private Integer length;
+            
+        @JsonProperty( "Language" )
+        private String language;
+            
+        @JsonProperty( "Countries" )
+        private String[] countries;
+            
+        @JsonProperty( "Popularity" )
+        private Integer popularity;
+            
+        @JsonProperty( "Budget" )
+        private Integer budget;
+            
+        @JsonProperty( "Revenue" )
+        private Integer revenue;
+            
+        @JsonProperty( "IMDB" )
+        private String iMDB;
+            
+        @JsonProperty( "TMSRef" )
+        private String tMSRef;
+            
+        @JsonProperty( "Artwork" )
+        private ArtworkItem[] artwork;
+        
+        /**
+         * @return the title
+         */
+        public String getTitle() {
+            return title;
+        }
 
-    
-    @JsonProperty( "Title" )
-    private String title;
-    
-    @JsonProperty( "SubTitle" )
-    private String subTitle;
-    
-    @JsonProperty( "Season" )
-    private Integer season;
-    
-    @JsonProperty( "Episode" )
-    private Integer episode;
-    
-    @JsonProperty( "Year" )
-    private Integer year;
-    
-    @JsonProperty( "Tagline" )
-    private String tagline;
-    
-    @JsonProperty( "Description" )
-    private String description;
-    
-    @JsonProperty( "Certification" )
-    private String certification;
-    
-    @JsonProperty( "Inetref" )
-    private String inetref;
-    
-    @JsonProperty( "Collectionref" )
-    private String collectionref;
-    
-    @JsonProperty( "HomePage" )
-    private String homePage;
-    @JsonSerialize( using = DateTimeSerializer.class )
-    @JsonProperty( "ReleaseDate" )
-    private org.joda.time.DateTime releaseDate;
-    
-    @JsonProperty( "UserRating" )
-    private Float userRating;
-    
-    @JsonProperty( "Length" )
-    private Integer length;
-    
-    @JsonProperty( "Language" )
-    private String language;
-    
-    @JsonProperty( "Countries" )
-    private String[] countries;
-    
-    @JsonProperty( "Popularity" )
-    private Integer popularity;
-    
-    @JsonProperty( "Budget" )
-    private Integer budget;
-    
-    @JsonProperty( "Revenue" )
-    private Integer revenue;
-    
-    @JsonProperty( "IMDB" )
-    private String iMDB;
-    
-    @JsonProperty( "TMSRef" )
-    private String tMSRef;
-    
-    @JsonProperty( "Artwork" )
-    private ArtworkItem[] artwork;
+        /**
+         * @param title the title to set
+         */
+        public void setTitle( String title ) {
+            this.title = title;
+        }
+        
+        /**
+         * @return the subTitle
+         */
+        public String getSubTitle() {
+            return subTitle;
+        }
 
+        /**
+         * @param subTitle the subTitle to set
+         */
+        public void setSubTitle( String subTitle ) {
+            this.subTitle = subTitle;
+        }
+        
+        /**
+         * @return the season
+         */
+        public Integer getSeason() {
+            return season;
+        }
 
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-    
-    /**
-     * @param title the title to set
-     */
-    public void setTitle( String title ) {
-        this.title = title;
-    }
+        /**
+         * @param season the season to set
+         */
+        public void setSeason( Integer season ) {
+            this.season = season;
+        }
+        
+        /**
+         * @return the episode
+         */
+        public Integer getEpisode() {
+            return episode;
+        }
 
-    /**
-     * @return the subTitle
-     */
-    public String getSubTitle() {
-        return subTitle;
-    }
-    
-    /**
-     * @param subTitle the subTitle to set
-     */
-    public void setSubTitle( String subTitle ) {
-        this.subTitle = subTitle;
-    }
+        /**
+         * @param episode the episode to set
+         */
+        public void setEpisode( Integer episode ) {
+            this.episode = episode;
+        }
+        
+        /**
+         * @return the year
+         */
+        public Integer getYear() {
+            return year;
+        }
 
-    /**
-     * @return the season
-     */
-    public Integer getSeason() {
-        return season;
-    }
-    
-    /**
-     * @param season the season to set
-     */
-    public void setSeason( Integer season ) {
-        this.season = season;
-    }
+        /**
+         * @param year the year to set
+         */
+        public void setYear( Integer year ) {
+            this.year = year;
+        }
+        
+        /**
+         * @return the tagline
+         */
+        public String getTagline() {
+            return tagline;
+        }
 
-    /**
-     * @return the episode
-     */
-    public Integer getEpisode() {
-        return episode;
-    }
-    
-    /**
-     * @param episode the episode to set
-     */
-    public void setEpisode( Integer episode ) {
-        this.episode = episode;
-    }
+        /**
+         * @param tagline the tagline to set
+         */
+        public void setTagline( String tagline ) {
+            this.tagline = tagline;
+        }
+        
+        /**
+         * @return the description
+         */
+        public String getDescription() {
+            return description;
+        }
 
-    /**
-     * @return the year
-     */
-    public Integer getYear() {
-        return year;
-    }
-    
-    /**
-     * @param year the year to set
-     */
-    public void setYear( Integer year ) {
-        this.year = year;
-    }
+        /**
+         * @param description the description to set
+         */
+        public void setDescription( String description ) {
+            this.description = description;
+        }
+        
+        /**
+         * @return the certification
+         */
+        public String getCertification() {
+            return certification;
+        }
 
-    /**
-     * @return the tagline
-     */
-    public String getTagline() {
-        return tagline;
-    }
-    
-    /**
-     * @param tagline the tagline to set
-     */
-    public void setTagline( String tagline ) {
-        this.tagline = tagline;
-    }
+        /**
+         * @param certification the certification to set
+         */
+        public void setCertification( String certification ) {
+            this.certification = certification;
+        }
+        
+        /**
+         * @return the inetref
+         */
+        public String getInetref() {
+            return inetref;
+        }
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-    
-    /**
-     * @param description the description to set
-     */
-    public void setDescription( String description ) {
-        this.description = description;
-    }
+        /**
+         * @param inetref the inetref to set
+         */
+        public void setInetref( String inetref ) {
+            this.inetref = inetref;
+        }
+        
+        /**
+         * @return the collectionref
+         */
+        public String getCollectionref() {
+            return collectionref;
+        }
 
-    /**
-     * @return the certification
-     */
-    public String getCertification() {
-        return certification;
-    }
-    
-    /**
-     * @param certification the certification to set
-     */
-    public void setCertification( String certification ) {
-        this.certification = certification;
-    }
+        /**
+         * @param collectionref the collectionref to set
+         */
+        public void setCollectionref( String collectionref ) {
+            this.collectionref = collectionref;
+        }
+        
+        /**
+         * @return the homePage
+         */
+        public String getHomePage() {
+            return homePage;
+        }
 
-    /**
-     * @return the inetref
-     */
-    public String getInetref() {
-        return inetref;
-    }
-    
-    /**
-     * @param inetref the inetref to set
-     */
-    public void setInetref( String inetref ) {
-        this.inetref = inetref;
-    }
+        /**
+         * @param homePage the homePage to set
+         */
+        public void setHomePage( String homePage ) {
+            this.homePage = homePage;
+        }
+        
+        /**
+         * @return the releaseDate
+         */
+        public org.joda.time.DateTime getReleaseDate() {
+            return releaseDate;
+        }
 
-    /**
-     * @return the collectionref
-     */
-    public String getCollectionref() {
-        return collectionref;
-    }
-    
-    /**
-     * @param collectionref the collectionref to set
-     */
-    public void setCollectionref( String collectionref ) {
-        this.collectionref = collectionref;
-    }
+        /**
+         * @param releaseDate the releaseDate to set
+         */
+        public void setReleaseDate( org.joda.time.DateTime releaseDate ) {
+            this.releaseDate = releaseDate;
+        }
+        
+        /**
+         * @return the userRating
+         */
+        public Float getUserRating() {
+            return userRating;
+        }
 
-    /**
-     * @return the homePage
-     */
-    public String getHomePage() {
-        return homePage;
-    }
-    
-    /**
-     * @param homePage the homePage to set
-     */
-    public void setHomePage( String homePage ) {
-        this.homePage = homePage;
-    }
+        /**
+         * @param userRating the userRating to set
+         */
+        public void setUserRating( Float userRating ) {
+            this.userRating = userRating;
+        }
+        
+        /**
+         * @return the length
+         */
+        public Integer getLength() {
+            return length;
+        }
 
-    /**
-     * @return the releaseDate
-     */
-    public org.joda.time.DateTime getReleaseDate() {
-        return releaseDate;
-    }
-    
-    /**
-     * @param releaseDate the releaseDate to set
-     */
-    public void setReleaseDate( org.joda.time.DateTime releaseDate ) {
-        this.releaseDate = releaseDate;
-    }
+        /**
+         * @param length the length to set
+         */
+        public void setLength( Integer length ) {
+            this.length = length;
+        }
+        
+        /**
+         * @return the language
+         */
+        public String getLanguage() {
+            return language;
+        }
 
-    /**
-     * @return the userRating
-     */
-    public Float getUserRating() {
-        return userRating;
-    }
-    
-    /**
-     * @param userRating the userRating to set
-     */
-    public void setUserRating( Float userRating ) {
-        this.userRating = userRating;
-    }
+        /**
+         * @param language the language to set
+         */
+        public void setLanguage( String language ) {
+            this.language = language;
+        }
+        
+        /**
+         * @return the countries
+         */
+        public String[] getCountries() {
+            return countries;
+        }
 
-    /**
-     * @return the length
-     */
-    public Integer getLength() {
-        return length;
-    }
-    
-    /**
-     * @param length the length to set
-     */
-    public void setLength( Integer length ) {
-        this.length = length;
-    }
+        /**
+         * @param countries the countries to set
+         */
+        public void setCountries( String[] countries ) {
+            this.countries = countries;
+        }
+        
+        /**
+         * @return the popularity
+         */
+        public Integer getPopularity() {
+            return popularity;
+        }
 
-    /**
-     * @return the language
-     */
-    public String getLanguage() {
-        return language;
-    }
-    
-    /**
-     * @param language the language to set
-     */
-    public void setLanguage( String language ) {
-        this.language = language;
-    }
+        /**
+         * @param popularity the popularity to set
+         */
+        public void setPopularity( Integer popularity ) {
+            this.popularity = popularity;
+        }
+        
+        /**
+         * @return the budget
+         */
+        public Integer getBudget() {
+            return budget;
+        }
 
-    /**
-     * @return the countries
-     */
-    public String[] getCountries() {
-        return countries;
-    }
-    
-    /**
-     * @param countries the countries to set
-     */
-    public void setCountries( String[] countries ) {
-        this.countries = countries;
-    }
+        /**
+         * @param budget the budget to set
+         */
+        public void setBudget( Integer budget ) {
+            this.budget = budget;
+        }
+        
+        /**
+         * @return the revenue
+         */
+        public Integer getRevenue() {
+            return revenue;
+        }
 
-    /**
-     * @return the popularity
-     */
-    public Integer getPopularity() {
-        return popularity;
-    }
-    
-    /**
-     * @param popularity the popularity to set
-     */
-    public void setPopularity( Integer popularity ) {
-        this.popularity = popularity;
-    }
+        /**
+         * @param revenue the revenue to set
+         */
+        public void setRevenue( Integer revenue ) {
+            this.revenue = revenue;
+        }
+        
+        /**
+         * @return the iMDB
+         */
+        public String getIMDB() {
+            return iMDB;
+        }
 
-    /**
-     * @return the budget
-     */
-    public Integer getBudget() {
-        return budget;
-    }
-    
-    /**
-     * @param budget the budget to set
-     */
-    public void setBudget( Integer budget ) {
-        this.budget = budget;
-    }
+        /**
+         * @param iMDB the iMDB to set
+         */
+        public void setIMDB( String iMDB ) {
+            this.iMDB = iMDB;
+        }
+        
+        /**
+         * @return the tMSRef
+         */
+        public String getTMSRef() {
+            return tMSRef;
+        }
 
-    /**
-     * @return the revenue
-     */
-    public Integer getRevenue() {
-        return revenue;
-    }
-    
-    /**
-     * @param revenue the revenue to set
-     */
-    public void setRevenue( Integer revenue ) {
-        this.revenue = revenue;
-    }
+        /**
+         * @param tMSRef the tMSRef to set
+         */
+        public void setTMSRef( String tMSRef ) {
+            this.tMSRef = tMSRef;
+        }
+        
+        /**
+         * @return the artwork
+         */
+        public ArtworkItem[] getArtwork() {
+            return artwork;
+        }
 
-    /**
-     * @return the iMDB
-     */
-    public String getIMDB() {
-        return iMDB;
-    }
-    
-    /**
-     * @param iMDB the iMDB to set
-     */
-    public void setIMDB( String iMDB ) {
-        this.iMDB = iMDB;
-    }
-
-    /**
-     * @return the tMSRef
-     */
-    public String getTMSRef() {
-        return tMSRef;
-    }
-    
-    /**
-     * @param tMSRef the tMSRef to set
-     */
-    public void setTMSRef( String tMSRef ) {
-        this.tMSRef = tMSRef;
-    }
-
-    /**
-     * @return the artwork
-     */
-    public ArtworkItem[] getArtwork() {
-        return artwork;
-    }
-    
-    /**
-     * @param artwork the artwork to set
-     */
-    public void setArtwork( ArtworkItem[] artwork ) {
-        this.artwork = artwork;
-    }
+        /**
+         * @param artwork the artwork to set
+         */
+        public void setArtwork( ArtworkItem[] artwork ) {
+            this.artwork = artwork;
+        }
+        
 }

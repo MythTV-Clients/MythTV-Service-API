@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
@@ -31,125 +31,124 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ProgramList {
+        
+        @JsonProperty( "StartIndex" )
+        private Integer startIndex;
+            
+        @JsonProperty( "Count" )
+        private Integer count;
+            
+        @JsonProperty( "TotalAvailable" )
+        private Integer totalAvailable;
+            @JsonSerialize( using = DateTimeSerializer.class )
+        @JsonProperty( "AsOf" )
+        private org.joda.time.DateTime asOf;
+            
+        @JsonProperty( "Version" )
+        private String version;
+            
+        @JsonProperty( "ProtoVer" )
+        private String protoVer;
+            
+        @JsonProperty( "Programs" )
+        private Program[] programs;
+        
+        /**
+         * @return the startIndex
+         */
+        public Integer getStartIndex() {
+            return startIndex;
+        }
 
-    
-    @JsonProperty( "StartIndex" )
-    private Integer startIndex;
-    
-    @JsonProperty( "Count" )
-    private Integer count;
-    
-    @JsonProperty( "TotalAvailable" )
-    private Integer totalAvailable;
-    @JsonSerialize( using = DateTimeSerializer.class )
-    @JsonProperty( "AsOf" )
-    private org.joda.time.DateTime asOf;
-    
-    @JsonProperty( "Version" )
-    private String version;
-    
-    @JsonProperty( "ProtoVer" )
-    private String protoVer;
-    
-    @JsonProperty( "Programs" )
-    private Program[] programs;
+        /**
+         * @param startIndex the startIndex to set
+         */
+        public void setStartIndex( Integer startIndex ) {
+            this.startIndex = startIndex;
+        }
+        
+        /**
+         * @return the count
+         */
+        public Integer getCount() {
+            return count;
+        }
 
+        /**
+         * @param count the count to set
+         */
+        public void setCount( Integer count ) {
+            this.count = count;
+        }
+        
+        /**
+         * @return the totalAvailable
+         */
+        public Integer getTotalAvailable() {
+            return totalAvailable;
+        }
 
-    /**
-     * @return the startIndex
-     */
-    public Integer getStartIndex() {
-        return startIndex;
-    }
-    
-    /**
-     * @param startIndex the startIndex to set
-     */
-    public void setStartIndex( Integer startIndex ) {
-        this.startIndex = startIndex;
-    }
+        /**
+         * @param totalAvailable the totalAvailable to set
+         */
+        public void setTotalAvailable( Integer totalAvailable ) {
+            this.totalAvailable = totalAvailable;
+        }
+        
+        /**
+         * @return the asOf
+         */
+        public org.joda.time.DateTime getAsOf() {
+            return asOf;
+        }
 
-    /**
-     * @return the count
-     */
-    public Integer getCount() {
-        return count;
-    }
-    
-    /**
-     * @param count the count to set
-     */
-    public void setCount( Integer count ) {
-        this.count = count;
-    }
+        /**
+         * @param asOf the asOf to set
+         */
+        public void setAsOf( org.joda.time.DateTime asOf ) {
+            this.asOf = asOf;
+        }
+        
+        /**
+         * @return the version
+         */
+        public String getVersion() {
+            return version;
+        }
 
-    /**
-     * @return the totalAvailable
-     */
-    public Integer getTotalAvailable() {
-        return totalAvailable;
-    }
-    
-    /**
-     * @param totalAvailable the totalAvailable to set
-     */
-    public void setTotalAvailable( Integer totalAvailable ) {
-        this.totalAvailable = totalAvailable;
-    }
+        /**
+         * @param version the version to set
+         */
+        public void setVersion( String version ) {
+            this.version = version;
+        }
+        
+        /**
+         * @return the protoVer
+         */
+        public String getProtoVer() {
+            return protoVer;
+        }
 
-    /**
-     * @return the asOf
-     */
-    public org.joda.time.DateTime getAsOf() {
-        return asOf;
-    }
-    
-    /**
-     * @param asOf the asOf to set
-     */
-    public void setAsOf( org.joda.time.DateTime asOf ) {
-        this.asOf = asOf;
-    }
+        /**
+         * @param protoVer the protoVer to set
+         */
+        public void setProtoVer( String protoVer ) {
+            this.protoVer = protoVer;
+        }
+        
+        /**
+         * @return the programs
+         */
+        public Program[] getPrograms() {
+            return programs;
+        }
 
-    /**
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-    
-    /**
-     * @param version the version to set
-     */
-    public void setVersion( String version ) {
-        this.version = version;
-    }
-
-    /**
-     * @return the protoVer
-     */
-    public String getProtoVer() {
-        return protoVer;
-    }
-    
-    /**
-     * @param protoVer the protoVer to set
-     */
-    public void setProtoVer( String protoVer ) {
-        this.protoVer = protoVer;
-    }
-
-    /**
-     * @return the programs
-     */
-    public Program[] getPrograms() {
-        return programs;
-    }
-    
-    /**
-     * @param programs the programs to set
-     */
-    public void setPrograms( Program[] programs ) {
-        this.programs = programs;
-    }
+        /**
+         * @param programs the programs to set
+         */
+        public void setPrograms( Program[] programs ) {
+            this.programs = programs;
+        }
+        
 }

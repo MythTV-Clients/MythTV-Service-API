@@ -23,7 +23,11 @@ import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v027.beans.*;
+import org.mythtv.services.api.v027.beans.ConnectionInfo;
+import org.mythtv.services.api.v027.beans.LogMessageList;
+import org.mythtv.services.api.v027.beans.SettingList;
+import org.mythtv.services.api.v027.beans.StorageGroupDirList;
+import org.mythtv.services.api.v027.beans.TimeZoneInfo;
 import org.springframework.http.ResponseEntity;
 
 /**
