@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
@@ -21,7 +21,6 @@ package org.mythtv.services.api.v027.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Map;
 
 /**
@@ -31,23 +30,22 @@ import java.util.Map;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class FrontendActionList {
+        
+        @JsonProperty( "ActionList" )
+        private Map<String,String> actionList;
+        
+        /**
+         * @return the actionList
+         */
+        public Map<String,String> getActionList() {
+            return actionList;
+        }
 
-    
-    @JsonProperty( "ActionList" )
-    private Map<String,String> actionList;
-
-
-    /**
-     * @return the actionList
-     */
-    public Map<String,String> getActionList() {
-        return actionList;
-    }
-    
-    /**
-     * @param actionList the actionList to set
-     */
-    public void setActionList( Map<String,String> actionList ) {
-        this.actionList = actionList;
-    }
+        /**
+         * @param actionList the actionList to set
+         */
+        public void setActionList( Map<String,String> actionList ) {
+            this.actionList = actionList;
+        }
+        
 }

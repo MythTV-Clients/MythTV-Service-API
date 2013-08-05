@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
@@ -31,74 +31,73 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoSourceList {
+        @JsonSerialize( using = DateTimeSerializer.class )
+        @JsonProperty( "AsOf" )
+        private org.joda.time.DateTime asOf;
+            
+        @JsonProperty( "Version" )
+        private String version;
+            
+        @JsonProperty( "ProtoVer" )
+        private String protoVer;
+            
+        @JsonProperty( "VideoSources" )
+        private VideoSource[] videoSources;
+        
+        /**
+         * @return the asOf
+         */
+        public org.joda.time.DateTime getAsOf() {
+            return asOf;
+        }
 
-    @JsonSerialize( using = DateTimeSerializer.class )
-    @JsonProperty( "AsOf" )
-    private org.joda.time.DateTime asOf;
-    
-    @JsonProperty( "Version" )
-    private String version;
-    
-    @JsonProperty( "ProtoVer" )
-    private String protoVer;
-    
-    @JsonProperty( "VideoSources" )
-    private VideoSource[] videoSources;
+        /**
+         * @param asOf the asOf to set
+         */
+        public void setAsOf( org.joda.time.DateTime asOf ) {
+            this.asOf = asOf;
+        }
+        
+        /**
+         * @return the version
+         */
+        public String getVersion() {
+            return version;
+        }
 
+        /**
+         * @param version the version to set
+         */
+        public void setVersion( String version ) {
+            this.version = version;
+        }
+        
+        /**
+         * @return the protoVer
+         */
+        public String getProtoVer() {
+            return protoVer;
+        }
 
-    /**
-     * @return the asOf
-     */
-    public org.joda.time.DateTime getAsOf() {
-        return asOf;
-    }
-    
-    /**
-     * @param asOf the asOf to set
-     */
-    public void setAsOf( org.joda.time.DateTime asOf ) {
-        this.asOf = asOf;
-    }
+        /**
+         * @param protoVer the protoVer to set
+         */
+        public void setProtoVer( String protoVer ) {
+            this.protoVer = protoVer;
+        }
+        
+        /**
+         * @return the videoSources
+         */
+        public VideoSource[] getVideoSources() {
+            return videoSources;
+        }
 
-    /**
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-    
-    /**
-     * @param version the version to set
-     */
-    public void setVersion( String version ) {
-        this.version = version;
-    }
-
-    /**
-     * @return the protoVer
-     */
-    public String getProtoVer() {
-        return protoVer;
-    }
-    
-    /**
-     * @param protoVer the protoVer to set
-     */
-    public void setProtoVer( String protoVer ) {
-        this.protoVer = protoVer;
-    }
-
-    /**
-     * @return the videoSources
-     */
-    public VideoSource[] getVideoSources() {
-        return videoSources;
-    }
-    
-    /**
-     * @param videoSources the videoSources to set
-     */
-    public void setVideoSources( VideoSource[] videoSources ) {
-        this.videoSources = videoSources;
-    }
+        /**
+         * @param videoSources the videoSources to set
+         */
+        public void setVideoSources( VideoSource[] videoSources ) {
+            this.videoSources = videoSources;
+        }
+        
 }

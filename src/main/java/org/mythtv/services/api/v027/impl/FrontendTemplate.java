@@ -19,7 +19,11 @@
  */
 package org.mythtv.services.api.v027.impl;
 
-import org.mythtv.services.api.*;
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
+import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v027.beans.FrontendActionList;
 import org.mythtv.services.api.v027.beans.FrontendStatus;
 import org.springframework.http.HttpMethod;
