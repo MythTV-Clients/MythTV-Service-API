@@ -4,6 +4,8 @@ apply plugin: 'signing'
 
 group = 'org.mythtv.android'
 version = '1.0'
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
 
 def isDevBuild
 def isReleaseBuild
