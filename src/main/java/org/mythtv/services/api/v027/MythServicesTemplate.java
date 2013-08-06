@@ -21,13 +21,19 @@ package org.mythtv.services.api.v027;
 
 import java.util.logging.Level;
 
+import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.StdDelegatingDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
+
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
+import org.mythtv.services.api.converters.ArrayOfStringConverter;
 import org.mythtv.services.api.converters.JodaDateTimeTransform;
 import org.mythtv.services.api.v027.impl.CaptureTemplate;
 import org.mythtv.services.api.v027.impl.ChannelTemplate;
@@ -92,9 +98,12 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 		for( HttpMessageConverter<?> messageConverter : rest.getMessageConverters() ) {
 
 			if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
-				
+                StdDelegatingDeserializer<ArrayOfString> delegatingDeserializer = new StdDelegatingDeserializer<ArrayOfString>(new ArrayOfStringConverter());
+                SimpleModule customModule = new SimpleModule("org.mythtv.service.api.module", new Version(1, 0, 0, null, null, null)).addDeserializer(ArrayOfString.class, delegatingDeserializer);
+
 				ObjectMapper objectMapper = new ObjectMapper();
 				objectMapper.registerModule( new JodaModule() );
+				objectMapper.registerModule(customModule);
 				objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
 				
 				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
