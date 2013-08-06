@@ -22,6 +22,7 @@ package org.mythtv.services.api.v027.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.LocalDateSerializer;
 import org.mythtv.services.api.DateTimeSerializer;
 
 /**
@@ -31,82 +32,108 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class Program {
+    
         @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "StartTime" )
         private org.joda.time.DateTime startTime;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "EndTime" )
         private org.joda.time.DateTime endTime;
-            
+        
+        
         @JsonProperty( "Title" )
         private String title;
-            
+        
+        
         @JsonProperty( "SubTitle" )
         private String subTitle;
-            
+        
+        
         @JsonProperty( "Category" )
         private String category;
-            
+        
+        
         @JsonProperty( "CatType" )
         private String catType;
-            
+        
+        
         @JsonProperty( "Repeat" )
         private Boolean repeat;
-            
+        
+        
         @JsonProperty( "VideoProps" )
         private Integer videoProps;
-            
+        
+        
         @JsonProperty( "AudioProps" )
         private Integer audioProps;
-            
+        
+        
         @JsonProperty( "SubProps" )
         private Integer subProps;
-            
+        
+        
         @JsonProperty( "SeriesId" )
         private String seriesId;
-            
+        
+        
         @JsonProperty( "ProgramId" )
         private String programId;
-            
+        
+        
         @JsonProperty( "Stars" )
         private Double stars;
-            
+        
+        
         @JsonProperty( "FileSize" )
         private Long fileSize;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "LastModified" )
         private org.joda.time.DateTime lastModified;
-            
+        
+        
         @JsonProperty( "ProgramFlags" )
         private Integer programFlags;
-            
+        
+        
         @JsonProperty( "FileName" )
         private String fileName;
-            
+        
+        
         @JsonProperty( "HostName" )
         private String hostName;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = LocalDateSerializer.class )
         @JsonProperty( "Airdate" )
-        private org.joda.time.DateTime airdate;
-            
+        private org.joda.time.LocalDate airdate;
+        
+        
         @JsonProperty( "Description" )
         private String description;
-            
+        
+        
         @JsonProperty( "Inetref" )
         private String inetref;
-            
+        
+        
         @JsonProperty( "Season" )
         private Integer season;
-            
+        
+        
         @JsonProperty( "Episode" )
         private Integer episode;
-            
+        
+        
         @JsonProperty( "Channel" )
         private ChannelInfo channel;
-            
+        
+        
         @JsonProperty( "Recording" )
         private RecordingInfo recording;
-            
+        
+        
         @JsonProperty( "Artwork" )
         private ArtworkInfoList artwork;
         
@@ -365,14 +392,14 @@ public class Program {
         /**
          * @return the airdate
          */
-        public org.joda.time.DateTime getAirdate() {
+        public org.joda.time.LocalDate getAirdate() {
             return airdate;
         }
 
         /**
          * @param airdate the airdate to set
          */
-        public void setAirdate( org.joda.time.DateTime airdate ) {
+        public void setAirdate( org.joda.time.LocalDate airdate ) {
             this.airdate = airdate;
         }
         

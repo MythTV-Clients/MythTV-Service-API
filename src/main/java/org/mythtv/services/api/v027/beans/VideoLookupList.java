@@ -31,19 +31,24 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoLookupList {
+    
         
         @JsonProperty( "Count" )
         private Integer count;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "AsOf" )
         private org.joda.time.DateTime asOf;
-            
+        
+        
         @JsonProperty( "Version" )
         private String version;
-            
+        
+        
         @JsonProperty( "ProtoVer" )
         private String protoVer;
-            
+        
+        
         @JsonProperty( "VideoLookups" )
         private VideoLookup[] videoLookups;
         

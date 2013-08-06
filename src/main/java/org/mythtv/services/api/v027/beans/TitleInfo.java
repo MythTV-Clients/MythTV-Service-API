@@ -29,10 +29,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class TitleInfo {
+    
         
         @JsonProperty( "Title" )
         private String title;
-            
+        
+        
         @JsonProperty( "Inetref" )
         private String inetref;
         

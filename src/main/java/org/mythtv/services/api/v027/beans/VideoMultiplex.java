@@ -31,76 +31,100 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoMultiplex {
+    
         
         @JsonProperty( "MplexId" )
         private Integer mplexId;
-            
+        
+        
         @JsonProperty( "SourceId" )
         private Integer sourceId;
-            
+        
+        
         @JsonProperty( "TransportId" )
         private Integer transportId;
-            
+        
+        
         @JsonProperty( "NetworkId" )
         private Integer networkId;
-            
+        
+        
         @JsonProperty( "Frequency" )
         private Long frequency;
-            
+        
+        
         @JsonProperty( "Inversion" )
         private String inversion;
-            
+        
+        
         @JsonProperty( "SymbolRate" )
         private Long symbolRate;
-            
+        
+        
         @JsonProperty( "FEC" )
         private String fEC;
-            
+        
+        
         @JsonProperty( "Polarity" )
         private String polarity;
-            
+        
+        
         @JsonProperty( "Modulation" )
         private String modulation;
-            
+        
+        
         @JsonProperty( "Bandwidth" )
         private String bandwidth;
-            
+        
+        
         @JsonProperty( "LPCodeRate" )
         private String lPCodeRate;
-            
+        
+        
         @JsonProperty( "HPCodeRate" )
         private String hPCodeRate;
-            
+        
+        
         @JsonProperty( "TransmissionMode" )
         private String transmissionMode;
-            
+        
+        
         @JsonProperty( "GuardInterval" )
         private String guardInterval;
-            
+        
+        
         @JsonProperty( "Visible" )
         private Boolean visible;
-            
+        
+        
         @JsonProperty( "Constellation" )
         private String constellation;
-            
+        
+        
         @JsonProperty( "Hierarchy" )
         private String hierarchy;
-            
+        
+        
         @JsonProperty( "ModulationSystem" )
         private String modulationSystem;
-            
+        
+        
         @JsonProperty( "RollOff" )
         private String rollOff;
-            
+        
+        
         @JsonProperty( "SIStandard" )
         private String sIStandard;
-            
+        
+        
         @JsonProperty( "ServiceVersion" )
         private Integer serviceVersion;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "UpdateTimeStamp" )
         private org.joda.time.DateTime updateTimeStamp;
-            
+        
+        
         @JsonProperty( "DefaultAuthority" )
         private String defaultAuthority;
         

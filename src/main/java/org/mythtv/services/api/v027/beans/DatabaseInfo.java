@@ -29,31 +29,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class DatabaseInfo {
+    
         
         @JsonProperty( "Host" )
         private String host;
-            
+        
+        
         @JsonProperty( "Ping" )
         private Boolean ping;
-            
+        
+        
         @JsonProperty( "Port" )
         private Integer port;
-            
+        
+        
         @JsonProperty( "UserName" )
         private String userName;
-            
+        
+        
         @JsonProperty( "Password" )
         private String password;
-            
+        
+        
         @JsonProperty( "Name" )
         private String name;
-            
+        
+        
         @JsonProperty( "Type" )
         private String type;
-            
+        
+        
         @JsonProperty( "LocalEnabled" )
         private Boolean localEnabled;
-            
+        
+        
         @JsonProperty( "LocalHostName" )
         private String localHostName;
         

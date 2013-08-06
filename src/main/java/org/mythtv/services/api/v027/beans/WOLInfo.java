@@ -29,16 +29,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class WOLInfo {
+    
         
         @JsonProperty( "Enabled" )
         private Boolean enabled;
-            
+        
+        
         @JsonProperty( "Reconnect" )
         private Integer reconnect;
-            
+        
+        
         @JsonProperty( "Retry" )
         private Integer retry;
-            
+        
+        
         @JsonProperty( "Command" )
         private String command;
         

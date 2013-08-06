@@ -29,16 +29,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ArtworkInfo {
+    
         
         @JsonProperty( "URL" )
         private String uRL;
-            
+        
+        
         @JsonProperty( "FileName" )
         private String fileName;
-            
+        
+        
         @JsonProperty( "StorageGroup" )
         private String storageGroup;
-            
+        
+        
         @JsonProperty( "Type" )
         private String type;
         

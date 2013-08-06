@@ -22,10 +22,13 @@ package org.mythtv.services.api.test.v027;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mythtv.services.api.Bool;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.v027.DvrOperations;
+import org.mythtv.services.api.v027.beans.RecRuleList;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -82,7 +85,12 @@ public class DvrApiTest extends BaseApiTester {
 
     @Ignore
     public void testGetRecordScheduleList() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<RecRuleList> responseEntity = operations.getRecordScheduleList(0, 0, ETagInfo.createEmptyETag());
+        assertNotNull(responseEntity);
+        RecRuleList list = responseEntity.getBody();
+        assertNotNull(list);
+        assertNotNull(list.getRecRules());
+        assertTrue(list.getRecRules().length > 0);
     }
 
     @Ignore

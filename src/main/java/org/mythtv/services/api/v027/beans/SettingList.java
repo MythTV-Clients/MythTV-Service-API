@@ -30,10 +30,12 @@ import java.util.Map;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class SettingList {
+    
         
         @JsonProperty( "HostName" )
         private String hostName;
-            
+        
+        
         @JsonProperty( "Settings" )
         private Map<String,String> settings;
         

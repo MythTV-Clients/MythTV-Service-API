@@ -29,19 +29,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class LabelValue {
+    
         
         @JsonProperty( "Label" )
         private String label;
-            
+        
+        
         @JsonProperty( "Value" )
         private String value;
-            
+        
+        
         @JsonProperty( "Description" )
         private String description;
-            
+        
+        
         @JsonProperty( "Active" )
         private Boolean active;
-            
+        
+        
         @JsonProperty( "Selected" )
         private Boolean selected;
         

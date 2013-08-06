@@ -31,70 +31,92 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoLookup {
+    
         
         @JsonProperty( "Title" )
         private String title;
-            
+        
+        
         @JsonProperty( "SubTitle" )
         private String subTitle;
-            
+        
+        
         @JsonProperty( "Season" )
         private Integer season;
-            
+        
+        
         @JsonProperty( "Episode" )
         private Integer episode;
-            
+        
+        
         @JsonProperty( "Year" )
         private Integer year;
-            
+        
+        
         @JsonProperty( "Tagline" )
         private String tagline;
-            
+        
+        
         @JsonProperty( "Description" )
         private String description;
-            
+        
+        
         @JsonProperty( "Certification" )
         private String certification;
-            
+        
+        
         @JsonProperty( "Inetref" )
         private String inetref;
-            
+        
+        
         @JsonProperty( "Collectionref" )
         private String collectionref;
-            
+        
+        
         @JsonProperty( "HomePage" )
         private String homePage;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "ReleaseDate" )
         private org.joda.time.DateTime releaseDate;
-            
+        
+        
         @JsonProperty( "UserRating" )
         private Float userRating;
-            
+        
+        
         @JsonProperty( "Length" )
         private Integer length;
-            
+        
+        
         @JsonProperty( "Language" )
         private String language;
-            
+        
+        
         @JsonProperty( "Countries" )
         private String[] countries;
-            
+        
+        
         @JsonProperty( "Popularity" )
         private Integer popularity;
-            
+        
+        
         @JsonProperty( "Budget" )
         private Integer budget;
-            
+        
+        
         @JsonProperty( "Revenue" )
         private Integer revenue;
-            
+        
+        
         @JsonProperty( "IMDB" )
         private String iMDB;
-            
+        
+        
         @JsonProperty( "TMSRef" )
         private String tMSRef;
-            
+        
+        
         @JsonProperty( "Artwork" )
         private ArtworkItem[] artwork;
         

@@ -29,13 +29,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ConnectionInfo {
+    
         
         @JsonProperty( "Version" )
         private VersionInfo version;
-            
+        
+        
         @JsonProperty( "Database" )
         private DatabaseInfo database;
-            
+        
+        
         @JsonProperty( "WOL" )
         private WOLInfo wOL;
         

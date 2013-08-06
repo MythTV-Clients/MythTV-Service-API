@@ -29,19 +29,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VersionInfo {
+    
         
         @JsonProperty( "Version" )
         private String version;
-            
+        
+        
         @JsonProperty( "Branch" )
         private String branch;
-            
+        
+        
         @JsonProperty( "Protocol" )
         private String protocol;
-            
+        
+        
         @JsonProperty( "Binary" )
         private String binary;
-            
+        
+        
         @JsonProperty( "Schema" )
         private String schema;
         

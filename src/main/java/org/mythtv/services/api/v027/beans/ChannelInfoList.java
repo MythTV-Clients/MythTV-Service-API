@@ -31,31 +31,40 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ChannelInfoList {
+    
         
         @JsonProperty( "StartIndex" )
         private Integer startIndex;
-            
+        
+        
         @JsonProperty( "Count" )
         private Integer count;
-            
+        
+        
         @JsonProperty( "CurrentPage" )
         private Integer currentPage;
-            
+        
+        
         @JsonProperty( "TotalPages" )
         private Integer totalPages;
-            
+        
+        
         @JsonProperty( "TotalAvailable" )
         private Integer totalAvailable;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "AsOf" )
         private org.joda.time.DateTime asOf;
-            
+        
+        
         @JsonProperty( "Version" )
         private String version;
-            
+        
+        
         @JsonProperty( "ProtoVer" )
         private String protoVer;
-            
+        
+        
         @JsonProperty( "ChannelInfos" )
         private ChannelInfo[] channelInfos;
         

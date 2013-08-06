@@ -31,13 +31,16 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class TimeZoneInfo {
+    
         
         @JsonProperty( "TimeZoneID" )
         private String timeZoneID;
-            
+        
+        
         @JsonProperty( "UTCOffset" )
         private Integer uTCOffset;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "CurrentDateTime" )
         private org.joda.time.DateTime currentDateTime;
         

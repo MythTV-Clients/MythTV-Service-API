@@ -29,13 +29,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class LogMessageList {
+    
         
         @JsonProperty( "HostNames" )
         private LabelValue[] hostNames;
-            
+        
+        
         @JsonProperty( "Applications" )
         private LabelValue[] applications;
-            
+        
+        
         @JsonProperty( "LogMessages" )
         private LogMessage[] logMessages;
         

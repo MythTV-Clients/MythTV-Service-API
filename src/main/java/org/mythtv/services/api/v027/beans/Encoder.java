@@ -29,28 +29,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class Encoder {
+    
         
         @JsonProperty( "Id" )
         private Integer id;
-            
+        
+        
         @JsonProperty( "HostName" )
         private String hostName;
-            
+        
+        
         @JsonProperty( "Local" )
         private Boolean local;
-            
+        
+        
         @JsonProperty( "Connected" )
         private Boolean connected;
-            
+        
+        
         @JsonProperty( "State" )
         private Integer state;
-            
+        
+        
         @JsonProperty( "SleepStatus" )
         private Integer sleepStatus;
-            
+        
+        
         @JsonProperty( "LowOnFreeSpace" )
         private Boolean lowOnFreeSpace;
-            
+        
+        
         @JsonProperty( "Recording" )
         private Program recording;
         

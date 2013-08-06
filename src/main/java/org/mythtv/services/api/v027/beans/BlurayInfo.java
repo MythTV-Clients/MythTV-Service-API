@@ -29,64 +29,84 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class BlurayInfo {
+    
         
         @JsonProperty( "Path" )
         private String path;
-            
+        
+        
         @JsonProperty( "Title" )
         private String title;
-            
+        
+        
         @JsonProperty( "AltTitle" )
         private String altTitle;
-            
+        
+        
         @JsonProperty( "DiscLang" )
         private String discLang;
-            
+        
+        
         @JsonProperty( "DiscNum" )
         private Integer discNum;
-            
+        
+        
         @JsonProperty( "TotalDiscNum" )
         private Integer totalDiscNum;
-            
+        
+        
         @JsonProperty( "TitleCount" )
         private Integer titleCount;
-            
+        
+        
         @JsonProperty( "ThumbCount" )
         private Integer thumbCount;
-            
+        
+        
         @JsonProperty( "ThumbPath" )
         private String thumbPath;
-            
+        
+        
         @JsonProperty( "TopMenuSupported" )
         private Boolean topMenuSupported;
-            
+        
+        
         @JsonProperty( "FirstPlaySupported" )
         private Boolean firstPlaySupported;
-            
+        
+        
         @JsonProperty( "NumHDMVTitles" )
         private Integer numHDMVTitles;
-            
+        
+        
         @JsonProperty( "NumBDJTitles" )
         private Integer numBDJTitles;
-            
+        
+        
         @JsonProperty( "NumUnsupportedTitles" )
         private Integer numUnsupportedTitles;
-            
+        
+        
         @JsonProperty( "AACSDetected" )
         private Boolean aACSDetected;
-            
+        
+        
         @JsonProperty( "LibAACSDetected" )
         private Boolean libAACSDetected;
-            
+        
+        
         @JsonProperty( "AACSHandled" )
         private Boolean aACSHandled;
-            
+        
+        
         @JsonProperty( "BDPlusDetected" )
         private Boolean bDPlusDetected;
-            
+        
+        
         @JsonProperty( "LibBDPlusDetected" )
         private Boolean libBDPlusDetected;
-            
+        
+        
         @JsonProperty( "BDPlusHandled" )
         private Boolean bDPlusHandled;
         

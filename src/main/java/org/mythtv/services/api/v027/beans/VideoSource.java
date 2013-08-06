@@ -29,34 +29,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoSource {
+    
         
         @JsonProperty( "Id" )
         private Integer id;
-            
+        
+        
         @JsonProperty( "SourceName" )
         private String sourceName;
-            
+        
+        
         @JsonProperty( "Grabber" )
         private String grabber;
-            
+        
+        
         @JsonProperty( "UserId" )
         private String userId;
-            
+        
+        
         @JsonProperty( "FreqTable" )
         private String freqTable;
-            
+        
+        
         @JsonProperty( "LineupId" )
         private String lineupId;
-            
+        
+        
         @JsonProperty( "Password" )
         private String password;
-            
+        
+        
         @JsonProperty( "UseEIT" )
         private Boolean useEIT;
-            
+        
+        
         @JsonProperty( "ConfigPath" )
         private String configPath;
-            
+        
+        
         @JsonProperty( "NITId" )
         private Integer nITId;
         

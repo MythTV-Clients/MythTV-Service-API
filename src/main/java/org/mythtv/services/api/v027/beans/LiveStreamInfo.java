@@ -31,73 +31,96 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class LiveStreamInfo {
+    
         
         @JsonProperty( "Id" )
         private Integer id;
-            
+        
+        
         @JsonProperty( "Width" )
         private Integer width;
-            
+        
+        
         @JsonProperty( "Height" )
         private Integer height;
-            
+        
+        
         @JsonProperty( "Bitrate" )
         private Integer bitrate;
-            
+        
+        
         @JsonProperty( "AudioBitrate" )
         private Integer audioBitrate;
-            
+        
+        
         @JsonProperty( "SegmentSize" )
         private Integer segmentSize;
-            
+        
+        
         @JsonProperty( "MaxSegments" )
         private Integer maxSegments;
-            
+        
+        
         @JsonProperty( "StartSegment" )
         private Integer startSegment;
-            
+        
+        
         @JsonProperty( "CurrentSegment" )
         private Integer currentSegment;
-            
+        
+        
         @JsonProperty( "SegmentCount" )
         private Integer segmentCount;
-            
+        
+        
         @JsonProperty( "PercentComplete" )
         private Integer percentComplete;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "Created" )
         private org.joda.time.DateTime created;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "LastModified" )
         private org.joda.time.DateTime lastModified;
-            
+        
+        
         @JsonProperty( "RelativeURL" )
         private String relativeURL;
-            
+        
+        
         @JsonProperty( "FullURL" )
         private String fullURL;
-            
+        
+        
         @JsonProperty( "StatusStr" )
         private String statusStr;
-            
+        
+        
         @JsonProperty( "StatusInt" )
         private Integer statusInt;
-            
+        
+        
         @JsonProperty( "StatusMessage" )
         private String statusMessage;
-            
+        
+        
         @JsonProperty( "SourceFile" )
         private String sourceFile;
-            
+        
+        
         @JsonProperty( "SourceHost" )
         private String sourceHost;
-            
+        
+        
         @JsonProperty( "SourceWidth" )
         private Integer sourceWidth;
-            
+        
+        
         @JsonProperty( "SourceHeight" )
         private Integer sourceHeight;
-            
+        
+        
         @JsonProperty( "AudioOnlyBitrate" )
         private Integer audioOnlyBitrate;
         
