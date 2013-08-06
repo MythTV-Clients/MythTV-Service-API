@@ -20,6 +20,7 @@
 package org.mythtv.services.api.connect;
 
 import org.mythtv.services.api.ApiVersion;
+import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -114,6 +115,7 @@ public class MythAccessFactory {
                 urlConnection.disconnect();
             }
         } catch (Exception e) {
+            throw new MythServiceApiRuntimeException(e);
         }
         return ApiVersion.NotSupported;
     }
@@ -131,6 +133,7 @@ public class MythAccessFactory {
             isOK = urlcon.getResponseCode() == HttpURLConnection.HTTP_OK;
             urlcon.disconnect();
         } catch (Exception e) {
+            throw new MythServiceApiRuntimeException(e);
         }
         return isOK;
     }
