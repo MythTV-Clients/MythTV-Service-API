@@ -29,19 +29,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ArtworkItem {
+    
         
         @JsonProperty( "Type" )
         private String type;
-            
+        
+        
         @JsonProperty( "Url" )
         private String url;
-            
+        
+        
         @JsonProperty( "Thumbnail" )
         private String thumbnail;
-            
+        
+        
         @JsonProperty( "Width" )
         private Integer width;
-            
+        
+        
         @JsonProperty( "Height" )
         private Integer height;
         

@@ -30,16 +30,20 @@ import java.util.Map;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class FrontendStatus {
+    
         
         @JsonProperty( "State" )
         private Map<String,String> state;
-            
+        
+        
         @JsonProperty( "ChapterTimes" )
         private String[] chapterTimes;
-            
+        
+        
         @JsonProperty( "SubtitleTracks" )
         private Map<String,String> subtitleTracks;
-            
+        
+        
         @JsonProperty( "AudioTracks" )
         private Map<String,String> audioTracks;
         

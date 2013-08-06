@@ -31,16 +31,20 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoSourceList {
+    
         @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "AsOf" )
         private org.joda.time.DateTime asOf;
-            
+        
+        
         @JsonProperty( "Version" )
         private String version;
-            
+        
+        
         @JsonProperty( "ProtoVer" )
         private String protoVer;
-            
+        
+        
         @JsonProperty( "VideoSources" )
         private VideoSource[] videoSources;
         

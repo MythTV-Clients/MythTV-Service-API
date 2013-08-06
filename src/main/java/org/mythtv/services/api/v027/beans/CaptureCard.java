@@ -29,79 +29,104 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class CaptureCard {
+    
         
         @JsonProperty( "CardId" )
         private Integer cardId;
-            
+        
+        
         @JsonProperty( "VideoDevice" )
         private String videoDevice;
-            
+        
+        
         @JsonProperty( "AudioDevice" )
         private String audioDevice;
-            
+        
+        
         @JsonProperty( "VBIDevice" )
         private String vBIDevice;
-            
+        
+        
         @JsonProperty( "CardType" )
         private String cardType;
-            
+        
+        
         @JsonProperty( "AudioRateLimit" )
         private Integer audioRateLimit;
-            
+        
+        
         @JsonProperty( "HostName" )
         private String hostName;
-            
+        
+        
         @JsonProperty( "DVBSWFilter" )
         private Integer dVBSWFilter;
-            
+        
+        
         @JsonProperty( "DVBSatType" )
         private Integer dVBSatType;
-            
+        
+        
         @JsonProperty( "DVBWaitForSeqStart" )
         private Boolean dVBWaitForSeqStart;
-            
+        
+        
         @JsonProperty( "SkipBTAudio" )
         private Boolean skipBTAudio;
-            
+        
+        
         @JsonProperty( "DVBOnDemand" )
         private Boolean dVBOnDemand;
-            
+        
+        
         @JsonProperty( "DVBDiSEqCType" )
         private Integer dVBDiSEqCType;
-            
+        
+        
         @JsonProperty( "FirewireSpeed" )
         private Integer firewireSpeed;
-            
+        
+        
         @JsonProperty( "FirewireModel" )
         private String firewireModel;
-            
+        
+        
         @JsonProperty( "FirewireConnection" )
         private Integer firewireConnection;
-            
+        
+        
         @JsonProperty( "SignalTimeout" )
         private Integer signalTimeout;
-            
+        
+        
         @JsonProperty( "ChannelTimeout" )
         private Integer channelTimeout;
-            
+        
+        
         @JsonProperty( "DVBTuningDelay" )
         private Integer dVBTuningDelay;
-            
+        
+        
         @JsonProperty( "Contrast" )
         private Integer contrast;
-            
+        
+        
         @JsonProperty( "Brightness" )
         private Integer brightness;
-            
+        
+        
         @JsonProperty( "Colour" )
         private Integer colour;
-            
+        
+        
         @JsonProperty( "Hue" )
         private Integer hue;
-            
+        
+        
         @JsonProperty( "DiSEqCId" )
         private Integer diSEqCId;
-            
+        
+        
         @JsonProperty( "DVBEITScan" )
         private Boolean dVBEITScan;
         

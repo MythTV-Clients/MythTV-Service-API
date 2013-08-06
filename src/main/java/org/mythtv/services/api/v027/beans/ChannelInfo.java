@@ -29,85 +29,112 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ChannelInfo {
+    
         
         @JsonProperty( "ChanId" )
         private Integer chanId;
-            
+        
+        
         @JsonProperty( "ChanNum" )
         private String chanNum;
-            
+        
+        
         @JsonProperty( "CallSign" )
         private String callSign;
-            
+        
+        
         @JsonProperty( "IconURL" )
         private String iconURL;
-            
+        
+        
         @JsonProperty( "ChannelName" )
         private String channelName;
-            
+        
+        
         @JsonProperty( "MplexId" )
         private Integer mplexId;
-            
+        
+        
         @JsonProperty( "TransportId" )
         private Integer transportId;
-            
+        
+        
         @JsonProperty( "ServiceId" )
         private Integer serviceId;
-            
+        
+        
         @JsonProperty( "NetworkId" )
         private Integer networkId;
-            
+        
+        
         @JsonProperty( "ATSCMajorChan" )
         private Integer aTSCMajorChan;
-            
+        
+        
         @JsonProperty( "ATSCMinorChan" )
         private Integer aTSCMinorChan;
-            
+        
+        
         @JsonProperty( "Format" )
         private String format;
-            
+        
+        
         @JsonProperty( "Modulation" )
         private String modulation;
-            
+        
+        
         @JsonProperty( "Frequency" )
         private Long frequency;
-            
+        
+        
         @JsonProperty( "FrequencyId" )
         private String frequencyId;
-            
+        
+        
         @JsonProperty( "FrequencyTable" )
         private String frequencyTable;
-            
+        
+        
         @JsonProperty( "FineTune" )
         private Integer fineTune;
-            
+        
+        
         @JsonProperty( "SIStandard" )
         private String sIStandard;
-            
+        
+        
         @JsonProperty( "ChanFilters" )
         private String chanFilters;
-            
+        
+        
         @JsonProperty( "SourceId" )
         private Integer sourceId;
-            
+        
+        
         @JsonProperty( "InputId" )
         private Integer inputId;
-            
+        
+        
         @JsonProperty( "CommFree" )
         private Integer commFree;
-            
+        
+        
         @JsonProperty( "UseEIT" )
         private Boolean useEIT;
-            
+        
+        
         @JsonProperty( "Visible" )
         private Boolean visible;
-            
+        
+        
         @JsonProperty( "XMLTVID" )
         private String xMLTVID;
-            
+        
+        
         @JsonProperty( "DefaultAuth" )
         private String defaultAuth;
-            
+        
+        
         @JsonProperty( "Programs" )
         private Program[] programs;
         

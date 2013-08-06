@@ -29,16 +29,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class StorageGroupDir {
+    
         
         @JsonProperty( "Id" )
         private Integer id;
-            
+        
+        
         @JsonProperty( "GroupName" )
         private String groupName;
-            
+        
+        
         @JsonProperty( "HostName" )
         private String hostName;
-            
+        
+        
         @JsonProperty( "DirName" )
         private String dirName;
         

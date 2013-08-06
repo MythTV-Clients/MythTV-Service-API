@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class TitleInfoList {
+    
         
         @JsonProperty( "TitleInfos" )
         private TitleInfo[] titleInfos;

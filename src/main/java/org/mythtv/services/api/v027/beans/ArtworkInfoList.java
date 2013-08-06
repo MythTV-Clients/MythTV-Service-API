@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class ArtworkInfoList {
+    
         
         @JsonProperty( "ArtworkInfos" )
         private ArtworkInfo[] artworkInfos;

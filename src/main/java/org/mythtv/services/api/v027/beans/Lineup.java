@@ -29,22 +29,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class Lineup {
+    
         
         @JsonProperty( "LineupId" )
         private String lineupId;
-            
+        
+        
         @JsonProperty( "Name" )
         private String name;
-            
+        
+        
         @JsonProperty( "DisplayName" )
         private String displayName;
-            
+        
+        
         @JsonProperty( "Type" )
         private String type;
-            
+        
+        
         @JsonProperty( "Postal" )
         private String postal;
-            
+        
+        
         @JsonProperty( "Device" )
         private String device;
         

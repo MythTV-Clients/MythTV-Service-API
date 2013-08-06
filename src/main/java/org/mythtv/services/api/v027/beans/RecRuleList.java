@@ -31,25 +31,32 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class RecRuleList {
+    
         
         @JsonProperty( "StartIndex" )
         private Integer startIndex;
-            
+        
+        
         @JsonProperty( "Count" )
         private Integer count;
-            
+        
+        
         @JsonProperty( "TotalAvailable" )
         private Integer totalAvailable;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "AsOf" )
         private org.joda.time.DateTime asOf;
-            
+        
+        
         @JsonProperty( "Version" )
         private String version;
-            
+        
+        
         @JsonProperty( "ProtoVer" )
         private String protoVer;
-            
+        
+        
         @JsonProperty( "RecRules" )
         private RecRule[] recRules;
         

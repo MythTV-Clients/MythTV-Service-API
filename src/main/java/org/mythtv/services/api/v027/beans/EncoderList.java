@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class EncoderList {
+    
         
         @JsonProperty( "Encoders" )
         private Encoder[] encoders;

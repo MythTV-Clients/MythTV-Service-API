@@ -22,6 +22,7 @@ package org.mythtv.services.api.v027.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.LocalTimeSerializer;
 import org.mythtv.services.api.DateTimeSerializer;
 
 /**
@@ -31,142 +32,188 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class RecRule {
+    
         
         @JsonProperty( "Id" )
         private Integer id;
-            
+        
+        
         @JsonProperty( "ParentId" )
         private Integer parentId;
-            
+        
+        
         @JsonProperty( "Inactive" )
         private Boolean inactive;
-            
+        
+        
         @JsonProperty( "Title" )
         private String title;
-            
+        
+        
         @JsonProperty( "SubTitle" )
         private String subTitle;
-            
+        
+        
         @JsonProperty( "Description" )
         private String description;
-            
+        
+        
         @JsonProperty( "Season" )
         private Integer season;
-            
+        
+        
         @JsonProperty( "Episode" )
         private Integer episode;
-            
+        
+        
         @JsonProperty( "Category" )
         private String category;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "StartTime" )
         private org.joda.time.DateTime startTime;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "EndTime" )
         private org.joda.time.DateTime endTime;
-            
+        
+        
         @JsonProperty( "SeriesId" )
         private String seriesId;
-            
+        
+        
         @JsonProperty( "ProgramId" )
         private String programId;
-            
+        
+        
         @JsonProperty( "Inetref" )
         private String inetref;
-            
+        
+        
         @JsonProperty( "ChanId" )
         private Integer chanId;
-            
+        
+        
         @JsonProperty( "CallSign" )
         private String callSign;
-            
+        
+        
         @JsonProperty( "FindDay" )
         private Integer findDay;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = LocalTimeSerializer.class )
         @JsonProperty( "FindTime" )
-        private org.joda.time.DateTime findTime;
-            
+        private org.joda.time.LocalTime findTime;
+        
+        
         @JsonProperty( "Type" )
         private String type;
-            
+        
+        
         @JsonProperty( "SearchType" )
         private String searchType;
-            
+        
+        
         @JsonProperty( "RecPriority" )
         private Integer recPriority;
-            
+        
+        
         @JsonProperty( "PreferredInput" )
         private Integer preferredInput;
-            
+        
+        
         @JsonProperty( "StartOffset" )
         private Integer startOffset;
-            
+        
+        
         @JsonProperty( "EndOffset" )
         private Integer endOffset;
-            
+        
+        
         @JsonProperty( "DupMethod" )
         private String dupMethod;
-            
+        
+        
         @JsonProperty( "DupIn" )
         private String dupIn;
-            
+        
+        
         @JsonProperty( "Filter" )
         private Integer filter;
-            
+        
+        
         @JsonProperty( "RecProfile" )
         private String recProfile;
-            
+        
+        
         @JsonProperty( "RecGroup" )
         private String recGroup;
-            
+        
+        
         @JsonProperty( "StorageGroup" )
         private String storageGroup;
-            
+        
+        
         @JsonProperty( "PlayGroup" )
         private String playGroup;
-            
+        
+        
         @JsonProperty( "AutoExpire" )
         private Boolean autoExpire;
-            
+        
+        
         @JsonProperty( "MaxEpisodes" )
         private Integer maxEpisodes;
-            
+        
+        
         @JsonProperty( "MaxNewest" )
         private Boolean maxNewest;
-            
+        
+        
         @JsonProperty( "AutoCommflag" )
         private Boolean autoCommflag;
-            
+        
+        
         @JsonProperty( "AutoTranscode" )
         private Boolean autoTranscode;
-            
+        
+        
         @JsonProperty( "AutoMetaLookup" )
         private Boolean autoMetaLookup;
-            
+        
+        
         @JsonProperty( "AutoUserJob1" )
         private Boolean autoUserJob1;
-            
+        
+        
         @JsonProperty( "AutoUserJob2" )
         private Boolean autoUserJob2;
-            
+        
+        
         @JsonProperty( "AutoUserJob3" )
         private Boolean autoUserJob3;
-            
+        
+        
         @JsonProperty( "AutoUserJob4" )
         private Boolean autoUserJob4;
-            
+        
+        
         @JsonProperty( "Transcoder" )
         private Integer transcoder;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "NextRecording" )
         private org.joda.time.DateTime nextRecording;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "LastRecorded" )
         private org.joda.time.DateTime lastRecorded;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "LastDeleted" )
         private org.joda.time.DateTime lastDeleted;
-            
+        
+        
         @JsonProperty( "AverageDelay" )
         private Integer averageDelay;
         
@@ -411,14 +458,14 @@ public class RecRule {
         /**
          * @return the findTime
          */
-        public org.joda.time.DateTime getFindTime() {
+        public org.joda.time.LocalTime getFindTime() {
             return findTime;
         }
 
         /**
          * @param findTime the findTime to set
          */
-        public void setFindTime( org.joda.time.DateTime findTime ) {
+        public void setFindTime( org.joda.time.LocalTime findTime ) {
             this.findTime = findTime;
         }
         

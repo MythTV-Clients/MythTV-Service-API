@@ -31,100 +31,132 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoMetadataInfo {
+    
         
         @JsonProperty( "Id" )
         private Integer id;
-            
+        
+        
         @JsonProperty( "Title" )
         private String title;
-            
+        
+        
         @JsonProperty( "SubTitle" )
         private String subTitle;
-            
+        
+        
         @JsonProperty( "Tagline" )
         private String tagline;
-            
+        
+        
         @JsonProperty( "Director" )
         private String director;
-            
+        
+        
         @JsonProperty( "Studio" )
         private String studio;
-            
+        
+        
         @JsonProperty( "Description" )
         private String description;
-            
+        
+        
         @JsonProperty( "Certification" )
         private String certification;
-            
+        
+        
         @JsonProperty( "Inetref" )
         private String inetref;
-            
+        
+        
         @JsonProperty( "Collectionref" )
         private Integer collectionref;
-            
+        
+        
         @JsonProperty( "HomePage" )
         private String homePage;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "ReleaseDate" )
         private org.joda.time.DateTime releaseDate;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "AddDate" )
         private org.joda.time.DateTime addDate;
-            
+        
+        
         @JsonProperty( "UserRating" )
         private Float userRating;
-            
+        
+        
         @JsonProperty( "Length" )
         private Integer length;
-            
+        
+        
         @JsonProperty( "PlayCount" )
         private Integer playCount;
-            
+        
+        
         @JsonProperty( "Season" )
         private Integer season;
-            
+        
+        
         @JsonProperty( "Episode" )
         private Integer episode;
-            
+        
+        
         @JsonProperty( "ParentalLevel" )
         private Integer parentalLevel;
-            
+        
+        
         @JsonProperty( "Visible" )
         private Boolean visible;
-            
+        
+        
         @JsonProperty( "Watched" )
         private Boolean watched;
-            
+        
+        
         @JsonProperty( "Processed" )
         private Boolean processed;
-            
+        
+        
         @JsonProperty( "ContentType" )
         private String contentType;
-            
+        
+        
         @JsonProperty( "FileName" )
         private String fileName;
-            
+        
+        
         @JsonProperty( "Hash" )
         private String hash;
-            
+        
+        
         @JsonProperty( "HostName" )
         private String hostName;
-            
+        
+        
         @JsonProperty( "Coverart" )
         private String coverart;
-            
+        
+        
         @JsonProperty( "Fanart" )
         private String fanart;
-            
+        
+        
         @JsonProperty( "Banner" )
         private String banner;
-            
+        
+        
         @JsonProperty( "Screenshot" )
         private String screenshot;
-            
+        
+        
         @JsonProperty( "Trailer" )
         private String trailer;
-            
+        
+        
         @JsonProperty( "Artwork" )
         private ArtworkInfoList artwork;
         

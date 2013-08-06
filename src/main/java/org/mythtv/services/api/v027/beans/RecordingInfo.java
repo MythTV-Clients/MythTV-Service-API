@@ -31,43 +31,56 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class RecordingInfo {
+    
         
         @JsonProperty( "Status" )
         private Integer status;
-            
+        
+        
         @JsonProperty( "Priority" )
         private Integer priority;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "StartTs" )
         private org.joda.time.DateTime startTs;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "EndTs" )
         private org.joda.time.DateTime endTs;
-            
+        
+        
         @JsonProperty( "RecordId" )
         private Integer recordId;
-            
+        
+        
         @JsonProperty( "RecGroup" )
         private String recGroup;
-            
+        
+        
         @JsonProperty( "PlayGroup" )
         private String playGroup;
-            
+        
+        
         @JsonProperty( "StorageGroup" )
         private String storageGroup;
-            
+        
+        
         @JsonProperty( "RecType" )
         private Integer recType;
-            
+        
+        
         @JsonProperty( "DupInType" )
         private Integer dupInType;
-            
+        
+        
         @JsonProperty( "DupMethod" )
         private Integer dupMethod;
-            
+        
+        
         @JsonProperty( "EncoderId" )
         private Integer encoderId;
-            
+        
+        
         @JsonProperty( "Profile" )
         private String profile;
         

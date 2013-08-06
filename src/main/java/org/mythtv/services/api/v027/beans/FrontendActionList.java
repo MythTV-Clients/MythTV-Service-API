@@ -30,6 +30,7 @@ import java.util.Map;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class FrontendActionList {
+    
         
         @JsonProperty( "ActionList" )
         private Map<String,String> actionList;

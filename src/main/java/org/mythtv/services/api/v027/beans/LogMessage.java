@@ -31,37 +31,48 @@ import org.mythtv.services.api.DateTimeSerializer;
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class LogMessage {
+    
         
         @JsonProperty( "HostName" )
         private String hostName;
-            
+        
+        
         @JsonProperty( "Application" )
         private String application;
-            
+        
+        
         @JsonProperty( "PID" )
         private Integer pID;
-            
+        
+        
         @JsonProperty( "TID" )
         private Integer tID;
-            
+        
+        
         @JsonProperty( "Thread" )
         private String thread;
-            
+        
+        
         @JsonProperty( "Filename" )
         private String filename;
-            
+        
+        
         @JsonProperty( "Line" )
         private Integer line;
-            
+        
+        
         @JsonProperty( "Function" )
         private String function;
-            @JsonSerialize( using = DateTimeSerializer.class )
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
         @JsonProperty( "Time" )
         private org.joda.time.DateTime time;
-            
+        
+        
         @JsonProperty( "Level" )
         private String level;
-            
+        
+        
         @JsonProperty( "Message" )
         private String message;
         
