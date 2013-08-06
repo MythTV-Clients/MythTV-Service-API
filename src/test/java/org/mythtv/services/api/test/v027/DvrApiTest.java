@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.v027.DvrOperations;
+import org.mythtv.services.api.v027.beans.ProgramList;
 import org.mythtv.services.api.v027.beans.RecRuleList;
 import org.springframework.http.ResponseEntity;
 
@@ -52,7 +53,7 @@ public class DvrApiTest extends BaseApiTester {
         fail("Not yet implemented");
     }
 
-    @Test
+    @Ignore
     public void testEnableRecordSchedule() throws Exception {
         ResponseEntity<Bool> boolResponseEntity = operations.enableRecordSchedule(2386);
         assertNotNull(boolResponseEntity);
@@ -100,7 +101,12 @@ public class DvrApiTest extends BaseApiTester {
 
     @Ignore
     public void testGetRecordedList() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<ProgramList> response = operations.getRecordedList(true,null,null,null,null, null, ETagInfo.createEmptyETag());
+        assertNotNull(response);
+        ProgramList list = response.getBody();
+        assertNotNull(list);
+        assertNotNull(list.getPrograms());
+        assertTrue(list.getPrograms().length > 0);
     }
 
     @Ignore
