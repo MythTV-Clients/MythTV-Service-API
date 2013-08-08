@@ -19,12 +19,6 @@
  */
 package org.mythtv.services.api;
 
-import java.net.URI;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -37,9 +31,14 @@ import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.net.URI;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @author Daniel Frey
- * 
+ * @author Sebastien Astie
  */
 public abstract class AbstractOperations {
 	private static final String TAG = AbstractOperations.class.getSimpleName();

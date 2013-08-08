@@ -3,14 +3,13 @@
  */
 package org.mythtv.services.api.converters;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.simpleframework.xml.transform.Transform;
+
+import java.util.logging.Logger;
 
 /**
  * @author Daniel Frey

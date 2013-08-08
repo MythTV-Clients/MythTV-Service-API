@@ -19,50 +19,35 @@
  */
 package org.mythtv.services.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
- * @author Daniel Frey
- *
+ * @author Sebastien Astie
  */
+@JsonRootName("bool")
 public class Bool {
 	
-	@JsonProperty( "bool" )
-	private Boolean bool;
-	
-	public Bool() { }
+	public Bool(String val){
+        value = Boolean.parseBoolean(val);
+    }
+
+    public Bool(){
+        value = Boolean.FALSE;
+    }
+
+    private Boolean value;
 
 	/**
 	 * @return the bool
 	 */
-	public Boolean getBool() {
-		return bool;
+	public Boolean getValue() {
+		return value;
 	}
 
 	/**
 	 * @param bool the bool to set
 	 */
 	public void setBool( Boolean bool ) {
-		this.bool = bool;
+		this.value = bool;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append( "Bool [" );
-		
-		if( bool != null ) {
-			builder.append( "bool=" );
-			builder.append( bool );
-		}
-		
-		builder.append( "]" );
-	
-		return builder.toString();
-	}
-	
 }

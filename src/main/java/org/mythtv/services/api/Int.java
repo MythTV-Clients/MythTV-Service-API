@@ -19,50 +19,39 @@
  */
 package org.mythtv.services.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
- * @author pot8oe
- *
+ * @author Sebastien Astie
  */
+@JsonRootName("int")
 public class Int {
 	
-	@JsonProperty( "int" )
-	private Integer integer;
+	private Integer value;
 	
-	public Int() { }
+	public Int(String val) {
+        try{
+            value = Integer.parseInt(val);
+        } catch (Exception e) {
+            value = 0;
+        }
+    }
 
-	/**
-	 * @return the integer
-	 */
-	public Integer getInteger() {
-		return integer;
+    public Int() {
+        value = 0;
+    }
+
+    /**
+     * @return the integer
+     */
+	public Integer getValue() {
+		return value;
 	}
 
 	/**
 	 * @param integer the integer to set
 	 */
-	public void setInteger( Integer integer ) {
-		this.integer = integer;
+	public void setValue( Integer integer ) {
+		this.value = integer;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append( "Int [" );
-		
-		if( integer != null ) {
-			builder.append( "integer=" );
-			builder.append( integer );
-		}
-		
-		builder.append( "]" );
-	
-		return builder.toString();
-	}
-	
 }
