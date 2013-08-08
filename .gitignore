@@ -4,7 +4,6 @@ target
 .classpath
 .project
 .settings
-gradle.properties
 *.iml
 .idea
 build

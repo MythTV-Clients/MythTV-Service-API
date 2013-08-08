@@ -1,3 +1,9 @@
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath group:'org.ajoberstar', name:'gradle-git', version:'0.6.1' }
+}
+import org.ajoberstar.gradle.git.tasks.*
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -7,8 +13,6 @@ version = '1.0'
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 
-import org.apache.tools.ant.taskdefs.condition.Os
-
 def isDevBuild
 def isReleaseBuild
 def sonatypeRepositoryUrl
@@ -17,6 +21,7 @@ def sonatypeRepositoryUrl
 if(hasProperty('release')) {
     isReleaseBuild = true
     sonatypeRepositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+
 } else {
     version += '-SNAPSHOT'
     isDevBuild = true
@@ -62,30 +67,26 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task pushToGit (dependsOn:'tagGit', type:Exec) {
-    if(isReleaseBuild){
-        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-            executable 'cmd'
-            args '/c', 'git', 'push', '--tags'
-        } else {
-            executable 'git'
-            args 'push', '--tags'
-        }
-    }
+task gitTag(type: GitTag) {
+    tagName = "mythtv-service-api-${version}"
+    message = "Release of mythtv-service-api-${version}"
+}
+gitTag.doFirst {
+    if(!isReleaseBuild)
+        throw new StopExecutionException()
 }
 
-task tagGit (type:Exec) {
-    if(isReleaseBuild){
-        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-            executable 'cmd'
-            args '/c', 'git', 'tag', 'mythtv-service-api-' + version
-        } else {
-            executable 'git'
-            args 'tag', 'mythtv-service-api-' + version
-        }
+task gitRelease(type:GitPush, dependsOn:gitTag, description: 'Creates the tag for this release and push it the the remote repository.', enabled:false) {
+    credentials {
+        username = githubUsername
+        password = githubPassword
     }
+    pushTags = true
 }
-
+gitRelease.doFirst {
+    if(!isReleaseBuild)
+        throw new StopExecutionException()
+}
 
 artifacts {
     archives jar
