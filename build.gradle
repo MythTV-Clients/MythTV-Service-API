@@ -7,6 +7,8 @@ version = '1.0'
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 
+import org.apache.tools.ant.taskdefs.condition.Os
+
 def isDevBuild
 def isReleaseBuild
 def sonatypeRepositoryUrl
@@ -58,6 +60,30 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
     classifier = 'sources'
+}
+
+task pushToGit (dependsOn:'tagGit', type:Exec) {
+    if(isReleaseBuild){
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            executable 'cmd'
+            args '/c', 'git', 'push', '--tags'
+        } else {
+            executable 'git'
+            args 'push', '--tags'
+        }
+    }
+}
+
+task tagGit (type:Exec) {
+    if(isReleaseBuild){
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            executable 'cmd'
+            args '/c', 'git', 'tag', 'mythtv-service-api-' + version
+        } else {
+            executable 'git'
+            args 'tag', 'mythtv-service-api-' + version
+        }
+    }
 }
 
 
