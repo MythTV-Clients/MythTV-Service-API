@@ -84,7 +84,7 @@ public class FrontendTemplate extends AbstractOperations implements org.mythtv.s
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PlayRecording", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  

@@ -81,7 +81,7 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		if(maxSegments != null)
            		parameters.add( "MaxSegments", maxSegments.toString() );
 		if(width != null)
@@ -255,7 +255,7 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		if(width != null)
            		parameters.add( "Width", width.toString() );
 		if(height != null)
@@ -289,7 +289,7 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
 		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetRecording", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
@@ -323,7 +323,7 @@ public class ContentTemplate extends AbstractOperations implements org.mythtv.se
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
 		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( "GetRecordingArtworkList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArtworkInfoList.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  

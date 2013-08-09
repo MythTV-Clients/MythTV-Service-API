@@ -63,9 +63,9 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(category != null && !category.isEmpty())
 			parameters.add( "Category", category );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		if(endTime != null)
-           		parameters.add( "EndTime", endTime.toString() );
+           		parameters.add( "EndTime",  convertUtcAndFormat( endTime )  );
 		if(seriesId != null && !seriesId.isEmpty())
 			parameters.add( "SeriesId", seriesId );
 		if(programId != null && !programId.isEmpty())
@@ -225,7 +225,7 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		if(makeOverride != null)
            		parameters.add( "MakeOverride", makeOverride.toString() );
 		
@@ -255,7 +255,7 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
 		ResponseEntity<Program> responseEntity = restOperations.exchange( buildUri( "GetRecorded", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Program.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
@@ -339,7 +339,7 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
 		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
@@ -361,9 +361,9 @@ public class DvrTemplate extends AbstractOperations implements org.mythtv.servic
 		if(category != null && !category.isEmpty())
 			parameters.add( "Category", category );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		if(endTime != null)
-           		parameters.add( "EndTime", endTime.toString() );
+           		parameters.add( "EndTime",  convertUtcAndFormat( endTime )  );
 		if(seriesId != null && !seriesId.isEmpty())
 			parameters.add( "SeriesId", seriesId );
 		if(programId != null && !programId.isEmpty())

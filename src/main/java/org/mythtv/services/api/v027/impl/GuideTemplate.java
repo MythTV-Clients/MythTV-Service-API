@@ -66,7 +66,7 @@ public class GuideTemplate extends AbstractOperations implements org.mythtv.serv
 		if(chanId != null)
            		parameters.add( "ChanId", chanId.toString() );
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
 		ResponseEntity<Program> responseEntity = restOperations.exchange( buildUri( "GetProgramDetails", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Program.class );
 		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
@@ -78,9 +78,9 @@ public class GuideTemplate extends AbstractOperations implements org.mythtv.serv
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 		if(startTime != null)
-           		parameters.add( "StartTime", startTime.toString() );
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		if(endTime != null)
-           		parameters.add( "EndTime", endTime.toString() );
+           		parameters.add( "EndTime",  convertUtcAndFormat( endTime )  );
 		if(startChanId != null)
            		parameters.add( "StartChanId", startChanId.toString() );
 		if(numChannels != null)

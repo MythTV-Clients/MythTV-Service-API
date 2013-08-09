@@ -165,9 +165,9 @@ public class MythTemplate extends AbstractOperations implements org.mythtv.servi
 		if(function != null && !function.isEmpty())
 			parameters.add( "Function", function );
 		if(fromTime != null)
-           		parameters.add( "FromTime", fromTime.toString() );
+           		parameters.add( "FromTime",  convertUtcAndFormat( fromTime )  );
 		if(toTime != null)
-           		parameters.add( "ToTime", toTime.toString() );
+           		parameters.add( "ToTime",  convertUtcAndFormat( toTime )  );
 		if(level != null && !level.isEmpty())
 			parameters.add( "Level", level );
 		if(msgContains != null && !msgContains.isEmpty())
