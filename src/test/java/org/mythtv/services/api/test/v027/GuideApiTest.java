@@ -47,8 +47,8 @@ public class GuideApiTest extends BaseApiTester {
         now = new DateTime();
         tomorrow = now.plus( Period.days(1) );
         iconsize = Integer.parseInt( properties.getProperty(
-                "MythServicesServiceProvider.GuideOperationsTest.IconSize", "512" ) );
-        chanid = Integer.parseInt( properties.getProperty( "MythServicesServiceProvider.GuideOperationsTest.ChannelId",
+                "MythServicesServiceTemplate.GuideOperationsTest.IconSize", "512" ) );
+        chanid = Integer.parseInt( properties.getProperty( "MythServicesServiceTemplate.GuideOperationsTest.ChannelId",
                 "2502" ) );
     }
 

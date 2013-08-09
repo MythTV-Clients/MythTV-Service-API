@@ -61,8 +61,8 @@ public class GuideOperationsTest extends BaseMythtvServiceApiTester {
 		tomorrow = now.plus( Period.days( 1 ) );
 		operations = api.guideOperations();
 		iconsize = Integer.parseInt( properties.getProperty(
-				"MythServicesServiceProvider.GuideOperationsTest.IconSize", "512" ) );
-		chanid = Integer.parseInt( properties.getProperty( "MythServicesServiceProvider.GuideOperationsTest.ChannelId",
+				"MythServicesServiceTemplate.GuideOperationsTest.IconSize", "512" ) );
+		chanid = Integer.parseInt( properties.getProperty( "MythServicesServiceTemplate.GuideOperationsTest.ChannelId",
 				"2502" ) );
 	}
 
