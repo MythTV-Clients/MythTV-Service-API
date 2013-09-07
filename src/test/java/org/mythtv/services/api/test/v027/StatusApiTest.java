@@ -19,8 +19,13 @@
  */
 package org.mythtv.services.api.test.v027;
 
+import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.v027.status.beans.BackendStatus;
 import org.mythtv.services.api.v027.StatusOperations;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.Assert.fail;
 
@@ -35,8 +40,10 @@ public class StatusApiTest extends BaseApiTester {
         operations = mythservices.statusOperations();
     }
 
-    @Ignore
+    @Test
     public void testGetStatus() throws Exception {
-        fail("Not yet implemented");
+        ResponseEntity<BackendStatus> status = operations.getStatus( ETagInfo.createEmptyETag() );
+        Assert.assertNotNull( status.getBody() );
     }
+
 }

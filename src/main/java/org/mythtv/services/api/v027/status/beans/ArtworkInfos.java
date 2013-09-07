@@ -20,41 +20,35 @@
 package org.mythtv.services.api.v027.status.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Root;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Daniel Frey
  *
  */
-@Root( name = "Encoders" )
-public class Encoders {
+public class ArtworkInfos implements Serializable {
 
-	@JsonProperty
-	@Attribute( name = "count" )
-	private int count;
-	
-	@JsonProperty( "Encoders" )
-	@ElementList( inline = true )
-	private List<Encoder> encoders;
-	
-	public Encoders() { }
+	private static final long serialVersionUID = 223919846162208999L;
+
+	@JsonProperty( "ArtworkInfos" )
+	private List<ArtworkInfo> artworkInfos;
+
+	public ArtworkInfos() { }
 
 	/**
-	 * @return the encoders
+	 * @return the artworkInfos
 	 */
-	public List<Encoder> getEncoders() {
-		return encoders;
+	public List<ArtworkInfo> getArtworkInfos() {
+		return artworkInfos;
 	}
 
 	/**
-	 * @param encoders the encoders to set
+	 * @param artworkInfos the artworkInfos to set
 	 */
-	public void setEncoders( List<Encoder> encoders ) {
-		this.encoders = encoders;
+	public void setArtworkInfos( List<ArtworkInfo> artworkInfos ) {
+		this.artworkInfos = artworkInfos;
 	}
 
 	/* (non-Javadoc)
@@ -64,11 +58,11 @@ public class Encoders {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append( "Encoders [" );
+		builder.append( "ArtworkInfos [" );
 		
-		if( encoders != null ) {
-			builder.append( "encoders=" );
-			builder.append( encoders );
+		if( artworkInfos != null ) {
+			builder.append( "artworkInfos=" );
+			builder.append( artworkInfos );
 		}
 		
 		builder.append( "]" );
