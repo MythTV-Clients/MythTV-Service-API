@@ -19,6 +19,9 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
+import org.mythtv.services.api.test.connect.AbstractMythFakeHttpInputMessage;
+import org.mythtv.services.api.test.connect.ResponseFactory;
+
 import java.net.URI;
 
 /**
@@ -32,7 +35,7 @@ public class CaptureFactory extends ResponseFactory {
 	 * @see org.mythtv.services.api.test.connect.utils.factories.ResponseFactory#create(java.net.URI)
 	 */
 	@Override
-	public MythFakeHttpInputMessage create(URI url) {
+	public AbstractMythFakeHttpInputMessage create(URI url) {
 		if(url.getPath().endsWith("GetCaptureCardList")){
 			return new MythFakeHttpInputMessage("capture/GetCaptureCardList.json");
 		} else if (url.getPath().endsWith("GetCaptureCard")){

@@ -19,6 +19,8 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
+import org.mythtv.services.api.test.connect.AbstractMythFakeHttpInputMessage;
+import org.mythtv.services.api.test.connect.ResponseFactory;
 import org.mythtv.services.api.v026.impl.StatusTemplate;
 
 import java.net.URI;
@@ -34,7 +36,7 @@ public class StatusFactory extends ResponseFactory {
 	 * @see org.mythtv.services.api.test.connect.utils.factories.ResponseFactory#create(java.net.URI)
 	 */
 	@Override
-	public MythFakeHttpInputMessage create(URI url) {
+	public AbstractMythFakeHttpInputMessage create(URI url) {
 		
 		if( url.getPath().endsWith( StatusTemplate.Endpoint.GET_STATUS.getEndpoint() ) ) {
 			return new MythFakeHttpInputMessage( "status/GetStatus.xml" );

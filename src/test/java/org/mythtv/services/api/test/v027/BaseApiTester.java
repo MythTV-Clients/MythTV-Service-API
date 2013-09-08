@@ -22,8 +22,10 @@ package org.mythtv.services.api.test.v027;
 import org.junit.Before;
 import org.mythtv.services.api.connect.MythAccessFactory;
 import org.mythtv.services.api.v027.MythServices;
+import org.mythtv.services.api.v027.MythServicesTemplate;
 
 import java.io.FileInputStream;
+import java.lang.reflect.Constructor;
 import java.util.Properties;
 
 public abstract class BaseApiTester {
@@ -33,12 +35,23 @@ public abstract class BaseApiTester {
 	@Before
 	public void setUp() throws Exception {
 		properties = new Properties();
-		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));		
-		String apiBase = properties.getProperty("MythServicesServiceTemplate.ApiBaseUrl");
+		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
+        String templateClass = properties.getProperty("MythServicesServiceTemplate.class");
+        if(templateClass == null)
+            throw new Exception("Property 'MythServicesServiceTemplate.class' is missing in property file.");
+
+        String apiBase = properties.getProperty("MythServicesServiceTemplate.ApiBaseUrl");
 		if(apiBase == null)
 			throw new Exception("Property 'MythServicesServiceTemplate.ApiBaseUrl' is missing in property file.");
-		mythservices = MythAccessFactory.getServiceTemplateApiByType(MythServices.class, apiBase);
-		prepareOperations();
+        if(!templateClass.contains("api.test."))
+		    mythservices = MythAccessFactory.getServiceTemplateApiByType(MythServices.class, apiBase);
+        else{
+            Class<? extends MythServicesTemplate> clazz = Class.forName(templateClass).asSubclass(MythServicesTemplate.class);
+            Constructor<? extends MythServicesTemplate> c = clazz.getConstructor(String.class);
+            MythServicesTemplate serv = c.newInstance(apiBase);
+            mythservices = serv;
+        }
+        prepareOperations();
 	}
 	
 	protected abstract void prepareOperations();

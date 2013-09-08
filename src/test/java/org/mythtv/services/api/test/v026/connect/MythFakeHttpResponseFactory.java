@@ -19,37 +19,15 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
-import org.junit.Assert;
+import org.mythtv.services.api.test.connect.AbstractMythFakeHttpResponseFactory;
+import org.mythtv.services.api.test.connect.ResponseFactory;
 
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 
-public class MythFakeHttpResponseFactory {
+public class MythFakeHttpResponseFactory extends AbstractMythFakeHttpResponseFactory {
 
-	private static MythFakeHttpResponseFactory instance;
-	private List<ResponseFactory> factories;
-
-	public static synchronized MythFakeHttpResponseFactory getInstance() {
-		if (instance == null)
-			instance = new MythFakeHttpResponseFactory();
-		return instance;
-	}
-
-	private MythFakeHttpResponseFactory() {
-		init();
-	}
-
-	public MythFakeHttpInputMessage getResponseMessage(URI url) {
-		for (ResponseFactory factory : factories) {
-			if (factory.handlesUri(url))
-				return factory.create(url);
-		}
-		Assert.fail("No factory found for this uri: '" + url.getPath() +"'");
-		return null;
-	}
-
-	private void init() {
+	@Override
+	protected void init() {
 		factories = new ArrayList<ResponseFactory>();
 		factories.add(new CaptureFactory());
 		factories.add(new GuideFactory());

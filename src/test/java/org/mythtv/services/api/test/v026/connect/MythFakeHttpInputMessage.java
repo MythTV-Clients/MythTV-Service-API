@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
+import org.mythtv.services.api.test.connect.AbstractMythFakeHttpInputMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,78 +31,14 @@ import java.io.*;
  * @author Sebastien Astie
  * 
  */
-public class MythFakeHttpInputMessage implements ClientHttpResponse {
-	private FileInputStream stream;
-	private HttpHeaders headers;
-	/**
-	 * 
-	 */
-	public MythFakeHttpInputMessage(String filePath) {
-		headers = new HttpHeaders();
-		File f = new File("src/test/resources/responses/v026/" + filePath);
-		if(f.exists()){
-			headers.setContentLength(f.length());
-		}
-		filePath = filePath.toLowerCase().trim();
-		
-		
-		if(filePath.endsWith(".json"))
-			headers.setContentType(MediaType.APPLICATION_JSON);
-		else if( filePath.endsWith( ".xml" ) ) 
-			headers.setContentType( MediaType.APPLICATION_XML );
-		else if(filePath.endsWith(".png"))
-			headers.setContentType(MediaType.IMAGE_PNG);
-			
-		try {
-			
-			stream = new FileInputStream(f);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+public class MythFakeHttpInputMessage extends AbstractMythFakeHttpInputMessage {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.http.HttpMessage#getHeaders()
-	 */
-	@Override
-	public HttpHeaders getHeaders() {
-		return headers;
-	}
+    public MythFakeHttpInputMessage(String filePath) {
+        super(filePath);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.http.HttpInputMessage#getBody()
-	 */
-	@Override
-	public InputStream getBody() throws IOException {
-		return stream;
-	}
-
-	@Override
-	public HttpStatus getStatusCode() throws IOException {
-		return HttpStatus.OK;
-	}
-
-	@Override
-	public int getRawStatusCode() throws IOException {
-		return HttpStatus.OK.value();
-	}
-
-	@Override
-	public String getStatusText() throws IOException {
-		return HttpStatus.OK.toString();
-	}
-
-	@Override
-	public void close() {
-		try {
-			stream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
+    @Override
+    protected String getResourceBasePath() {
+        return "src/test/resources/responses/v026/";
+    }
 }
