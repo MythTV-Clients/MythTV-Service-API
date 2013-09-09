@@ -46,7 +46,9 @@ public class LocalServiceTemplate extends MythServicesTemplate {
 	 * @see org.mythtv.services.api.BaseMythServicesTemplate#createRestOperations()
 	 */
 	protected RestOperations createRestOperations() {
-		return new FakeMythTvRestTemplate();
+        FakeMythTvRestTemplate rest = new FakeMythTvRestTemplate();
+        initMessageConverters(rest.getMessageConverters());
+        return rest;
 	}
 
 }

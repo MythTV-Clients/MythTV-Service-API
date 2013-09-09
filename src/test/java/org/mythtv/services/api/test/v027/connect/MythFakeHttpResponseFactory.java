@@ -30,5 +30,6 @@ public class MythFakeHttpResponseFactory extends AbstractMythFakeHttpResponseFac
 	protected void init() {
 		factories = new ArrayList<ResponseFactory>();
 		factories.add(new StatusFactory());
+        factories.add(new DvrFactory());
 	}
 }

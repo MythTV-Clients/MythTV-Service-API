@@ -45,6 +45,7 @@ import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -77,38 +78,41 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 	
 	protected RestOperations createRestOperations() {
 		RestTemplate rest = new RestTemplate( true );
-		
-		for( HttpMessageConverter<?> messageConverter : rest.getMessageConverters() ) {
+		initMessageConverters(rest.getMessageConverters());
 
-			if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
-				
-				ObjectMapper objectMapper = new ObjectMapper();
-				objectMapper.registerModule( new JodaModule() );
-				
-				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
-				mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
-			}
-		
-			if( messageConverter instanceof SimpleXmlHttpMessageConverter ) {
-
-				RegistryMatcher matchers = new RegistryMatcher();
-				matchers.bind( DateTime.class, JodaDateTimeTransform.class );
-				matchers.bind( Command.class, JobCommandTransform.class );
-				matchers.bind( Flag.class, JobFlagTransform.class );
-				matchers.bind( Status.class, JobStatusTransform.class );
-				matchers.bind( Type.class, JobTypeTransform.class );
-						
-				Strategy strategy = new AnnotationStrategy();
-				Serializer serializer = new Persister( strategy, matchers );
-
-				SimpleXmlHttpMessageConverter simpleXmlHttpMessageConverter = (SimpleXmlHttpMessageConverter) messageConverter;
-				simpleXmlHttpMessageConverter.setSerializer( serializer );
-			}
-		}
-		
 		rest.setErrorHandler( new MythServicesErrorHandler() );
 		return rest;
 	}
+
+    protected void initMessageConverters(List<HttpMessageConverter<?>> converters){
+        for( HttpMessageConverter<?> messageConverter : converters ) {
+
+            if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.registerModule( new JodaModule() );
+
+                MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
+                mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
+            }
+
+            if( messageConverter instanceof SimpleXmlHttpMessageConverter ) {
+
+                RegistryMatcher matchers = new RegistryMatcher();
+                matchers.bind( DateTime.class, JodaDateTimeTransform.class );
+                matchers.bind( Command.class, JobCommandTransform.class );
+                matchers.bind( Flag.class, JobFlagTransform.class );
+                matchers.bind( Status.class, JobStatusTransform.class );
+                matchers.bind( Type.class, JobTypeTransform.class );
+
+                Strategy strategy = new AnnotationStrategy();
+                Serializer serializer = new Persister( strategy, matchers );
+
+                SimpleXmlHttpMessageConverter simpleXmlHttpMessageConverter = (SimpleXmlHttpMessageConverter) messageConverter;
+                simpleXmlHttpMessageConverter.setSerializer( serializer );
+            }
+        }
+    }
 	
 	/*
 	 * (non-Javadoc)

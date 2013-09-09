@@ -84,7 +84,7 @@ public class DvrApiTest extends BaseApiTester {
         fail("Not yet implemented");
     }
 
-    @Ignore
+    @Test
     public void testGetRecordScheduleList() throws Exception {
         ResponseEntity<RecRuleList> responseEntity = operations.getRecordScheduleList(0, 0, ETagInfo.createEmptyETag());
         assertNotNull(responseEntity);

@@ -63,13 +63,7 @@ public abstract class AbstractFakeMythTvRestTemplate implements RestOperations {
 	 *
 	 */
 	public AbstractFakeMythTvRestTemplate() {
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.registerModule( new JodaModule() );
-		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-		mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
-
 		RegistryMatcher matchers = setupMatchers();
-
 		Strategy strategy = new AnnotationStrategy();
 		Serializer serializer = new Persister( strategy, matchers );
 
@@ -77,7 +71,7 @@ public abstract class AbstractFakeMythTvRestTemplate implements RestOperations {
 		messageConverters.add(new ByteArrayHttpMessageConverter());
 		messageConverters.add(new StringHttpMessageConverter());
 		messageConverters.add(new ResourceHttpMessageConverter());
-		messageConverters.add(mappingJackson2HttpMessageConverter);
+		messageConverters.add(new MappingJackson2HttpMessageConverter());
 		messageConverters.add( new SimpleXmlHttpMessageConverter( serializer ) );
 
 		mythResponseFactory = getMythResponseFactory();
@@ -86,7 +80,6 @@ public abstract class AbstractFakeMythTvRestTemplate implements RestOperations {
     protected abstract RegistryMatcher setupMatchers();
 
     protected abstract AbstractMythFakeHttpResponseFactory getMythResponseFactory();
-
 
 	// GET
 

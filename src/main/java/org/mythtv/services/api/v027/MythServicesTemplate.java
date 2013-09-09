@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.api.v027;
 
+import java.util.List;
 import java.util.logging.Level;
 
 import com.fasterxml.jackson.core.Version;
@@ -94,42 +95,44 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 	
 	protected RestOperations createRestOperations() {
 		RestTemplate rest = new RestTemplate( true );
-		
-		for( HttpMessageConverter<?> messageConverter : rest.getMessageConverters() ) {
-
-			if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
-                StdDelegatingDeserializer<ArrayOfString> delegatingDeserializer = new StdDelegatingDeserializer<ArrayOfString>(new ArrayOfStringConverter());
-                SimpleModule customModule = new SimpleModule("org.mythtv.service.api.module", new Version(1, 0, 0, null, null, null)).addDeserializer(ArrayOfString.class, delegatingDeserializer);
-
-				ObjectMapper objectMapper = new ObjectMapper();
-				objectMapper.registerModule( new JodaModule() );
-				objectMapper.registerModule(customModule);
-				objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
-				
-				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
-				mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
-			}
-		
-			if( messageConverter instanceof SimpleXmlHttpMessageConverter ) {
-
-				RegistryMatcher matchers = new RegistryMatcher();
-				matchers.bind( DateTime.class, JodaDateTimeTransform.class );
-				matchers.bind( Command.class, JobCommandTransform.class );
-				matchers.bind( Flag.class, JobFlagTransform.class );
-				matchers.bind( Status.class, JobStatusTransform.class );
-				matchers.bind( Type.class, JobTypeTransform.class );
-						
-				Strategy strategy = new AnnotationStrategy();
-				Serializer serializer = new Persister( strategy, matchers );
-
-				SimpleXmlHttpMessageConverter simpleXmlHttpMessageConverter = (SimpleXmlHttpMessageConverter) messageConverter;
-				simpleXmlHttpMessageConverter.setSerializer( serializer );
-			}
-		}
-		
+        initMessageConverters(rest.getMessageConverters());
 		rest.setErrorHandler( new MythServicesErrorHandler() );
 		return rest;
 	}
+
+    protected void initMessageConverters(List<HttpMessageConverter<?>> converters){
+        for( HttpMessageConverter<?> messageConverter : converters ) {
+
+            if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
+                StdDelegatingDeserializer<ArrayOfString> delegatingDeserializer = new StdDelegatingDeserializer<ArrayOfString>(new ArrayOfStringConverter());
+                SimpleModule customModule = new SimpleModule("org.mythtv.service.api.module", new Version(1, 0, 0, null, null, null)).addDeserializer(ArrayOfString.class, delegatingDeserializer);
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.registerModule( new JodaModule() );
+                objectMapper.registerModule(customModule);
+                objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
+
+                MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
+                mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
+            }
+
+            if( messageConverter instanceof SimpleXmlHttpMessageConverter ) {
+
+                RegistryMatcher matchers = new RegistryMatcher();
+                matchers.bind( DateTime.class, JodaDateTimeTransform.class );
+                matchers.bind( Command.class, JobCommandTransform.class );
+                matchers.bind( Flag.class, JobFlagTransform.class );
+                matchers.bind( Status.class, JobStatusTransform.class );
+                matchers.bind( Type.class, JobTypeTransform.class );
+
+                Strategy strategy = new AnnotationStrategy();
+                Serializer serializer = new Persister( strategy, matchers );
+
+                SimpleXmlHttpMessageConverter simpleXmlHttpMessageConverter = (SimpleXmlHttpMessageConverter) messageConverter;
+                simpleXmlHttpMessageConverter.setSerializer( serializer );
+            }
+        }
+    }
 
 
 	/*
