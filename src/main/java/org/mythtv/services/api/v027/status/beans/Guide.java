@@ -15,25 +15,25 @@ import org.simpleframework.xml.Text;
 @Root( name = "Guide" )
 public class Guide {
 
-	@Attribute
+	@Attribute( required = false )
 	private DateTime guideThru;
 	
-	@Attribute
+	@Attribute( required = false )
 	private String status;
 	
-	@Attribute
+	@Attribute( required = false )
 	private DateTime next;
 	
-	@Attribute
+	@Attribute( required = false )
 	private String end;
 	
-	@Attribute
+	@Attribute( required = false )
 	private int guideDays;
 	
-	@Attribute
+	@Attribute( required = false )
 	private String start;
 	
-	@Text
+	@Text( required = false )
 	private String comment;
 	
 	public Guide() { }
