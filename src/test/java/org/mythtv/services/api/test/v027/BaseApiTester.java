@@ -35,7 +35,7 @@ public abstract class BaseApiTester {
 	@Before
 	public void setUp() throws Exception {
 		properties = new Properties();
-		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
+		properties.load(new FileInputStream("src/test/resources/responses/v027/BaseMythtvServiceApiTester.properties"));
         String templateClass = properties.getProperty("MythServicesServiceTemplate.class");
         if(templateClass == null)
             throw new Exception("Property 'MythServicesServiceTemplate.class' is missing in property file.");

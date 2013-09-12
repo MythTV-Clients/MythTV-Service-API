@@ -34,7 +34,7 @@ public class BaseMythtvServiceApiTester {
 	@Before
 	public void setUp() throws Exception {
 		properties = new Properties();
-		properties.load(new FileInputStream("src/test/resources/BaseMythtvServiceApiTester.properties"));
+		properties.load(new FileInputStream("src/test/resources/responses/v026/BaseMythtvServiceApiTester.properties"));
 		
 		String templateClass = properties.getProperty("MythServicesServiceTemplate.class");
 		String apiBase = properties.getProperty("MythServicesServiceTemplate.ApiBaseUrl");

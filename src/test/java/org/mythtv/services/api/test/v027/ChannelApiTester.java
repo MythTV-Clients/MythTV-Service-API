@@ -59,7 +59,7 @@ public class ChannelApiTester extends BaseApiTester{
 		fail("Not yet implemented");
 	}
 
-	@Ignore
+	@Test
 	public void testGetChannelInfo() {
 		ChannelInfo[] infos = getChannelInfos();
 		ResponseEntity<ChannelInfo> result = operations.getChannelInfo(infos[0].getChanId(), ETagInfo.createEmptyETag());
@@ -86,7 +86,7 @@ public class ChannelApiTester extends BaseApiTester{
 		fail("Not yet implemented");
 	}
 
-	@Ignore
+	@Test
 	public void testGetVideoSource() {
 		VideoSource[] sources = getVideoSources();
 		ResponseEntity<VideoSource> result = operations.getVideoSource(sources[0].getId(), ETagInfo.createEmptyETag());

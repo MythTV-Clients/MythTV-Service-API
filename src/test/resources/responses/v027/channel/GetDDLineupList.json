@@ -1,0 +1,14 @@
+{
+    "LineupList":{
+        "Lineups":[
+            {
+                "LineupId":"NY67791:X",
+                "Name":"Verizon Fios Queens",
+                "DisplayName":"Verizon Fios Queens-CableDigital-Digital-10562-NY67791:X",
+                "Type":"CableDigital",
+                "Postal":"10562",
+                "Device":"Digital"
+            }
+        ]
+    }
+}

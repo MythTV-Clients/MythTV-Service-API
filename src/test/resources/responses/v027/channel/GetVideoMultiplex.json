@@ -1,0 +1,28 @@
+{
+    "VideoMultiplex":{
+        "MplexId":"1",
+        "SourceId":"1",
+        "TransportId":"1906",
+        "NetworkId":"0",
+        "Frequency":"495000000",
+        "Inversion":"a",
+        "SymbolRate":"0",
+        "FEC":"auto",
+        "Polarity":"v",
+        "Modulation":"qam_256",
+        "Bandwidth":"a",
+        "LPCodeRate":"auto",
+        "HPCodeRate":"auto",
+        "TransmissionMode":"a",
+        "GuardInterval":"auto",
+        "Visible":"false",
+        "Constellation":"qam_256",
+        "Hierarchy":"a",
+        "ModulationSystem":"UNDEFINED",
+        "RollOff":"0.35",
+        "SIStandard":"atsc",
+        "ServiceVersion":"33",
+        "UpdateTimeStamp":"2012-01-12T03:37:32Z",
+        "DefaultAuthority":""
+    }
+}
