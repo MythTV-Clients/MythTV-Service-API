@@ -19,7 +19,7 @@ public class Scheduled {
 	@Attribute
 	private int count = 0;
 
-	@ElementList( inline = true )
+	@ElementList( inline = true, required = false)
 	private List<Program> programs;
 	
 	public Scheduled() { }
