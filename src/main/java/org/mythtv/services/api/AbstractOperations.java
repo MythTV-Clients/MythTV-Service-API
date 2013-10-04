@@ -130,6 +130,7 @@ public abstract class AbstractOperations {
 			// Currently does not work with .26 backends
 			requestHeaders.setAcceptEncoding( ContentCodingType.GZIP );
 		}
+		requestHeaders.add( "Connection", "Close" );
 				
 		return new HttpEntity<Object>( requestHeaders );
 	}
