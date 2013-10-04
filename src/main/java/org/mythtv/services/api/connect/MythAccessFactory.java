@@ -98,6 +98,7 @@ public class MythAccessFactory {
         try {
             URL url = new URL(baseUri);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("Connection", "Close");
             if(urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
                 Map<String,List<String>> headerFields = urlConnection.getHeaderFields();
                 String server = urlConnection.getHeaderField(MYTHTV_SERVER_HEADER);
@@ -130,6 +131,7 @@ public class MythAccessFactory {
         try {
             final URL url = new URL(baseUrl.toString());
             final HttpURLConnection urlcon = (HttpURLConnection) url.openConnection();
+            urlcon.setRequestProperty("Connection", "Close");
             isOK = urlcon.getResponseCode() == HttpURLConnection.HTTP_OK;
             urlcon.disconnect();
         } catch (Exception e) {
