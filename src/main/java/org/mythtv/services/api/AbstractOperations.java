@@ -131,6 +131,7 @@ public abstract class AbstractOperations {
 			requestHeaders.setAcceptEncoding( ContentCodingType.GZIP );
 		}
 		requestHeaders.add( "Connection", "Close" );
+		requestHeaders.add( "User-Agent", "Services API" );
 				
 		return new HttpEntity<Object>( requestHeaders );
 	}
