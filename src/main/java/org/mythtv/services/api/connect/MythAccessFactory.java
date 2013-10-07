@@ -23,6 +23,8 @@ import org.mythtv.services.api.ApiVersion;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 
 import java.io.IOException;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -98,10 +100,15 @@ public class MythAccessFactory {
         try {
             URL url = new URL(baseUri);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestProperty("Connection", "Close");
+            urlConnection.setRequestProperty("User-Agent", "Services API/Get MythTV Version");
+            urlConnection.addRequestProperty("Connection", "Close");
             if(urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
                 Map<String,List<String>> headerFields = urlConnection.getHeaderFields();
                 String server = urlConnection.getHeaderField(MYTHTV_SERVER_HEADER);
+                byte[] drainResponse = new byte[ 64 ];
+                InputStream bis = new BufferedInputStream( urlConnection.getInputStream() );
+                while( bis.read( drainResponse , 0, 64 ) > 0 );
+                urlConnection.disconnect();
                 if(server != null) {
                     int idx = server.indexOf(MYTHTV_SERVER_MYTHVERSION);
                     if(idx >= 0){
@@ -113,7 +120,6 @@ public class MythAccessFactory {
                             return ApiVersion.v027;
                     }
                 }
-                urlConnection.disconnect();
             }
         } catch (Exception e) {
             throw new MythServiceApiRuntimeException(e);
@@ -131,8 +137,12 @@ public class MythAccessFactory {
         try {
             final URL url = new URL(baseUrl.toString());
             final HttpURLConnection urlcon = (HttpURLConnection) url.openConnection();
-            urlcon.setRequestProperty("Connection", "Close");
+            urlcon.setRequestProperty("User-Agent", "Services API/Is Server Reachable");
+            urlcon.addRequestProperty("Connection", "Close");
             isOK = urlcon.getResponseCode() == HttpURLConnection.HTTP_OK;
+            byte[] drainResponse = new byte[ 64 ];
+            InputStream bis = new BufferedInputStream( urlcon.getInputStream() );
+            while( bis.read( drainResponse , 0, 64 ) > 0 );
             urlcon.disconnect();
         } catch (Exception e) {
             throw new MythServiceApiRuntimeException(e);
