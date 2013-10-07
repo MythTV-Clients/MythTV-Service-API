@@ -48,7 +48,7 @@ public class MythAccessFactory {
 		if(serviceClass.isAssignableFrom(org.mythtv.services.api.v026.MythServices.class))
 			return (T) new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
 		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v027.MythServices.class))
-			return (T) new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
+			return (T) new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.27
 		return null;
 	}
 	
@@ -98,7 +98,7 @@ public class MythAccessFactory {
      */
     public static ApiVersion getMythVersion(String baseUri){
         try {
-            URL url = new URL(baseUri);
+            URL url = new URL(baseUri + "Myth/GetHostName");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestProperty("User-Agent", "Services API/Get MythTV Version");
             urlConnection.addRequestProperty("Connection", "Close");
@@ -118,6 +118,14 @@ public class MythAccessFactory {
                             return ApiVersion.v026;
                         else if(version.startsWith("0.27"))
                             return ApiVersion.v027;
+                        /*
+                         * The following is for 0.28-pre testing only and
+                         * MUST NOT be released because users could start
+                         * running OK, only to be disappointed when the 1st
+                         * change to existing 0.27 protocol is released.
+                         */
+                        //else if(version.startsWith("0.28"))
+                        //    return ApiVersion.v027;
                     }
                 }
             }
