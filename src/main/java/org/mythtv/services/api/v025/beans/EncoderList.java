@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,20 +13,39 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
-package org.mythtv.services.api;
+package org.mythtv.services.api.v025.beans;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * 
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
- * Supported versions of the service api.
  */
-public enum ApiVersion {
-	v025,
-    v026,
-	v027,
-    NotSupported
+@JsonIgnoreProperties( ignoreUnknown = true )
+public class EncoderList {
+    
+        
+        @JsonProperty( "Encoders" )
+        private Encoder[] encoders;
+        
+        /**
+         * @return the encoders
+         */
+        public Encoder[] getEncoders() {
+            return encoders;
+        }
+
+        /**
+         * @param encoders the encoders to set
+         */
+        public void setEncoders( Encoder[] encoders ) {
+            this.encoders = encoders;
+        }
+        
 }

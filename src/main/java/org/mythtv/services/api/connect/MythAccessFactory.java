@@ -45,7 +45,9 @@ public class MythAccessFactory {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getServiceTemplateApiByType(Class<T> serviceClass, String baseUri, Level logLevel){
-		if(serviceClass.isAssignableFrom(org.mythtv.services.api.v026.MythServices.class))
+        if(serviceClass.isAssignableFrom(org.mythtv.services.api.v025.MythServices.class))
+            return (T) new org.mythtv.services.api.v025.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.25
+		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v026.MythServices.class))
 			return (T) new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
 		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v027.MythServices.class))
 			return (T) new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.27
@@ -82,6 +84,8 @@ public class MythAccessFactory {
 	public static Object getServiceTemplateApiByVersion(ApiVersion version, String baseUri, Level logLevel){
 		if(version != null)
 			switch(version){
+                case v025:
+                    return new org.mythtv.services.api.v025.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 				case v026:
 					return new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 				case v027:
@@ -114,6 +118,8 @@ public class MythAccessFactory {
                     if(idx >= 0){
                         idx += MYTHTV_SERVER_MYTHVERSION.length();
                         String version = server.substring(idx);
+                        if(version.startsWith("0.25"))
+                            return ApiVersion.v025;
                         if(version.startsWith("0.26"))
                             return ApiVersion.v026;
                         else if(version.startsWith("0.27"))
