@@ -1,9 +1,9 @@
 /**
  * 
  */
-package org.mythtv.services.api.v025.status.converters;
+package org.mythtv.services.api.converters.v25;
 
-import org.mythtv.services.api.v025.status.beans.Job.Status;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.transform.Matcher;
 import org.simpleframework.xml.transform.Transform;
 
@@ -11,19 +11,17 @@ import org.simpleframework.xml.transform.Transform;
  * @author Daniel Frey
  *
  */
-public class JobStatusMatcher implements Matcher {
+public class JodaDateTimeMatcher implements Matcher {
 
 	/* (non-Javadoc)
 	 * @see org.simpleframework.xml.transform.Matcher#match(java.lang.Class)
 	 */
 	@Override
 	public Transform match( Class type ) throws Exception {
-        
-		if( type == Status.class ) {
-            return new JobStatusTransform();
+        if( type == DateTime.class ) {
+            return new JodaDateTimeTransform();
         }
-        
-		return null;
+        return null;
 	}
 
 }

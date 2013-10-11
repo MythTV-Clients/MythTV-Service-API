@@ -34,7 +34,7 @@ import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
 import org.mythtv.services.api.converters.ArrayOfStringConverter;
-import org.mythtv.services.api.converters.JodaDateTimeTransform;
+import org.mythtv.services.api.converters.v25.JodaDateTimeTransform;
 import org.mythtv.services.api.v025.impl.CaptureTemplate;
 import org.mythtv.services.api.v025.impl.ChannelTemplate;
 import org.mythtv.services.api.v025.impl.ContentTemplate;
