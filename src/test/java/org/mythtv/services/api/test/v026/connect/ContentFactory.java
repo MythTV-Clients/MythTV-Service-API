@@ -19,22 +19,35 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
-import org.mythtv.services.api.test.connect.AbstractMythFakeHttpResponseFactory;
+import org.mythtv.services.api.test.connect.AbstractMythFakeHttpInputMessage;
 import org.mythtv.services.api.test.connect.ResponseFactory;
 
-import java.util.ArrayList;
+import java.net.URI;
 
-public class MythFakeHttpResponseFactory extends AbstractMythFakeHttpResponseFactory {
+/**
+ * @author Sebastien Astie
+ *
+ */
+public class ContentFactory extends ResponseFactory {
 
+	
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.test.connect.utils.factories.ResponseFactory#create(java.net.URI)
+	 */
 	@Override
-	protected void init() {
-		factories = new ArrayList<ResponseFactory>();
-		factories.add( new CaptureFactory() );
-		factories.add( new GuideFactory() );
-		factories.add( new ChannelFactory() );
-        factories.add( new ContentFactory() );
-		factories.add( new VideoFactory());
-		factories.add( new DvrFactory());
-		factories.add( new StatusFactory());
+	public AbstractMythFakeHttpInputMessage create( URI url ) {
+		if( url.getPath().endsWith( "GetLiveStreamList" ) ) {
+			return new MythFakeHttpInputMessage("content/GetLiveStreamList.json");
+		}
+
+        return unknownOperation(url);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.mythtv.services.api.test.connect.utils.factories.ResponseFactory#getUriPrefix()
+	 */
+	@Override
+	protected String getUriPrefix() {
+		return "/Content/";
 	}
 }

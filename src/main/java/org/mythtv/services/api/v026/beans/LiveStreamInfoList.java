@@ -21,30 +21,28 @@ package org.mythtv.services.api.v026.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
 /**
  * @author Daniel Frey
  *
  */
-public class LiveStreamInfos {
+public class LiveStreamInfoList {
 
-    @JsonProperty( "LiveStreamInfos" )
-	private List<LiveStreamInfo> liveStreamInfos;
+	@JsonProperty( "LiveStreamInfoList" )
+	private LiveStreamInfos liveStreamInfos;
 
-	public LiveStreamInfos() { }
+	public LiveStreamInfoList() { }
 
 	/**
 	 * @return the liveStreamInfos
 	 */
-	public List<LiveStreamInfo> getLiveStreamInfos() {
+	public LiveStreamInfos getLiveStreamInfos() {
 		return liveStreamInfos;
 	}
 
 	/**
 	 * @param liveStreamInfos the liveStreamInfos to set
 	 */
-	public void setLiveStreamInfos( List<LiveStreamInfo> liveStreamInfos ) {
+	public void setLiveStreamInfos( LiveStreamInfos liveStreamInfos ) {
 		this.liveStreamInfos = liveStreamInfos;
 	}
 
@@ -55,7 +53,7 @@ public class LiveStreamInfos {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append( "LiveStreamInfos [" );
+		builder.append( "LiveStreamInfosList [" );
 		
 		if( liveStreamInfos != null ) {
 			builder.append( "liveStreamInfos=" );

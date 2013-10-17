@@ -149,7 +149,7 @@ public interface ContentOperations {
 	 * 
 	 * @return
 	 */
-	ResponseEntity<LiveStreamInfos> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfoList> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException;
 
 	/**
 	 * - GET

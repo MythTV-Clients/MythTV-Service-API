@@ -34,19 +34,20 @@ public class BaseMythtvServiceApiTester {
 	@Before
 	public void setUp() throws Exception {
 		properties = new Properties();
-		properties.load(new FileInputStream("src/test/resources/responses/v026/BaseMythtvServiceApiTester.properties"));
+		properties.load( new FileInputStream( "src/test/resources/responses/v026/BaseMythtvServiceApiTester.properties" ) );
 		
-		String templateClass = properties.getProperty("MythServicesServiceTemplate.class");
-		String apiBase = properties.getProperty("MythServicesServiceTemplate.ApiBaseUrl");
+		String templateClass = properties.getProperty( "MythServicesServiceTemplate.class" );
+		String apiBase = properties.getProperty( "MythServicesServiceTemplate.ApiBaseUrl" );
 		
-		if(templateClass == null)
-			throw new Exception("Property 'MythServicesServiceTemplate.class' is missing in property file.");
-		if(apiBase == null)
-			throw new Exception("Property 'MythServicesServiceTemplate.ApiBaseUrl' is missing in property file.");
+		if( templateClass == null )
+			throw new Exception( "Property 'MythServicesServiceTemplate.class' is missing in property file." );
+
+        if( apiBase == null )
+			throw new Exception( "Property 'MythServicesServiceTemplate.ApiBaseUrl' is missing in property file." );
 		
-		Class<? extends MythServicesTemplate> clazz = Class.forName(templateClass).asSubclass(MythServicesTemplate.class);
-		Constructor<? extends MythServicesTemplate> c = clazz.getConstructor(String.class);
-		MythServicesTemplate serv = c.newInstance(apiBase);
+		Class<? extends MythServicesTemplate> clazz = Class.forName( templateClass ).asSubclass( MythServicesTemplate.class );
+		Constructor<? extends MythServicesTemplate> c = clazz.getConstructor( String.class );
+		MythServicesTemplate serv = c.newInstance( apiBase );
 		api = serv;
 	}
 

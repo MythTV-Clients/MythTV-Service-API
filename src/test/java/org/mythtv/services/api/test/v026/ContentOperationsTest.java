@@ -21,7 +21,15 @@ package org.mythtv.services.api.test.v026;
 
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
+import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.v026.ContentOperations;
+import org.mythtv.services.api.v026.beans.LiveStreamInfoList;
+import org.mythtv.services.api.v026.beans.LiveStreamInfoWrapper;
+import org.mythtv.services.api.v026.beans.LiveStreamInfos;
+import org.mythtv.services.api.v026.beans.RecRuleList;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 
 import static org.junit.Assert.fail;
 
@@ -30,17 +38,6 @@ import static org.junit.Assert.fail;
  *
  */
 public class ContentOperationsTest extends BaseMythtvServiceApiTester {
-
-	private ContentOperations contentOperations;
-	
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.test.BaseMythtvServiceApiTester#setUp()
-	 */
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-		contentOperations = api.contentOperations();
-	}
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)}.
@@ -133,10 +130,13 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 	/**
 	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getLiveStreamList()}.
 	 */
-	@Ignore
+	@Test
 	public void testGetLiveStreamList() {
-		fail("Not yet implemented"); // TODO
-	}
+        ResponseEntity<LiveStreamInfoList> liveStreams = api.contentOperations().getLiveStreamList(ETagInfo.createEmptyETag());
+        Assert.notNull( liveStreams.getBody() );
+        Assert.notEmpty(liveStreams.getBody().getLiveStreamInfos().getLiveStreamInfos() );
+
+    }
 
 	/**
 	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getMusic(int)}.

@@ -350,9 +350,9 @@ public class ContentTemplate extends AbstractContentOperations implements Conten
 	 * @see org.mythtv.services.api.content.ContentOperations#getLiveStreamList()
 	 */
 	@Override
-	public ResponseEntity<LiveStreamInfos> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<LiveStreamInfoList> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException {
 
-		ResponseEntity<LiveStreamInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfos.class );
+		ResponseEntity<LiveStreamInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfoList.class );
 		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
 		return responseEntity;
