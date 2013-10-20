@@ -138,7 +138,23 @@ public class ContentOperationsTest extends BaseMythtvServiceApiTester {
 
     }
 
-	/**
+    /**
+     * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getLiveStreamList()}.
+     */
+    @Test
+    public void testGetLiveStreamListRepeat() throws InterruptedException {
+
+        for( int i = 0; i < 10; i++ ) {
+            ResponseEntity<LiveStreamInfoList> liveStreams = api.contentOperations().getLiveStreamList(ETagInfo.createEmptyETag());
+            Assert.notNull( liveStreams.getBody() );
+            Assert.notEmpty(liveStreams.getBody().getLiveStreamInfos().getLiveStreamInfos() );
+
+            Thread.sleep( 1000 );
+        }
+
+    }
+
+    /**
 	 * Test method for {@link org.mythtv.services.api.v026.impl.ContentTemplate#getMusic(int)}.
 	 */
 	@Ignore

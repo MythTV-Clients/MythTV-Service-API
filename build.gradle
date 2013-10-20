@@ -9,7 +9,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'org.mythtv.android'
-version = '1.0.10'
+version = '1.0.11'
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 
@@ -47,10 +47,10 @@ dependencies {
     compile group:'org.joda', name:'joda-convert', version:'1.2' 
     compile group:'joda-time', name:'joda-time', version:'2.1' 
     compile group:'javax.jmdns', name:'jmdns', version:'3.4.1'
-    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.1.2'
-	compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.1.2'
-	compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.1.2'
-	compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:'2.1.2'
+    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.2.3'
+	compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.2.3'
+	compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.2.3'
+	compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:'2.2.3'
 	compile group:'org.springframework.android', name:'spring-android-rest-template', version:'1.0.1.RELEASE'
 	compile group:'org.springframework.social', name:'spring-social-core', version:'1.0.2.RELEASE'
     compile group:'org.simpleframework', name:'simple-xml', version:'2.7'
