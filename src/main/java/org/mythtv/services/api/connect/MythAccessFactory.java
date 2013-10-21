@@ -130,8 +130,8 @@ public class MythAccessFactory {
                          * running OK, only to be disappointed when the 1st
                          * change to existing 0.27 protocol is released.
                          */
-                        //else if(version.startsWith("0.28"))
-                        //    return ApiVersion.v027;
+                        else if(version.startsWith("0.28"))
+                            return ApiVersion.v028;
                     }
                 }
             }
