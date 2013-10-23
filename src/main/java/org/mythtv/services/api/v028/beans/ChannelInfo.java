@@ -435,7 +435,7 @@ public class ChannelInfo {
         /**
          * @return the commFree
          */
-        public Boolean getCommFree() {
+        public Boolean isCommFree() {
             return commFree;
         }
 

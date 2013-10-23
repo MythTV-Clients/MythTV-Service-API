@@ -430,7 +430,7 @@ public class ChannelInfo implements Serializable, Comparable<ChannelInfo> {
 	/**
 	 * @return the commercialFree
 	 */
-	public boolean getCommercialFree() {
+	public boolean isCommercialFree() {
 		return commercialFree;
 	}
 
