@@ -19,179 +19,188 @@
  */
 package org.mythtv.services.api.v026;
 
-import org.joda.time.DateTime;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.*;
+import org.mythtv.services.api.v026.beans.EncoderList;
+import org.mythtv.services.api.v026.beans.Program;
+import org.mythtv.services.api.v026.beans.ProgramList;
+import org.mythtv.services.api.v026.beans.RecRule;
+import org.mythtv.services.api.v026.beans.RecRuleList;
 import org.springframework.http.ResponseEntity;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
 public interface DvrOperations {
 
-	/**
-	 * - POST
-	 * 
-	 * @param channelId
+	/*
+	 * POST method
+	 *
+	 * @param chanId
 	 * @param startTime
 	 * @param parentId
-	 * @param interactive
+	 * @param inactive
 	 * @param season
 	 * @param episode
-	 * @param inetRef
+	 * @param inetref
 	 * @param findId
 	 * @param type
 	 * @param searchType
-	 * @param recordingPriority
-	 * @param perferredInput
+	 * @param recPriority
+	 * @param preferredInput
 	 * @param startOffset
 	 * @param endOffset
-	 * @param duplicateMethod
-	 * @param duplicateIn
+	 * @param dupMethod
+	 * @param dupIn
 	 * @param filter
-	 * @param recordingProfile
-	 * @param recordingGroup
+	 * @param recProfile
+	 * @param recGroup
 	 * @param storageGroup
 	 * @param playGroup
 	 * @param autoExpire
 	 * @param maxEpisodes
 	 * @param maxNewest
-	 * @param autoCommercialFlag
+	 * @param autoCommflag
 	 * @param autoTranscode
-	 * @param autoMetadataLookup
+	 * @param autoMetaLookup
 	 * @param autoUserJob1
 	 * @param autoUserJob2
 	 * @param autoUserJob3
 	 * @param autoUserJob4
 	 * @param transcoder
-	 * @return
+	 * @return ResponseEntity<Int>
 	 */
-	ResponseEntity<Int> addRecordingSchedule( int channelId, DateTime startTime, int parentId, boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType, int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod, String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup, String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag, boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2, boolean autoUserJob3, boolean autoUserJob4, int transcoder ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
-	 * @param recordingId
-	 * @return
-	 */
-	ResponseEntity<Bool> disableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
-	 * @param recordingId
-	 * @return
-	 */
-	ResponseEntity<Bool> enableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param startIndex
-	 * @param count
-	 * @return
-	 */
-	ResponseEntity<ProgramList> getConflictList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @return
-	 */
-	ResponseEntity<EncoderList> getEncoderList( ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param startIndex
-	 * @param count
-	 * @return
-	 */
-	ResponseEntity<ProgramList> getExpiringList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Int> addRecordSchedule(Integer chanId, org.joda.time.DateTime startTime, Integer parentId, Boolean inactive, Integer season, Integer episode, String inetref, Integer findId, String type, String searchType, Integer recPriority, Integer preferredInput, Integer startOffset, Integer endOffset, String dupMethod, String dupIn, Integer filter, String recProfile, String recGroup, String storageGroup, String playGroup, Boolean autoExpire, Integer maxEpisodes, Boolean maxNewest, Boolean autoCommflag, Boolean autoTranscode, Boolean autoMetaLookup, Boolean autoUserJob1, Boolean autoUserJob2, Boolean autoUserJob3, Boolean autoUserJob4, Integer transcoder) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - GET
-	 * 
+	/*
+	 * POST method
+	 *
+	 * @param recordId
+	 * @return ResponseEntity<Bool>
+	 */
+	ResponseEntity<Bool> disableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException;
+
+	/*
+	 * POST method
+	 *
+	 * @param recordId
+	 * @return ResponseEntity<Bool>
+	 */
+	ResponseEntity<Bool> enableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param startIndex
+	 * @param count
+	 * @param etagInfo
+	 * @return ResponseEntity<ProgramList>
+	 */
+	ResponseEntity<ProgramList> getConflictList(Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param etagInfo
+	 * @return ResponseEntity<EncoderList>
+	 */
+	ResponseEntity<EncoderList> getEncoderList(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param startIndex
+	 * @param count
+	 * @param etagInfo
+	 * @return ResponseEntity<ProgramList>
+	 */
+	ResponseEntity<ProgramList> getExpiringList(Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param descending
 	 * @param startIndex
 	 * @param count
 	 * @param titleRegEx
-	 * @param recordingGroup
+	 * @param recGroup
 	 * @param storageGroup
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<ProgramList>
 	 */
-	ResponseEntity<ProgramList> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx, String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param recordId
-	 * @return
-	 */
-	ResponseEntity<RecRuleWrapper> getRecordSchedule( int recordId, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param startIndex
-	 * @param count
-	 * @return
-	 */
-	ResponseEntity<RecRuleList> getRecordScheduleList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
-	 * @param startTime
-	 * @return
-	 */
-	ResponseEntity<ProgramWrapper> getRecorded( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @return
-	 */
-	ResponseEntity<ProgramList> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<ProgramList> getFilteredRecordedList(Boolean descending, Integer startIndex, Integer count, String titleRegEx, String recGroup, String storageGroup, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - GET
-	 * 
+	/*
+	 * GET method
+	 *
+	 * @param recordId
+	 * @param etagInfo
+	 * @return ResponseEntity<RecRule>
+	 */
+	ResponseEntity<RecRule> getRecordSchedule(Integer recordId, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param startIndex
 	 * @param count
-	 * @param descending
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<RecRuleList>
 	 */
-	ResponseEntity<ProgramList> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<RecRuleList> getRecordScheduleList(Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param chanId
+	 * @param startTime
+	 * @param etagInfo
+	 * @return ResponseEntity<Program>
+	 */
+	ResponseEntity<Program> getRecorded(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param descending
+	 * @param startIndex
+	 * @param count
+	 * @param etagInfo
+	 * @return ResponseEntity<ProgramList>
+	 */
+	ResponseEntity<ProgramList> getRecordedList(Boolean descending, Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param startIndex
 	 * @param count
 	 * @param showAll
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<ProgramList>
 	 */
-	ResponseEntity<ProgramList> getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
-	 * @param recordingId
-	 * @return
+	ResponseEntity<ProgramList> getUpcomingList(Integer startIndex, Integer count, Boolean showAll, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * POST method
+	 *
+	 * @param recordId
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> removeRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
+	ResponseEntity<Bool> removeRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param chanId
 	 * @param startTime
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> removeRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeRecorded(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
 }

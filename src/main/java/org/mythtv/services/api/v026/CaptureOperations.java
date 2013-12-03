@@ -19,94 +19,127 @@
  */
 package org.mythtv.services.api.v026;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v026.beans.CaptureCard;
 import org.mythtv.services.api.v026.beans.CaptureCardList;
-import org.mythtv.services.api.v026.beans.CaptureCardWrapper;
-import org.mythtv.services.api.v026.beans.CardInput;
 import org.springframework.http.ResponseEntity;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
 public interface CaptureOperations {
 
-	/**
-	 * - POST
-	 * 
-	 * @param captureCard
-	 * @return
+	/*
+	 * POST method
+	 *
+	 * @param videoDevice
+	 * @param audioDevice
+	 * @param vBIDevice
+	 * @param cardType
+	 * @param audioRateLimit
+	 * @param hostName
+	 * @param dVBSWFilter
+	 * @param dVBSatType
+	 * @param dVBWaitForSeqStart
+	 * @param skipBTAudio
+	 * @param dVBOnDemand
+	 * @param dVBDiSEqCType
+	 * @param firewireSpeed
+	 * @param firewireModel
+	 * @param firewireConnection
+	 * @param signalTimeout
+	 * @param channelTimeout
+	 * @param dVBTuningDelay
+	 * @param contrast
+	 * @param brightness
+	 * @param colour
+	 * @param hue
+	 * @param diSEqCId
+	 * @param dVBEITScan
+	 * @return ResponseEntity<Int>
 	 */
-	ResponseEntity<Int> addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
-	 * @param cardInput
-	 * @return
-	 */
-	ResponseEntity<Int> addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Int> addCaptureCard(String videoDevice, String audioDevice, String vBIDevice, String cardType, Integer audioRateLimit, String hostName, Integer dVBSWFilter, Integer dVBSatType, Boolean dVBWaitForSeqStart, Boolean skipBTAudio, Boolean dVBOnDemand, Integer dVBDiSEqCType, Integer firewireSpeed, String firewireModel, Integer firewireConnection, Integer signalTimeout, Integer channelTimeout, Integer dVBTuningDelay, Integer contrast, Integer brightness, Integer colour, Integer hue, Integer diSEqCId, Boolean dVBEITScan) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - GET
-	 * 
+	/*
+	 * POST method
+	 *
 	 * @param cardId
-	 * @return
+	 * @param sourceId
+	 * @param inputName
+	 * @param externalCommand
+	 * @param changerDevice
+	 * @param changerModel
+	 * @param hostName
+	 * @param tuneChan
+	 * @param startChan
+	 * @param displayName
+	 * @param dishnetEIT
+	 * @param recPriority
+	 * @param quicktune
+	 * @param schedOrder
+	 * @param liveTVOrder
+	 * @return ResponseEntity<Int>
 	 */
-	ResponseEntity<CaptureCardWrapper> getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @return
+	ResponseEntity<Int> addCardInput(Integer cardId, Integer sourceId, String inputName, String externalCommand, String changerDevice, String changerModel, String hostName, String tuneChan, String startChan, String displayName, Boolean dishnetEIT, Integer recPriority, Integer quicktune, Integer schedOrder, Integer liveTVOrder) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param cardId
+	 * @param etagInfo
+	 * @return ResponseEntity<CaptureCard>
 	 */
-	ResponseEntity<CaptureCardList> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<CaptureCard> getCaptureCard(Integer cardId, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param hostName
 	 * @param cardType
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<CaptureCardList>
 	 */
-	ResponseEntity<CaptureCardList> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<CaptureCardList> getCaptureCardList(String hostName, String cardType, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - POST
-	 * 
+	/*
+	 * POST method
+	 *
 	 * @param cardId
-	 * @return
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
-	 * @param cardInputId
-	 * @return
-	 */
-	ResponseEntity<Bool> removeCardInput( int cardInputId ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> removeCaptureCard(Integer cardId) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - POST
-	 * 
+	/*
+	 * POST method
+	 *
+	 * @param cardInputId
+	 * @return ResponseEntity<Bool>
+	 */
+	ResponseEntity<Bool> removeCardInput(Integer cardInputId) throws MythServiceApiRuntimeException;
+
+	/*
+	 * POST method
+	 *
 	 * @param cardId
 	 * @param setting
 	 * @param value
-	 * @return
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
+	ResponseEntity<Bool> updateCaptureCard(Integer cardId, String setting, String value) throws MythServiceApiRuntimeException;
+
+	/*
+	 * POST method
+	 *
 	 * @param cardInputId
 	 * @param setting
 	 * @param value
-	 * @return
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> updateCardInput(Integer cardInputId, String setting, String value) throws MythServiceApiRuntimeException;
 
 }

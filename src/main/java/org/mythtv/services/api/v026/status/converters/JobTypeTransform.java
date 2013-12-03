@@ -3,7 +3,7 @@
  */
 package org.mythtv.services.api.v026.status.converters;
 
-import org.mythtv.services.api.v026.beans.Job.Type;
+import org.mythtv.services.api.v026.status.beans.Job.Type;
 import org.simpleframework.xml.transform.Transform;
 
 /**

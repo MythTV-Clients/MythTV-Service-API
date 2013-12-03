@@ -19,11 +19,7 @@
  */
 package org.mythtv.services.api.v026.impl;
 
-import org.joda.time.DateTime;
-import org.mythtv.services.api.ETagInfo;
-import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.Bool;
-import org.mythtv.services.api.v026.FrontendOperations;
+import org.mythtv.services.api.*;
 import org.mythtv.services.api.v026.beans.FrontendActionList;
 import org.mythtv.services.api.v026.beans.FrontendStatus;
 import org.springframework.http.HttpMethod;
@@ -31,165 +27,147 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
-import java.net.URI;
-
 /**
- * @author Daniel Frey
- * 
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
+ * @author Sebastien Astie
  */
-public class FrontendTemplate extends AbstractFrontendOperations implements FrontendOperations {
+public class FrontendTemplate extends AbstractOperations implements org.mythtv.services.api.v026.FrontendOperations {
 
-	private final RestOperations restOperations;
+    private final RestOperations restOperations;
 
-	public FrontendTemplate( RestOperations restOperations, String apiUrlBase ) {
-		super( apiUrlBase );
-		this.restOperations = restOperations;
-	}
+    public FrontendTemplate( RestOperations restOperations, String apiUrlBase ) {
+        super( apiUrlBase + "Frontend/" );
+        this.restOperations = restOperations;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.frontend.FrontendOperations#getStatus(java.lang
-	 * .String)
-	 */
 	@Override
-	public ResponseEntity<FrontendStatus> getStatus( String frontedApiUrlBase, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
-
-		ResponseEntity<FrontendStatus> responseEntity = restOperations.exchange( frontedApiUrlBase
-				+ "/Frontend/GetStatus", HttpMethod.GET, getRequestEntity( etag ), FrontendStatus.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.frontend.FrontendOperations#sendMessage(java.
-	 * lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<Bool> sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<FrontendActionList> getActionList(String context, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Message", message );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				buildUri( frontedApiUrlBase + "/Frontend/SendMessage", parameters ), HttpMethod.GET,
-				getRequestEntity( null ), Bool.class );
-
+		if(context != null && !context.isEmpty())
+			parameters.add( "Context", context );
+		
+		ResponseEntity<FrontendActionList> responseEntity = restOperations.exchange( buildUri( "GetActionList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), FrontendActionList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.frontend.FrontendOperations#sendAction(java.lang
-	 * .String, java.lang.String, java.lang.String, int, int)
-	 */
 	@Override
-	public ResponseEntity<Bool> sendAction( String frontedApiUrlBase, String action, String file, int width, int height )
-			throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<ArrayOfString> getContextList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Action", action );
-		
-		if( null != file ) {
-			parameters.add( "File", file );
-		}
-		
-		if( width > 0 && height > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-			parameters.add( "Height", String.valueOf( height ) );
-		}
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				buildUri( frontedApiUrlBase + "/Frontend/SendAction", parameters ),
-				HttpMethod.GET,
-				getRequestEntity( null ),
-				Bool.class );
 		
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetContextList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.frontend.FrontendOperations#getActionList(java
-	 * .lang.String)
-	 */
 	@Override
-	public ResponseEntity<FrontendActionList> getActionList( String frontedApiUrlBase, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
-
-		ResponseEntity<FrontendActionList> responseEntity = restOperations.exchange( buildUri( frontedApiUrlBase
-				+ "/Frontend/GetActionList" ), HttpMethod.GET, getRequestEntity( etag ), FrontendActionList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * - GET
-	 * 
-	 * @param frontedApiUrlBase
-	 * @param channelId - (Required) The database channel id for the recording
-	 * @param startTime - (Required) The recording start time for the item. This should be in MySQL ISO format, eg: 2011-08-29 18:59:00. You can replace the space with %20 or T.
-	 * @return
-	 * @throws MythServiceApiRuntimeException
-	 */
-	@Override
-	public ResponseEntity<Bool> playRecording(String frontedApiUrlBase, int channelId, DateTime startTime)
-	{
+	public ResponseEntity<FrontendStatus> getStatus(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
+
 		
-		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayRecording", parameters );
-		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				uri,
-				HttpMethod.GET,
-				getRequestEntity( null ),
-				Bool.class );
-		
+		ResponseEntity<FrontendStatus> responseEntity = restOperations.exchange( buildUri( "GetStatus", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), FrontendStatus.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * - Get 
-	 * 
-	 * @param frontedApiUrlBase
-	 * @param id - (Required) The database id for the video file
-	 * @param useBookmark - (Optional) Pass 1 to resume playback at a bookmark
-	 * @return
-	 * @throws MythServiceApiRuntimeException
-	 */
+
 	@Override
-	public ResponseEntity<Bool> playVideo(String frontedApiUrlBase, String id, boolean useBookmark)
-	{
+	public ResponseEntity<Bool> playRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", id.toString() );
-		if(useBookmark) parameters.add( "UseBookmark", "1");
+
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
-		URI uri = buildUri( frontedApiUrlBase + "/Frontend/PlayVideo", parameters );
-		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange(
-				uri,
-				HttpMethod.GET,
-				getRequestEntity( null ),
-				Bool.class );
-		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PlayRecording", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
+
+	@Override
+	public ResponseEntity<Bool> playVideo(String id, Boolean useBookmark, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(id != null && !id.isEmpty())
+			parameters.add( "Id", id );
+		if(useBookmark != null)
+           		parameters.add( "UseBookmark", useBookmark.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PlayVideo", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> sendAction(String action, String value, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(action != null && !action.isEmpty())
+			parameters.add( "Action", action );
+		if(value != null && !value.isEmpty())
+			parameters.add( "Value", value );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendAction", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> sendMessage(String message, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(message != null && !message.isEmpty())
+			parameters.add( "Message", message );
+		if(timeout != null)
+           		parameters.add( "Timeout", timeout.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendMessage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(error != null)
+           		parameters.add( "Error", error.toString() );
+		if(type != null && !type.isEmpty())
+			parameters.add( "Type", type );
+		if(message != null && !message.isEmpty())
+			parameters.add( "Message", message );
+		if(origin != null && !origin.isEmpty())
+			parameters.add( "Origin", origin );
+		if(description != null && !description.isEmpty())
+			parameters.add( "Description", description );
+		if(image != null && !image.isEmpty())
+			parameters.add( "Image", image );
+		if(extra != null && !extra.isEmpty())
+			parameters.add( "Extra", extra );
+		if(progressText != null && !progressText.isEmpty())
+			parameters.add( "ProgressText", progressText );
+		if(progress != null)
+           		parameters.add( "Progress", progress.toString() );
+		if(timeout != null)
+           		parameters.add( "Timeout", timeout.toString() );
+		if(fullscreen != null)
+           		parameters.add( "Fullscreen", fullscreen.toString() );
+		if(visibility != null)
+           		parameters.add( "Visibility", visibility.toString() );
+		if(priority != null)
+           		parameters.add( "Priority", priority.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendNotification", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
 
 }

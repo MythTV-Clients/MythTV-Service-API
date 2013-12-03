@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,226 +13,165 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.v026.beans;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
-@Root( name = "Encoder" )
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class Encoder {
+    
+        
+        @JsonProperty( "Id" )
+        private Integer id;
+        
+        
+        @JsonProperty( "HostName" )
+        private String hostName;
+        
+        
+        @JsonProperty( "Local" )
+        private Boolean local;
+        
+        
+        @JsonProperty( "Connected" )
+        private Boolean connected;
+        
+        
+        @JsonProperty( "State" )
+        private Integer state;
+        
+        
+        @JsonProperty( "SleepStatus" )
+        private Integer sleepStatus;
+        
+        
+        @JsonProperty( "LowOnFreeSpace" )
+        private Boolean lowOnFreeSpace;
+        
+        
+        @JsonProperty( "Recording" )
+        private Program recording;
+        
+        /**
+         * @return the id
+         */
+        public Integer getId() {
+            return id;
+        }
 
-	@JsonProperty( "Id" )
-	@Attribute
-	private int id;
-	
-	@JsonProperty( "HostName" )
-	@Attribute
-	private String hostname;
-	
-	@JsonProperty( "Local" )
-	@Attribute
-	private boolean local;
-	
-	@JsonProperty( "Connected" )
-	@Attribute
-	private boolean connected;
-	
-	@JsonProperty( "State" )
-	@Attribute
-	private int state;
-	
-	@JsonProperty( "SleepStatus" )
-	@Attribute( name = "sleepstatus" )
-	private int sleepStatus;
-	
-	@JsonIgnore
-	@Attribute( name = "devlabel" )
-	private String deviceLabel;
-	
-	@JsonProperty( "LowOnFreeSpace" )
-	@Attribute( required = false )
-	private boolean lowOnFreeSpace;
-	
-	@JsonProperty( "Recording" )
-	@Element( name = "Program", required = false )
-	private Program recording;
-	
-	public Encoder() { }
+        /**
+         * @param id the id to set
+         */
+        public void setId( Integer id ) {
+            this.id = id;
+        }
+        
+        /**
+         * @return the hostName
+         */
+        public String getHostName() {
+            return hostName;
+        }
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
+        /**
+         * @param hostName the hostName to set
+         */
+        public void setHostName( String hostName ) {
+            this.hostName = hostName;
+        }
+        
+        /**
+         * @return the local
+         */
+        public Boolean isLocal() {
+            return local;
+        }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId( int id ) {
-		this.id = id;
-	}
+        /**
+         * @param local the local to set
+         */
+        public void setLocal( Boolean local ) {
+            this.local = local;
+        }
+        
+        /**
+         * @return the connected
+         */
+        public Boolean isConnected() {
+            return connected;
+        }
 
-	/**
-	 * @return the hostname
-	 */
-	public String getHostname() {
-		return hostname;
-	}
+        /**
+         * @param connected the connected to set
+         */
+        public void setConnected( Boolean connected ) {
+            this.connected = connected;
+        }
+        
+        /**
+         * @return the state
+         */
+        public Integer getState() {
+            return state;
+        }
 
-	/**
-	 * @param hostname the hostname to set
-	 */
-	public void setHostname( String hostname ) {
-		this.hostname = hostname;
-	}
+        /**
+         * @param state the state to set
+         */
+        public void setState( Integer state ) {
+            this.state = state;
+        }
+        
+        /**
+         * @return the sleepStatus
+         */
+        public Integer getSleepStatus() {
+            return sleepStatus;
+        }
 
-	/**
-	 * @return the local
-	 */
-	public boolean isLocal() {
-		return local;
-	}
+        /**
+         * @param sleepStatus the sleepStatus to set
+         */
+        public void setSleepStatus( Integer sleepStatus ) {
+            this.sleepStatus = sleepStatus;
+        }
+        
+        /**
+         * @return the lowOnFreeSpace
+         */
+        public Boolean isLowOnFreeSpace() {
+            return lowOnFreeSpace;
+        }
 
-	/**
-	 * @param local the local to set
-	 */
-	public void setLocal( boolean local ) {
-		this.local = local;
-	}
+        /**
+         * @param lowOnFreeSpace the lowOnFreeSpace to set
+         */
+        public void setLowOnFreeSpace( Boolean lowOnFreeSpace ) {
+            this.lowOnFreeSpace = lowOnFreeSpace;
+        }
+        
+        /**
+         * @return the recording
+         */
+        public Program getRecording() {
+            return recording;
+        }
 
-	/**
-	 * @return the connected
-	 */
-	public boolean isConnected() {
-		return connected;
-	}
-
-	/**
-	 * @param connected the connected to set
-	 */
-	public void setConnected( boolean connected ) {
-		this.connected = connected;
-	}
-
-	/**
-	 * @return the state
-	 */
-	public int getState() {
-		return state;
-	}
-
-	/**
-	 * @param state the state to set
-	 */
-	public void setState( int state ) {
-		this.state = state;
-	}
-
-	/**
-	 * @return the sleepStatus
-	 */
-	public int getSleepStatus() {
-		return sleepStatus;
-	}
-
-	/**
-	 * @param sleepStatus the sleepStatus to set
-	 */
-	public void setSleepStatus( int sleepStatus ) {
-		this.sleepStatus = sleepStatus;
-	}
-
-	/**
-	 * @return the deviceLabel
-	 */
-	public String getDeviceLabel() {
-		return deviceLabel;
-	}
-
-	/**
-	 * @param deviceLabel the deviceLabel to set
-	 */
-	public void setDeviceLabel( String deviceLabel ) {
-		this.deviceLabel = deviceLabel;
-	}
-
-	/**
-	 * @return the lowOnFreeSpace
-	 */
-	public boolean isLowOnFreeSpace() {
-		return lowOnFreeSpace;
-	}
-
-	/**
-	 * @param lowOnFreeSpace the lowOnFreeSpace to set
-	 */
-	public void setLowOnFreeSpace( boolean lowOnFreeSpace ) {
-		this.lowOnFreeSpace = lowOnFreeSpace;
-	}
-
-	/**
-	 * @return the recording
-	 */
-	public Program getRecording() {
-		return recording;
-	}
-
-	/**
-	 * @param recording the recording to set
-	 */
-	public void setRecording( Program recording ) {
-		this.recording = recording;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append( "Encoder [id=" );
-		builder.append( id );
-		builder.append( ", " );
-		if( hostname != null ) {
-			builder.append( "hostname=" );
-			builder.append( hostname );
-			builder.append( ", " );
-		}
-		builder.append( "local=" );
-		builder.append( local );
-		builder.append( ", connected=" );
-		builder.append( connected );
-		builder.append( ", state=" );
-		builder.append( state );
-		builder.append( ", sleepStatus=" );
-		builder.append( sleepStatus );
-		builder.append( ", " );
-		if( deviceLabel != null ) {
-			builder.append( "deviceLabel=" );
-			builder.append( deviceLabel );
-			builder.append( ", " );
-		}
-		builder.append( "lowOnFreeSpace=" );
-		builder.append( lowOnFreeSpace );
-		builder.append( ", " );
-		if( recording != null ) {
-			builder.append( "recording=" );
-			builder.append( recording );
-		}
-		builder.append( "]" );
-		return builder.toString();
-	}
-	
+        /**
+         * @param recording the recording to set
+         */
+        public void setRecording( Program recording ) {
+            this.recording = recording;
+        }
+        
 }

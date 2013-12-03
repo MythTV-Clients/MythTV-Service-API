@@ -19,29 +19,65 @@
  */
 package org.mythtv.services.api.v026;
 
-
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
 public interface MythServices {
 
+	/*
+	 * Capture Operations
+	 * @return an instance of a class implementing CaptureOperations
+	 */
 	CaptureOperations captureOperations();
-	
+
+	/*
+	 * Channel Operations
+	 * @return an instance of a class implementing ChannelOperations
+	 */
 	ChannelOperations channelOperations();
-	
+
+	/*
+	 * Content Operations
+	 * @return an instance of a class implementing ContentOperations
+	 */
 	ContentOperations contentOperations();
-	
+
+	/*
+	 * Dvr Operations
+	 * @return an instance of a class implementing DvrOperations
+	 */
 	DvrOperations dvrOperations();
-	
-	FrontendOperations frontendOperations();
-	
+
+	/*
+	 * Guide Operations
+	 * @return an instance of a class implementing GuideOperations
+	 */
 	GuideOperations guideOperations();
-	
+
+	/*
+	 * Myth Operations
+	 * @return an instance of a class implementing MythOperations
+	 */
 	MythOperations mythOperations();
-	
-	StatusOperations statusOperations();
-	
+
+	/*
+	 * Video Operations
+	 * @return an instance of a class implementing VideoOperations
+	 */
 	VideoOperations videoOperations();
-	
+
+	/*
+	 * Frontend Operations
+	 * @return an instance of a class implementing FrontendOperations
+	 */
+	FrontendOperations frontendOperations();
+
+	/*
+	 * Status Operations
+	 * @return an instance of a class implementing StatusOperations
+	 */
+	StatusOperations statusOperations();
+
 }

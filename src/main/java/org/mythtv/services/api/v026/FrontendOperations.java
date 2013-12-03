@@ -19,7 +19,8 @@
  */
 package org.mythtv.services.api.v026;
 
-import org.joda.time.DateTime;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
 import org.mythtv.services.api.v026.beans.FrontendActionList;
@@ -27,67 +28,98 @@ import org.mythtv.services.api.v026.beans.FrontendStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
 public interface FrontendOperations {
 
-	/**
-	 * - GET
-	 * 
-	 * @param frontedApiUrlBase
-	 * @return
+	/*
+	 * GET method
+	 *
+	 * @param context
+	 * @param etagInfo
+	 * @return ResponseEntity<FrontendActionList>
 	 */
-	ResponseEntity<FrontendStatus> getStatus( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param frontedApiUrlBase
-	 * @param message
-	 * @return
+	ResponseEntity<FrontendActionList> getActionList(String context, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param etagInfo
+	 * @return ResponseEntity<ArrayOfString>
 	 */
-	ResponseEntity<Bool> sendMessage( String frontedApiUrlBase, String message ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param frontedApiUrlBase
+	ResponseEntity<ArrayOfString> getContextList(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param etagInfo
+	 * @return ResponseEntity<FrontendStatus>
+	 */
+	ResponseEntity<FrontendStatus> getStatus(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param chanId
+	 * @param startTime
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
+	 */
+	ResponseEntity<Bool> playRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param id
+	 * @param useBookmark
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
+	 */
+	ResponseEntity<Bool> playVideo(String id, Boolean useBookmark, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param action
-	 * @param file
+	 * @param value
 	 * @param width
 	 * @param height
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> sendAction( String frontedApiUrlBase, String action, String file, int width, int height ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param frontedApiUrlBase
-	 * @return
+	ResponseEntity<Bool> sendAction(String action, String value, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param message
+	 * @param timeout
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<FrontendActionList> getActionList( String frontedApiUrlBase, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * 
-	 * - GET
-	 * 
-	 * @param frontedApiUrlBase
-	 * @param channelId - (Required) The database channel id for the recording
-	 * @param startTime - (Required) The recording start time for the item. This should be in MySQL ISO format, eg: 2011-08-29 18:59:00. You can replace the space with %20 or T.
-	 * @return
-	 * @throws MythServiceApiRuntimeException
+	ResponseEntity<Bool> sendMessage(String message, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param error
+	 * @param type
+	 * @param message
+	 * @param origin
+	 * @param description
+	 * @param image
+	 * @param extra
+	 * @param progressText
+	 * @param progress
+	 * @param timeout
+	 * @param fullscreen
+	 * @param visibility
+	 * @param priority
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> playRecording(String frontedApiUrlBase, int channelId, DateTime startTime) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * 
-	 * @param frontedApiUrlBase
-	 * @param id - (Required) The database id for the video file
-	 * @param useBookmark - (Optional) Pass 1 to resume playback at a bookmark
-	 * @return
-	 * @throws MythServiceApiRuntimeException
-	 */
-	ResponseEntity<Bool> playVideo(String frontedApiUrlBase, String id, boolean useBookmark) throws MythServiceApiRuntimeException;
+	ResponseEntity<Bool> sendNotification(Boolean error, String type, String message, String origin, String description, String image, String extra, String progressText, Float progress, Integer timeout, Boolean fullscreen, Integer visibility, Integer priority, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
 }

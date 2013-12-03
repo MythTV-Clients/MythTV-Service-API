@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,56 +13,39 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.v026.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class EncoderList {
+    
+        
+        @JsonProperty( "Encoders" )
+        private Encoder[] encoders;
+        
+        /**
+         * @return the encoders
+         */
+        public Encoder[] getEncoders() {
+            return encoders;
+        }
 
-	@JsonProperty( "EncoderList" )
-	private Encoders encoders;
-	
-	public EncoderList() { }
-
-	/**
-	 * @return the encoders
-	 */
-	public Encoders getEncoders() {
-		return encoders;
-	}
-
-	/**
-	 * @param encoders the encoders to set
-	 */
-	public void setEncoders( Encoders encoders ) {
-		this.encoders = encoders;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append( "EncoderList [" );
-		
-		if( encoders != null ) {
-			builder.append( "encoders=" );
-			builder.append( encoders );
-		}
-		
-		builder.append( "]" );
-	
-		return builder.toString();
-	}
-	
+        /**
+         * @param encoders the encoders to set
+         */
+        public void setEncoders( Encoder[] encoders ) {
+            this.encoders = encoders;
+        }
+        
 }

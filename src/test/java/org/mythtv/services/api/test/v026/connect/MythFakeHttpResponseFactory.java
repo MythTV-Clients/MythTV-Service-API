@@ -29,12 +29,11 @@ public class MythFakeHttpResponseFactory extends AbstractMythFakeHttpResponseFac
 	@Override
 	protected void init() {
 		factories = new ArrayList<ResponseFactory>();
-		factories.add( new CaptureFactory() );
-		factories.add( new GuideFactory() );
-		factories.add( new ChannelFactory() );
-        factories.add( new ContentFactory() );
-		factories.add( new VideoFactory());
-		factories.add( new DvrFactory());
-		factories.add( new StatusFactory());
+        factories.add(new CaptureFactory());
+        factories.add(new GuideFactory());
+        factories.add(new ChannelFactory());
+        factories.add(new VideoFactory());
+        factories.add(new DvrFactory());
+        factories.add(new StatusFactory());
 	}
 }

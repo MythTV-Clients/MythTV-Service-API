@@ -19,438 +19,290 @@
  */
 package org.mythtv.services.api.v026.impl;
 
-import org.joda.time.DateTime;
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.Bool;
-import org.mythtv.services.api.v026.DvrOperations;
-import org.mythtv.services.api.v026.Int;
-import org.mythtv.services.api.v026.beans.*;
+import org.mythtv.services.api.v026.beans.EncoderList;
+import org.mythtv.services.api.v026.beans.Program;
+import org.mythtv.services.api.v026.beans.ProgramList;
+import org.mythtv.services.api.v026.beans.RecRule;
+import org.mythtv.services.api.v026.beans.RecRuleList;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
- * @author Daniel Frey
- * 
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
+ * @author Sebastien Astie
  */
-public class DvrTemplate extends AbstractDvrOperations implements DvrOperations {
+public class DvrTemplate extends AbstractOperations implements org.mythtv.services.api.v026.DvrOperations {
 
-	public enum Endpoint {
-		ADD_RECORD_SCHEDULE( "AddRecordSchedule" ),
-		DISABLE_RECORD_SCHEDULE( "DisableRecordSchedule" ),
-		ENABLE_RECORD_SCHEDULE( "EnableRecordSchedule" ),
-		GET_CONFLICT_LIST( "GetConflictList" ),
-		GET_ENCODER_LIST( "GetEncoderList" ),
-		GET_EXPIRING_LIST( "GetExpiringList"),
-		GET_FILTERED_RECORDED_LIST( "GetFilteredRecordedList" ),
-		GET_RECORD_SCHEDULE( "GetRecordSchedule" ),
-		GET_RECORD_SCHEDULE_LIST( "GetRecordScheduleList" ),
-		GET_RECORDED( "GetRecorded" ),
-		GET_RECORDED_LIST( "GetRecordedList" ),
-		GET_UPCOMING_LIST( "GetUpcomingList" ),
-		REMOVE_RECORD_SCHEDULE( "RemoveRecordSchedule" ),
-		REMOVE_RECORDED( "RemoveRecorded" );
-		
-		private String endpoint;
-		
-		private Endpoint( String endpoint ) {
-			this.endpoint = endpoint;
-		}
-		
-		public String getEndpoint() {
-			return endpoint;
-		}
-		
-	}
-	
-	private final RestOperations restOperations;
+    private final RestOperations restOperations;
 
-	/**
-	 * @param restOperations
-	 * @param apiUrlBase
-	 */
-	public DvrTemplate( RestOperations restOperations, String apiUrlBase ) {
-		super( apiUrlBase );
+    public DvrTemplate( RestOperations restOperations, String apiUrlBase ) {
+        super( apiUrlBase + "Dvr/" );
+        this.restOperations = restOperations;
+    }
 
-		this.restOperations = restOperations;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#addRecordingSchedule(int,
-	 * java.util.Date, int, boolean, int, int, java.lang.String, int,
-	 * java.lang.String, java.lang.String, int, int, int, int, java.lang.String,
-	 * java.lang.String, int, java.lang.String, java.lang.String,
-	 * java.lang.String, java.lang.String, boolean, int, boolean, boolean,
-	 * boolean, boolean, boolean, boolean, boolean, boolean, int)
-	 */
 	@Override
-	public ResponseEntity<Int> addRecordingSchedule( int channelId, DateTime startTime, int parentId,
-			boolean interactive, int season, int episode, String inetRef, int findId, String type, String searchType,
-			int recordingPriority, int perferredInput, int startOffset, int endOffset, String duplicateMethod,
-			String duplicateIn, int filter, String recordingProfile, String recordingGroup, String storageGroup,
-			String playGroup, boolean autoExpire, int maxEpisodes, boolean maxNewest, boolean autoCommercialFlag,
-			boolean autoTranscode, boolean autoMetadataLookup, boolean autoUserJob1, boolean autoUserJob2,
-			boolean autoUserJob3, boolean autoUserJob4, int transcoder ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
-		parameters.add( "ParentId", String.valueOf( parentId ) );
-		parameters.add( "Inactive", Boolean.toString( interactive ) );
-		parameters.add( "Season", String.valueOf( season ) );
-		parameters.add( "Episode", String.valueOf( episode ) );
-		parameters.add( "Inetref", inetRef );
-		parameters.add( "FindId", String.valueOf( findId ) );
-		parameters.add( "Type", type );
-		parameters.add( "SearchType", searchType );
-		parameters.add( "RecPriority", String.valueOf( recordingPriority ) );
-		parameters.add( "PreferredInput", String.valueOf( perferredInput ) );
-		parameters.add( "StartOffset", String.valueOf( startOffset ) );
-		parameters.add( "EndOffset", String.valueOf( endOffset ) );
-		parameters.add( "DupMethod", duplicateMethod );
-		parameters.add( "DupIn", duplicateIn );
-		parameters.add( "Filter", String.valueOf( filter ) );
-		parameters.add( "RecProfile", recordingProfile );
-		parameters.add( "RecGroup", recordingGroup );
-		parameters.add( "StorageGroup", storageGroup );
-		parameters.add( "PlayGroup", playGroup );
-		parameters.add( "AutoExpire", Boolean.toString( autoExpire ) );
-		parameters.add( "MaxEpisodes", String.valueOf( maxEpisodes ) );
-		parameters.add( "MaxNewest", Boolean.toString( maxNewest ) );
-		parameters.add( "AutoCommflag", Boolean.toString( autoCommercialFlag ) );
-		parameters.add( "AutoTranscode", Boolean.toString( autoTranscode ) );
-		parameters.add( "AutoMetaLookup", Boolean.toString( autoMetadataLookup ) );
-		parameters.add( "AutoUserJob1", Boolean.toString( autoUserJob1 ) );
-		parameters.add( "AutoUserJob2", Boolean.toString( autoUserJob2 ) );
-		parameters.add( "AutoUserJob3", Boolean.toString( autoUserJob3 ) );
-		parameters.add( "AutoUserJob4", Boolean.toString( autoUserJob4 ) );
-		parameters.add( "Transcoder", String.valueOf( transcoder ) );
-
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Int.class );
-
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.dvr.DvrOperations#disableRecordingSchedule(int)
-	 */
-	@Override
-	public ResponseEntity<Bool> disableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", String.valueOf( recordingId ) );
-
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.DISABLE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
-
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.dvr.DvrOperations#enableRecordingSchedule(int)
-	 */
-	@Override
-	public ResponseEntity<Bool> enableRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", String.valueOf( recordingId ) );
-
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.ENABLE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
-
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getConflictList(int, int)
-	 */
-	@Override
-	public ResponseEntity<ProgramList> getConflictList( int startIndex, int count, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<Int> addRecordSchedule(Integer chanId, org.joda.time.DateTime startTime, Integer parentId, Boolean inactive, Integer season, Integer episode, String inetref, Integer findId, String type, String searchType, Integer recPriority, Integer preferredInput, Integer startOffset, Integer endOffset, String dupMethod, String dupIn, Integer filter, String recProfile, String recGroup, String storageGroup, String playGroup, Boolean autoExpire, Integer maxEpisodes, Boolean maxNewest, Boolean autoCommflag, Boolean autoTranscode, Boolean autoMetaLookup, Boolean autoUserJob1, Boolean autoUserJob2, Boolean autoUserJob3, Boolean autoUserJob4, Integer transcoder) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CONFLICT_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getEncoderList()
-	 */
-	@Override
-	public ResponseEntity<EncoderList> getEncoderList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		ResponseEntity<EncoderList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_ENCODER_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), EncoderList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getExpiringList(int, int)
-	 */
-	@Override
-	public ResponseEntity<ProgramList> getExpiringList( int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_EXPIRING_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.dvr.DvrOperations#getFiltererRecordedList(boolean
-	 * , int, int, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<ProgramList> getFiltererRecordedList( boolean descending, int startIndex, int count, String titleRegEx,
-			String recordingGroup, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Descending", Boolean.toString( descending ) );
-
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-
-		if( null != titleRegEx && !"".equals( titleRegEx ) ) {
-			parameters.add( "TitleRegEx", titleRegEx );
-		}
-
-		if( null != recordingGroup && !"".equals( recordingGroup ) ) {
-			parameters.add( "RecGroup", recordingGroup );
-		}
-
-		if( null != storageGroup && !"".equals( storageGroup ) ) {
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
+		if(parentId != null)
+           		parameters.add( "ParentId", parentId.toString() );
+		if(inactive != null)
+           		parameters.add( "Inactive", inactive.toString() );
+		if(season != null)
+           		parameters.add( "Season", season.toString() );
+		if(episode != null)
+           		parameters.add( "Episode", episode.toString() );
+		if(inetref != null && !inetref.isEmpty())
+			parameters.add( "Inetref", inetref );
+		if(findId != null)
+           		parameters.add( "FindId", findId.toString() );
+		if(type != null && !type.isEmpty())
+			parameters.add( "Type", type );
+		if(searchType != null && !searchType.isEmpty())
+			parameters.add( "SearchType", searchType );
+		if(recPriority != null)
+           		parameters.add( "RecPriority", recPriority.toString() );
+		if(preferredInput != null)
+           		parameters.add( "PreferredInput", preferredInput.toString() );
+		if(startOffset != null)
+           		parameters.add( "StartOffset", startOffset.toString() );
+		if(endOffset != null)
+           		parameters.add( "EndOffset", endOffset.toString() );
+		if(dupMethod != null && !dupMethod.isEmpty())
+			parameters.add( "DupMethod", dupMethod );
+		if(dupIn != null && !dupIn.isEmpty())
+			parameters.add( "DupIn", dupIn );
+		if(filter != null)
+           		parameters.add( "Filter", filter.toString() );
+		if(recProfile != null && !recProfile.isEmpty())
+			parameters.add( "RecProfile", recProfile );
+		if(recGroup != null && !recGroup.isEmpty())
+			parameters.add( "RecGroup", recGroup );
+		if(storageGroup != null && !storageGroup.isEmpty())
 			parameters.add( "StorageGroup", storageGroup );
-		}
-
-		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILTERED_RECORDED_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-
+		if(playGroup != null && !playGroup.isEmpty())
+			parameters.add( "PlayGroup", playGroup );
+		if(autoExpire != null)
+           		parameters.add( "AutoExpire", autoExpire.toString() );
+		if(maxEpisodes != null)
+           		parameters.add( "MaxEpisodes", maxEpisodes.toString() );
+		if(maxNewest != null)
+           		parameters.add( "MaxNewest", maxNewest.toString() );
+		if(autoCommflag != null)
+           		parameters.add( "AutoCommflag", autoCommflag.toString() );
+		if(autoTranscode != null)
+           		parameters.add( "AutoTranscode", autoTranscode.toString() );
+		if(autoMetaLookup != null)
+           		parameters.add( "AutoMetaLookup", autoMetaLookup.toString() );
+		if(autoUserJob1 != null)
+           		parameters.add( "AutoUserJob1", autoUserJob1.toString() );
+		if(autoUserJob2 != null)
+           		parameters.add( "AutoUserJob2", autoUserJob2.toString() );
+		if(autoUserJob3 != null)
+           		parameters.add( "AutoUserJob3", autoUserJob3.toString() );
+		if(autoUserJob4 != null)
+           		parameters.add( "AutoUserJob4", autoUserJob4.toString() );
+		if(transcoder != null)
+           		parameters.add( "Transcoder", transcoder.toString() );
+		
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
+		  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecordSchedule(int)
-	 */
 	@Override
-	public ResponseEntity<RecRuleWrapper> getRecordSchedule( int recordId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<Bool> disableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", String.valueOf( recordId ) );
 
-		ResponseEntity<RecRuleWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), RecRuleWrapper.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(recordId != null)
+           		parameters.add( "RecordId", recordId.toString() );
 		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DisableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecordScheduleList(int,
-	 * int)
-	 */
 	@Override
-	public ResponseEntity<RecRuleList> getRecordScheduleList( int startIndex, int count, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<Bool> enableRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-
-		ResponseEntity<RecRuleList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORD_SCHEDULE_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), RecRuleList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(recordId != null)
+           		parameters.add( "RecordId", recordId.toString() );
 		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "EnableRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecorded(int,
-	 * java.util.Date)
-	 */
 	@Override
-	public ResponseEntity<ProgramWrapper> getRecorded( int channelId, DateTime startTime, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<ProgramList> getConflictList(Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<ProgramWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED.getEndpoint(), parameters ),	HttpMethod.GET, getRequestEntity( etag ), ProgramWrapper.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
 		
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetConflictList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecordedList()
-	 */
 	@Override
-	public ResponseEntity<ProgramList> getRecordedList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		try {
-			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-			handleResponseEtag( etag, responseEntity.getHeaders() );
-
-			return responseEntity;
-		} catch( Exception e ) {
-			throw new MythServiceApiRuntimeException( e );
-		}
-		
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getRecordedList(int, int,
-	 * boolean)
-	 */
-	@Override
-	public ResponseEntity<ProgramList> getRecordedList( int startIndex, int count, boolean descending, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<EncoderList> getEncoderList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-
-		parameters.add( "Descending", Boolean.toString( descending ) );
-
-		try {
-			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDED_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-			handleResponseEtag( etag, responseEntity.getHeaders() );
-
-			return responseEntity;
-		} catch( Exception e ) {
-			throw new MythServiceApiRuntimeException( e );
-		}
 		
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#getUpcomingList(int, int,
-	 * boolean)
-	 */
-	@Override
-	public ResponseEntity<ProgramList> getUpcomingList( int startIndex, int count, boolean showAll, ETagInfo etag )
-			throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-
-		parameters.add( "ShowAll", Boolean.toString( showAll ) );
-
-		try {
-			ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_UPCOMING_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ProgramList.class );
-			handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-			return responseEntity;
-		} catch( Exception e ) {
-			throw new MythServiceApiRuntimeException( e );
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.dvr.DvrOperations#removeRecordingSchedule(int)
-	 */
-	@Override
-	public ResponseEntity<Bool> removeRecordingSchedule( int recordingId ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "RecordId", String.valueOf( recordingId ) );
-
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_RECORD_SCHEDULE.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
-		
+		ResponseEntity<EncoderList> responseEntity = restOperations.exchange( buildUri( "GetEncoderList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), EncoderList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.dvr.DvrOperations#removeRecorded(int,
-	 * java.util.Date)
-	 */
 	@Override
-	public ResponseEntity<Bool> removeRecorded( int channelId, DateTime startTime ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<ProgramList> getExpiringList(Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_RECORDED.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
 		
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetExpiringList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
+
+	@Override
+	public ResponseEntity<ProgramList> getFilteredRecordedList(Boolean descending, Integer startIndex, Integer count, String titleRegEx, String recGroup, String storageGroup, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(descending != null)
+           		parameters.add( "Descending", descending.toString() );
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
+		if(titleRegEx != null && !titleRegEx.isEmpty())
+			parameters.add( "TitleRegEx", titleRegEx );
+		if(recGroup != null && !recGroup.isEmpty())
+			parameters.add( "RecGroup", recGroup );
+		if(storageGroup != null && !storageGroup.isEmpty())
+			parameters.add( "StorageGroup", storageGroup );
+		
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetFilteredRecordedList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<RecRule> getRecordSchedule(Integer recordId, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(recordId != null)
+           		parameters.add( "RecordId", recordId.toString() );
+		
+		ResponseEntity<RecRule> responseEntity = restOperations.exchange( buildUri( "GetRecordSchedule", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), RecRule.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<RecRuleList> getRecordScheduleList(Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
+		
+		ResponseEntity<RecRuleList> responseEntity = restOperations.exchange( buildUri( "GetRecordScheduleList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), RecRuleList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Program> getRecorded(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
+		
+		ResponseEntity<Program> responseEntity = restOperations.exchange( buildUri( "GetRecorded", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Program.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<ProgramList> getRecordedList(Boolean descending, Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(descending != null)
+           		parameters.add( "Descending", descending.toString() );
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
+		
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetRecordedList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<ProgramList> getUpcomingList(Integer startIndex, Integer count, Boolean showAll, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
+		if(showAll != null)
+           		parameters.add( "ShowAll", showAll.toString() );
+		
+		ResponseEntity<ProgramList> responseEntity = restOperations.exchange( buildUri( "GetUpcomingList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ProgramList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> removeRecordSchedule(Integer recordId) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(recordId != null)
+           		parameters.add( "RecordId", recordId.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecordSchedule", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> removeRecorded(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveRecorded", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
 
 }

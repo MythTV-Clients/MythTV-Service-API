@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,125 +13,93 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.v026.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class ArtworkInfo {
+    
+        
+        @JsonProperty( "URL" )
+        private String uRL;
+        
+        
+        @JsonProperty( "FileName" )
+        private String fileName;
+        
+        
+        @JsonProperty( "StorageGroup" )
+        private String storageGroup;
+        
+        
+        @JsonProperty( "Type" )
+        private String type;
+        
+        /**
+         * @return the uRL
+         */
+        public String getURL() {
+            return uRL;
+        }
 
-	@JsonProperty( "URL" )
-	private String url;
-	
-	@JsonProperty( "FileName" )
-	private String filename;
-	
-	@JsonProperty( "StorageGroup" )
-	private String storageGroup;
-	
-	@JsonProperty( "Type" )
-	private String type;
-	
-	public ArtworkInfo() { }
+        /**
+         * @param uRL the uRL to set
+         */
+        public void setURL( String uRL ) {
+            this.uRL = uRL;
+        }
+        
+        /**
+         * @return the fileName
+         */
+        public String getFileName() {
+            return fileName;
+        }
 
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
+        /**
+         * @param fileName the fileName to set
+         */
+        public void setFileName( String fileName ) {
+            this.fileName = fileName;
+        }
+        
+        /**
+         * @return the storageGroup
+         */
+        public String getStorageGroup() {
+            return storageGroup;
+        }
 
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl( String url ) {
-		this.url = url;
-	}
+        /**
+         * @param storageGroup the storageGroup to set
+         */
+        public void setStorageGroup( String storageGroup ) {
+            this.storageGroup = storageGroup;
+        }
+        
+        /**
+         * @return the type
+         */
+        public String getType() {
+            return type;
+        }
 
-	/**
-	 * @return the filename
-	 */
-	public String getFilename() {
-		return filename;
-	}
-
-	/**
-	 * @param filename the filename to set
-	 */
-	public void setFilename( String filename ) {
-		this.filename = filename;
-	}
-
-	/**
-	 * @return the storageGroup
-	 */
-	public String getStorageGroup() {
-		return storageGroup;
-	}
-
-	/**
-	 * @param storageGroup the storageGroup to set
-	 */
-	public void setStorageGroup( String storageGroup ) {
-		this.storageGroup = storageGroup;
-	}
-
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType( String type ) {
-		this.type = type;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append( "ArtworkInfo [" );
-		
-		if( url != null ) {
-			builder.append( "url=" );
-			builder.append( url );
-			builder.append( ", " );
-		}
-		
-		if( filename != null ) {
-			builder.append( "filename=" );
-			builder.append( filename );
-			builder.append( ", " );
-		}
-		
-		if( storageGroup != null ) {
-			builder.append( "storageGroup=" );
-			builder.append( storageGroup );
-			builder.append( ", " );
-		}
-		
-		if( type != null ) {
-			builder.append( "type=" );
-			builder.append( type );
-		}
-		
-		builder.append( "]" );
-	
-		return builder.toString();
-	}
-	
+        /**
+         * @param type the type to set
+         */
+        public void setType( String type ) {
+            this.type = type;
+        }
+        
 }

@@ -19,343 +19,324 @@
  */
 package org.mythtv.services.api.v026.impl;
 
-import org.joda.time.DateTime;
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.Bool;
-import org.mythtv.services.api.v026.MythOperations;
-import org.mythtv.services.api.v026.StringList;
-import org.mythtv.services.api.v026.StringWrapper;
-import org.mythtv.services.api.v026.beans.*;
+import org.mythtv.services.api.v026.beans.ConnectionInfo;
+import org.mythtv.services.api.v026.beans.LogMessageList;
+import org.mythtv.services.api.v026.beans.SettingList;
+import org.mythtv.services.api.v026.beans.StorageGroupDirList;
+import org.mythtv.services.api.v026.beans.TimeZoneInfo;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
- * @author Daniel Frey
- * @author Espen A. Fossen
- * 
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
+ * @author Sebastien Astie
  */
-public class MythTemplate extends AbstractMythOperations implements MythOperations {
+public class MythTemplate extends AbstractOperations implements org.mythtv.services.api.v026.MythOperations {
 
-	public enum Endpoint {
-        ADD_STORAGE_GROUP_DIR("AddStorageGroupDir"),
-		GET_CONNECTION_INFO( "GetConnectionInfo" ),
-		GET_HOST_NAME( "GetHostName" ),
-		GET_HOSTS( "GetHosts" ),
-		GET_KEYS( "GetKeys" ),
-		GET_PROFILE_TEXT( "ProfileText" ),
-		GET_PROFILE_UPDATED( "ProfileUpdated" ),
-		GET_PROFILE_URL( "ProfileURL" ),
-		GET_SETTING( "GetSetting" ),
-        GET_STORAGE_GROUP_DIRS( "GetStorageGroupDirs"),
-		GET_TIMEZONE( "GetTimeZone" ),
-        REMOVE_STORAGE_GROUP_DIR("RemoveStorageGroupDir");
-				
-		private String endpoint;
-		
-		private Endpoint( String endpoint ) {
-			this.endpoint = endpoint;
-		}
-		
-		public String getEndpoint() {
-			return endpoint;
-		}
-		
-	}
-	private final RestOperations restOperations;
+    private final RestOperations restOperations;
 
-	public MythTemplate( RestOperations restOperations, String apiUrlBase ) {
-		super( apiUrlBase );
-		this.restOperations = restOperations;
-	}
+    public MythTemplate( RestOperations restOperations, String apiUrlBase ) {
+        super( apiUrlBase + "Myth/" );
+        this.restOperations = restOperations;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#addStorageGroupDir(java.lang.String,
-	 * java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> addStorageGroupDir( String groupName, String directoryName, String hostName) throws MythServiceApiRuntimeException {
-        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-        if (hostName != null && !hostName.trim().isEmpty())
-            parameters.add("HostName", hostName);
-        if (groupName != null && !groupName.trim().isEmpty())
-            parameters.add("GroupName", groupName);
-        if (directoryName != null && !directoryName.trim().isEmpty())
-            parameters.add("DirName", directoryName);
-        ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_STORAGE_GROUP_DIR.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
+	public ResponseEntity<Bool> addStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(groupName != null && !groupName.isEmpty())
+			parameters.add( "GroupName", groupName );
+		if(dirName != null && !dirName.isEmpty())
+			parameters.add( "DirName", dirName );
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddStorageGroupDir", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#backupDatabase()
-	 */
 	@Override
 	public ResponseEntity<Bool> backupDatabase() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#changePassword(java.lang.
-	 * String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<Bool> changePassword( String username, String oldPassword, String newPassword ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#checkDatabase(boolean)
-	 */
-	@Override
-	public ResponseEntity<Bool> checkDatabase( boolean repair ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#getConnectionInfo(java.lang
-	 * .String)
-	 */
-	@Override
-	public ResponseEntity<ConnectionInfo> getConnectionInfo( String pin, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CONNECTION_INFO.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), ConnectionInfo.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#getHostName()
-	 */
-	@Override
-	public ResponseEntity<StringWrapper> getHostName() throws MythServiceApiRuntimeException {
-
-		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HOST_NAME.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
-
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#getHosts()
-	 */
-	@Override
-	public ResponseEntity<StringList> getHosts( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HOSTS.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringList.class );
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#getKeys()
-	 */
-	@Override
-	public ResponseEntity<StringList> getKeys( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_KEYS.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringList.class );
-		return responseEntity;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#getLogs(java.lang.String,
-	 * java.lang.String, int, int, java.lang.String, java.lang.String, int,
-	 * java.lang.String, java.util.Date, java.util.Date, java.lang.String,
-	 * java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<LogMessageList> getLogs( String hostname, String application, int pid, int tid, String thread, String filename, int line, String function, DateTime from, DateTime to, String level, String messageContains, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#getSetting(java.lang.String,
-	 * java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<SettingList> getSetting( String hostname, String key, String defaultValue, ETagInfo etag ) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if(hostname != null && !hostname.trim().isEmpty())
-			parameters.add("HostName", hostname);
-		if(key != null && !key.trim().isEmpty()){
+
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "BackupDatabase", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> changePassword(String userName, String oldPassword, String newPassword) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(userName != null && !userName.isEmpty())
+			parameters.add( "UserName", userName );
+		if(oldPassword != null && !oldPassword.isEmpty())
+			parameters.add( "OldPassword", oldPassword );
+		if(newPassword != null && !newPassword.isEmpty())
+			parameters.add( "NewPassword", newPassword );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "ChangePassword", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> checkDatabase(Boolean repair) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(repair != null)
+           		parameters.add( "Repair", repair.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "CheckDatabase", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<ConnectionInfo> getConnectionInfo(String pin, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(pin != null && !pin.isEmpty())
+			parameters.add( "Pin", pin );
+		
+		ResponseEntity<ConnectionInfo> responseEntity = restOperations.exchange( buildUri( "GetConnectionInfo", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ConnectionInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<String> getHostName(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHostName", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<ArrayOfString> getHosts(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetHosts", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<ArrayOfString> getKeys(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetKeys", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<LogMessageList> getLogs(String hostName, String application, Integer pID, Integer tID, String thread, String filename, Integer line, String function, org.joda.time.DateTime fromTime, org.joda.time.DateTime toTime, String level, String msgContains, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(application != null && !application.isEmpty())
+			parameters.add( "Application", application );
+		if(pID != null)
+           		parameters.add( "PID", pID.toString() );
+		if(tID != null)
+           		parameters.add( "TID", tID.toString() );
+		if(thread != null && !thread.isEmpty())
+			parameters.add( "Thread", thread );
+		if(filename != null && !filename.isEmpty())
+			parameters.add( "Filename", filename );
+		if(line != null)
+           		parameters.add( "Line", line.toString() );
+		if(function != null && !function.isEmpty())
+			parameters.add( "Function", function );
+		if(fromTime != null)
+           		parameters.add( "FromTime",  convertUtcAndFormat( fromTime )  );
+		if(toTime != null)
+           		parameters.add( "ToTime",  convertUtcAndFormat( toTime )  );
+		if(level != null && !level.isEmpty())
+			parameters.add( "Level", level );
+		if(msgContains != null && !msgContains.isEmpty())
+			parameters.add( "MsgContains", msgContains );
+		
+		ResponseEntity<LogMessageList> responseEntity = restOperations.exchange( buildUri( "GetLogs", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LogMessageList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<SettingList> getSetting(String hostName, String key, String defaultValue, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(key != null && !key.isEmpty())
 			parameters.add( "Key", key );
-			if(defaultValue != null && !defaultValue.trim().isEmpty()){
-				parameters.add( "Default", defaultValue );
-			}
-		}
-		ResponseEntity<SettingList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_SETTING.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), SettingList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-
+		if(defaultValue != null && !defaultValue.isEmpty())
+			parameters.add( "Default", defaultValue );
+		
+		ResponseEntity<SettingList> responseEntity = restOperations.exchange( buildUri( "GetSetting", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), SettingList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#getStorageGroupDirectories(java.lang.String,
-	 * java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<StorageGroupDirectoryList> getStorageGroupDirectories(String groupName, String hostname, ETagInfo etag) throws MythServiceApiRuntimeException {
-        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-        if (hostname != null && !hostname.trim().isEmpty())
-            parameters.add("HostName", hostname);
-        if (groupName != null && !groupName.trim().isEmpty())
-            parameters.add("GroupName", groupName);
-        ResponseEntity<StorageGroupDirectoryList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_STORAGE_GROUP_DIRS.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), StorageGroupDirectoryList.class );
-        handleResponseEtag( etag, responseEntity.getHeaders() );
+	public ResponseEntity<StorageGroupDirList> getStorageGroupDirs(String groupName, String hostName, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(groupName != null && !groupName.isEmpty())
+			parameters.add( "GroupName", groupName );
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		
+		ResponseEntity<StorageGroupDirList> responseEntity = restOperations.exchange( buildUri( "GetStorageGroupDirs", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), StorageGroupDirList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#getTimeZoneInfo()
-	 */
 	@Override
-	public ResponseEntity<TimeZoneInfo> getTimeZoneInfo() throws MythServiceApiRuntimeException {
-		ResponseEntity<TimeZoneInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_TIMEZONE.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), TimeZoneInfo.class );
+	public ResponseEntity<TimeZoneInfo> getTimeZone(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<TimeZoneInfo> responseEntity = restOperations.exchange( buildUri( "GetTimeZone", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), TimeZoneInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#profileDelete()
-	 */
 	@Override
 	public ResponseEntity<Bool> profileDelete() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "ProfileDelete", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#profileSubmit()
-	 */
 	@Override
 	public ResponseEntity<Bool> profileSubmit() throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#profileText()
-	 */
-	@Override
-	public ResponseEntity<StringWrapper> profileText() throws MythServiceApiRuntimeException {
-		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROFILE_TEXT.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "ProfileSubmit", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#profileUrl()
-	 */
 	@Override
-	public ResponseEntity<StringWrapper> profileUrl() throws MythServiceApiRuntimeException {
-		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROFILE_URL.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
+	public ResponseEntity<String> profileText(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "ProfileText", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.myth.MythOperations#profileUpdated()
-	 */
 	@Override
-	public ResponseEntity<StringWrapper> profileUpdated() throws MythServiceApiRuntimeException {
-		ResponseEntity<StringWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROFILE_UPDATED.getEndpoint() ), HttpMethod.GET, getRequestEntity( null ), StringWrapper.class );
+	public ResponseEntity<String> profileURL(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "ProfileURL", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#putSetting(java.lang.String,
-	 * java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> putSetting( String hostname, String key, String value ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public ResponseEntity<String> profileUpdated(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#removeStorageGroupDir
-	 * (java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<Bool> removeStorageGroupDir(String groupName, String directoryName, String hostName) throws MythServiceApiRuntimeException {
-        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-        if (hostName != null && !hostName.trim().isEmpty())
-            parameters.add("HostName", hostName);
-        if (groupName != null && !groupName.trim().isEmpty())
-            parameters.add("GroupName", groupName);
-        if (directoryName != null && !directoryName.trim().isEmpty())
-            parameters.add("DirName", directoryName);
-        ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_STORAGE_GROUP_DIR.getEndpoint(), parameters ), HttpMethod.POST, getRequestEntity( null ), Bool.class );
+		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "ProfileUpdated", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#sendMessage(java.lang.String,
-	 * java.lang.String, int, int)
-	 */
 	@Override
-	public ResponseEntity<Bool> sendMessage( String message, String address, int udpPort, int timeout ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<Bool> putSetting(String hostName, String key, String value) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(key != null && !key.isEmpty())
+			parameters.add( "Key", key );
+		if(value != null && !value.isEmpty())
+			parameters.add( "Value", value );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "PutSetting", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mythtv.services.api.myth.MythOperations#testDatabaseSettings(java
-	 * .lang.String, java.lang.String, java.lang.String, java.lang.String, int)
-	 */
 	@Override
-	public ResponseEntity<Bool> testDatabaseSettings( String hostname, String username, String password, String databaseName, int databasePort ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<Bool> removeStorageGroupDir(String groupName, String dirName, String hostName) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(groupName != null && !groupName.isEmpty())
+			parameters.add( "GroupName", groupName );
+		if(dirName != null && !dirName.isEmpty())
+			parameters.add( "DirName", dirName );
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveStorageGroupDir", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
 	}
+
+	@Override
+	public ResponseEntity<Bool> sendMessage(String message, String address, Integer udpPort, Integer timeout, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(message != null && !message.isEmpty())
+			parameters.add( "Message", message );
+		if(address != null && !address.isEmpty())
+			parameters.add( "Address", address );
+		if(udpPort != null)
+           		parameters.add( "udpPort", udpPort.toString() );
+		if(timeout != null)
+           		parameters.add( "Timeout", timeout.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "SendMessage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> testDBSettings(String hostName, String userName, String password, String dBName, Integer dbPort) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(userName != null && !userName.isEmpty())
+			parameters.add( "UserName", userName );
+		if(password != null && !password.isEmpty())
+			parameters.add( "Password", password );
+		if(dBName != null && !dBName.isEmpty())
+			parameters.add( "DBName", dBName );
+		if(dbPort != null)
+           		parameters.add( "dbPort", dbPort.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "TestDBSettings", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
 
 }

@@ -19,17 +19,33 @@
  */
 package org.mythtv.services.api.v026;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.StdDelegatingDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.DateTime;
+import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.BaseMythServicesTemplate;
 import org.mythtv.services.api.MythServicesErrorHandler;
+import org.mythtv.services.api.converters.ArrayOfStringConverter;
 import org.mythtv.services.api.converters.JodaDateTimeTransform;
-import org.mythtv.services.api.v026.beans.Job.Command;
-import org.mythtv.services.api.v026.beans.Job.Flag;
-import org.mythtv.services.api.v026.beans.Job.Status;
-import org.mythtv.services.api.v026.beans.Job.Type;
+import org.mythtv.services.api.v026.CaptureOperations;
+import org.mythtv.services.api.v026.ChannelOperations;
+import org.mythtv.services.api.v026.ContentOperations;
+import org.mythtv.services.api.v026.DvrOperations;
+import org.mythtv.services.api.v026.FrontendOperations;
+import org.mythtv.services.api.v026.GuideOperations;
+import org.mythtv.services.api.v026.MythOperations;
+import org.mythtv.services.api.v026.MythServices;
+import org.mythtv.services.api.v026.StatusOperations;
+import org.mythtv.services.api.v026.VideoOperations;
 import org.mythtv.services.api.v026.impl.*;
+import org.mythtv.services.api.v026.status.beans.Job.Command;
+import org.mythtv.services.api.v026.status.beans.Job.Flag;
+import org.mythtv.services.api.v026.status.beans.Job.Status;
+import org.mythtv.services.api.v026.status.beans.Job.Type;
 import org.mythtv.services.api.v026.status.converters.JobCommandTransform;
 import org.mythtv.services.api.v026.status.converters.JobFlagTransform;
 import org.mythtv.services.api.v026.status.converters.JobStatusTransform;
@@ -49,7 +65,8 @@ import java.util.List;
 import java.util.logging.Level;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
  * @author Sebastien Astie
  */
 public class MythServicesTemplate extends BaseMythServicesTemplate implements MythServices {
@@ -58,18 +75,18 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 	private ChannelOperations channelOperations;
 	private ContentOperations contentOperations;
 	private DvrOperations dvrOperations;
-	private FrontendOperations frontendOperations;
 	private GuideOperations guideOperations;
 	private MythOperations mythOperations;
-	private StatusOperations statusOperations;
 	private VideoOperations videoOperations;
+	private FrontendOperations frontendOperations;
+	private StatusOperations statusOperations;
 	protected final RestOperations restOperations;
 	
-	public MythServicesTemplate( String apiUrlBase ) {
+	public MythServicesTemplate(String apiUrlBase) {
 		this(apiUrlBase, Level.INFO);
 	}
 	
-	public MythServicesTemplate( String apiUrlBase, Level logLevel) {
+	public MythServicesTemplate(String apiUrlBase, Level logLevel) {
 		super(apiUrlBase, logLevel);
 		this.restOperations = createRestOperations();
 		initSubApis();
@@ -78,8 +95,7 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 	
 	protected RestOperations createRestOperations() {
 		RestTemplate rest = new RestTemplate( true );
-		initMessageConverters(rest.getMessageConverters());
-
+        initMessageConverters(rest.getMessageConverters());
 		rest.setErrorHandler( new MythServicesErrorHandler() );
 		return rest;
 	}
@@ -88,9 +104,13 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
         for( HttpMessageConverter<?> messageConverter : converters ) {
 
             if( messageConverter instanceof MappingJackson2HttpMessageConverter ) {
+                StdDelegatingDeserializer<ArrayOfString> delegatingDeserializer = new StdDelegatingDeserializer<ArrayOfString>(new ArrayOfStringConverter());
+                SimpleModule customModule = new SimpleModule("org.mythtv.service.api.module", new Version(1, 0, 0, null, null, null)).addDeserializer(ArrayOfString.class, delegatingDeserializer);
 
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.registerModule( new JodaModule() );
+                objectMapper.registerModule(customModule);
+                objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
 
                 MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) messageConverter;
                 mappingJackson2HttpMessageConverter.setObjectMapper( objectMapper );
@@ -113,81 +133,89 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
             }
         }
     }
-	
+
+
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mythtv.services.api.MythServices#captureOperations()
+	 * Capture Operations
+	 * @return an instance of a class implementing CaptureOperations
 	 */
 	@Override
 	public CaptureOperations captureOperations() {
 		return captureOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#channelOperations()
+	/*
+	 * Channel Operations
+	 * @return an instance of a class implementing ChannelOperations
 	 */
 	@Override
 	public ChannelOperations channelOperations() {
 		return channelOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#contentOperations()
+	/*
+	 * Content Operations
+	 * @return an instance of a class implementing ContentOperations
 	 */
 	@Override
 	public ContentOperations contentOperations() {
 		return contentOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#dvrOperations()
+	/*
+	 * Dvr Operations
+	 * @return an instance of a class implementing DvrOperations
 	 */
 	@Override
 	public DvrOperations dvrOperations() {
 		return dvrOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#frontendOperations()
-	 */
-	@Override
-	public FrontendOperations frontendOperations() {
-		return frontendOperations;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#guideOperations()
+	/*
+	 * Guide Operations
+	 * @return an instance of a class implementing GuideOperations
 	 */
 	@Override
 	public GuideOperations guideOperations() {
 		return guideOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#mythOperations()
+	/*
+	 * Myth Operations
+	 * @return an instance of a class implementing MythOperations
 	 */
 	@Override
 	public MythOperations mythOperations() {
 		return mythOperations;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#statusOperations()
-	 */
-	@Override
-	public StatusOperations statusOperations() {
-		return statusOperations;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.MythServices#videoOperations()
+	/*
+	 * Video Operations
+	 * @return an instance of a class implementing VideoOperations
 	 */
 	@Override
 	public VideoOperations videoOperations() {
 		return videoOperations;
 	}
-	
+
+	/*
+	 * Frontend Operations
+	 * @return an instance of a class implementing FrontendOperations
+	 */
+	@Override
+	public FrontendOperations frontendOperations() {
+		return frontendOperations;
+	}
+
+	/*
+	 * Status Operations
+	 * @return an instance of a class implementing StatusOperations
+	 */
+	@Override
+	public StatusOperations statusOperations() {
+		return statusOperations;
+	}
+
 	private RestOperations getRestOperations() {
 		return restOperations;
 	}
@@ -197,10 +225,11 @@ public class MythServicesTemplate extends BaseMythServicesTemplate implements My
 		this.channelOperations = new ChannelTemplate( getRestOperations(), getApiUrlBase() );
 		this.contentOperations = new ContentTemplate( getRestOperations(), getApiUrlBase() );
 		this.dvrOperations = new DvrTemplate( getRestOperations(), getApiUrlBase() );
-		this.frontendOperations = new FrontendTemplate( getRestOperations(), getApiUrlBase() );
 		this.guideOperations = new GuideTemplate( getRestOperations(), getApiUrlBase() );
 		this.mythOperations = new MythTemplate( getRestOperations(), getApiUrlBase() );
-		this.statusOperations = new StatusTemplate( getRestOperations(), getApiUrlBase() );
 		this.videoOperations = new VideoTemplate( getRestOperations(), getApiUrlBase() );
+		this.frontendOperations = new FrontendTemplate( getRestOperations(), getApiUrlBase() );
+		this.statusOperations = new StatusTemplate( getRestOperations(), getApiUrlBase() );
 	}
+
 }
