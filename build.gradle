@@ -1,6 +1,6 @@
 buildscript {
     repositories { mavenCentral() }
-    dependencies { classpath group:'org.ajoberstar', name:'gradle-git', version:'0.6.1' }
+    dependencies { classpath group:'org.ajoberstar', name:'gradle-git', version:'0.6.3' }
 }
 import org.ajoberstar.gradle.git.tasks.*
 
@@ -47,10 +47,10 @@ dependencies {
     compile group:'org.joda', name:'joda-convert', version:'1.2' 
     compile group:'joda-time', name:'joda-time', version:'2.1' 
     compile group:'javax.jmdns', name:'jmdns', version:'3.4.1'
-    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.2.3'
-	compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.2.3'
-	compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.2.3'
-	compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:'2.2.3'
+    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.3.0'
+	compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.3.0'
+	compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.3.0'
+	compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:'2.3.0'
 	compile group:'org.springframework.android', name:'spring-android-rest-template', version:'1.0.1.RELEASE'
 	compile group:'org.springframework.social', name:'spring-social-core', version:'1.0.2.RELEASE'
     compile group:'org.simpleframework', name:'simple-xml', version:'2.7'
@@ -76,7 +76,7 @@ gitTag.doFirst {
         throw new StopExecutionException()
 }
 
-task gitRelease(type:GitPush, dependsOn:gitTag, description: 'Creates the tag for this release and push it the the remote repository.', enabled:false) {
+task gitRelease(type:GitPush, dependsOn:gitTag, description: 'Creates the tag for this release and push it the the remote repository.') {
     credentials {
         username = githubUsername
         password = githubPassword
