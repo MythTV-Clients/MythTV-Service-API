@@ -19,48 +19,51 @@
  */
 package org.mythtv.services.api.v026;
 
-import org.joda.time.DateTime;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.ProgramGuideWrapper;
-import org.mythtv.services.api.v026.beans.ProgramWrapper;
+import org.mythtv.services.api.v026.beans.Program;
+import org.mythtv.services.api.v026.beans.ProgramGuide;
 import org.springframework.http.ResponseEntity;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
 public interface GuideOperations {
 
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
+	/*
+	 * GET method
+	 *
+	 * @param chanId
 	 * @param width
 	 * @param height
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
 	 */
-	ResponseEntity<String> getChannelIcon( int channelId, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
-	 * @param startTime
-	 * @return
-	 */
-	ResponseEntity<ProgramWrapper> getProgramDetails( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<String> getChannelIcon(Integer chanId, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - GET
-	 * 
-	 * @param start
-	 * @param end
-	 * @param startChannelId
-	 * @param numberOfChannels
-	 * @param details
-	 * @return
+	/*
+	 * GET method
+	 *
+	 * @param chanId
+	 * @param startTime
+	 * @param etagInfo
+	 * @return ResponseEntity<Program>
 	 */
-	ResponseEntity<ProgramGuideWrapper> getProgramGuide( DateTime start, DateTime end, int startChannelId, int numberOfChannels, boolean details, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
+	ResponseEntity<Program> getProgramDetails(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param startTime
+	 * @param endTime
+	 * @param startChanId
+	 * @param numChannels
+	 * @param details
+	 * @param etagInfo
+	 * @return ResponseEntity<ProgramGuide>
+	 */
+	ResponseEntity<ProgramGuide> getProgramGuide(org.joda.time.DateTime startTime, org.joda.time.DateTime endTime, Integer startChanId, Integer numChannels, Boolean details, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
 }

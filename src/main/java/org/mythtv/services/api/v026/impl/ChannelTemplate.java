@@ -19,288 +19,325 @@
  */
 package org.mythtv.services.api.v026.impl;
 
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.Bool;
-import org.mythtv.services.api.v026.ChannelOperations;
-import org.mythtv.services.api.v026.Int;
-import org.mythtv.services.api.v026.StringList;
-import org.mythtv.services.api.v026.beans.*;
+import org.mythtv.services.api.v026.beans.ChannelInfo;
+import org.mythtv.services.api.v026.beans.ChannelInfoList;
+import org.mythtv.services.api.v026.beans.LineupList;
+import org.mythtv.services.api.v026.beans.VideoMultiplex;
+import org.mythtv.services.api.v026.beans.VideoMultiplexList;
+import org.mythtv.services.api.v026.beans.VideoSource;
+import org.mythtv.services.api.v026.beans.VideoSourceList;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
-public class ChannelTemplate extends AbstractChannelOperations implements ChannelOperations {
+public class ChannelTemplate extends AbstractOperations implements org.mythtv.services.api.v026.ChannelOperations {
 
-	public enum Endpoint {
-		ADD_DB_CHANNEL( "AddDBChannel" ),
-		ADD_VIDEO_SOURCE( "AddVideoSource" ),
-		FETCH_CHANNELS_FROM_SOURCE( "FetchChannelsFromSource" ),
-		GET_CHANNEL_INFO( "GetChannelInfo" ),
-		GET_CHANNEL_INFO_LIST( "GetChannelInfoList" ),
-		GET_DD_LINEUP_LIST( "GetDDLineupList"),
-		GET_VIDEO_MULTIPLEX( "GetVideoMultiplex" ),
-		GET_VIDEO_MULTIPLEX_LIST( "GetVideoMultiplexList" ),
-		GET_VIDEO_SOURCE( "GetVideoSource" ),
-		GET_VIDEO_SOURCE_LIST( "GetVideoSourceList" ),
-		GET_XMLTVID_LIST( "GetXMLTVIdList" ),
-		REMOVE_DB_CHANNEL( "RemoveDBChannel" ),
-		REMOVE_VIDEO_SOURCE( "RemoveVideoSource" ),
-		UPDATE_DB_CHANNEL( "UpdateDBChannel" ),
-		UPDATE_VIDEO_SOURCE( "UpdateVideoSource" );
-		
-		private String endpoint;
-		
-		private Endpoint( String endpoint ) {
-			this.endpoint = endpoint;
-		}
-		
-		public String getEndpoint() {
-			return endpoint;
-		}
-		
-	}
-	private final RestOperations restOperations;
+    private final RestOperations restOperations;
 
-	public ChannelTemplate( RestOperations restOperations, String apiUrlBase ) {
-		super( apiUrlBase );
-		this.restOperations = restOperations;
-	}
+    public ChannelTemplate( RestOperations restOperations, String apiUrlBase ) {
+        super( apiUrlBase + "Channel/" );
+        this.restOperations = restOperations;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#addDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> addDBChannel( int multiplexId, int sourceId, int channelId, String callSign, String channelName, String channelNumber, int serviceId, int atscMajorChannel, int atscMinorChannel, boolean userEIT, boolean visible, String frequencyId, String icon, String format, String xmltvId, String defaultAuthority ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#addVideoSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)
-	 */
-	@Override
-	public ResponseEntity<Int> addVideoSource( String sourceName, String grabber, String userId, String frequencyTable, String lineupId, String password, boolean useEit, String configPath, int nitId ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#fetchChannelsFromSource(int, int, boolean)
-	 */
-	@Override
-	public ResponseEntity<Int> fetchChannelsFromSource( int sourceId, int cardId, boolean waitForFinish, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> addDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "SourceId", String.valueOf( sourceId ) );
-		parameters.add("CardId", String.valueOf( cardId ) );
-		parameters.add("WaitForFinish", Boolean.toString(waitForFinish) );
 
-		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( Endpoint.FETCH_CHANNELS_FROM_SOURCE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), Int.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(mplexID != null)
+           		parameters.add( "MplexID", mplexID.toString() );
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		if(channelID != null)
+           		parameters.add( "ChannelID", channelID.toString() );
+		if(callSign != null && !callSign.isEmpty())
+			parameters.add( "CallSign", callSign );
+		if(channelName != null && !channelName.isEmpty())
+			parameters.add( "ChannelName", channelName );
+		if(channelNumber != null && !channelNumber.isEmpty())
+			parameters.add( "ChannelNumber", channelNumber );
+		if(serviceID != null)
+           		parameters.add( "ServiceID", serviceID.toString() );
+		if(aTSCMajorChannel != null)
+           		parameters.add( "ATSCMajorChannel", aTSCMajorChannel.toString() );
+		if(aTSCMinorChannel != null)
+           		parameters.add( "ATSCMinorChannel", aTSCMinorChannel.toString() );
+		if(useEIT != null)
+           		parameters.add( "UseEIT", useEIT.toString() );
+		if(visible != null)
+           		parameters.add( "visible", visible.toString() );
+		if(frequencyID != null && !frequencyID.isEmpty())
+			parameters.add( "FrequencyID", frequencyID );
+		if(icon != null && !icon.isEmpty())
+			parameters.add( "Icon", icon );
+		if(format != null && !format.isEmpty())
+			parameters.add( "Format", format );
+		if(xMLTVID != null && !xMLTVID.isEmpty())
+			parameters.add( "XMLTVID", xMLTVID );
+		if(defaultAuthority != null && !defaultAuthority.isEmpty())
+			parameters.add( "DefaultAuthority", defaultAuthority );
 		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "AddDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getChannelInfo(int)
-	 */
 	@Override
-	public ResponseEntity<ChannelInfoWrapper> getChannelInfo( int channelId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<Int> addVideoSource(String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
 
-		ResponseEntity<ChannelInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoWrapper.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getChannelInfoList(int, int, int, org.mythtv.services.api.ETagInfo)
-	 */
-	@Override
-	public ResponseEntity<ChannelInfoList> getChannelInfoList( int sourceId, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		if( sourceId > 0 ) {
-			parameters.add( "SourceID", String.valueOf( sourceId ) );
-		}
-		
-		if( startIndex > 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-
-		if( count > 0 ) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-		
-		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getChannelInfoListResponseEntity()
-	 */
-	@Override
-	public ResponseEntity<ChannelInfoList> getChannelInfoList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CHANNEL_INFO_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity(etag), ChannelInfoList.class );
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		return responseEntity;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getDDLineupList(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<LineupList> getDDLineupList( String source, String userId, String password, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		if( source != null ) {
-			parameters.add( "Source", source );
-		}
-		
-		if( null != userId ) {
+		if(sourceName != null && !sourceName.isEmpty())
+			parameters.add( "SourceName", sourceName );
+		if(grabber != null && !grabber.isEmpty())
+			parameters.add( "Grabber", grabber );
+		if(userId != null && !userId.isEmpty())
 			parameters.add( "UserId", userId );
-		}
-		
-		if( null != password ) {
+		if(freqTable != null && !freqTable.isEmpty())
+			parameters.add( "FreqTable", freqTable );
+		if(lineupId != null && !lineupId.isEmpty())
+			parameters.add( "LineupId", lineupId );
+		if(password != null && !password.isEmpty())
 			parameters.add( "Password", password );
-		}
+		if(useEIT != null)
+           		parameters.add( "UseEIT", useEIT.toString() );
+		if(configPath != null && !configPath.isEmpty())
+			parameters.add( "ConfigPath", configPath );
+		if(nITId != null)
+           		parameters.add( "NITId", nITId.toString() );
 		
-		ResponseEntity<LineupList> response = restOperations.exchange( buildUri( Endpoint.GET_DD_LINEUP_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), LineupList.class );
-		handleResponseEtag( etag, response.getHeaders() );
-		
-		return response;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoMultiplex(int)
-	 */
-	@Override
-	public ResponseEntity<VideoMultiplexWrapper> getVideoMultiplex( int multiplexId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if( multiplexId > 0 ) {
-			parameters.add( "MplexID", String.valueOf( multiplexId ) );
-		}
-		ResponseEntity<VideoMultiplexWrapper> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_MULTIPLEX.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexWrapper.class );
-		handleResponseEtag( etag, response.getHeaders() );
-		
-		return response;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoMultiplexList(int, int, int)
-	 */
-	@Override
-	public ResponseEntity<VideoMultiplexList> getVideoMultiplexList( int sourceId, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		if( sourceId > 0 ) {
-			parameters.add( "SourceID", String.valueOf( sourceId ) );
-		}
-		
-		if( startIndex >= 0 ) {
-			parameters.add( "StartIndex", String.valueOf( startIndex ) );
-		}
-		
-		if(count > 0) {
-			parameters.add( "Count", String.valueOf( count ) );
-		}
-		
-		ResponseEntity<VideoMultiplexList> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_MULTIPLEX_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoMultiplexList.class );
-		handleResponseEtag(etag, response.getHeaders());
-		
-		return response;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoSource(int)
-	 */
-	@Override
-	public ResponseEntity<VideoSourceWrapper> getVideoSource( int sourceId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		if( sourceId > 0 ) {
-			parameters.add( "SourceID", String.valueOf( sourceId ) );
-		}
-		
-		ResponseEntity<VideoSourceWrapper> response = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_SOURCE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), VideoSourceWrapper.class );
-		handleResponseEtag( etag, response.getHeaders() );
-		
-		return response;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getVideoSourceList()
-	 */
-	@Override
-	public ResponseEntity<VideoSourceList> getVideoSourceList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<VideoSourceList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_SOURCE_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity(etag), VideoSourceList.class );
-		handleResponseEtag(etag, responseEntity.getHeaders());
-		
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
+		  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#getXmltvIdList(int)
-	 */
 	@Override
-	public ResponseEntity<StringList> getXmltvIdList( int sourceId, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> fetchChannelsFromSource(Integer sourceId, Integer cardId, Boolean waitForFinish, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceId != null)
+           		parameters.add( "SourceId", sourceId.toString() );
+		if(cardId != null)
+           		parameters.add( "CardId", cardId.toString() );
+		if(waitForFinish != null)
+           		parameters.add( "WaitForFinish", waitForFinish.toString() );
 		
-		if( sourceId > 0 ) {
-			parameters.add( "SourceID", String.valueOf( sourceId ) );
-		}
-		
-		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_XMLTVID_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), StringList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "FetchChannelsFromSource", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Int.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#reomveDBChannel(int)
-	 */
 	@Override
-	public ResponseEntity<Bool> removeDBChannel( int channelId ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<ChannelInfo> getChannelInfo(Integer chanID, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(chanID != null)
+           		parameters.add( "ChanID", chanID.toString() );
+		
+		ResponseEntity<ChannelInfo> responseEntity = restOperations.exchange( buildUri( "GetChannelInfo", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ChannelInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#removeVideoSource(int)
-	 */
 	@Override
-	public ResponseEntity<Bool> removeVideoSource( int sourceId ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<ChannelInfoList> getChannelInfoList(Integer sourceID, Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
+		
+		ResponseEntity<ChannelInfoList> responseEntity = restOperations.exchange( buildUri( "GetChannelInfoList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ChannelInfoList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#updateDBChannel(int, int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> updateDBChannel( int multiplexId, int sourceId, int channelId, String callSign, String channelName, String channelNumber, int serviceId, int atscMajorChannel, int atscMinorChannel, boolean useEIT, boolean visible, String frequencyId, String icon, String format, String xmltvId, String defaultAuthority ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<LineupList> getDDLineupList(String source, String userId, String password, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(source != null && !source.isEmpty())
+			parameters.add( "Source", source );
+		if(userId != null && !userId.isEmpty())
+			parameters.add( "UserId", userId );
+		if(password != null && !password.isEmpty())
+			parameters.add( "Password", password );
+		
+		ResponseEntity<LineupList> responseEntity = restOperations.exchange( buildUri( "GetDDLineupList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LineupList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.channel.ChannelOperations#updateVideoSource(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, int)
-	 */
 	@Override
-	public ResponseEntity<Bool> updateVideoSource( int sourceId, String sourceName, String grabber, String userId, String frequencyTable, String lineupId, String password, boolean userEIT, String configPath, int nitId ) throws MythServiceApiRuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<VideoMultiplex> getVideoMultiplex(Integer mplexID, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(mplexID != null)
+           		parameters.add( "MplexID", mplexID.toString() );
+		
+		ResponseEntity<VideoMultiplex> responseEntity = restOperations.exchange( buildUri( "GetVideoMultiplex", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), VideoMultiplex.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
+
+	@Override
+	public ResponseEntity<VideoMultiplexList> getVideoMultiplexList(Integer sourceID, Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		if(startIndex != null)
+           		parameters.add( "StartIndex", startIndex.toString() );
+		if(count != null)
+           		parameters.add( "Count", count.toString() );
+		
+		ResponseEntity<VideoMultiplexList> responseEntity = restOperations.exchange( buildUri( "GetVideoMultiplexList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), VideoMultiplexList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<VideoSource> getVideoSource(Integer sourceID, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		
+		ResponseEntity<VideoSource> responseEntity = restOperations.exchange( buildUri( "GetVideoSource", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), VideoSource.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<VideoSourceList> getVideoSourceList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		
+		ResponseEntity<VideoSourceList> responseEntity = restOperations.exchange( buildUri( "GetVideoSourceList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), VideoSourceList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<ArrayOfString> getXMLTVIdList(Integer sourceID, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetXMLTVIdList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> removeDBChannel(Integer channelID) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(channelID != null)
+           		parameters.add( "ChannelID", channelID.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> removeVideoSource(Integer sourceID) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> updateDBChannel(Integer mplexID, Integer sourceID, Integer channelID, String callSign, String channelName, String channelNumber, Integer serviceID, Integer aTSCMajorChannel, Integer aTSCMinorChannel, Boolean useEIT, Boolean visible, String frequencyID, String icon, String format, String xMLTVID, String defaultAuthority) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(mplexID != null)
+           		parameters.add( "MplexID", mplexID.toString() );
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		if(channelID != null)
+           		parameters.add( "ChannelID", channelID.toString() );
+		if(callSign != null && !callSign.isEmpty())
+			parameters.add( "CallSign", callSign );
+		if(channelName != null && !channelName.isEmpty())
+			parameters.add( "ChannelName", channelName );
+		if(channelNumber != null && !channelNumber.isEmpty())
+			parameters.add( "ChannelNumber", channelNumber );
+		if(serviceID != null)
+           		parameters.add( "ServiceID", serviceID.toString() );
+		if(aTSCMajorChannel != null)
+           		parameters.add( "ATSCMajorChannel", aTSCMajorChannel.toString() );
+		if(aTSCMinorChannel != null)
+           		parameters.add( "ATSCMinorChannel", aTSCMinorChannel.toString() );
+		if(useEIT != null)
+           		parameters.add( "UseEIT", useEIT.toString() );
+		if(visible != null)
+           		parameters.add( "visible", visible.toString() );
+		if(frequencyID != null && !frequencyID.isEmpty())
+			parameters.add( "FrequencyID", frequencyID );
+		if(icon != null && !icon.isEmpty())
+			parameters.add( "Icon", icon );
+		if(format != null && !format.isEmpty())
+			parameters.add( "Format", format );
+		if(xMLTVID != null && !xMLTVID.isEmpty())
+			parameters.add( "XMLTVID", xMLTVID );
+		if(defaultAuthority != null && !defaultAuthority.isEmpty())
+			parameters.add( "DefaultAuthority", defaultAuthority );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateDBChannel", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<Bool> updateVideoSource(Integer sourceID, String sourceName, String grabber, String userId, String freqTable, String lineupId, String password, Boolean useEIT, String configPath, Integer nITId) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(sourceID != null)
+           		parameters.add( "SourceID", sourceID.toString() );
+		if(sourceName != null && !sourceName.isEmpty())
+			parameters.add( "SourceName", sourceName );
+		if(grabber != null && !grabber.isEmpty())
+			parameters.add( "Grabber", grabber );
+		if(userId != null && !userId.isEmpty())
+			parameters.add( "UserId", userId );
+		if(freqTable != null && !freqTable.isEmpty())
+			parameters.add( "FreqTable", freqTable );
+		if(lineupId != null && !lineupId.isEmpty())
+			parameters.add( "LineupId", lineupId );
+		if(password != null && !password.isEmpty())
+			parameters.add( "Password", password );
+		if(useEIT != null)
+           		parameters.add( "UseEIT", useEIT.toString() );
+		if(configPath != null && !configPath.isEmpty())
+			parameters.add( "ConfigPath", configPath );
+		if(nITId != null)
+           		parameters.add( "NITId", nITId.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateVideoSource", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
 
 }

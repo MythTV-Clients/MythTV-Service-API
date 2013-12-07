@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,41 +13,39 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.v026.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class CaptureCardList {
+    
+        
+        @JsonProperty( "CaptureCards" )
+        private CaptureCard[] captureCards;
+        
+        /**
+         * @return the captureCards
+         */
+        public CaptureCard[] getCaptureCards() {
+            return captureCards;
+        }
 
-	@JsonProperty( "CaptureCardList" )
-	private CaptureCards captureCards;
-	
-	public CaptureCardList() { }
-	
-	public CaptureCardList( CaptureCards captureCards ) {
-		this.captureCards = captureCards;
-	}
-
-	/**
-	 * @return the captureCards
-	 */
-	public CaptureCards getCaptureCards() {
-		return captureCards;
-	}
-
-	/**
-	 * @param captureCards the captureCards to set
-	 */
-	public void setCaptureCards( CaptureCards captureCards ) {
-		this.captureCards = captureCards;
-	}
-	
+        /**
+         * @param captureCards the captureCards to set
+         */
+        public void setCaptureCards( CaptureCard[] captureCards ) {
+            this.captureCards = captureCards;
+        }
+        
 }

@@ -34,20 +34,20 @@ public class LocalServiceTemplate extends MythServicesTemplate {
 	/**
 	 * @param apiUrlBase
 	 */
-	public LocalServiceTemplate(String apiUrlBase) {
-		this(apiUrlBase, Level.INFO);
+	public LocalServiceTemplate( String apiUrlBase ) {
+		this( apiUrlBase, Level.INFO );
 	}
 	
-	public LocalServiceTemplate(String apiUrlBase, Level logLevel) {
-		super(apiUrlBase, logLevel);
+	public LocalServiceTemplate( String apiUrlBase, Level logLevel ) {
+		super( apiUrlBase, logLevel );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.mythtv.services.api.BaseMythServicesTemplate#createRestOperations()
 	 */
 	protected RestOperations createRestOperations() {
-        FakeMythTvRestTemplate rest = new FakeMythTvRestTemplate();
-        initMessageConverters(rest.getMessageConverters());
+		FakeMythTvRestTemplate rest = new FakeMythTvRestTemplate();
+        initMessageConverters( rest.getMessageConverters() );
         return rest;
 	}
 

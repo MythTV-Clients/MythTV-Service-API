@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,56 +13,185 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.v026.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.mythtv.services.api.DateTimeSerializer;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class VideoMetadataInfoList {
+    
+        
+        @JsonProperty( "StartIndex" )
+        private Integer startIndex;
+        
+        
+        @JsonProperty( "Count" )
+        private Integer count;
+        
+        
+        @JsonProperty( "CurrentPage" )
+        private Integer currentPage;
+        
+        
+        @JsonProperty( "TotalPages" )
+        private Integer totalPages;
+        
+        
+        @JsonProperty( "TotalAvailable" )
+        private Integer totalAvailable;
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
+        @JsonProperty( "AsOf" )
+        private org.joda.time.DateTime asOf;
+        
+        
+        @JsonProperty( "Version" )
+        private String version;
+        
+        
+        @JsonProperty( "ProtoVer" )
+        private String protoVer;
+        
+        
+        @JsonProperty( "VideoMetadataInfos" )
+        private VideoMetadataInfo[] videoMetadataInfos;
+        
+        /**
+         * @return the startIndex
+         */
+        public Integer getStartIndex() {
+            return startIndex;
+        }
 
-	@JsonProperty( "VideoMetadataInfoList" )
-	private VideoMetadataInfos videoMetadataInfos;
+        /**
+         * @param startIndex the startIndex to set
+         */
+        public void setStartIndex( Integer startIndex ) {
+            this.startIndex = startIndex;
+        }
+        
+        /**
+         * @return the count
+         */
+        public Integer getCount() {
+            return count;
+        }
 
-	public VideoMetadataInfoList() { }
+        /**
+         * @param count the count to set
+         */
+        public void setCount( Integer count ) {
+            this.count = count;
+        }
+        
+        /**
+         * @return the currentPage
+         */
+        public Integer getCurrentPage() {
+            return currentPage;
+        }
 
-	/**
-	 * @return the videoMetadataInfos
-	 */
-	public VideoMetadataInfos getVideoMetadataInfos() {
-		return videoMetadataInfos;
-	}
+        /**
+         * @param currentPage the currentPage to set
+         */
+        public void setCurrentPage( Integer currentPage ) {
+            this.currentPage = currentPage;
+        }
+        
+        /**
+         * @return the totalPages
+         */
+        public Integer getTotalPages() {
+            return totalPages;
+        }
 
-	/**
-	 * @param videoMetadataInfos the videoMetadataInfos to set
-	 */
-	public void setVideoMetadataInfos( VideoMetadataInfos videoMetadataInfos ) {
-		this.videoMetadataInfos = videoMetadataInfos;
-	}
+        /**
+         * @param totalPages the totalPages to set
+         */
+        public void setTotalPages( Integer totalPages ) {
+            this.totalPages = totalPages;
+        }
+        
+        /**
+         * @return the totalAvailable
+         */
+        public Integer getTotalAvailable() {
+            return totalAvailable;
+        }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append( "VideoMetadataInfoList [" );
-		
-		if( videoMetadataInfos != null ) {
-			builder.append( "videoMetadataInfos=" );
-			builder.append( videoMetadataInfos );
-		}
-		
-		builder.append( "]" );
-	
-		return builder.toString();
-	}
-	
+        /**
+         * @param totalAvailable the totalAvailable to set
+         */
+        public void setTotalAvailable( Integer totalAvailable ) {
+            this.totalAvailable = totalAvailable;
+        }
+        
+        /**
+         * @return the asOf
+         */
+        public org.joda.time.DateTime getAsOf() {
+            return asOf;
+        }
+
+        /**
+         * @param asOf the asOf to set
+         */
+        public void setAsOf( org.joda.time.DateTime asOf ) {
+            this.asOf = asOf;
+        }
+        
+        /**
+         * @return the version
+         */
+        public String getVersion() {
+            return version;
+        }
+
+        /**
+         * @param version the version to set
+         */
+        public void setVersion( String version ) {
+            this.version = version;
+        }
+        
+        /**
+         * @return the protoVer
+         */
+        public String getProtoVer() {
+            return protoVer;
+        }
+
+        /**
+         * @param protoVer the protoVer to set
+         */
+        public void setProtoVer( String protoVer ) {
+            this.protoVer = protoVer;
+        }
+        
+        /**
+         * @return the videoMetadataInfos
+         */
+        public VideoMetadataInfo[] getVideoMetadataInfos() {
+            return videoMetadataInfos;
+        }
+
+        /**
+         * @param videoMetadataInfos the videoMetadataInfos to set
+         */
+        public void setVideoMetadataInfos( VideoMetadataInfo[] videoMetadataInfos ) {
+            this.videoMetadataInfos = videoMetadataInfos;
+        }
+        
 }

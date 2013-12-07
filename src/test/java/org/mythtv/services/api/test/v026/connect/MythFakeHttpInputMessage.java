@@ -20,12 +20,6 @@
 package org.mythtv.services.api.test.v026.connect;
 
 import org.mythtv.services.api.test.connect.AbstractMythFakeHttpInputMessage;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.client.ClientHttpResponse;
-
-import java.io.*;
 
 /**
  * @author Sebastien Astie

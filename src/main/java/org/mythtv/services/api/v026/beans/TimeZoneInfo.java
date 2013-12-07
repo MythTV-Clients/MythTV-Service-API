@@ -1,6 +1,6 @@
 /**
  *  This file is part of MythTV for Android
- * 
+ *
  *  MythTV for Android is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -13,104 +13,77 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with MythTV for Android.  If not, see <http://www.gnu.org/licenses/>.
- *   
+ *
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
 package org.mythtv.services.api.v026.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.joda.time.DateTime;
 import org.mythtv.services.api.DateTimeSerializer;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class TimeZoneInfo {
+    
+        
+        @JsonProperty( "TimeZoneID" )
+        private String timeZoneID;
+        
+        
+        @JsonProperty( "UTCOffset" )
+        private Integer uTCOffset;
+        
+        @JsonSerialize( using = DateTimeSerializer.class )
+        @JsonProperty( "CurrentDateTime" )
+        private org.joda.time.DateTime currentDateTime;
+        
+        /**
+         * @return the timeZoneID
+         */
+        public String getTimeZoneID() {
+            return timeZoneID;
+        }
 
-	@JsonProperty( "TimeZoneID" )
-	private String timeZoneId;
-	
-	@JsonProperty( "UTCOffset" )
-	private int utcOffset;
-	
-	@JsonProperty( "CurrentDateTime" )
-	@JsonSerialize( using = DateTimeSerializer.class )
-	private DateTime currentDateTime;
-	
-	public TimeZoneInfo() { }
+        /**
+         * @param timeZoneID the timeZoneID to set
+         */
+        public void setTimeZoneID( String timeZoneID ) {
+            this.timeZoneID = timeZoneID;
+        }
+        
+        /**
+         * @return the uTCOffset
+         */
+        public Integer getUTCOffset() {
+            return uTCOffset;
+        }
 
-	/**
-	 * @return the timeZoneId
-	 */
-	public String getTimeZoneId() {
-		return timeZoneId;
-	}
+        /**
+         * @param uTCOffset the uTCOffset to set
+         */
+        public void setUTCOffset( Integer uTCOffset ) {
+            this.uTCOffset = uTCOffset;
+        }
+        
+        /**
+         * @return the currentDateTime
+         */
+        public org.joda.time.DateTime getCurrentDateTime() {
+            return currentDateTime;
+        }
 
-	/**
-	 * @param timeZoneId the timeZoneId to set
-	 */
-	public void setTimeZoneId( String timeZoneId ) {
-		this.timeZoneId = timeZoneId;
-	}
-
-	/**
-	 * @return the utcOffset
-	 */
-	public int getUtcOffset() {
-		return utcOffset;
-	}
-
-	/**
-	 * @param utcOffset the utcOffset to set
-	 */
-	public void setUtcOffset( int utcOffset ) {
-		this.utcOffset = utcOffset;
-	}
-
-	/**
-	 * @return the currentDateTime
-	 */
-	public DateTime getCurrentDateTime() {
-		return currentDateTime;
-	}
-
-	/**
-	 * @param currentDateTime the currentDateTime to set
-	 */
-	public void setCurrentDateTime( DateTime currentDateTime ) {
-		this.currentDateTime = currentDateTime;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append( "TimeZoneInfo [" );
-		
-		if( timeZoneId != null ) {
-			builder.append( "timeZoneId=" );
-			builder.append( timeZoneId );
-			builder.append( ", " );
-		}
-		
-		builder.append( "utcOffset=" );
-		builder.append( utcOffset );
-		builder.append( ", " );
-		
-		if( currentDateTime != null ) {
-			builder.append( "currentDateTime=" );
-			builder.append( currentDateTime );
-		}
-		
-		builder.append( "]" );
-
-		return builder.toString();
-	}
-	
+        /**
+         * @param currentDateTime the currentDateTime to set
+         */
+        public void setCurrentDateTime( org.joda.time.DateTime currentDateTime ) {
+            this.currentDateTime = currentDateTime;
+        }
+        
 }

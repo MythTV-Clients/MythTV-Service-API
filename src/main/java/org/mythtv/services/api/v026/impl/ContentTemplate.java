@@ -19,532 +19,380 @@
  */
 package org.mythtv.services.api.v026.impl;
 
-import org.joda.time.DateTime;
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.Bool;
-import org.mythtv.services.api.v026.ContentOperations;
-import org.mythtv.services.api.v026.StringList;
-import org.mythtv.services.api.v026.beans.*;
+import org.mythtv.services.api.v026.beans.ArtworkInfoList;
+import org.mythtv.services.api.v026.beans.LiveStreamInfo;
+import org.mythtv.services.api.v026.beans.LiveStreamInfoList;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
- * @author Daniel Frey
- * @author John Baab
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
-public class ContentTemplate extends AbstractContentOperations implements ContentOperations {
+public class ContentTemplate extends AbstractOperations implements org.mythtv.services.api.v026.ContentOperations {
 
-	public enum Endpoint {
-		ADD_LIVE_STREAM( "AddLiveStream" ),
-		ADD_RECORDING_LIVE_STREAM( "AddRecordingLiveStream" ),
-		ADD_VIDEO_LIVE_STREAM( "AddVideoLiveStream" ),
-		DOWNLOAD_FILE( "DownloadFile" ),
-		GET_ALBUM_ART( "GetAlbumArt" ),
-		GET_FILE( "GetFile"),
-		GET_FILE_LIST( "GetFileList" ),
-		GET_FILTERED_LIVE_STREAM_LIST( "GetFilteredLiveStreamList" ),
-		GET_HASH( "GetHash" ),
-		GET_IMAGE_FILE( "GetImageFile" ),
-		GET_LIVE_STREAM( "GetLiveStream" ),
-		GET_LIVE_STREAM_LIST( "GetLiveStreamList" ),
-		GET_MUSIC( "GetMusic" ),
-		GET_PREVIEW_IMAGE( "GetPreviewImage" ),
-		GET_PROGRAM_ARTWORK_LIST( "GetProgramArtworkList" ),
-		GET_RECORDING( "GetRecording" ),
-		GET_RECORDING_ARTWORK( "GetRecordingArtwork" ),
-		GET_RECORDING_ARTWORK_LIST( "GetRecordingArtworkList" ),
-		GET_VIDEO( "GetVideo" ),
-		GET_VIDEO_ARTWORK( "GetVideoArtwork"),
-		REMOVE_LIVE_STREAM( "RemoveLiveStream" ),
-		STOP_LIVE_STREAM( "StopLiveStream" );
-		
-		private String endpoint;
-		
-		private Endpoint( String endpoint ) {
-			this.endpoint = endpoint;
-		}
-		
-		public String getEndpoint() {
-			return endpoint;
-		}
-		
-	}
+    private final RestOperations restOperations;
 
-	private final RestOperations restOperations;
-	
-	public ContentTemplate( RestOperations restOperations, String apiUrlBase ) {
-		super( apiUrlBase );
-		this.restOperations = restOperations;
-	}
+    public ContentTemplate( RestOperations restOperations, String apiUrlBase ) {
+        super( apiUrlBase + "Content/" );
+        this.restOperations = restOperations;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#addLiveStream(java.lang.String, java.lang.String, java.lang.String, int, int, int, int, int, int)
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfoWrapper> addLiveStream( String storageGroup, String filename, String hostname, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException {
-		
+	public ResponseEntity<LiveStreamInfo> addLiveStream(String storageGroup, String fileName, String hostName, Integer maxSegments, Integer width, Integer height, Integer bitrate, Integer audioBitrate, Integer sampleRate, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "FileName", filename );
-		
-		if( storageGroup != null ) {
+
+		if(storageGroup != null && !storageGroup.isEmpty())
 			parameters.add( "StorageGroup", storageGroup );
-		}
+		if(fileName != null && !fileName.isEmpty())
+			parameters.add( "FileName", fileName );
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(maxSegments != null)
+           		parameters.add( "MaxSegments", maxSegments.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
+		if(bitrate != null)
+           		parameters.add( "Bitrate", bitrate.toString() );
+		if(audioBitrate != null)
+           		parameters.add( "AudioBitrate", audioBitrate.toString() );
+		if(sampleRate != null)
+           		parameters.add( "SampleRate", sampleRate.toString() );
 		
-		if( hostname != null ) {
-			parameters.add( "HostName", hostname );
-		}
-		
-		if( maxSegments > 0 ) {
-			parameters.add( "MaxSegments", String.valueOf( maxSegments ) );
-		}
-		
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
-
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		if( bitrate > 0 ) {
-			parameters.add( "Bitrate", String.valueOf( bitrate ) );
-		}
-
-		if( audioBitrate > 0 ) {
-			parameters.add( "AudioBitrate", String.valueOf( audioBitrate ) );
-		}
-
-		if( sampleRate > 0 ) {
-			parameters.add( "SampleRate", String.valueOf( sampleRate ) );
-		}
-
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
-		
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( "AddLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#addRecordingLiveStream(int, java.util.Date, int, int, int, int, int, int)
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfoWrapper> addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<LiveStreamInfo> addRecordingLiveStream(Integer chanId, org.joda.time.DateTime startTime, Integer maxSegments, Integer width, Integer height, Integer bitrate, Integer audioBitrate, Integer sampleRate, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
+
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
+		if(maxSegments != null)
+           		parameters.add( "MaxSegments", maxSegments.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
+		if(bitrate != null)
+           		parameters.add( "Bitrate", bitrate.toString() );
+		if(audioBitrate != null)
+           		parameters.add( "AudioBitrate", audioBitrate.toString() );
+		if(sampleRate != null)
+           		parameters.add( "SampleRate", sampleRate.toString() );
 		
-		if( maxSegments > 0 ) {
-			parameters.add( "MaxSegments", String.valueOf( maxSegments ) );
-		}
-		
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
-
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		if( bitrate > 0 ) {
-			parameters.add( "Bitrate", String.valueOf( bitrate ) );
-		}
-
-		if( audioBitrate > 0 ) {
-			parameters.add( "AudioBitrate", String.valueOf( audioBitrate ) );
-		}
-
-		if( sampleRate > 0 ) {
-			parameters.add( "SampleRate", String.valueOf( sampleRate ) );
-		}
-
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_RECORDING_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
-		
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( "AddRecordingLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#addVideoLiveStream(int, int, int, int, int, int, int)
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfoWrapper> addVideoLiveStream( int id, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException {
-		
+	public ResponseEntity<LiveStreamInfo> addVideoLiveStream(Integer id, Integer maxSegments, Integer width, Integer height, Integer bitrate, Integer audioBitrate, Integer sampleRate, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", String.valueOf( id ) );
+
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
+		if(maxSegments != null)
+           		parameters.add( "MaxSegments", maxSegments.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
+		if(bitrate != null)
+           		parameters.add( "Bitrate", bitrate.toString() );
+		if(audioBitrate != null)
+           		parameters.add( "AudioBitrate", audioBitrate.toString() );
+		if(sampleRate != null)
+           		parameters.add( "SampleRate", sampleRate.toString() );
 		
-		if( maxSegments > 0 ) {
-			parameters.add( "MaxSegments", String.valueOf( maxSegments ) );
-		}
-
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
-
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		if( bitrate > 0 ) {
-			parameters.add( "Bitrate", String.valueOf( bitrate ) );
-		}
-
-		if( audioBitrate > 0 ) {
-			parameters.add( "AudioBitrate", String.valueOf( audioBitrate ) );
-		}
-
-		if( sampleRate > 0 ) {
-			parameters.add( "SampleRate", String.valueOf( sampleRate ) );
-		}
-
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.ADD_VIDEO_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfoWrapper.class );
-		
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( "AddVideoLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#downloadFile(java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> downloadFile( String url, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<Bool> downloadFile(String uRL, String storageGroup) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "StorageGroup", storageGroup );
-		parameters.add( "URL", url );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.DOWNLOAD_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), Bool.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(uRL != null && !uRL.isEmpty())
+			parameters.add( "URL", uRL );
+		if(storageGroup != null && !storageGroup.isEmpty())
+			parameters.add( "StorageGroup", storageGroup );
 		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "DownloadFile", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getAlbumArt(int, int, int)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getAlbumArt( int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getAlbumArt(Integer id, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", String.valueOf( id ) );
-		
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
 
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_ALBUM_ART.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
 		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetAlbumArt", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getFile(java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getFile( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		
+	public ResponseEntity<String> getFile(String storageGroup, String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "StorageGroup", storageGroup );
-		
-		if( null != filename && !"".equals( filename ) ) {
-			parameters.add( "FileName", filename );
-		}
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(storageGroup != null && !storageGroup.isEmpty())
+			parameters.add( "StorageGroup", storageGroup );
+		if(fileName != null && !fileName.isEmpty())
+			parameters.add( "FileName", fileName );
 		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetFile", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getFileList(java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<StringList> getFileList( String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<ArrayOfString> getFileList(String storageGroup, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "StorageGroup", storageGroup );
+
+		if(storageGroup != null && !storageGroup.isEmpty())
+			parameters.add( "StorageGroup", storageGroup );
 		
-		ResponseEntity<StringList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILE_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), StringList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<ArrayOfString> responseEntity = restOperations.exchange( buildUri( "GetFileList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArrayOfString.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getFilteredLiveStreamList(java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfos> getFilteredLiveStreamList( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<LiveStreamInfoList> getFilteredLiveStreamList(String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "FileName", filename );
+
+		if(fileName != null && !fileName.isEmpty())
+			parameters.add( "FileName", fileName );
 		
-		ResponseEntity<LiveStreamInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_FILTERED_LIVE_STREAM_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfos.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<LiveStreamInfoList> responseEntity = restOperations.exchange( buildUri( "GetFilteredLiveStreamList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfoList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getHash(java.lang.String, java.lang.String)
-	 */
 	@Override
- 	public ResponseEntity<String> getHash( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<String> getHash(String storageGroup, String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "StorageGroup", storageGroup );
-		parameters.add( "FileName", filename );
+
+		if(storageGroup != null && !storageGroup.isEmpty())
+			parameters.add( "StorageGroup", storageGroup );
+		if(fileName != null && !fileName.isEmpty())
+			parameters.add( "FileName", fileName );
 		
-		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_HASH.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), String.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetHash", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getImageFile(java.lang.String, java.lang.String, int, int)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getImageFile( String storageGroup, String filename, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getImageFile(String storageGroup, String fileName, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "StorageGroup", storageGroup );
-		parameters.add( "FileName", filename );
-		
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
 
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_IMAGE_FILE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(storageGroup != null && !storageGroup.isEmpty())
+			parameters.add( "StorageGroup", storageGroup );
+		if(fileName != null && !fileName.isEmpty())
+			parameters.add( "FileName", fileName );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
 		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetImageFile", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getLiveStream(int)
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfoWrapper> getLiveStream( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
-	
+	public ResponseEntity<LiveStreamInfo> getLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", String.valueOf( id ) );
 
-		ResponseEntity<LiveStreamInfoWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfoWrapper.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
 		
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( "GetLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getLiveStreamList()
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfoList> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-
-		ResponseEntity<LiveStreamInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_LIVE_STREAM_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), LiveStreamInfoList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getMusic(int)
-	 */
-	@Override
-	public ResponseEntity<byte[]> getMusic( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<LiveStreamInfoList> getLiveStreamList(ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", String.valueOf( id ) );
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_MUSIC.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
 		
+		ResponseEntity<LiveStreamInfoList> responseEntity = restOperations.exchange( buildUri( "GetLiveStreamList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfoList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getPreviewImage(int, java.util.Date, int, int, int)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getMusic(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
+
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
 		
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
-
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		if( secondsIn > 0 ) {
-			parameters.add( "SecsIn", String.valueOf( secondsIn ) );
-		}
-
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PREVIEW_IMAGE.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetMusic", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getProgramArtworkList(java.lang.String, int)
-	 */
 	@Override
-	public ResponseEntity<ArtworkInfos> getProgramArtworkList( String inetRef, int season, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getPreviewImage(Integer chanId, org.joda.time.DateTime startTime, Integer width, Integer height, Integer secsIn, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Inetref", inetRef );
-		
-		if( season > 0 ) {
-			parameters.add( "Season", String.valueOf( season ) );
-		}
 
-		ResponseEntity<ArtworkInfos> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_PROGRAM_ARTWORK_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfos.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
+		if(secsIn != null)
+           		parameters.add( "SecsIn", secsIn.toString() );
 		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetPreviewImage", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getRecording(int, java.util.Date)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getRecording( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<ArtworkInfoList> getProgramArtworkList(String inetref, Integer season, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
 
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(inetref != null && !inetref.isEmpty())
+			parameters.add( "Inetref", inetref );
+		if(season != null)
+           		parameters.add( "Season", season.toString() );
 		
+		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( "GetProgramArtworkList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArtworkInfoList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getRecordingArtwork(java.lang.String, java.lang.String, int, int, int)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getRecordingArtwork( String type, String inetRef, int season, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Inetref", inetRef );
+
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
-		if( null != type && !"".equals( type ) ) {
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetRecording", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
+	}
+
+	@Override
+	public ResponseEntity<String> getRecordingArtwork(String type, String inetref, Integer season, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(type != null && !type.isEmpty())
 			parameters.add( "Type", type );
-		}
-
-		if( season > 0 ) {
-			parameters.add( "Season", String.valueOf( season ) );
-		}
-
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
-
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING_ARTWORK.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(inetref != null && !inetref.isEmpty())
+			parameters.add( "Inetref", inetref );
+		if(season != null)
+           		parameters.add( "Season", season.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
 		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetRecordingArtwork", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getRecordingArtworkList(int, java.util.Date)
-	 */
 	@Override
-	public ResponseEntity<ArtworkInfoList> getRecordingArtworkList( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<ArtworkInfoList> getRecordingArtworkList(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "ChanId", String.valueOf( channelId ) );
-		parameters.add( "StartTime", convertUtcAndFormat( startTime ) );
+
+		if(chanId != null)
+           		parameters.add( "ChanId", chanId.toString() );
+		if(startTime != null)
+           		parameters.add( "StartTime",  convertUtcAndFormat( startTime )  );
 		
-		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_RECORDING_ARTWORK_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), ArtworkInfoList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<ArtworkInfoList> responseEntity = restOperations.exchange( buildUri( "GetRecordingArtworkList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), ArtworkInfoList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getVideo(int)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getVideo(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", String.valueOf( id ) );
+
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
 		
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetVideo", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#getVideoArtwork(java.lang.String, int, int, int)
-	 */
 	@Override
-	public ResponseEntity<byte[]> getVideoArtwork( String type, int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException {
-
+	public ResponseEntity<String> getVideoArtwork(String type, Integer id, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "Id", String.valueOf( id ) );
-		
-		if( null != type && !"".equals( type ) ) {
+
+		if(type != null && !type.isEmpty())
 			parameters.add( "Type", type );
-		}
-
-		if( width > 0 ) {
-			parameters.add( "Width", String.valueOf( width ) );
-		}
-
-		if( height > 0 ) {
-			parameters.add( "Height", String.valueOf( height ) );
-		}
-
-		ResponseEntity<byte[]> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_VIDEO_ARTWORK.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( etag ), byte[].class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
+		if(width != null)
+           		parameters.add( "Width", width.toString() );
+		if(height != null)
+           		parameters.add( "Height", height.toString() );
 		
+		ResponseEntity<String> responseEntity = restOperations.exchange( buildUri( "GetVideoArtwork", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), String.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#removeLiveStream(int)
-	 */
 	@Override
-	public ResponseEntity<Bool> removeLiveStream( int id ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
 		
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_LIVE_STREAM.getEndpoint(), "Id", String.valueOf( id ) ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
-		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), Bool.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.content.ContentOperations#stopLiveStream(int)
-	 */
 	@Override
-	public ResponseEntity<LiveStreamInfo> stopLiveStream( int id ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<LiveStreamInfo> stopLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
-		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( Endpoint.STOP_LIVE_STREAM.getEndpoint(), "Id", String.valueOf( id ) ), HttpMethod.GET, getRequestEntity( null ), LiveStreamInfo.class );
+		if(id != null)
+           		parameters.add( "Id", id.toString() );
 		
+		ResponseEntity<LiveStreamInfo> responseEntity = restOperations.exchange( buildUri( "StopLiveStream", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), LiveStreamInfo.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
 		return responseEntity;
 	}
-	
+
+
 }

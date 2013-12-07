@@ -19,48 +19,15 @@
  */
 package org.mythtv.services.api.test.v026.connect;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.DateTime;
 import org.mythtv.services.api.converters.JodaDateTimeTransform;
 import org.mythtv.services.api.test.connect.AbstractFakeMythTvRestTemplate;
-import org.mythtv.services.api.v026.beans.Job.Command;
-import org.mythtv.services.api.v026.beans.Job.Flag;
-import org.mythtv.services.api.v026.beans.Job.Status;
-import org.mythtv.services.api.v026.beans.Job.Type;
+import org.mythtv.services.api.v026.status.beans.Job;
 import org.mythtv.services.api.v026.status.converters.JobCommandTransform;
 import org.mythtv.services.api.v026.status.converters.JobFlagTransform;
 import org.mythtv.services.api.v026.status.converters.JobStatusTransform;
 import org.mythtv.services.api.v026.status.converters.JobTypeTransform;
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.convert.AnnotationStrategy;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.strategy.Strategy;
 import org.simpleframework.xml.transform.RegistryMatcher;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpRequest;
-import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.http.converter.ByteArrayHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.ResourceHttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
-import org.springframework.web.client.*;
-import org.springframework.web.util.UriTemplate;
-import org.springframework.web.util.UriUtils;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Sebastien Astie
@@ -71,10 +38,10 @@ public class FakeMythTvRestTemplate extends AbstractFakeMythTvRestTemplate{
     protected RegistryMatcher setupMatchers() {
         RegistryMatcher matchers = new RegistryMatcher();
         matchers.bind( DateTime.class, JodaDateTimeTransform.class );
-        matchers.bind( Command.class, JobCommandTransform.class );
-        matchers.bind( Flag.class, JobFlagTransform.class );
-        matchers.bind( Status.class, JobStatusTransform.class );
-        matchers.bind( Type.class, JobTypeTransform.class );
+        matchers.bind( Job.Command.class, JobCommandTransform.class );
+        matchers.bind( Job.Flag.class, JobFlagTransform.class );
+        matchers.bind( Job.Status.class, JobStatusTransform.class );
+        matchers.bind( Job.Type.class, JobTypeTransform.class );
         return matchers;
     }
 

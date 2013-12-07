@@ -19,217 +19,211 @@
  */
 package org.mythtv.services.api.v026.impl;
 
+import org.mythtv.services.api.AbstractOperations;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
+import org.mythtv.services.api.Int;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.Bool;
-import org.mythtv.services.api.v026.CaptureOperations;
-import org.mythtv.services.api.v026.Int;
 import org.mythtv.services.api.v026.beans.CaptureCard;
 import org.mythtv.services.api.v026.beans.CaptureCardList;
-import org.mythtv.services.api.v026.beans.CaptureCardWrapper;
-import org.mythtv.services.api.v026.beans.CardInput;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestOperations;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
-public class CaptureTemplate extends AbstractCaptureOperations implements CaptureOperations {
-	
-	public enum Endpoint {
-		ADD_CAPTURE_CARD( "AddCaptureCard" ),
-		ADD_CARD_INPUT( "AddCardInput" ),
-		GET_CAPTURE_CARD( "GetCaptureCard" ),
-		GET_CAPTURE_CARD_LIST( "GetCaptureCardList" ),
-		REMOVE_CAPTURE_CARD( "RemoveCaptureCard" ),
-		REMOVE_CARD_INPUT( "RemoveCardInput"),
-		UPDATE_CAPTURE_CARD( "UpdateCaptureCard" ),
-		UPDATE_CARD_INPUT( "UpdateCardInput" );
-		
-		private String endpoint;
-		
-		private Endpoint( String endpoint ) {
-			this.endpoint = endpoint;
-		}
-		
-		public String getEndpoint() {
-			return endpoint;
-		}
-		
-	}
-	
-	private final RestOperations restOperations;
+public class CaptureTemplate extends AbstractOperations implements org.mythtv.services.api.v026.CaptureOperations {
 
-	public CaptureTemplate( RestOperations restOperations, String apiUrlBase ) {
-		super( apiUrlBase );
-		this.restOperations = restOperations;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#addCaptureCard(org.mythtv.services.api.capture.CaptureCard)
-	 */
-	@Override
-	public ResponseEntity<Int> addCaptureCard( CaptureCard captureCard ) throws MythServiceApiRuntimeException {
-		return restOperations.exchange( buildUri( Endpoint.ADD_CAPTURE_CARD.getEndpoint(), convertCaptureCardToParameters( captureCard ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
-	}
+    private final RestOperations restOperations;
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#addCardInput(org.mythtv.services.api.capture.CardInput)
-	 */
-	@Override
-	public ResponseEntity<Int> addCardInput( CardInput cardInput ) throws MythServiceApiRuntimeException {
-		return restOperations.exchange( buildUri( Endpoint.ADD_CARD_INPUT.getEndpoint(), convertCardInputToParameters( cardInput ) ), HttpMethod.GET, getRequestEntity(null), Int.class );
-	}
+    public CaptureTemplate( RestOperations restOperations, String apiUrlBase ) {
+        super( apiUrlBase + "Capture/" );
+        this.restOperations = restOperations;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCard(int)
-	 */
 	@Override
-	public ResponseEntity<CaptureCardWrapper> getCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<CaptureCardWrapper> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD.getEndpoint(), "CardId", new String( String.valueOf( cardId ) ) ), HttpMethod.GET, getRequestEntity(etag), CaptureCardWrapper.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCardList()
-	 */
-	@Override
-	public ResponseEntity<CaptureCardList> getCaptureCardList( ETagInfo etag ) throws MythServiceApiRuntimeException {
-		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD_LIST.getEndpoint() ), HttpMethod.GET, getRequestEntity( etag ), CaptureCardList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-		
-		return responseEntity;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#getCaptureCardList(java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ResponseEntity<CaptureCardList> getCaptureCardList( String hostName, String cardType, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> addCaptureCard(String videoDevice, String audioDevice, String vBIDevice, String cardType, Integer audioRateLimit, String hostName, Integer dVBSWFilter, Integer dVBSatType, Boolean dVBWaitForSeqStart, Boolean skipBTAudio, Boolean dVBOnDemand, Integer dVBDiSEqCType, Integer firewireSpeed, String firewireModel, Integer firewireConnection, Integer signalTimeout, Integer channelTimeout, Integer dVBTuningDelay, Integer contrast, Integer brightness, Integer colour, Integer hue, Integer diSEqCId, Boolean dVBEITScan) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		if( null != hostName && !"".equals( hostName ) ) {
-			parameters.add( "HostName", hostName );
-		}
-		
-		if( null != cardType && !"".equals( cardType ) ) {
+
+		if(videoDevice != null && !videoDevice.isEmpty())
+			parameters.add( "VideoDevice", videoDevice );
+		if(audioDevice != null && !audioDevice.isEmpty())
+			parameters.add( "AudioDevice", audioDevice );
+		if(vBIDevice != null && !vBIDevice.isEmpty())
+			parameters.add( "VBIDevice", vBIDevice );
+		if(cardType != null && !cardType.isEmpty())
 			parameters.add( "CardType", cardType );
-		}
+		if(audioRateLimit != null)
+           		parameters.add( "AudioRateLimit", audioRateLimit.toString() );
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(dVBSWFilter != null)
+           		parameters.add( "DVBSWFilter", dVBSWFilter.toString() );
+		if(dVBSatType != null)
+           		parameters.add( "DVBSatType", dVBSatType.toString() );
+		if(dVBWaitForSeqStart != null)
+           		parameters.add( "DVBWaitForSeqStart", dVBWaitForSeqStart.toString() );
+		if(skipBTAudio != null)
+           		parameters.add( "SkipBTAudio", skipBTAudio.toString() );
+		if(dVBOnDemand != null)
+           		parameters.add( "DVBOnDemand", dVBOnDemand.toString() );
+		if(dVBDiSEqCType != null)
+           		parameters.add( "DVBDiSEqCType", dVBDiSEqCType.toString() );
+		if(firewireSpeed != null)
+           		parameters.add( "FirewireSpeed", firewireSpeed.toString() );
+		if(firewireModel != null && !firewireModel.isEmpty())
+			parameters.add( "FirewireModel", firewireModel );
+		if(firewireConnection != null)
+           		parameters.add( "FirewireConnection", firewireConnection.toString() );
+		if(signalTimeout != null)
+           		parameters.add( "SignalTimeout", signalTimeout.toString() );
+		if(channelTimeout != null)
+           		parameters.add( "ChannelTimeout", channelTimeout.toString() );
+		if(dVBTuningDelay != null)
+           		parameters.add( "DVBTuningDelay", dVBTuningDelay.toString() );
+		if(contrast != null)
+           		parameters.add( "Contrast", contrast.toString() );
+		if(brightness != null)
+           		parameters.add( "Brightness", brightness.toString() );
+		if(colour != null)
+           		parameters.add( "Colour", colour.toString() );
+		if(hue != null)
+           		parameters.add( "Hue", hue.toString() );
+		if(diSEqCId != null)
+           		parameters.add( "DiSEqCId", diSEqCId.toString() );
+		if(dVBEITScan != null)
+           		parameters.add( "DVBEITScan", dVBEITScan.toString() );
 		
-		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( Endpoint.GET_CAPTURE_CARD_LIST.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), CaptureCardList.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
-
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
+		  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#removeCaptureCard(int)
-	 */
 	@Override
-	public ResponseEntity<Bool> removeCaptureCard( int cardId, ETagInfo etag ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Int> addCardInput(Integer cardId, Integer sourceId, String inputName, String externalCommand, String changerDevice, String changerModel, String hostName, String tuneChan, String startChan, String displayName, Boolean dishnetEIT, Integer recPriority, Integer quicktune, Integer schedOrder, Integer liveTVOrder) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardId", new String( String.valueOf( cardId ) ) );
 
-		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( Endpoint.REMOVE_CAPTURE_CARD.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(etag), Bool.class );
-		handleResponseEtag( etag, responseEntity.getHeaders() );
+		if(cardId != null)
+           		parameters.add( "CardId", cardId.toString() );
+		if(sourceId != null)
+           		parameters.add( "SourceId", sourceId.toString() );
+		if(inputName != null && !inputName.isEmpty())
+			parameters.add( "InputName", inputName );
+		if(externalCommand != null && !externalCommand.isEmpty())
+			parameters.add( "ExternalCommand", externalCommand );
+		if(changerDevice != null && !changerDevice.isEmpty())
+			parameters.add( "ChangerDevice", changerDevice );
+		if(changerModel != null && !changerModel.isEmpty())
+			parameters.add( "ChangerModel", changerModel );
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(tuneChan != null && !tuneChan.isEmpty())
+			parameters.add( "TuneChan", tuneChan );
+		if(startChan != null && !startChan.isEmpty())
+			parameters.add( "StartChan", startChan );
+		if(displayName != null && !displayName.isEmpty())
+			parameters.add( "DisplayName", displayName );
+		if(dishnetEIT != null)
+           		parameters.add( "DishnetEIT", dishnetEIT.toString() );
+		if(recPriority != null)
+           		parameters.add( "RecPriority", recPriority.toString() );
+		if(quicktune != null)
+           		parameters.add( "Quicktune", quicktune.toString() );
+		if(schedOrder != null)
+           		parameters.add( "SchedOrder", schedOrder.toString() );
+		if(liveTVOrder != null)
+           		parameters.add( "LiveTVOrder", liveTVOrder.toString() );
 		
+		ResponseEntity<Int> responseEntity = restOperations.exchange( buildUri( "AddCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Int.class );
+		  
 		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#removeCardInput(int)
-	 */
 	@Override
-	public ResponseEntity<Bool> removeCardInput( int cardInputId) throws MythServiceApiRuntimeException {
+	public ResponseEntity<CaptureCard> getCaptureCard(Integer cardId, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardInputId", new String( String.valueOf( cardInputId ) ) );
 
-		return restOperations.exchange( buildUri( Endpoint.REMOVE_CARD_INPUT.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity( null ), Bool.class );
+		if(cardId != null)
+           		parameters.add( "CardId", cardId.toString() );
+		
+		ResponseEntity<CaptureCard> responseEntity = restOperations.exchange( buildUri( "GetCaptureCard", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), CaptureCard.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#updateCaptureCard(int, java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> updateCaptureCard( int cardId, String setting, String value ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<CaptureCardList> getCaptureCardList(String hostName, String cardType, ETagInfo etagInfo) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardId", new String( String.valueOf( cardId ) ) );
-		parameters.add( setting, value );
+
+		if(hostName != null && !hostName.isEmpty())
+			parameters.add( "HostName", hostName );
+		if(cardType != null && !cardType.isEmpty())
+			parameters.add( "CardType", cardType );
 		
-		return restOperations.exchange( buildUri( Endpoint.UPDATE_CAPTURE_CARD.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		ResponseEntity<CaptureCardList> responseEntity = restOperations.exchange( buildUri( "GetCaptureCardList", parameters ), HttpMethod.GET, getRequestEntity(etagInfo), CaptureCardList.class );
+		handleResponseEtag( etagInfo, responseEntity.getHeaders() );  
+		return responseEntity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mythtv.services.api.capture.CaptureOperations#updateCardInput(int, java.lang.String, java.lang.String)
-	 */
 	@Override
-	public ResponseEntity<Bool> updateCardInput( int cardInputId, String setting, String value ) throws MythServiceApiRuntimeException {
+	public ResponseEntity<Bool> removeCaptureCard(Integer cardId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add( "CardInputId", new String( String.valueOf( cardInputId ) ) );
-		parameters.add( setting, value );
+
+		if(cardId != null)
+           		parameters.add( "CardId", cardId.toString() );
 		
-		return restOperations.exchange( buildUri( Endpoint.UPDATE_CARD_INPUT.getEndpoint(), parameters ), HttpMethod.GET, getRequestEntity(null), Bool.class );
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
 	}
 
-	// internal helpers
-	
-	private LinkedMultiValueMap<String, String> convertCaptureCardToParameters( CaptureCard captureCard ) {
+	@Override
+	public ResponseEntity<Bool> removeCardInput(Integer cardInputId) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		parameters.add( "VideoDevice", captureCard.getVbiDevice() );
-		parameters.add( "CardType", captureCard.getCardType() );
-		parameters.add( "DefaultInput", "" );
-		parameters.add( "HostName", captureCard.getHostName() );
-		parameters.add( "AudioDevice", captureCard.getAudioDevice() );
-		parameters.add( "VBIDevice", captureCard.getVbiDevice() );
-		parameters.add( "AudioRateLimit", captureCard.getAudioRateLimit().toString() );
-		parameters.add( "SkipBTAudio", captureCard.getSkipBtAudio().toString() );
-		parameters.add( "DVBSWFilter", captureCard.getDvbSwFilter().toString() );
-		parameters.add( "DVBSatType", captureCard.getDvbSatType().toString() );
-		parameters.add( "DVBWaitForSeqStart", captureCard.getDvbWaitForSeqStart().toString() );
-		parameters.add( "DVBOnDemand", captureCard.getDvbOnDemand().toString() );
-		parameters.add( "DVBDiSEqCType", captureCard.getDvbDiSEqCType().toString() );
-		parameters.add( "FirewireModel", captureCard.getFirewireModel() );
-		parameters.add( "FirewireSpeed", captureCard.getFirewireSpeed().toString() );
-		parameters.add( "FirewireConnection", captureCard.getFirewireConnection().toString() );
-		parameters.add( "SignalTimeout", captureCard.getSignalTimeout().toString() );
-		parameters.add( "ChannelTimeout", captureCard.getChannelTimeout().toString() );
-		parameters.add( "DVBTuningDelay", captureCard.getDvbTuningDelay().toString() );
-		parameters.add( "Contrast", captureCard.getContrast().toString() );
-		parameters.add( "Brightness", captureCard.getBrightness().toString() );
-		parameters.add( "Colour", captureCard.getColour().toString() );
-		parameters.add( "Hue", captureCard.getHue().toString() );
-		parameters.add( "DiSEqCId", captureCard.getDiSEqCId().toString() );
-		parameters.add( "DVBEITScan", captureCard.getDvbEitScan().toString() );
 
-		return parameters;
+		if(cardInputId != null)
+           		parameters.add( "CardInputId", cardInputId.toString() );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "RemoveCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
 	}
-	
-	private LinkedMultiValueMap<String, String> convertCardInputToParameters( CardInput cardInput ) {
+
+	@Override
+	public ResponseEntity<Bool> updateCaptureCard(Integer cardId, String setting, String value) throws MythServiceApiRuntimeException {
 		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		
-		parameters.add( "CardId", String.valueOf( cardInput.getCardId() ) );
-		parameters.add( "SourceId", String.valueOf( cardInput.getSourceId() ) );
-		parameters.add( "InputName", cardInput.getInputName() );
-		parameters.add( "ExternalCommand", cardInput.getExternalCommand() );
-		parameters.add( "ChangerDevice", cardInput.getChangerDevice() );
-		parameters.add( "ChangerModel", cardInput.getChangerModel() );
-		parameters.add( "HostName", cardInput.getHosthame() );
-		parameters.add( "TuneChan", cardInput.getTuneChannel() );
-		parameters.add( "StartChan", cardInput.getStartChannel() );
-		parameters.add( "DisplayName", cardInput.getDisplayName() );
-		parameters.add( "DishnetEIT", String.valueOf( cardInput.isDishnetEIT() ) );
-		parameters.add( "RecPriority", String.valueOf( cardInput.getRecordingPriority() ) );
-		parameters.add( "Quicktune", String.valueOf( cardInput.getQuicktune() ) );
-		parameters.add( "SchedOrder", String.valueOf( cardInput.getSchedOrder() ) );
-		parameters.add( "LiveTVOrder", String.valueOf( cardInput.getLiveTVOrder() ) );
 
-		return parameters;
+		if(cardId != null)
+           		parameters.add( "CardId", cardId.toString() );
+		if(setting != null && !setting.isEmpty())
+			parameters.add( "Setting", setting );
+		if(value != null && !value.isEmpty())
+			parameters.add( "Value", value );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCaptureCard", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
 	}
-	
+
+	@Override
+	public ResponseEntity<Bool> updateCardInput(Integer cardInputId, String setting, String value) throws MythServiceApiRuntimeException {
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+
+		if(cardInputId != null)
+           		parameters.add( "CardInputId", cardInputId.toString() );
+		if(setting != null && !setting.isEmpty())
+			parameters.add( "Setting", setting );
+		if(value != null && !value.isEmpty())
+			parameters.add( "Value", value );
+		
+		ResponseEntity<Bool> responseEntity = restOperations.exchange( buildUri( "UpdateCardInput", parameters ), HttpMethod.POST, getRequestEntity(null), Bool.class );
+		  
+		return responseEntity;
+	}
+
+
 }

@@ -19,230 +19,259 @@
  */
 package org.mythtv.services.api.v026;
 
-import org.joda.time.DateTime;
+import org.mythtv.services.api.ArrayOfString;
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.*;
+import org.mythtv.services.api.v026.beans.ArtworkInfoList;
+import org.mythtv.services.api.v026.beans.LiveStreamInfo;
+import org.mythtv.services.api.v026.beans.LiveStreamInfoList;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * <b>Auto-generated file, do not modify manually !!!!</b>
+ *
+ * @author Sebastien Astie
+ */
 public interface ContentOperations {
 
-	/**
-	 * - GET
-	 * 
+	/*
+	 * GET method
+	 *
 	 * @param storageGroup
-	 * @param filename
-	 * @param hostname
+	 * @param fileName
+	 * @param hostName
 	 * @param maxSegments
 	 * @param width
 	 * @param height
 	 * @param bitrate
 	 * @param audioBitrate
 	 * @param sampleRate
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfo>
 	 */
-	ResponseEntity<LiveStreamInfoWrapper> addLiveStream( String storageGroup, String filename, String hostname, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
-	 * @param startTime
-	 * @param maxSegments
-	 * @param width
-	 * @param height
-	 * @param bitrate
-	 * @param audioBitrate
-	 * @param sampleRate
-	 * @return
-	 */
-	ResponseEntity<LiveStreamInfoWrapper> addRecordingLiveStream( int channelId, DateTime startTime, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param id
-	 * @param maxSegments
-	 * @param width
-	 * @param height
-	 * @param bitrate
-	 * @param audioBitrate
-	 * @param sampleRate
-	 * @return
-	 */
-	ResponseEntity<LiveStreamInfoWrapper> addVideoLiveStream( int id, int maxSegments, int width, int height, int bitrate, int audioBitrate, int sampleRate ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
-	 * @param url
-	 * @param storageGroup
-	 * @return
-	 */
-	ResponseEntity<Bool> downloadFile( String url, String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param id
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	ResponseEntity<byte[]> getAlbumArt( int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param storageGroup
-	 * @param filename
-	 * @return
-	 */
-	ResponseEntity<byte[]> getFile( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param storageGroup
-	 * @return
-	 */
-	ResponseEntity<StringList> getFileList( String storageGroup, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param filename
-	 * @return
-	 */
-	ResponseEntity<LiveStreamInfos> getFilteredLiveStreamList( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param storageGroup
-	 * @param filename
-	 * @return
-	 */
-	ResponseEntity<String> getHash( String storageGroup, String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param storageGroup
-	 * @param filename
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	ResponseEntity<byte[]> getImageFile( String storageGroup, String filename, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param id
-	 * @return
-	 */
-	ResponseEntity<LiveStreamInfoWrapper> getLiveStream( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @return
-	 */
-	ResponseEntity<LiveStreamInfoList> getLiveStreamList( ETagInfo etag ) throws MythServiceApiRuntimeException;
+	ResponseEntity<LiveStreamInfo> addLiveStream(String storageGroup, String fileName, String hostName, Integer maxSegments, Integer width, Integer height, Integer bitrate, Integer audioBitrate, Integer sampleRate, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
 
-	/**
-	 * - GET
-	 * 
-	 * @param id
-	 * @return
+	/*
+	 * GET method
+	 *
+	 * @param chanId
+	 * @param startTime
+	 * @param maxSegments
+	 * @param width
+	 * @param height
+	 * @param bitrate
+	 * @param audioBitrate
+	 * @param sampleRate
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfo>
 	 */
-	ResponseEntity<byte[]> getMusic( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
+	ResponseEntity<LiveStreamInfo> addRecordingLiveStream(Integer chanId, org.joda.time.DateTime startTime, Integer maxSegments, Integer width, Integer height, Integer bitrate, Integer audioBitrate, Integer sampleRate, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param id
+	 * @param maxSegments
+	 * @param width
+	 * @param height
+	 * @param bitrate
+	 * @param audioBitrate
+	 * @param sampleRate
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfo>
+	 */
+	ResponseEntity<LiveStreamInfo> addVideoLiveStream(Integer id, Integer maxSegments, Integer width, Integer height, Integer bitrate, Integer audioBitrate, Integer sampleRate, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * POST method
+	 *
+	 * @param uRL
+	 * @param storageGroup
+	 * @return ResponseEntity<Bool>
+	 */
+	ResponseEntity<Bool> downloadFile(String uRL, String storageGroup) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param id
+	 * @param width
+	 * @param height
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
+	 */
+	ResponseEntity<String> getAlbumArt(Integer id, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param storageGroup
+	 * @param fileName
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
+	 */
+	ResponseEntity<String> getFile(String storageGroup, String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param storageGroup
+	 * @param etagInfo
+	 * @return ResponseEntity<ArrayOfString>
+	 */
+	ResponseEntity<ArrayOfString> getFileList(String storageGroup, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param fileName
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfoList>
+	 */
+	ResponseEntity<LiveStreamInfoList> getFilteredLiveStreamList(String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param storageGroup
+	 * @param fileName
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
+	 */
+	ResponseEntity<String> getHash(String storageGroup, String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param storageGroup
+	 * @param fileName
+	 * @param width
+	 * @param height
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
+	 */
+	ResponseEntity<String> getImageFile(String storageGroup, String fileName, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param id
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfo>
+	 */
+	ResponseEntity<LiveStreamInfo> getLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfoList>
+	 */
+	ResponseEntity<LiveStreamInfoList> getLiveStreamList(ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param id
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
+	 */
+	ResponseEntity<String> getMusic(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param chanId
 	 * @param startTime
 	 * @param width
 	 * @param height
-	 * @param secondsIn
-	 * @return
+	 * @param secsIn
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
 	 */
-	ResponseEntity<byte[]> getPreviewImage( int channelId, DateTime startTime, int width, int height, int secondsIn, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param inetRef
+	ResponseEntity<String> getPreviewImage(Integer chanId, org.joda.time.DateTime startTime, Integer width, Integer height, Integer secsIn, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param inetref
 	 * @param season
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<ArtworkInfoList>
 	 */
-	ResponseEntity<ArtworkInfos> getProgramArtworkList( String inetRef, int season, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
+	ResponseEntity<ArtworkInfoList> getProgramArtworkList(String inetref, Integer season, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param chanId
 	 * @param startTime
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
 	 */
-	ResponseEntity<byte[]> getRecording( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<String> getRecording(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param type
-	 * @param inetRef
+	 * @param inetref
 	 * @param season
 	 * @param width
 	 * @param height
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
 	 */
-	ResponseEntity<byte[]> getRecordingArtwork( String type, String inetRef, int season, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param channelId
+	ResponseEntity<String> getRecordingArtwork(String type, String inetref, Integer season, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param chanId
 	 * @param startTime
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<ArtworkInfoList>
 	 */
-	ResponseEntity<ArtworkInfoList> getRecordingArtworkList( int channelId, DateTime startTime, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<ArtworkInfoList> getRecordingArtworkList(Integer chanId, org.joda.time.DateTime startTime, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param id
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
 	 */
-	ResponseEntity<byte[]> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<String> getVideo(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param type
 	 * @param id
 	 * @param width
 	 * @param height
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<String>
 	 */
-	ResponseEntity<byte[]> getVideoArtwork( String type, int id, int width, int height, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<String> getVideoArtwork(String type, Integer id, Integer width, Integer height, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param id
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> removeLiveStream( int id ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<Bool> removeLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param id
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<LiveStreamInfo>
 	 */
-	ResponseEntity<LiveStreamInfo> stopLiveStream( int id ) throws MythServiceApiRuntimeException;
-	
+	ResponseEntity<LiveStreamInfo> stopLiveStream(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
 }

@@ -19,83 +19,90 @@
  */
 package org.mythtv.services.api.v026;
 
+import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.MythServiceApiRuntimeException;
-import org.mythtv.services.api.v026.beans.BlurayInfoWrapper;
+import org.mythtv.services.api.v026.beans.BlurayInfo;
 import org.mythtv.services.api.v026.beans.VideoLookupList;
-import org.mythtv.services.api.v026.beans.VideoMetaDataInfoWrapper;
+import org.mythtv.services.api.v026.beans.VideoMetadataInfo;
 import org.mythtv.services.api.v026.beans.VideoMetadataInfoList;
 import org.springframework.http.ResponseEntity;
 
 /**
- * @author Daniel Frey
+ * <b>Auto-generated file, do not modify manually !!!!</b>
  *
+ * @author Sebastien Astie
  */
 public interface VideoOperations {
 
-	/**
-	 * - POST
-	 * 
-	 * @param filename
-	 * @param hostname
-	 * @return
+	/*
+	 * POST method
+	 *
+	 * @param fileName
+	 * @param hostName
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> addVideo( String filename, String hostname ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<Bool> addVideo(String fileName, String hostName) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param path
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<BlurayInfo>
 	 */
-	ResponseEntity<BlurayInfoWrapper> getBluray( String path, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<BlurayInfo> getBluray(String path, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param id
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<VideoMetadataInfo>
 	 */
-	ResponseEntity<VideoMetaDataInfoWrapper> getVideo( int id, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
-	 * @param filename
-	 * @return
+	ResponseEntity<VideoMetadataInfo> getVideo(Integer id, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
+	 * @param fileName
+	 * @param etagInfo
+	 * @return ResponseEntity<VideoMetadataInfo>
 	 */
-	ResponseEntity<VideoMetaDataInfoWrapper> getVideoByFilename( String filename, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<VideoMetadataInfo> getVideoByFileName(String fileName, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param descending
 	 * @param startIndex
 	 * @param count
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<VideoMetadataInfoList>
 	 */
-	ResponseEntity<VideoMetadataInfoList> getVideoList( boolean descending, int startIndex, int count, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - GET
-	 * 
+	ResponseEntity<VideoMetadataInfoList> getVideoList(Boolean descending, Integer startIndex, Integer count, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * GET method
+	 *
 	 * @param title
 	 * @param subtitle
-	 * @param inetRef
+	 * @param inetref
 	 * @param season
 	 * @param episode
 	 * @param grabberType
 	 * @param allowGeneric
-	 * @return
+	 * @param etagInfo
+	 * @return ResponseEntity<VideoLookupList>
 	 */
-	ResponseEntity<VideoLookupList> lookupVideo( String title, String subtitle, String inetRef, int season, int episode, String grabberType, boolean allowGeneric, ETagInfo etag ) throws MythServiceApiRuntimeException;
-	
-	/**
-	 * - POST
-	 * 
+	ResponseEntity<VideoLookupList> lookupVideo(String title, String subtitle, String inetref, Integer season, Integer episode, String grabberType, Boolean allowGeneric, ETagInfo etagInfo) throws MythServiceApiRuntimeException;
+
+	/*
+	 * POST method
+	 *
 	 * @param id
-	 * @return
+	 * @return ResponseEntity<Bool>
 	 */
-	ResponseEntity<Bool> removeVideoFromDatabase( int id ) throws MythServiceApiRuntimeException;
-	
+	ResponseEntity<Bool> removeVideoFromDB(Integer id) throws MythServiceApiRuntimeException;
+
 }
