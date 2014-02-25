@@ -420,7 +420,7 @@ public class Program {
             this.artwork = artwork;
         }
 
-    public ProgramDetails toArtworkInfoDetails() {
+    public ProgramDetails toProgramDetails() {
 
         ProgramDetails details = new ProgramDetails();
         try {
