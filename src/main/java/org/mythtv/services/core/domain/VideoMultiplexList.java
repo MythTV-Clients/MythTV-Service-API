@@ -168,6 +168,14 @@ public class VideoMultiplexList {
     public VideoMultiplexListDetails toVideoMultiplexListDetails() {
 
         VideoMultiplexListDetails details = new VideoMultiplexListDetails();
+        details.setStartIndex( startIndex );
+        details.setCount( count );
+        details.setCurrentPage( currentPage );
+        details.setTotalPages( totalPages );
+        details.setTotalAvailable( totalAvailable );
+        details.setAsOf( asOf );
+        details.setVersion( version );
+        details.setProtoVer( protoVer );
 
         if( null != videoMultiplexes && videoMultiplexes.length > 0 ) {
 
@@ -183,7 +191,15 @@ public class VideoMultiplexList {
 
     public static VideoMultiplexList fromVideoMultiplexListDetails( VideoMultiplexListDetails details ) {
 
-        VideoMultiplexList videoMultiplexList = new VideoMultiplexList();
+        VideoMultiplexList list = new VideoMultiplexList();
+        list.setStartIndex( details.getStartIndex() );
+        list.setCount( details.getCount() );
+        list.setCurrentPage( details.getCurrentPage() );
+        list.setTotalPages( details.getTotalPages() );
+        list.setTotalAvailable( details.getTotalAvailable() );
+        list.setAsOf( details.getAsOf() );
+        list.setVersion( details.getVersion() );
+        list.setProtoVer( details.getProtoVer() );
 
         if( null != details.getVideoMultiplexes() && details.getVideoMultiplexes().length > 0 ) {
 
@@ -191,11 +207,11 @@ public class VideoMultiplexList {
             for( VideoMultiplexDetails detail : details.getVideoMultiplexes() ) {
                 videoMultiplexs.add(VideoMultiplex.fromVideoMultiplexDetails(detail));
             }
-            videoMultiplexList.setVideoMultiplexes(videoMultiplexs.toArray(new VideoMultiplex[videoMultiplexs.size()]));
+            list.setVideoMultiplexes(videoMultiplexs.toArray(new VideoMultiplex[videoMultiplexs.size()]));
           
         }
 
-        return videoMultiplexList;
+        return list;
     }
 
 }

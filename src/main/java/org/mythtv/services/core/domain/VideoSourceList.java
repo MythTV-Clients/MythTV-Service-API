@@ -92,6 +92,9 @@ public class VideoSourceList {
     public VideoSourceListDetails toVideoSourceListDetails() {
 
         VideoSourceListDetails details = new VideoSourceListDetails();
+        details.setAsOf( asOf );
+        details.setVersion( version );
+        details.setProtoVer( protoVer );
 
         if( null != videoSources && videoSources.length > 0 ) {
 
@@ -107,7 +110,10 @@ public class VideoSourceList {
 
     public static VideoSourceList fromVideoSourceListDetails( VideoSourceListDetails details ) {
 
-        VideoSourceList videoSourceList = new VideoSourceList();
+        VideoSourceList list = new VideoSourceList();
+        list.setAsOf( details.getAsOf() );
+        list.setVersion( details.getVersion() );
+        list.setProtoVer( details.getProtoVer() );
 
         if( null != details.getVideoSources() && details.getVideoSources().length > 0 ) {
 
@@ -115,10 +121,10 @@ public class VideoSourceList {
             for( VideoSourceDetails detail : details.getVideoSources() ) {
                 videoSources.add( VideoSource.fromVideoSourceDetails( detail ) );
             }
-            videoSourceList.setVideoSources( videoSources.toArray( new VideoSource[ videoSources.size() ] ) );
+            list.setVideoSources( videoSources.toArray( new VideoSource[ videoSources.size() ] ) );
         }
 
-        return videoSourceList;
+        return list;
     }
 
 }

@@ -167,6 +167,14 @@ public class VideoMetadataInfoList {
     public VideoMetadataInfoListDetails toVideoMetadataInfoListDetails() {
 
         VideoMetadataInfoListDetails details = new VideoMetadataInfoListDetails();
+        details.setStartIndex( startIndex );
+        details.setCount( count );
+        details.setCurrentPage( currentPage );
+        details.setTotalPages( totalPages );
+        details.setTotalAvailable( totalAvailable );
+        details.setAsOf( asOf );
+        details.setVersion( version );
+        details.setProtoVer( protoVer );
 
         if( null != videoMetadataInfos && videoMetadataInfos.length > 0 ) {
 
@@ -182,7 +190,15 @@ public class VideoMetadataInfoList {
 
     public static VideoMetadataInfoList fromVideoMetadataInfoListDetails( VideoMetadataInfoListDetails details ) {
 
-        VideoMetadataInfoList videoMetadataInfoList = new VideoMetadataInfoList();
+        VideoMetadataInfoList list = new VideoMetadataInfoList();
+        list.setStartIndex( details.getStartIndex() );
+        list.setCount( details.getCount() );
+        list.setCurrentPage( details.getCurrentPage() );
+        list.setTotalPages( details.getTotalPages() );
+        list.setTotalAvailable( details.getTotalAvailable() );
+        list.setAsOf( details.getAsOf() );
+        list.setVersion( details.getVersion() );
+        list.setProtoVer( details.getProtoVer() );
 
         if( null != details.getVideoMetadataInfos() && details.getVideoMetadataInfos().length > 0 ) {
 
@@ -190,10 +206,10 @@ public class VideoMetadataInfoList {
             for( VideoMetadataInfoDetails detail : details.getVideoMetadataInfos() ) {
                 videoMetadataInfos.add( VideoMetadataInfo.fromVideoMetadataInfoDetails( detail ) );
             }
-            videoMetadataInfoList.setVideoMetadataInfos( videoMetadataInfos.toArray( new VideoMetadataInfo[ videoMetadataInfos.size() ] ) );
+            list.setVideoMetadataInfos( videoMetadataInfos.toArray( new VideoMetadataInfo[ videoMetadataInfos.size() ] ) );
         }
 
-        return videoMetadataInfoList;
+        return list;
     }
 
 }

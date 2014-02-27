@@ -107,6 +107,10 @@ public class VideoLookupList {
     public VideoLookupListDetails toVideoLookupListDetails() {
 
         VideoLookupListDetails details = new VideoLookupListDetails();
+        details.setCount( count );
+        details.setAsOf( asOf );
+        details.setVersion( version );
+        details.setProtoVer( protoVer );
 
         if( null != videoLookups && videoLookups.length > 0 ) {
 
@@ -122,7 +126,11 @@ public class VideoLookupList {
 
     public static VideoLookupList fromVideoLookupListDetails( VideoLookupListDetails details ) {
 
-        VideoLookupList videoLookupList = new VideoLookupList();
+        VideoLookupList list = new VideoLookupList();
+        list.setCount( details.getCount() );
+        list.setAsOf( details.getAsOf() );
+        list.setVersion( details.getVersion() );
+        list.setProtoVer( details.getProtoVer() );
 
         if( null != details.getVideoLookups() && details.getVideoLookups().length > 0 ) {
 
@@ -130,10 +138,10 @@ public class VideoLookupList {
             for( VideoLookupDetails detail : details.getVideoLookups() ) {
                 videoLookups.add( VideoLookup.fromVideoLookupDetails( detail ) );
             }
-            videoLookupList.setVideoLookups( videoLookups.toArray( new VideoLookup[ videoLookups.size() ] ) );
+            list.setVideoLookups( videoLookups.toArray( new VideoLookup[ videoLookups.size() ] ) );
         }
 
-        return videoLookupList;
+        return list;
     }
 
 }

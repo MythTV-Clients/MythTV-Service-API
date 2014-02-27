@@ -137,6 +137,12 @@ public class RecRuleList {
     public RecRuleListDetails toRecRuleListDetails() {
 
         RecRuleListDetails details = new RecRuleListDetails();
+        details.setStartIndex( startIndex );
+        details.setCount( count );
+        details.setTotalAvailable( totalAvailable );
+        details.setAsOf( asOf );
+        details.setVersion( version );
+        details.setProtoVer( protoVer );
 
         if( null != recRules && recRules.length > 0 ) {
 
@@ -152,7 +158,13 @@ public class RecRuleList {
 
     public static RecRuleList fromRecRuleListDetails( RecRuleListDetails details ) {
 
-        RecRuleList recRuleList = new RecRuleList();
+        RecRuleList list = new RecRuleList();
+        list.setStartIndex( details.getStartIndex() );
+        list.setCount( details.getCount() );
+        list.setTotalAvailable( details.getTotalAvailable() );
+        list.setAsOf( details.getAsOf() );
+        list.setVersion( details.getVersion() );
+        list.setProtoVer( details.getProtoVer() );
 
         if( null != details.getRecRules() && details.getRecRules().length > 0 ) {
 
@@ -160,10 +172,10 @@ public class RecRuleList {
             for( RecRuleDetails detail : details.getRecRules() ) {
                 recRules.add( RecRule.fromRecRuleDetails( detail ) );
             }
-            recRuleList.setRecRules( recRules.toArray( new RecRule[ recRules.size() ] ) );
+            list.setRecRules( recRules.toArray( new RecRule[ recRules.size() ] ) );
         }
 
-        return recRuleList;
+        return list;
     }
 
 }

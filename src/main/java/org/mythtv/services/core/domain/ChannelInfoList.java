@@ -19,6 +19,7 @@
  */
 package org.mythtv.services.core.domain;
 
+import org.joda.time.DateTime;
 import org.mythtv.services.core.events.channel.ChannelInfoDetails;
 import org.mythtv.services.core.events.channel.ChannelInfoListDetails;
 
@@ -32,7 +33,7 @@ public class ChannelInfoList {
         private Integer currentPage;
         private Integer totalPages;
         private Integer totalAvailable;
-        private org.joda.time.DateTime asOf;
+        private DateTime asOf;
         private String version;
         private String protoVer;
         private ChannelInfo[] channelInfos;
@@ -110,14 +111,14 @@ public class ChannelInfoList {
         /**
          * @return the asOf
          */
-        public org.joda.time.DateTime getAsOf() {
+        public DateTime getAsOf() {
             return asOf;
         }
 
         /**
          * @param asOf the asOf to set
          */
-        public void setAsOf( org.joda.time.DateTime asOf ) {
+        public void setAsOf( DateTime asOf ) {
             this.asOf = asOf;
         }
 
@@ -166,6 +167,14 @@ public class ChannelInfoList {
     public ChannelInfoListDetails toChannelInfoListDetails() {
 
         ChannelInfoListDetails details = new ChannelInfoListDetails();
+        details.setStartIndex( startIndex );
+        details.setCount( count );
+        details.setCurrentPage( currentPage );
+        details.setTotalPages( totalPages );
+        details.setTotalAvailable( totalAvailable );
+        details.setAsOf( asOf );
+        details.setVersion( version );
+        details.setProtoVer( protoVer );
 
         if( null != channelInfos && channelInfos.length > 0 ) {
 
@@ -173,7 +182,7 @@ public class ChannelInfoList {
             for( ChannelInfo channelInfo : channelInfos ) {
                 channelInfoDetails.add( channelInfo.toChannelInfoDetails() );
             }
-            details.setChannelInfos(channelInfoDetails.toArray(new ChannelInfoDetails[channelInfoDetails.size()]));
+            details.setChannelInfos( channelInfoDetails.toArray( new ChannelInfoDetails[ channelInfoDetails.size() ] ) );
         }
 
         return details;
@@ -181,7 +190,15 @@ public class ChannelInfoList {
 
     public static ChannelInfoList fromChannelInfoListDetails( ChannelInfoListDetails details ) {
 
-        ChannelInfoList channelInfoList = new ChannelInfoList();
+        ChannelInfoList list = new ChannelInfoList();
+        list.setStartIndex( details.getStartIndex() );
+        list.setCount( details.getCount() );
+        list.setCurrentPage( details.getCurrentPage() );
+        list.setTotalPages( details.getTotalPages() );
+        list.setTotalAvailable( details.getTotalAvailable() );
+        list.setAsOf( details.getAsOf() );
+        list.setVersion( details.getVersion() );
+        list.setProtoVer( details.getProtoVer() );
 
         if( null != details.getChannelInfos() && details.getChannelInfos().length > 0 ) {
 
@@ -189,10 +206,10 @@ public class ChannelInfoList {
             for( ChannelInfoDetails detail : details.getChannelInfos() ) {
                 channelInfos.add( ChannelInfo.fromChannelInfoDetails(detail) );
             }
-            channelInfoList.setChannelInfos(channelInfos.toArray(new ChannelInfo[channelInfos.size()]));
+            list.setChannelInfos( channelInfos.toArray( new ChannelInfo[ channelInfos.size() ] ) );
         }
 
-        return channelInfoList;
+        return list;
     }
 
 }

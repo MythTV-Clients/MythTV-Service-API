@@ -159,13 +159,13 @@ public class ProgramList {
 
     public static ProgramList fromProgramListDetails( ProgramListDetails details ) {
 
-        ProgramList programList = new ProgramList();
-        programList.setStartIndex( details.getStartIndex() );
-        programList.setCount( details.getCount() );
-        programList.setTotalAvailable( details.getTotalAvailable() );
-        programList.setAsOf( details.getAsOf() );
-        programList.setProtoVer( details.getProtoVer() );
-        programList.setVersion( details.getVersion() );
+        ProgramList list = new ProgramList();
+        list.setStartIndex( details.getStartIndex() );
+        list.setCount( details.getCount() );
+        list.setTotalAvailable( details.getTotalAvailable() );
+        list.setAsOf( details.getAsOf() );
+        list.setProtoVer( details.getProtoVer() );
+        list.setVersion( details.getVersion() );
 
         if( null != details.getPrograms() && details.getPrograms().length > 0 ) {
 
@@ -173,10 +173,10 @@ public class ProgramList {
             for( ProgramDetails detail : details.getPrograms() ) {
                 programs.add( Program.fromProgramDetails( detail ) );
             }
-            programList.setPrograms( programs.toArray( new Program[ programs.size() ] ) );
+            list.setPrograms( programs.toArray( new Program[ programs.size() ] ) );
         }
 
-        return programList;
+        return list;
     }
 
 }
