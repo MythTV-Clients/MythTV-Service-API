@@ -17,14 +17,9 @@
  * This software can be found at <https://github.com/MythTV-Android/MythTV-Service-API/>
  *
  */
-package org.mythtv.services.core.domain;
+package org.mythtv.services.core.events.video;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.mythtv.services.core.events.video.ArtworkItemDetails;
-
-import java.lang.reflect.InvocationTargetException;
-
-public class ArtworkItem {
+public class ArtworkItemDetails {
     
         private String type;
         private String url;
@@ -101,33 +96,5 @@ public class ArtworkItem {
         public void setHeight( Integer height ) {
             this.height = height;
         }
-
-    public ArtworkItemDetails toArtworkItemDetails() {
-
-        ArtworkItemDetails details = new ArtworkItemDetails();
-        try {
-            BeanUtils.copyProperties( details, this );
-        } catch( IllegalAccessException e ) {
-            e.printStackTrace();
-        } catch( InvocationTargetException e ) {
-            e.printStackTrace();
-        }
-
-        return details;
-    }
-
-    public static ArtworkItem fromArtworkItemDetails( ArtworkItemDetails details ) {
-
-        ArtworkItem artworkItem = new ArtworkItem();
-        try {
-            BeanUtils.copyProperties( artworkItem, details );
-        } catch( IllegalAccessException e ) {
-            e.printStackTrace();
-        } catch( InvocationTargetException e ) {
-            e.printStackTrace();
-        }
-
-        return artworkItem;
-    }
-
+        
 }
