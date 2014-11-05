@@ -51,6 +51,8 @@ public class MythAccessFactory {
 			return (T) new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
 		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v027.MythServices.class))
 			return (T) new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.27
+		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v028.MythServices.class))
+			return (T) new org.mythtv.services.api.v028.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.28
 		return null;
 	}
 	
@@ -90,6 +92,8 @@ public class MythAccessFactory {
 					return new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 				case v027:
 					return new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
+				case v028:
+					return new org.mythtv.services.api.v028.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 				default:
 			}
 		return null;
@@ -127,11 +131,17 @@ public class MythAccessFactory {
                         /*
                          * The following is for 0.28-pre testing only and
                          * MUST NOT be released because users could start
-                         * running OK, only to be disappointed when the 1st
-                         * change to existing 0.27 protocol is released.
+                         * running OK, and would be disappointed as the
+                         * various 0.28 changes break things (and they have!)
+                         *
+                         * Note the change from MYTH_BINARY_VERSION to
+                         * MYTH_SOURCE_VERSION (e.g. 0.28.20140216-1 to
+                         * v0.28-pre-887-gcb586aa) which can change as
+                         * different distributions don't use the MythTV
+                         * standard!!!
                          */
-                        //else if(version.startsWith("0.28"))
-                        //    return ApiVersion.v027;
+                        else if(version.contains("0.28"))
+                            return ApiVersion.v028;
                     }
                 }
             }
