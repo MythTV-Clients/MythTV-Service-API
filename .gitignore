@@ -1,11 +1,12 @@
-export
 bin
+build
+export
+local.properties
+out
 target
 .classpath
+.idea
 .project
 .settings
 *.iml
-.idea
-build
 /.gradle
-out
