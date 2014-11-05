@@ -9,7 +9,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'org.mythtv.android'
-version = 'v028'
+version = '1.0.14'
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 

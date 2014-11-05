@@ -129,10 +129,7 @@ public class MythAccessFactory {
                         else if(version.startsWith("0.27"))
                             return ApiVersion.v027;
                         /*
-                         * The following is for 0.28-pre testing only and
-                         * MUST NOT be released because users could start
-                         * running OK, and would be disappointed as the
-                         * various 0.28 changes break things (and they have!)
+                         * The following is for 0.28-pre testing.
                          *
                          * Note the change from MYTH_BINARY_VERSION to
                          * MYTH_SOURCE_VERSION (e.g. 0.28.20140216-1 to
