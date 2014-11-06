@@ -35,7 +35,7 @@ import java.util.logging.Level;
 
 public class MythAccessFactory {
     private static final String MYTHTV_SERVER_HEADER = "Server";
-    private static final String MYTHTV_SERVER_MYTHVERSION = "MythTV ";
+    private static final String MYTHTV_SERVER_MYTHVERSION = "MythTV";
 	/**
 	 * Get the service interface instance by inferring the mythtv version by providing the service class
 	 * @param serviceClass the service class to use to infer the backend version
@@ -122,11 +122,11 @@ public class MythAccessFactory {
                     if(idx >= 0){
                         idx += MYTHTV_SERVER_MYTHVERSION.length();
                         String version = server.substring(idx);
-                        if(version.startsWith("0.25"))
+                        if(version.contains("0.25"))
                             return ApiVersion.v025;
-                        if(version.startsWith("0.26"))
+                        if(version.contains("0.26"))
                             return ApiVersion.v026;
-                        else if(version.startsWith("0.27"))
+                        else if(version.contains("0.27"))
                             return ApiVersion.v027;
                         /*
                          * The following is for 0.28-pre testing.
