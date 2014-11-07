@@ -35,7 +35,7 @@ import java.util.logging.Level;
 
 public class MythAccessFactory {
     private static final String MYTHTV_SERVER_HEADER = "Server";
-    private static final String MYTHTV_SERVER_MYTHVERSION = "MythTV ";
+    private static final String MYTHTV_SERVER_MYTHVERSION = "MythTV";
 	/**
 	 * Get the service interface instance by inferring the mythtv version by providing the service class
 	 * @param serviceClass the service class to use to infer the backend version
@@ -51,6 +51,8 @@ public class MythAccessFactory {
 			return (T) new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.26
 		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v027.MythServices.class))
 			return (T) new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.27
+		else if(serviceClass.isAssignableFrom(org.mythtv.services.api.v028.MythServices.class))
+			return (T) new org.mythtv.services.api.v028.MythServicesTemplate(scrubApiUrl(baseUri), logLevel); // v0.28
 		return null;
 	}
 	
@@ -90,6 +92,8 @@ public class MythAccessFactory {
 					return new org.mythtv.services.api.v026.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 				case v027:
 					return new org.mythtv.services.api.v027.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
+				case v028:
+					return new org.mythtv.services.api.v028.MythServicesTemplate(scrubApiUrl(baseUri), logLevel);
 				default:
 			}
 		return null;
@@ -118,20 +122,23 @@ public class MythAccessFactory {
                     if(idx >= 0){
                         idx += MYTHTV_SERVER_MYTHVERSION.length();
                         String version = server.substring(idx);
-                        if(version.startsWith("0.25"))
+                        if(version.contains("0.25"))
                             return ApiVersion.v025;
-                        if(version.startsWith("0.26"))
+                        if(version.contains("0.26"))
                             return ApiVersion.v026;
-                        else if(version.startsWith("0.27"))
+                        else if(version.contains("0.27"))
                             return ApiVersion.v027;
                         /*
-                         * The following is for 0.28-pre testing only and
-                         * MUST NOT be released because users could start
-                         * running OK, only to be disappointed when the 1st
-                         * change to existing 0.27 protocol is released.
+                         * The following is for 0.28-pre testing.
+                         *
+                         * Note the change from MYTH_BINARY_VERSION to
+                         * MYTH_SOURCE_VERSION (e.g. 0.28.20140216-1 to
+                         * v0.28-pre-887-gcb586aa) which can change as
+                         * different distributions don't use the MythTV
+                         * standard!!!
                          */
-                        //else if(version.startsWith("0.28"))
-                        //    return ApiVersion.v027;
+                        else if(version.contains("0.28"))
+                            return ApiVersion.v028;
                     }
                 }
             }
