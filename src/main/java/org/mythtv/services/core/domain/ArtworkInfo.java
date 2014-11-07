@@ -32,7 +32,7 @@ public class ArtworkInfo {
         private String type;
         
         /**
-         * @return the uRL
+         * @return the url
          */
         public String getUrl() {
             return url;
@@ -41,7 +41,7 @@ public class ArtworkInfo {
         /**
          * @param url the url to set
          */
-        public void setURL( String url ) {
+        public void setUrl( String url ) {
             this.url = url;
         }
         
