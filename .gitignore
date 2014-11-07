@@ -9,4 +9,4 @@ target
 build
 /.gradle
 out
-local.properties
+#local.properties
