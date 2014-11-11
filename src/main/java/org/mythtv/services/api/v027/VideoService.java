@@ -44,7 +44,7 @@ public interface VideoService {
 	 */
 	@Headers({"Accept: application/json"})
     @POST("/Video/AddVideo")
-    Bool addVideo(@Query("FileName") String fileName, @Query("HostName") String hostName);
+	Bool addVideo(@Query("FileName") String fileName, @Query("HostName") String hostName);
 
 	/*
      * POST method (asynchronous)
@@ -67,7 +67,7 @@ public interface VideoService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Video/GetBluray")
-    BlurayInfo getBluray(@Query("Path") String path, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	BlurayInfo getBluray(@Query("Path") String path, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -90,7 +90,7 @@ public interface VideoService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Video/GetVideo")
-    VideoMetadataInfo getVideo(@Query("Id") Integer id, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	VideoMetadataInfo getVideo(@Query("Id") Integer id, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -138,7 +138,7 @@ public interface VideoService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Video/GetVideoList")
-    VideoMetadataInfoList getVideoList(@Query("Descending") Boolean descending, @Query("StartIndex") Integer startIndex, @Query("Count") Integer count, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	VideoMetadataInfoList getVideoList(@Query("Descending") Boolean descending, @Query("StartIndex") Integer startIndex, @Query("Count") Integer count, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -169,7 +169,7 @@ public interface VideoService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Video/LookupVideo")
-    VideoLookupList lookupVideo(@Query("Title") String title, @Query("Subtitle") String subtitle, @Query("Inetref") String inetref, @Query("Season") Integer season, @Query("Episode") Integer episode, @Query("GrabberType") String grabberType, @Query("AllowGeneric") Boolean allowGeneric, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	VideoLookupList lookupVideo(@Query("Title") String title, @Query("Subtitle") String subtitle, @Query("Inetref") String inetref, @Query("Season") Integer season, @Query("Episode") Integer episode, @Query("GrabberType") String grabberType, @Query("AllowGeneric") Boolean allowGeneric, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)

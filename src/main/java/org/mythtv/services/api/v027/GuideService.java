@@ -68,7 +68,7 @@ public interface GuideService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Guide/GetProgramDetails")
-    Program getProgramDetails(@Query("ChanId") Integer chanId, @Query("StartTime") org.joda.time.DateTime startTime, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	Program getProgramDetails(@Query("ChanId") Integer chanId, @Query("StartTime") org.joda.time.DateTime startTime, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -96,7 +96,7 @@ public interface GuideService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Guide/GetProgramGuide")
-    ProgramGuide getProgramGuide(@Query("StartTime") org.joda.time.DateTime startTime, @Query("EndTime") org.joda.time.DateTime endTime, @Query("StartChanId") Integer startChanId, @Query("NumChannels") Integer numChannels, @Query("Details") Boolean details, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	ProgramGuide getProgramGuide(@Query("StartTime") org.joda.time.DateTime startTime, @Query("EndTime") org.joda.time.DateTime endTime, @Query("StartChanId") Integer startChanId, @Query("NumChannels") Integer numChannels, @Query("Details") Boolean details, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)

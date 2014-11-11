@@ -65,7 +65,7 @@ public interface CaptureService {
 	 */
 	@Headers({"Accept: application/json"})
     @POST("/Capture/AddCaptureCard")
-    Int addCaptureCard(@Query("VideoDevice") String videoDevice, @Query("AudioDevice") String audioDevice, @Query("VBIDevice") String vBIDevice, @Query("CardType") String cardType, @Query("AudioRateLimit") Integer audioRateLimit, @Query("HostName") String hostName, @Query("DVBSWFilter") Integer dVBSWFilter, @Query("DVBSatType") Integer dVBSatType, @Query("DVBWaitForSeqStart") Boolean dVBWaitForSeqStart, @Query("SkipBTAudio") Boolean skipBTAudio, @Query("DVBOnDemand") Boolean dVBOnDemand, @Query("DVBDiSEqCType") Integer dVBDiSEqCType, @Query("FirewireSpeed") Integer firewireSpeed, @Query("FirewireModel") String firewireModel, @Query("FirewireConnection") Integer firewireConnection, @Query("SignalTimeout") Integer signalTimeout, @Query("ChannelTimeout") Integer channelTimeout, @Query("DVBTuningDelay") Integer dVBTuningDelay, @Query("Contrast") Integer contrast, @Query("Brightness") Integer brightness, @Query("Colour") Integer colour, @Query("Hue") Integer hue, @Query("DiSEqCId") Integer diSEqCId, @Query("DVBEITScan") Boolean dVBEITScan);
+	Int addCaptureCard(@Query("VideoDevice") String videoDevice, @Query("AudioDevice") String audioDevice, @Query("VBIDevice") String vBIDevice, @Query("CardType") String cardType, @Query("AudioRateLimit") Integer audioRateLimit, @Query("HostName") String hostName, @Query("DVBSWFilter") Integer dVBSWFilter, @Query("DVBSatType") Integer dVBSatType, @Query("DVBWaitForSeqStart") Boolean dVBWaitForSeqStart, @Query("SkipBTAudio") Boolean skipBTAudio, @Query("DVBOnDemand") Boolean dVBOnDemand, @Query("DVBDiSEqCType") Integer dVBDiSEqCType, @Query("FirewireSpeed") Integer firewireSpeed, @Query("FirewireModel") String firewireModel, @Query("FirewireConnection") Integer firewireConnection, @Query("SignalTimeout") Integer signalTimeout, @Query("ChannelTimeout") Integer channelTimeout, @Query("DVBTuningDelay") Integer dVBTuningDelay, @Query("Contrast") Integer contrast, @Query("Brightness") Integer brightness, @Query("Colour") Integer colour, @Query("Hue") Integer hue, @Query("DiSEqCId") Integer diSEqCId, @Query("DVBEITScan") Boolean dVBEITScan);
 
 	/*
      * POST method (asynchronous)
@@ -142,7 +142,6 @@ public interface CaptureService {
 	 * @param recPriority
 	 * @param quicktune
 	 * @param schedOrder
-
 	 * @param liveTVOrder
 	 * @param callback
      */
@@ -160,7 +159,7 @@ public interface CaptureService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Capture/GetCaptureCard")
-    CaptureCard getCaptureCard(@Query("CardId") Integer cardId, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	CaptureCard getCaptureCard(@Query("CardId") Integer cardId, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -184,7 +183,7 @@ public interface CaptureService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Capture/GetCaptureCardList")
-    CaptureCardList getCaptureCardList(@Query("HostName") String hostName, @Query("CardType") String cardType, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	CaptureCardList getCaptureCardList(@Query("HostName") String hostName, @Query("CardType") String cardType, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -207,7 +206,7 @@ public interface CaptureService {
 	 */
 	@Headers({"Accept: application/json"})
     @POST("/Capture/RemoveCaptureCard")
-    Bool removeCaptureCard(@Query("CardId") Integer cardId);
+	Bool removeCaptureCard(@Query("CardId") Integer cardId);
 
 	/*
      * POST method (asynchronous)

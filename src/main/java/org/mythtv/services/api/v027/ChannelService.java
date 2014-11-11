@@ -19,7 +19,13 @@ import org.mythtv.services.api.ArrayOfString;
 import org.mythtv.services.api.Bool;
 import org.mythtv.services.api.ETagInfo;
 import org.mythtv.services.api.Int;
-import org.mythtv.services.api.v027.beans.*;
+import org.mythtv.services.api.v027.beans.ChannelInfo;
+import org.mythtv.services.api.v027.beans.ChannelInfoList;
+import org.mythtv.services.api.v027.beans.LineupList;
+import org.mythtv.services.api.v027.beans.VideoMultiplex;
+import org.mythtv.services.api.v027.beans.VideoMultiplexList;
+import org.mythtv.services.api.v027.beans.VideoSource;
+import org.mythtv.services.api.v027.beans.VideoSourceList;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Header;
@@ -57,7 +63,7 @@ public interface ChannelService {
 	 */
 	@Headers({"Accept: application/json"})
     @POST("/Channel/AddDBChannel")
-    Bool addDBChannel(@Query("MplexID") Integer mplexID, @Query("SourceID") Integer sourceID, @Query("ChannelID") Integer channelID, @Query("CallSign") String callSign, @Query("ChannelName") String channelName, @Query("ChannelNumber") String channelNumber, @Query("ServiceID") Integer serviceID, @Query("ATSCMajorChannel") Integer aTSCMajorChannel, @Query("ATSCMinorChannel") Integer aTSCMinorChannel, @Query("UseEIT") Boolean useEIT, @Query("visible") Boolean visible, @Query("FrequencyID") String frequencyID, @Query("Icon") String icon, @Query("Format") String format, @Query("XMLTVID") String xMLTVID, @Query("DefaultAuthority") String defaultAuthority);
+	Bool addDBChannel(@Query("MplexID") Integer mplexID, @Query("SourceID") Integer sourceID, @Query("ChannelID") Integer channelID, @Query("CallSign") String callSign, @Query("ChannelName") String channelName, @Query("ChannelNumber") String channelNumber, @Query("ServiceID") Integer serviceID, @Query("ATSCMajorChannel") Integer aTSCMajorChannel, @Query("ATSCMinorChannel") Integer aTSCMinorChannel, @Query("UseEIT") Boolean useEIT, @Query("visible") Boolean visible, @Query("FrequencyID") String frequencyID, @Query("Icon") String icon, @Query("Format") String format, @Query("XMLTVID") String xMLTVID, @Query("DefaultAuthority") String defaultAuthority);
 
 	/*
      * POST method (asynchronous)
@@ -260,7 +266,7 @@ public interface ChannelService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Channel/GetVideoMultiplexList")
-    VideoMultiplexList getVideoMultiplexList(@Query("SourceID") Integer sourceID, @Query("StartIndex") Integer startIndex, @Query("Count") Integer count, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	VideoMultiplexList getVideoMultiplexList(@Query("SourceID") Integer sourceID, @Query("StartIndex") Integer startIndex, @Query("Count") Integer count, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
@@ -329,7 +335,7 @@ public interface ChannelService {
 	 */
 	@Headers({"Accept: application/json"})
     @GET("/Channel/GetXMLTVIdList")
-    ArrayOfString getXMLTVIdList(@Query("SourceID") Integer sourceID, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
+	ArrayOfString getXMLTVIdList(@Query("SourceID") Integer sourceID, @Header("If-None-Match") ETagInfo etagInfo, @Header("MYTH_REQUEST_ID") String headerMythRequestId);
 
 	/*
      * GET method (asynchronous)
