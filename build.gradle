@@ -9,9 +9,9 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'org.mythtv.android'
-version = '1.0.14'
-sourceCompatibility = JavaVersion.VERSION_1_6
-targetCompatibility = JavaVersion.VERSION_1_6
+version = '2.0.0'
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 def isDevBuild
 def isReleaseBuild
@@ -31,32 +31,24 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    jacksonVersion = '2.4.3'
+    okHttpVersion = '2.0.0'
+    retrofitVersion = '1.7.1'
+}
+
 dependencies {
-
-    configurations {
-        // StAX is not available on Android
-        compile.exclude group:'stax', module:'stax'
-        compile.exclude group:'stax', module:'stax-api'
-        // Exclude in favor of Spring Android RestTemplate
-        compile.exclude group:'org.springframework', module:'spring-web'
-        // provided by Android
-        compile.exclude group:'xpp3', module:'xpp3'
-        compile.exclude group:'commons-logging', module:'commons-logging'
-    }
-
-    compile group:'org.apache.commons', name:'commons-io', version:'1.3.2'
-    compile group:'org.joda', name:'joda-convert', version:'1.7'
+    compile group:'com.google.guava', name:'guava', version:'18.0'
     compile group:'joda-time', name:'joda-time', version:'2.5'
-    compile group:'javax.jmdns', name:'jmdns', version:'3.4.1'
-    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.4.3'
-	compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.4.3'
-	compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.4.3'
-	compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:'2.4.3'
-	compile group:'org.springframework.android', name:'spring-android-rest-template', version:'1.0.1.RELEASE'
-	compile group:'org.springframework.social', name:'spring-social-core', version:'1.0.2.RELEASE'
-    compile group:'org.simpleframework', name:'simple-xml', version:'2.7.1'
-    compile group:'commons-beanutils', name:'commons-beanutils', version:'1.9.2'
-    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.7'
+    compile group:'org.joda', name:'joda-convert', version:'1.7'
+    compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:project.ext.jacksonVersion
+    compile group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:project.ext.jacksonVersion
+    compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:project.ext.jacksonVersion
+    compile group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-joda', version:project.ext.jacksonVersion
+    compile group:'com.squareup.okhttp', name:'okhttp', version:project.ext.okHttpVersion
+    compile group:'com.squareup.okhttp', name:'okhttp-urlconnection', version:project.ext.okHttpVersion
+    compile group:'com.squareup.retrofit', name:'retrofit', version:project.ext.retrofitVersion
+    compile group:'com.squareup.retrofit', name:'converter-jackson', version:project.ext.retrofitVersion
     testCompile group:'junit', name:'junit', version:'4.11'
 }
 
@@ -124,7 +116,7 @@ uploadArchives {
                 pom.project {
                     name 'MythTV-Service-API'
                     packaging 'jar'
-                    description 'MythTV Services API for android and java'
+                    description 'MythTV Services API for java'
                     url ' https://github.com/MythTV-Clients/MythTV-Service-API'
 
                     scm {
@@ -135,8 +127,8 @@ uploadArchives {
 
                     licenses {
                         license {
-                            name 'GNU General Public License, Version 3.0'
-                            url 'http://www.gnu.org/licenses/gpl-3.0.html'
+                            name 'Apache License Version 2.0, January 2004'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.html'
                             distribution 'repo'
                         }
                     }

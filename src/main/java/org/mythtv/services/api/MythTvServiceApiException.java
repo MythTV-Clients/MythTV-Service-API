@@ -19,7 +19,23 @@ package org.mythtv.services.api;
 /**
  * @author Sebastien Astie
  */
-public enum ApiVersion {
-    v027,
-    NotSupported
+public class MythTvServiceApiException extends RuntimeException {
+    public MythTvServiceApiException() {
+    }
+
+    public MythTvServiceApiException(String message) {
+        super(message);
+    }
+
+    public MythTvServiceApiException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public MythTvServiceApiException(Throwable cause) {
+        super(cause);
+    }
+
+    public MythTvServiceApiException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }
