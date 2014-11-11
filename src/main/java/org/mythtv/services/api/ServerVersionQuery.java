@@ -35,6 +35,7 @@ public class ServerVersionQuery {
      *
      * @param baseUri the backend services api url
      * @return the Api version
+     * @throws IOException if an error occurs
      */
     public static ApiVersion getMythVersion(String baseUri) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -69,6 +70,7 @@ public class ServerVersionQuery {
      *
      * @param baseUrl The url of the server to test
      * @return true if reachable otherwise false.
+     * @throws IOException if an error occurs
      */
     public static boolean isServerReachable(String baseUrl) throws IOException {
         OkHttpClient client = new OkHttpClient();
