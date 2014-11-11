@@ -1,19 +1,17 @@
 /*
- * Copyright (C) 2014, Tikinou LLC
- * All Rights Reserved.  Unpublished.
- * http://www.tikinou.com
+ * Copyright (c) 2014 TIKINOU LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * This software is proprietary and confidential to Tikinou LLC
- * and may not be disclosed to third parties or duplicated or used
- * for any purpose other than the purpose for which it has been provided.
- * Any unauthorized use, duplication or disclosure is prohibited by law
- * and will result in prosecution.
  */
 
 package org.mythtv.services.api.v027;
