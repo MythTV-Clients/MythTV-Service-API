@@ -86,13 +86,25 @@ public abstract class MythTvApiContext {
                 throw new MythTvServiceApiException("hostname must be set and cannot be null or empty");
             if (apiVersion == null)
                 throw new MythTvServiceApiException("apiVersion must be set and cannot be null");
-            if (apiVersion != ApiVersion.v027)
-                throw new MythTvServiceApiException("apiVersion " + apiVersion + "is not supported");
+            switch (apiVersion){
+                case v027:
+                case v028:
+                    break;
+                default:
+                    throw new MythTvServiceApiException("apiVersion " + apiVersion + "is not supported");
+            }
             if (port <= 0)
                 throw new MythTvServiceApiException("port " + port + " is invalid");
+            MythTvApiContext context;
             switch (apiVersion) {
                 case v027:
-                    MythTvApiContext context = new MythTvApi027Context();
+                    context = new MythTvApi027Context();
+                    context.backendHost = this.hostName;
+                    context.backendPort = this.port;
+                    context.initialize();
+                    return context;
+                case v028:
+                    context = new MythTvApi028Context();
                     context.backendHost = this.hostName;
                     context.backendPort = this.port;
                     context.initialize();
