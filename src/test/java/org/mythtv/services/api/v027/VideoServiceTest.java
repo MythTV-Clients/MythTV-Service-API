@@ -32,7 +32,7 @@ public class VideoServiceTest {
     private VideoService videoService;
     private MythTvApi027Context context;
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testGetVideoList() throws Exception {
         try {
             ETagInfo eTagInfo = context.getEtag(VIDEO_LIST_REQ_ID, true);
@@ -49,7 +49,7 @@ public class VideoServiceTest {
         }
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testGetVideoListAsync() throws Exception {
         Callback<VideoMetadataInfoList> callback = new Callback<VideoMetadataInfoList>() {
             @Override
@@ -67,7 +67,7 @@ public class VideoServiceTest {
     }
 
 
-    @org.junit.Before
+//    @org.junit.Before
     public void setUp() throws Exception {
         context = (MythTvApi027Context) MythTvApiContext.newBuilder().setHostName("master").setVersion(ApiVersion.v027).build();
         videoService = context.getVideoService();
