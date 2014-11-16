@@ -59,6 +59,8 @@ public class ServerVersionQuery {
                     String version = serverHeader.substring(idx);
                     if (version.contains("0.27"))
                         return ApiVersion.v027;
+                    if (version.contains("0.28"))
+                        return ApiVersion.v028;
                 }
             }
         }
