@@ -22,6 +22,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Sebastien Astie
@@ -34,11 +35,29 @@ public class ServerVersionQuery {
      * Gets the api version of the given backend
      *
      * @param baseUri the backend services api url
+     * @param connectTimeout connection timeout
+     * @param timeUnit connection timeout unit
+     * @return the Api version
+     * @throws IOException if an error occurs
+     */
+    public static ApiVersion getMythVersion(String baseUri, long connectTimeout, TimeUnit timeUnit) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        client.setConnectTimeout(connectTimeout, timeUnit);
+        return getMythVersion(baseUri, client);
+    }
+
+    /**
+     * Gets the api version of the given backend
+     *
+     * @param baseUri the backend services api url
      * @return the Api version
      * @throws IOException if an error occurs
      */
     public static ApiVersion getMythVersion(String baseUri) throws IOException {
-        OkHttpClient client = new OkHttpClient();
+        return getMythVersion(baseUri, new OkHttpClient());
+    }
+
+    private static ApiVersion getMythVersion(String baseUri, OkHttpClient client) throws IOException {
         StringBuilder urlBuilder = new StringBuilder(baseUri);
         if (!baseUri.endsWith("/"))
             urlBuilder.append("/");
@@ -67,6 +86,7 @@ public class ServerVersionQuery {
         return ApiVersion.NotSupported;
     }
 
+
     /**
      * Check if the server is reachable
      *
@@ -75,7 +95,25 @@ public class ServerVersionQuery {
      * @throws IOException if an error occurs
      */
     public static boolean isServerReachable(String baseUrl) throws IOException {
+        return isServerReachable(baseUrl, new OkHttpClient());
+    }
+
+    /**
+     * Check if the server is reachable
+     *
+     * @param baseUrl The url of the server to test
+     * @param connectTimeout connection timeout
+     * @param timeUnit connection timeout unit
+     * @return true if reachable otherwise false.
+     * @throws IOException if an error occurs
+     */
+    public static boolean isServerReachable(String baseUrl, long connectTimeout, TimeUnit timeUnit) throws IOException {
         OkHttpClient client = new OkHttpClient();
+        client.setConnectTimeout(connectTimeout, timeUnit);
+        return isServerReachable(baseUrl, client);
+    }
+
+    private static boolean isServerReachable(String baseUrl, OkHttpClient client) throws IOException {
         Request request = new Request.Builder()
                 .url(baseUrl)
                 .addHeader("User-Agent", "MythTv Service API Server Reaching")
