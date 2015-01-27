@@ -22,6 +22,7 @@ import com.squareup.okhttp.OkHttpClient;
 import java.util.Map;
 
 import retrofit.RestAdapter;
+import retrofit.RestAdapter.LogLevel;
 import retrofit.converter.JacksonConverter;
 
 /**
@@ -34,6 +35,7 @@ public abstract class MythTvApiContext {
 
     protected String backendHost;
     protected int backendPort;
+    protected LogLevel logLevel = LogLevel.NONE;
     protected EtagInterceptingOkClient client;
     protected RestAdapter restAdapter;
 
@@ -48,6 +50,8 @@ public abstract class MythTvApiContext {
     public String getBackendHost() {
         return backendHost;
     }
+
+    public LogLevel getLogLevel() { return logLevel; }
 
     public ETagInfo getEtag(String requestId, boolean createIfMissing) {
         ETagInfo eTagInfo = client.getEtags().get(requestId);
@@ -71,6 +75,7 @@ public abstract class MythTvApiContext {
         restAdapter = new RestAdapter.Builder()
                 .setClient(client)
                 .setEndpoint(builder.toString())
+                .setLogLevel(logLevel)
                 .setConverter(CONVERTER)
                 .build();
     }
@@ -78,6 +83,7 @@ public abstract class MythTvApiContext {
     public static class Builder {
         private ApiVersion apiVersion;
         private String hostName;
+        private LogLevel logLevel;
         private Builder() {
         }        private int port = DEFAULT_API_PORT;
 
@@ -101,12 +107,14 @@ public abstract class MythTvApiContext {
                     context = new MythTvApi027Context();
                     context.backendHost = this.hostName;
                     context.backendPort = this.port;
+                    context.logLevel = this.logLevel;
                     context.initialize();
                     return context;
                 case v028:
                     context = new MythTvApi028Context();
                     context.backendHost = this.hostName;
                     context.backendPort = this.port;
+                    context.logLevel = this.logLevel;
                     context.initialize();
                     return context;
             }
@@ -128,6 +136,10 @@ public abstract class MythTvApiContext {
             return this;
         }
 
+        public Builder setLogLevel(LogLevel logLevel) {
+            this.logLevel = logLevel;
+            return this;
+        }
 
     }
 
