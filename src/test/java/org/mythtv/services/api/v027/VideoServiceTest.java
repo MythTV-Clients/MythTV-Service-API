@@ -16,6 +16,8 @@
 
 package org.mythtv.services.api.v027;
 
+import com.squareup.okhttp.OkHttpClient;
+
 import org.junit.Assert;
 
 import org.mythtv.services.api.ApiVersion;
@@ -69,7 +71,10 @@ public class VideoServiceTest {
 
 //    @org.junit.Before
     public void setUp() throws Exception {
-        context = (MythTvApi027Context) MythTvApiContext.newBuilder().setHostName("master").setVersion(ApiVersion.v027).build();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setFollowRedirects( true );
+
+        context = (MythTvApi027Context) MythTvApiContext.newBuilder().setOkHttpClient( okHttpClient ).setHostName("master").setVersion(ApiVersion.v027).build();
         videoService = context.getVideoService();
     }
 }

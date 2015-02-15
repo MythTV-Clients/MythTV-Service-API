@@ -9,7 +9,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'org.mythtv.android'
-version = '2.0.3'
+version = '2.0.4'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -34,7 +34,7 @@ repositories {
 
 ext {
     jacksonVersion = '2.4.3'
-    okHttpVersion = '2.0.0'
+    okHttpVersion = '2.2.0'
     retrofitVersion = '1.9.0'
 }
 

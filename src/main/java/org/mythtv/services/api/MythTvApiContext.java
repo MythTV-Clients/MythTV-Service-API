@@ -33,6 +33,7 @@ public abstract class MythTvApiContext {
     public static final int ETAG_MATCH_HTTP_RESPONSE_CODE = 304;
     private static JacksonConverter CONVERTER = new JacksonConverter(JacksonUtils.initObjectMapper());
 
+    protected OkHttpClient okHttpClient;
     protected String backendHost;
     protected int backendPort;
     protected LogLevel logLevel = LogLevel.NONE;
@@ -42,6 +43,8 @@ public abstract class MythTvApiContext {
     public static Builder newBuilder() {
         return new Builder();
     }
+
+    public OkHttpClient getOkHttpClient() { return okHttpClient; }
 
     public int getBackendPort() {
         return backendPort;
@@ -71,7 +74,7 @@ public abstract class MythTvApiContext {
     protected void initialize() {
         StringBuilder builder = new StringBuilder("http://");
         builder.append(backendHost).append(":").append(backendPort);
-        client = new EtagInterceptingOkClient(new OkHttpClient());
+        client = new EtagInterceptingOkClient( okHttpClient );
         restAdapter = new RestAdapter.Builder()
                 .setClient(client)
                 .setEndpoint(builder.toString())
@@ -82,10 +85,13 @@ public abstract class MythTvApiContext {
 
     public static class Builder {
         private ApiVersion apiVersion;
+        private OkHttpClient okHttpClient = new OkHttpClient();
         private String hostName;
+        private int port = DEFAULT_API_PORT;
         private LogLevel logLevel;
+
         private Builder() {
-        }        private int port = DEFAULT_API_PORT;
+        }
 
         public MythTvApiContext build() throws MythTvServiceApiException {
             if (Strings.isNullOrEmpty(hostName))
@@ -105,6 +111,7 @@ public abstract class MythTvApiContext {
             switch (apiVersion) {
                 case v027:
                     context = new MythTvApi027Context();
+                    context.okHttpClient = this.okHttpClient;
                     context.backendHost = this.hostName;
                     context.backendPort = this.port;
                     context.logLevel = this.logLevel;
@@ -112,6 +119,7 @@ public abstract class MythTvApiContext {
                     return context;
                 case v028:
                     context = new MythTvApi028Context();
+                    context.okHttpClient = this.okHttpClient;
                     context.backendHost = this.hostName;
                     context.backendPort = this.port;
                     context.logLevel = this.logLevel;
@@ -119,6 +127,11 @@ public abstract class MythTvApiContext {
                     return context;
             }
             return null;
+        }
+
+        public Builder setOkHttpClient( OkHttpClient okHttpClient ) {
+            this.okHttpClient = okHttpClient;
+            return this;
         }
 
         public Builder setHostName(String hostName) {
